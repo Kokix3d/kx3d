@@ -568,7 +568,7 @@ function validateImageSource(imageSrc) {
         const cardMiddle = '" data-detail-page="';
         const cardMiddle2 = '"><div class="product-image-wrapper"><img src="';
         const cardMiddle3 = '" alt="';
-        const cardMiddle4 = '" class="product-image" loading="lazy" decoding="async" onerror="this.src=\'' + imageFallback + '\'"></div><div class="product-info"><h3 class="product-title">';
+        const cardMiddle4 = '" class="product-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.src=\'' + imageFallback + '\'"></div><div class="product-info"><h3 class="product-title">';
         const cardEnd = '</h3></div></div>';
 
         for (let i = 0; i < resultsLength; i++) {
@@ -1067,7 +1067,7 @@ function validateImageSource(imageSrc) {
       
       return `
         <div class="featured-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
-          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" loading="lazy" onerror="this.style.opacity='0.3'">
+          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'">
           <div class="featured-card-info">
             <h3 class="featured-card-title">${product.title}</h3>
             <div class="featured-card-meta">
@@ -1194,7 +1194,7 @@ function validateImageSource(imageSrc) {
       htmlString += `
         <div class="slider-product-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
           <div class="slider-product-card-image-wrapper">
-            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" loading="lazy" onerror="this.style.opacity='0.3'">
+            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'">
             <span class="slider-product-card-new-badge">New</span>
           </div>
           <div class="slider-product-card-info">

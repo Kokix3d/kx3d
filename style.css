@@ -44,6 +44,18 @@ html {
   /* 120fps Scroll Optimization */
   scroll-padding-top: var(--header-height);
   overscroll-behavior: contain; /* Prevent scroll chaining */
+  /* Prevent FOUC - ensure dark theme from first paint */
+  background: #000000;
+  color: #ffffff;
+}
+
+body {
+  /* Prevent FOUC - ensure dark theme from first paint */
+  background: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
 html *,
