@@ -9,105 +9,85 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <style>
-    /* Grid layout for Adobe Creative Cloud description - High specificity */
+    /* Optimized Grid Layout for Adobe Creative Cloud */
     #productDescription {
-      display: block !important;
-      width: 100% !important;
-      margin: 1rem 0 !important;
-      color: rgba(255, 255, 255, 0.8) !important;
-      line-height: 1.6 !important;
-      font-size: 0.9rem !important;
+      display: block;
+      width: 100%;
+      margin: 1rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      font-size: 0.9rem;
     }
     
-    #productDescription > * {
-      display: block !important;
+    .membership-price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      width: 100%;
     }
     
-    /* Force grid display with maximum specificity - Smaller sizes */
-    #productDescription .membership-price-grid,
-    #productDescription div.membership-price-grid,
-    div.membership-price-grid {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 0.75rem !important;
-      margin-bottom: 0.75rem !important;
-      width: 100% !important;
+    .membership-info-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.625rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
     }
     
-    #productDescription .membership-info-box,
-    #productDescription div.membership-info-box,
-    div.membership-info-box {
-      background: rgba(255, 255, 255, 0.05) !important;
-      padding: 0.625rem !important;
-      border-radius: 6px !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      font-size: 0.9rem !important;
+    .membership-info-box p {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.9rem;
     }
     
-    #productDescription .membership-features-grid,
-    #productDescription div.membership-features-grid,
-    div.membership-features-grid {
-      display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 0.5rem !important;
-      margin-bottom: 0.75rem !important;
-      width: 100% !important;
+    .membership-info-box p:first-child {
+      margin-bottom: 0.375rem;
     }
     
-    #productDescription .membership-feature-item,
-    #productDescription div.membership-feature-item,
-    div.membership-feature-item {
-      background: rgba(255, 255, 255, 0.05) !important;
-      padding: 0.5rem !important;
-      border-radius: 5px !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      transition: background 0.2s ease !important;
-      font-size: 0.85rem !important;
+    .membership-info-box strong {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      font-size: 0.95rem;
     }
     
-    #productDescription .membership-feature-item:hover,
-    div.membership-feature-item:hover {
-      background: rgba(255, 255, 255, 0.08) !important;
+    .membership-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      width: 100%;
     }
     
-    #productDescription .membership-feature-item p,
-    div.membership-feature-item p {
-      margin: 0 !important;
-      line-height: 1.4 !important;
-      font-size: 0.85rem !important;
+    .membership-feature-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.2s ease;
+      font-size: 0.85rem;
     }
     
-    #productDescription .membership-info-box p,
-    div.membership-info-box p {
-      margin: 0 !important;
-      line-height: 1.5 !important;
-      font-size: 0.9rem !important;
+    .membership-feature-item:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
     
-    #productDescription .membership-info-box p:first-child,
-    div.membership-info-box p:first-child {
-      margin-bottom: 0.375rem !important;
+    .membership-feature-item p {
+      margin: 0;
+      line-height: 1.4;
+      font-size: 0.85rem;
     }
     
-    #productDescription .membership-info-box strong,
-    div.membership-info-box strong {
-      color: rgba(255, 255, 255, 0.95) !important;
-      font-weight: 600 !important;
-      font-size: 0.95rem !important;
-    }
-    
-    #productDescription p[style*="margin-bottom: 1rem"] {
-      margin-bottom: 0.5rem !important;
-      font-size: 0.95rem !important;
+    .membership-section-title {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
     }
     
     @media (max-width: 768px) {
       .membership-price-grid,
-      .membership-features-grid,
-      div[style*="grid-template-columns: 1fr 1fr"],
-      div[style*="grid-template-columns: repeat(2, 1fr)"] {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
+      .membership-features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
       }
     }
   </style>
@@ -122,9 +102,9 @@
         <span></span>
       </button>
       
-      <div class="logo-link">
+      <a href="../index.html" class="logo-link">
         <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
-      </div>
+      </a>
       <ul class="nav-menu">
         <li><a href="../index.html">Home</a></li>
         <li><a href="membership.html">Membership</a></li>
@@ -201,9 +181,9 @@
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
       <div class="mobile-menu-header">
-        <div class="logo-link-mobile">
+        <a href="../index.html" class="logo-link-mobile">
           <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
-        </div>
+        </a>
         <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -358,89 +338,85 @@
         document.querySelector('.container').innerHTML = '<p class="error-message">Membership not found</p>';
         return;
       }
+      
+      // Cache DOM elements
       const heroImage = document.getElementById('heroMainImage');
-      if (heroImage) {
-        // Use image path as-is if it already contains a folder path, otherwise use as-is from root
-        let imagePath = membership.image;
-        // Only prepend folder if image doesn't already have a path (no '/' in it) and doesn't start with http or ../
-        if (!imagePath.startsWith('http') && !imagePath.startsWith('../') && !imagePath.includes('/')) {
-          // Image is in root, use as-is
-          imagePath = imagePath;
-        }
+      const productTitle = document.getElementById('productTitle');
+      const descriptionElement = document.getElementById('productDescription');
+      
+      // Set title
+      if (productTitle) productTitle.textContent = membership.title;
+      
+      // Load hero image
+      if (heroImage && membership.image) {
+        const imagePath = membership.image;
         heroImage.loading = 'eager';
         heroImage.decoding = 'async';
         heroImage.fetchPriority = 'high';
         heroImage.src = imagePath;
         heroImage.onerror = () => {
-          heroImage.style.display = 'none';
-          // Try to load first gallery image as fallback
           if (membership.images && membership.images.length > 0) {
-            let fallbackPath = membership.images[0];
-            if (!fallbackPath.startsWith('http') && !fallbackPath.startsWith('../') && !fallbackPath.includes('/')) {
-              // Image is in root, use as-is
-              fallbackPath = fallbackPath;
-            }
-            heroImage.src = fallbackPath;
+            heroImage.src = membership.images[0];
             heroImage.style.display = 'block';
+          } else {
+            heroImage.style.display = 'none';
           }
         };
       }
-      document.getElementById('productTitle').textContent = membership.title;
 
       // Set description based on membership
-      const descriptionElement = document.getElementById('productDescription');
       if (descriptionElement) {
         if (membership.title === "Adobe Creative Cloud") {
           descriptionElement.innerHTML = `
-            <div class="membership-price-grid" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; margin-bottom: 0.75rem !important; width: 100%;">
-              <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
-                <p style="margin: 0 0 0.375rem 0;"><strong style="font-size: 0.95rem;">💰 Official Adobe Price</strong></p>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">Annual, prepaid: $389.71/year (50% off first year)</p>
+            <div class="membership-price-grid">
+              <div class="membership-info-box">
+                <p><strong>💰 Official Adobe Price</strong></p>
+                <p style="color: rgba(255, 255, 255, 0.8);">Annual, prepaid: $389.71/year (50% off first year)</p>
               </div>
-              <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
-                <p style="margin: 0 0 0.375rem 0;"><strong style="font-size: 0.95rem;">💰 Our Price</strong></p>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">$120 / Year Only<br>$50$ / 4 Months</p>
+              <div class="membership-info-box">
+                <p><strong>💰 Our Price</strong></p>
+                <p style="color: rgba(255, 255, 255, 0.8);">$120 / Year Only<br>$50$ / 4 Months</p>
               </div>
             </div>
 
-            <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 0.75rem; font-size: 0.9rem;">
-              <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.5;">Official Subscription | 1-Year Warranty + Support<br>
+            <div class="membership-info-box" style="margin-bottom: 0.75rem;">
+              <p style="color: rgba(255, 255, 255, 0.9);">Official Subscription | 1-Year Warranty + Support<br>
               Instant Gmail ID Activation | Invoice Provided | Pay After Activation | Shows Proper Expiry Date</p>
             </div>
 
-            <p style="margin-bottom: 0.5rem !important; font-size: 0.95rem;"><strong>🚀 Key Features</strong></p>
+            <p class="membership-section-title"><strong>🚀 Key Features</strong></p>
 
-            <div class="membership-features-grid" style="display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; margin-bottom: 0.75rem !important; width: 100%;">
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ 20+ Premium Creative Apps<br>
+            <div class="membership-features-grid">
+              <div class="membership-feature-item">
+                <p>✅ 20+ Premium Creative Apps<br>
                 <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.8rem;">(Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, Lightroom & more)</span></p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ 4000 Generative AI Credits Per Month</p>
+              <div class="membership-feature-item">
+                <p>✅ 4000 Generative AI Credits Per Month</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ Always Latest Version Updates</p>
+              <div class="membership-feature-item">
+                <p>✅ Always Latest Version Updates</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ Use on 2 Devices</p>
+              <div class="membership-feature-item">
+                <p>✅ Use on 2 Devices</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ 1TB Cloud Storage</p>
+              <div class="membership-feature-item">
+                <p>✅ 1TB Cloud Storage</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ Best for Design, Video Editing, Animation, Web, Photography & More</p>
+              <div class="membership-feature-item">
+                <p>✅ Best for Design, Video Editing, Animation, Web, Photography & More</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ Works on Windows & macOS</p>
+              <div class="membership-feature-item">
+                <p>✅ Works on Windows & macOS</p>
               </div>
-              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
-                <p style="margin: 0 !important; line-height: 1.4;">✅ Affordable Pricing with Limited Slots</p>
+              <div class="membership-feature-item">
+                <p>✅ Affordable Pricing with Limited Slots</p>
               </div>
             </div>
 
-            <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
-              <p style="margin: 0 0 0.375rem 0 !important;"><strong style="font-size: 0.95rem;">📧 Activation Process</strong></p>
-              <p style="color: rgba(255, 255, 255, 0.9); margin: 0 !important; line-height: 1.5;">Instant activation via customer Gmail ID<br>
+            <div class="membership-info-box">
+              <p><strong>📧 Activation Process</strong></p>
+              <p style="color: rgba(255, 255, 255, 0.9);">Instant activation via customer Gmail ID<br>
               Fast • Safe • Verified ✔️</p>
             </div>
           `;
@@ -451,6 +427,7 @@
         }
       }
 
+      // Helper function for time ago
       function getTimeAgo(uploadDate) {
         const now = new Date();
         const diffTime = Math.abs(now - uploadDate);
@@ -463,91 +440,78 @@
         return 'Uploaded just now';
       }
 
-      const daysAgo = Math.max(1, Math.floor(40 - membership.id) / 2);
-      const uploadDate = new Date();
-      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      // Update upload date
       const uploadDateElement = document.getElementById('uploadDate');
       if (uploadDateElement) {
+        const daysAgo = Math.max(1, Math.floor(40 - membership.id) / 2);
+        const uploadDate = new Date();
+        uploadDate.setDate(uploadDate.getDate() - daysAgo);
         uploadDateElement.textContent = getTimeAgo(uploadDate);
         setInterval(() => {
           uploadDateElement.textContent = getTimeAgo(uploadDate);
         }, 60000);
       }
 
-      function formatViews(count) {
-        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
-        return count + ' views';
-      }
-      const viewCountKey = `membership_views_${membership.id}`;
-      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
-      viewCount++;
-      localStorage.setItem(viewCountKey, viewCount.toString());
+      // Update view count
       const viewCountElement = document.getElementById('viewCount');
-      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+      if (viewCountElement) {
+        const formatViews = (count) => count >= 1000 ? `${(count / 1000).toFixed(1)}K views` : `${count} views`;
+        const viewCountKey = `membership_views_${membership.id}`;
+        let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+        viewCount++;
+        localStorage.setItem(viewCountKey, viewCount.toString());
+        viewCountElement.textContent = formatViews(viewCount);
+      }
 
+      // Load gallery thumbnails
       const galleryContainer = document.getElementById('galleryThumbnails');
       if (galleryContainer && membership.images && membership.images.length > 0) {
         const galleryImages = membership.images.slice(0, 6);
         galleryImages.forEach((img, idx) => {
           const thumb = document.createElement('div');
-          thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
-
+          thumb.className = `gallery-thumb${idx === 0 ? ' active' : ''}`;
+          
           const thumbImage = document.createElement('img');
-          let thumbPath = img;
-          // Use image path as-is if it already contains a folder path, otherwise use as-is from root
-          if (!thumbPath.startsWith('http') && !thumbPath.startsWith('../') && !thumbPath.includes('/')) {
-            // Image is in root, use as-is
-            thumbPath = thumbPath;
-          }
-          thumbImage.src = thumbPath;
+          thumbImage.src = img;
           thumbImage.alt = `Preview ${idx + 1}`;
           thumbImage.loading = 'lazy';
           thumbImage.decoding = 'async';
           thumbImage.onerror = () => { thumb.style.display = 'none'; };
-          thumbImage.onload = () => { thumbImage.style.opacity = '1'; };
-
+          
           thumb.appendChild(thumbImage);
           thumb.onclick = () => {
             if (heroImage) {
-              heroImage.decoding = 'async';
-              heroImage.src = thumbPath;
+              heroImage.src = img;
             }
-            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+            galleryContainer.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
           };
           galleryContainer.appendChild(thumb);
         });
       }
 
-      // Download button
+      // Setup download button
       const downloadBtn = document.getElementById('downloadBtn');
-      // Get download link - check both global and local map
-      let downloadLink = window.membershipDownloadLinksMap ? window.membershipDownloadLinksMap[membership.title] : null;
-      if (!downloadLink && membershipDownloadLinksMap) {
-        downloadLink = membershipDownloadLinksMap[membership.title];
-      }
-      // Fallback for Adobe Creative Cloud
-      if (membership.title === "Adobe Creative Cloud" && !downloadLink) {
-        downloadLink = "https://discord.com/channels/1383778525634629642/1441725589907312650/1441726954477850694";
-      }
-
       if (downloadBtn) {
-        // Change button text to "Buy Now" for Adobe Creative Cloud
-        if (membership.title === "Adobe Creative Cloud") {
+        const isAdobe = membership.title === "Adobe Creative Cloud";
+        const downloadLink = window.membershipDownloadLinksMap?.[membership.title] || 
+                           membershipDownloadLinksMap?.[membership.title] ||
+                           (isAdobe ? "https://discord.com/channels/1383778525634629642/1441725589907312650/1441726954477850694" : null);
+        
+        if (isAdobe) {
           const buttonSpan = downloadBtn.querySelector('span');
-          if (buttonSpan) {
-            buttonSpan.textContent = 'Buy Now';
-          }
+          if (buttonSpan) buttonSpan.textContent = 'Buy Now';
         }
-        downloadBtn.addEventListener('click', function(e) {
+        
+        downloadBtn.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          if (downloadLink && downloadLink.trim() !== '') {
+          if (downloadLink?.trim()) {
             window.open(downloadLink, '_blank', 'noopener,noreferrer');
           } else {
             alert('Download link not available for this membership. Please contact support.');
           }
-        }, false);
+        });
       }
     }
     

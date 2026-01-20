@@ -19,9 +19,9 @@
         <span></span>
       </button>
       
-      <div class="logo-link">
+      <a href="../index.html" class="logo-link">
         <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
-      </div>
+      </a>
       <ul class="nav-menu">
         <li><a href="../index.html">Home</a></li>
         <li><a href="../Membership/membership.html">Membership</a></li>
@@ -136,7 +136,8 @@
   <script>
     // Product data - Each folder is one product, using folder name as title
     // First image from each folder is used as thumbnail
-    const blenderAddons = [
+    // Expose to window for global search
+    const blenderAddons = window.blenderAddons = [
       {
         id: 1,
         title: "Alt Tab Easy Fog 2",

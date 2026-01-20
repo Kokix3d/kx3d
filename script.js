@@ -1439,10 +1439,11 @@ function validateImageSource(imageSrc) {
       }
     }
     
-    // Blender Products - Check both global and window variables
-    const blenderAssetsData = typeof blenderAssets !== 'undefined' ? blenderAssets : (typeof window.blenderAssets !== 'undefined' ? window.blenderAssets : null);
+    // Blender Assets - Check both global and window variables
+    const blenderAssetsData = typeof blenderAssets !== 'undefined' ? blenderAssets : 
+                             (typeof window.blenderAssets !== 'undefined' ? window.blenderAssets : null);
     if (blenderAssetsData && Array.isArray(blenderAssetsData)) {
-      const dlMap = window.blenderDownloadLinksMap || {};
+      const dlMap = window.blenderDownloadLinksMap || window.assetDownloadLinksMap || {};
       blenderAssetsData.forEach(item => {
         products.push({
           ...item,
@@ -1456,9 +1457,12 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof blenderAddons !== 'undefined') {
-      const dlMap = window.blenderDownloadLinksMap || {};
-      blenderAddons.forEach(item => {
+    // Blender Addons - Check both global and inline data
+    const blenderAddonsData = typeof blenderAddons !== 'undefined' ? blenderAddons : 
+                              (typeof window.blenderAddons !== 'undefined' ? window.blenderAddons : null);
+    if (blenderAddonsData && Array.isArray(blenderAddonsData)) {
+      const dlMap = window.blenderDownloadLinksMap || window.downloadLinksMap || {};
+      blenderAddonsData.forEach(item => {
         products.push({
           ...item,
           category: 'Blender',
@@ -1471,9 +1475,12 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof blenderBrushes !== 'undefined') {
-      const dlMap = window.blenderDownloadLinksMap || {};
-      blenderBrushes.forEach(item => {
+    // Blender Brushes - Check both global and window variables
+    const blenderBrushesData = typeof blenderBrushes !== 'undefined' ? blenderBrushes : 
+                               (typeof window.blenderBrushes !== 'undefined' ? window.blenderBrushes : null);
+    if (blenderBrushesData && Array.isArray(blenderBrushesData)) {
+      const dlMap = window.brushDownloadLinksMap || window.blenderDownloadLinksMap || {};
+      blenderBrushesData.forEach(item => {
         products.push({
           ...item,
           category: 'Blender',
@@ -1486,9 +1493,12 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof blenderCourses !== 'undefined') {
-      const dlMap = window.blenderDownloadLinksMap || {};
-      blenderCourses.forEach(item => {
+    // Blender Courses - Check both global and window variables
+    const blenderCoursesData = typeof blenderCourses !== 'undefined' ? blenderCourses : 
+                               (typeof window.blenderCourses !== 'undefined' ? window.blenderCourses : null);
+    if (blenderCoursesData && Array.isArray(blenderCoursesData)) {
+      const dlMap = window.courseDownloadLinksMap || window.blenderDownloadLinksMap || {};
+      blenderCoursesData.forEach(item => {
         products.push({
           ...item,
           category: 'Blender',
@@ -1501,14 +1511,14 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    // Blender 3D Models - check multiple variable names for compatibility
+    // Blender 3D Models - check multiple variable names for compatibility (including inline data)
     const blender3DModelsData = typeof blender3DModels !== 'undefined' ? blender3DModels : 
                                 (typeof window.blender3DModels !== 'undefined' ? window.blender3DModels : 
                                 (typeof blenderProducts !== 'undefined' ? blenderProducts : null));
     
     if (blender3DModelsData && Array.isArray(blender3DModelsData)) {
+      const dlMap = window.blenderDownloadLinksMap || window.downloadLinksMap || {};
       blender3DModelsData.forEach(item => {
-        const dlMap = window.blenderDownloadLinksMap || {};
         products.push({
           ...item,
           category: 'Blender',
@@ -1522,9 +1532,11 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    // Unreal Products
-    if (typeof unrealAssets !== 'undefined') {
-      unrealAssets.forEach(item => {
+    // Unreal Products - Check both global and window variables
+    const unrealAssetsData = typeof unrealAssets !== 'undefined' ? unrealAssets : 
+                            (typeof window.unrealAssets !== 'undefined' ? window.unrealAssets : null);
+    if (unrealAssetsData && Array.isArray(unrealAssetsData)) {
+      unrealAssetsData.forEach(item => {
         products.push({
           ...item,
           category: 'Unreal',
@@ -1536,8 +1548,10 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof unrealPlugins !== 'undefined') {
-      unrealPlugins.forEach(item => {
+    const unrealPluginsData = typeof unrealPlugins !== 'undefined' ? unrealPlugins : 
+                              (typeof window.unrealPlugins !== 'undefined' ? window.unrealPlugins : null);
+    if (unrealPluginsData && Array.isArray(unrealPluginsData)) {
+      unrealPluginsData.forEach(item => {
         products.push({
           ...item,
           category: 'Unreal',
@@ -1549,8 +1563,10 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof unrealCourses !== 'undefined') {
-      unrealCourses.forEach(item => {
+    const unrealCoursesData = typeof unrealCourses !== 'undefined' ? unrealCourses : 
+                              (typeof window.unrealCourses !== 'undefined' ? window.unrealCourses : null);
+    if (unrealCoursesData && Array.isArray(unrealCoursesData)) {
+      unrealCoursesData.forEach(item => {
         products.push({
           ...item,
           category: 'Unreal',
@@ -1562,8 +1578,10 @@ function validateImageSource(imageSrc) {
       });
     }
     
-    if (typeof unreal3DModels !== 'undefined') {
-      unreal3DModels.forEach(item => {
+    const unreal3DModelsData = typeof unreal3DModels !== 'undefined' ? unreal3DModels : 
+                               (typeof window.unreal3DModels !== 'undefined' ? window.unreal3DModels : null);
+    if (unreal3DModelsData && Array.isArray(unreal3DModelsData)) {
+      unreal3DModelsData.forEach(item => {
         products.push({
           ...item,
           category: 'Unreal',
@@ -1579,15 +1597,17 @@ function validateImageSource(imageSrc) {
     // AE plugins, assets, courses would need their data loaded
     // For now, we'll handle dynamically loaded data
     
-    // Membership Products
-    if (typeof membershipProducts !== 'undefined') {
-      membershipProducts.forEach(item => {
+    // Membership Products - Check both global and window variables
+    const membershipProductsData = typeof membershipProducts !== 'undefined' ? membershipProducts : 
+                                  (typeof window.membershipProducts !== 'undefined' ? window.membershipProducts : null);
+    if (membershipProductsData && Array.isArray(membershipProductsData)) {
+      membershipProductsData.forEach(item => {
         products.push({
           ...item,
           category: 'Software',
           type: 'Membership',
           searchUrl: `Membership/membership.html#product-${item.id}`,
-          detailUrl: `Membership/membership.html?id=${item.id}`,
+          detailUrl: `Membership/membership-detail.html?id=${item.id}`,
           image: item.image // Store original path, fix at render time
         });
       });
@@ -1876,7 +1896,7 @@ function validateImageSource(imageSrc) {
     return finalResults;
   }
   
-  // Render search results
+  // Render search results - Enhanced with premium UI
   function renderSearchResults(results, query) {
     const resultsList = document.getElementById('searchResultsList');
     const viewAll = document.getElementById('searchViewAll');
@@ -1887,60 +1907,87 @@ function validateImageSource(imageSrc) {
     if (results.length === 0) {
       resultsList.innerHTML = `
         <div class="search-no-results">
-          <p>No products found for "${query}"</p>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 1rem; opacity: 0.5;">
+            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>No products found for "<strong>${query}</strong>"</p>
+          <p style="margin-top: 0.5rem; font-size: 0.8125rem; color: rgba(255, 255, 255, 0.5);">Try different keywords or browse categories</p>
         </div>
       `;
-      viewAll.style.display = 'none';
+      if (viewAll) viewAll.style.display = 'none';
       return;
     }
     
     const displayResults = results.slice(0, MAX_RESULTS);
     const hasMore = results.length > MAX_RESULTS;
     
-    const parts = [];
+    // Use DocumentFragment for better performance
+    const fragment = document.createDocumentFragment();
+    
     for (let index = 0; index < displayResults.length; index++) {
       const product = displayResults[index];
-      const categoryInfo = categoryMap[product.category] || { badge: product.category, color: '#666' };
+      const categoryInfo = categoryMap[product.category] || { badge: product.category || 'Product', color: '#666' };
+      const typeLabel = typeMap[product.type?.toLowerCase()] || product.type || 'Product';
+      
       // Get correct image path relative to current page
-      // Validate image source to ensure it's not a Google Drive URL
       const rawImagePath = product.image ? getImagePath(product.image, product.category) : '';
       const imagePath = validateImageSource(rawImagePath) || '';
-      // Open internal product page on click (download button is on that page)
-      // Keep downloadUrl in data for future use (e.g., a separate Download CTA)
+      
+      // Get product URL
       const productHrefRaw = product.detailUrl || product.searchUrl || '#';
       const productHref = getLinkPath(productHrefRaw);
       const isExternal = /^https?:\/\//i.test(productHrefRaw);
       
-      // Escape image path for HTML attribute
-      const escapedImagePath = imagePath.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      const fallbackImage = 'data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 400 300\\'%3E%3Crect fill=\\'%23222\\' width=\\'400\\' height=\\'300\\'/%3E%3Ctext fill=\\'%23666\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dominant-baseline=\\'middle\\' font-family=\\'Arial\\' font-size=\\'14\\'%3ENo Image%3C/text%3E%3C/svg%3E';
+      // Create result item
+      const item = document.createElement('a');
+      item.href = productHref;
+      item.className = 'search-result-item';
+      item.setAttribute('data-product-id', product.id || index);
+      item.setAttribute('data-category', product.category || '');
+      if (isExternal) {
+        item.setAttribute('target', '_blank');
+        item.setAttribute('rel', 'noopener noreferrer');
+      }
       
-      parts.push(`
-        <a href="${productHref}" class="search-result-item" data-product-id="${product.id}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-          <div class="search-result-thumbnail">
-            <img src="${escapedImagePath || fallbackImage}" alt="${product.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImage}';">
+      // Escape HTML
+      const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+      
+      const escapedTitle = escapeHtml(product.title || 'Untitled Product');
+      const fallbackImage = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'%3E%3Crect fill=\'%23181818\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Arial\' font-size=\'14\'%3ENo Image%3C/text%3E%3C/svg%3E';
+      
+      item.innerHTML = `
+        <div class="search-result-thumbnail">
+          <img src="${imagePath || fallbackImage}" alt="${escapedTitle}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${fallbackImage}';">
+        </div>
+        <div class="search-result-content">
+          <h4 class="search-result-title">${escapedTitle}</h4>
+          <div class="search-result-meta">
+            <span class="search-result-badge" style="background: ${categoryInfo.color}; color: ${categoryInfo.color === '#0e1128' ? '#fff' : '#fff'}">${categoryInfo.badge}</span>
+            <span class="search-result-type">${typeLabel}</span>
           </div>
-          <div class="search-result-content">
-            <h4 class="search-result-title">${product.title}</h4>
-            <div class="search-result-meta">
-              <span class="search-result-badge" style="background: ${categoryInfo.color}">${categoryInfo.badge}</span>
-              <span class="search-result-type">${product.type}</span>
-            </div>
-          </div>
-        </a>
-      `);
+        </div>
+      `;
+      
+      fragment.appendChild(item);
     }
     
     // Single DOM update
-    resultsList.innerHTML = parts.join('');
+    resultsList.innerHTML = '';
+    resultsList.appendChild(fragment);
     
     // Show "View all" link if there are more results
-    if (hasMore) {
-      const searchPageUrl = `products.html?search=${encodeURIComponent(query)}`;
-      viewAllLink.href = getLinkPath(searchPageUrl);
-      viewAll.style.display = 'block';
-    } else {
-      viewAll.style.display = 'none';
+    if (viewAll && viewAllLink) {
+      if (hasMore) {
+        const searchPageUrl = `products.html?search=${encodeURIComponent(query)}`;
+        viewAllLink.href = getLinkPath(searchPageUrl);
+        viewAll.style.display = 'block';
+      } else {
+        viewAll.style.display = 'none';
+      }
     }
   }
   
@@ -1995,7 +2042,8 @@ function validateImageSource(imageSrc) {
       isOpen = false;
     }
     
-    // Perform search and update UI
+    // Perform search and update UI - Enhanced with performance optimizations
+    let searchTimeout;
     const performSearch = debounce(async () => {
       const query = searchInput.value.trim();
       
@@ -2004,14 +2052,17 @@ function validateImageSource(imageSrc) {
         return;
       }
       
-      // Ensure search index is loaded before searching
+      // Show loading state (optional - can add spinner)
       if (globalSearchIndex.length === 0) {
         await loadGlobalSearchIndex();
       }
       
-      const results = performGlobalSearch(query);
-      renderSearchResults(results, query);
-      showDropdown();
+      // Use requestAnimationFrame for smooth UI updates
+      requestAnimationFrame(() => {
+        const results = performGlobalSearch(query);
+        renderSearchResults(results, query);
+        showDropdown();
+      });
     }, DEBOUNCE_DELAY);
     
     // Input event
@@ -2031,17 +2082,49 @@ function validateImageSource(imageSrc) {
       }
     });
     
-    // Keyboard events
+    // Enhanced keyboard navigation
+    let selectedIndex = -1;
+    const getResultItems = () => resultsList.querySelectorAll('.search-result-item');
+    
     searchInput.addEventListener('keydown', (e) => {
+      const items = getResultItems();
+      
       if (e.key === 'Escape') {
         hideDropdown();
         searchInput.blur();
+        selectedIndex = -1;
       } else if (e.key === 'Enter') {
         e.preventDefault();
-        const query = searchInput.value.trim();
-        if (query.length > 0) {
-          const searchPageUrl = `products.html?search=${encodeURIComponent(query)}`;
-          window.location.href = getLinkPath(searchPageUrl);
+        if (selectedIndex >= 0 && items[selectedIndex]) {
+          items[selectedIndex].click();
+        } else {
+          const query = searchInput.value.trim();
+          if (query.length > 0) {
+            const searchPageUrl = `products.html?search=${encodeURIComponent(query)}`;
+            window.location.href = getLinkPath(searchPageUrl);
+          }
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (items.length > 0) {
+          selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+          if (selectedIndex >= 0) {
+            items[selectedIndex]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+          items.forEach((item, idx) => {
+            item.classList.toggle('selected', idx === selectedIndex);
+          });
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (items.length > 0) {
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          if (selectedIndex >= 0) {
+            items[selectedIndex]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+          items.forEach((item, idx) => {
+            item.classList.toggle('selected', idx === selectedIndex);
+          });
         }
       }
     });
@@ -2050,18 +2133,51 @@ function validateImageSource(imageSrc) {
     document.addEventListener('click', (e) => {
       if (!searchContainer.contains(e.target)) {
         hideDropdown();
+        selectedIndex = -1;
       }
     });
     
-    // Mobile search icon toggle
+    // Enhanced mobile search icon toggle
     if (searchIconMobile) {
-      searchIconMobile.addEventListener('click', () => {
-        searchWrapper.classList.toggle('mobile-active');
-        if (searchWrapper.classList.contains('mobile-active')) {
-          searchInput.focus();
+      searchIconMobile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = searchWrapper.classList.contains('mobile-active');
+        if (isActive) {
+          searchWrapper.classList.remove('mobile-active');
+          searchInput.blur();
+          hideDropdown();
+        } else {
+          searchWrapper.classList.add('mobile-active');
+          setTimeout(() => searchInput.focus(), 100);
+        }
+      });
+      
+      // Close mobile search when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!searchContainer.contains(e.target) && !searchIconMobile.contains(e.target)) {
+          searchWrapper.classList.remove('mobile-active');
         }
       });
     }
+    
+    // Reset selection when new results are rendered
+    const originalRenderSearchResults = renderSearchResults;
+    renderSearchResults = function(results, query) {
+      selectedIndex = -1;
+      originalRenderSearchResults(results, query);
+    };
+    
+    // Expose search functions globally for debugging (optional)
+    window.globalSearchDebug = {
+      getIndexSize: () => globalSearchIndex.length,
+      search: (query) => performGlobalSearch(query),
+      reloadIndex: async () => {
+        globalSearchIndex = [];
+        searchCache.clear();
+        await loadGlobalSearchIndex();
+        return globalSearchIndex.length;
+      }
+    };
   }
   
   // Initialize when DOM is ready
