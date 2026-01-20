@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unreal Plugin Detail | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../blender/3d-models.html">3D Models</a></li>
+              <li><a href="../blender/addons.html">Addons</a></li>
+              <li><a href="../blender/assets.html">Assets</a></li>
+              <li><a href="../blender/brushes.html">Brushes</a></li>
+              <li><a href="../blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      <a href="plugins.html" class="back-link">← Back to Plugins</a>
+
+      <div class="product-hero-grid">
+        <div class="hero-left-column">
+          <div class="hero-image-wrapper">
+            <img src="" alt="Product Preview" class="hero-main-image" id="heroMainImage">
+          </div>
+
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+          </div>
+        </div>
+
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Product Title</h1>
+
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+
+          <p class="product-description" id="productDescription">
+            If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
+          </p>
+
+          <button type="button" class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none; flex-wrap: wrap;">
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+              <span>Download Part 1</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+              <span>Download Part 2</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart3">
+              <span>Download Part 3</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart4">
+              <span>Download Part 4</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script src="../auto-reload.js"></script>
+  <script>
+    // Download Links Mapping - Yahan plugin name aur link add karein
+    // Format: "Plugin Name": "Download Link"
+    const unrealPluginDownloadLinksMap = {
+      "Dynamic Real Water": "https://link-hub.net/1422046/zecyM7LUoiUP",
+      "Electronic Nodes": "https://link-hub.net/1422046/QMFuHvzCNGwI",
+      "Foliage Plugin": "https://direct-link.net/1422046/V2wRoJy5Los3",
+      "MeshBlend": "https://link-center.net/1422046/lL2Wt0oW6i7D",
+      "VICODynamics RopeClothSoft-Body Simulation Plugin": "https://link-center.net/1422046/nc76KugaLe4s",
+      "Voxel Plugin Pro Legacy": "https://link-target.net/1422046/dRWdROoBjpji",
+      "Cinemotion 3 Real Handheld Camera Motion Kit": "",
+      "Easy Multi Save": "",
+      "Narrative Tales - Node Based Quests and Dialogue": "",
+      "Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)": "",
+      "Skinned Decal Component": ""
+    };
+    const multipleUnrealPluginDownloadLinksMap = {};
+    
+    // Plugin data with all images from each folder
+    const unrealPlugins = [
+      {
+        id: 1,
+        title: "Dynamic Real Water",
+        image: "Plugine/Dynamic Real Water/1.webp",
+        folder: "Dynamic Real Water",
+        images: [
+          "Plugine/Dynamic Real Water/1.webp",
+          "Plugine/Dynamic Real Water/3ba25fc2-a190-49bf-93c9-e37e7de1cc15.webp",
+          "Plugine/Dynamic Real Water/9abf20cd-7737-4d03-9ea9-f6a28cacb72e.webp",
+          "Plugine/Dynamic Real Water/a3cb8d56-8662-4818-aaa4-4bb4d6f83558.webp",
+          "Plugine/Dynamic Real Water/b1109ac4-eccc-4a17-9e0b-97cf2f45a929.webp",
+          "Plugine/Dynamic Real Water/b3febb9a-4b80-4305-92f3-e4d6224787e8.webp"
+        ]
+      },
+      {
+        id: 2,
+        title: "Electronic Nodes",
+        image: "Plugine/Electronic Nodes/1.webp",
+        folder: "Electronic Nodes",
+        images: [
+          "Plugine/Electronic Nodes/1.webp",
+          "Plugine/Electronic Nodes/48618259-0faa-4091-8a98-03ae36b9d788.webp",
+          "Plugine/Electronic Nodes/5f455f1b-fc6c-4f46-821e-12d5368df77d.webp",
+          "Plugine/Electronic Nodes/980133e7-f292-4b8a-af19-3fea8a935b02.webp",
+          "Plugine/Electronic Nodes/b20b9784-4827-4886-9c9e-3c916cc83091.webp"
+        ]
+      },
+      {
+        id: 3,
+        title: "Foliage Plugin",
+        image: "Plugine/Foliage Plugin/1.webp",
+        folder: "Foliage Plugin",
+        images: [
+          "Plugine/Foliage Plugin/1.webp",
+          "Plugine/Foliage Plugin/862ef5e3-a580-437b-b7ab-188f1e862992.webp",
+          "Plugine/Foliage Plugin/d92ffc18-1c29-4244-8a66-977e005e91aa.webp",
+          "Plugine/Foliage Plugin/fb02c28f-f586-4eff-9553-20de07fb120e.webp",
+          "Plugine/Foliage Plugin/photo_2025-12-28_03-38-22 (2).webp",
+          "Plugine/Foliage Plugin/photo_2025-12-28_03-38-23.webp"
+        ]
+      },
+      {
+        id: 4,
+        title: "MeshBlend",
+        image: "Plugine/MeshBlend/1.webp",
+        folder: "MeshBlend",
+        images: [
+          "Plugine/MeshBlend/1.webp",
+          "Plugine/MeshBlend/4451b08d-6851-491c-b237-8e359ec42983.webp",
+          "Plugine/MeshBlend/4a79f195-e6c3-4710-9e7b-b1d4036958ff.webp",
+          "Plugine/MeshBlend/63c6671d-5f7c-492e-a1a0-2f682909b128.webp",
+          "Plugine/MeshBlend/707ebc58-86d6-45ef-98d5-4e3f809bffc6.webp",
+          "Plugine/MeshBlend/81cdd3c3-c5c3-4f77-b488-dda703cc03c4.webp"
+        ]
+      },
+      {
+        id: 5,
+        title: "VICODynamics RopeClothSoft-Body Simulation Plugin",
+        image: "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/1.webp",
+        folder: "VICODynamics RopeClothSoft-Body Simulation Plugin",
+        images: [
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/1.webp",
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/2.webp",
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/3.webp",
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/4.webp",
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/5.webp",
+          "Plugine/VICODynamics RopeClothSoft-Body Simulation Plugin/6.webp"
+        ]
+      },
+      {
+        id: 6,
+        title: "Voxel Plugin Pro Legacy",
+        image: "Plugine/Voxel Plugin Pro Legacy/1.webp",
+        folder: "Voxel Plugin Pro Legacy",
+        images: [
+          "Plugine/Voxel Plugin Pro Legacy/1.webp",
+          "Plugine/Voxel Plugin Pro Legacy/07f01014-d22f-4868-b66d-6dfdf1a10be4.webp",
+          "Plugine/Voxel Plugin Pro Legacy/25974427-8ab0-4592-b7c9-fa1c7efdb9b2.webp",
+          "Plugine/Voxel Plugin Pro Legacy/48015f4d-84b2-4164-a026-61caba4ee0b4.webp",
+          "Plugine/Voxel Plugin Pro Legacy/e3c4500f-f074-42d4-a298-502bb1129a1f.webp",
+          "Plugine/Voxel Plugin Pro Legacy/f652e157-3e41-480f-9e97-3f42c4d8ad19.webp"
+        ]
+      },
+      {
+        id: 7,
+        title: "Cinemotion 3 Real Handheld Camera Motion Kit",
+        folder: "Cinemotion 3 Real Handheld Camera Motion Kit",
+        image: "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/1.webp",
+        images: [
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/1.webp",
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/1c6c0278-62db-4b3d-b024-d50deecf31ab.webp",
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/2.webp",
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/4d221ec0-a413-4ab2-be64-4e9efa65a06c.webp",
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/b0ea643e-9986-454b-8252-0f95d5b94f68.webp",
+          "Plugine/Cinemotion 3 Real Handheld Camera Motion Kit/fb3515f6-8db4-4d4f-a387-2cfc69f89551.webp"
+        ]
+      },
+      {
+        id: 8,
+        title: "Easy Multi Save",
+        folder: "Easy Multi Save",
+        image: "Plugine/Easy Multi Save/1.webp",
+        images: [
+          "Plugine/Easy Multi Save/1.webp",
+          "Plugine/Easy Multi Save/16509add-75b7-444b-9ea5-c72be5d29669.webp",
+          "Plugine/Easy Multi Save/2.webp",
+          "Plugine/Easy Multi Save/2d330826-f76a-4695-bd8d-3f94ad3ac244.webp",
+          "Plugine/Easy Multi Save/6e034095-1b12-47c9-bbe9-773acb917033.webp",
+          "Plugine/Easy Multi Save/e8c5e776-d62a-4f11-9f16-ca2d8922fe94.webp"
+        ]
+      },
+      {
+        id: 9,
+        title: "Narrative Tales - Node Based Quests and Dialogue",
+        folder: "Narrative Tales - Node Based Quests and Dialogue",
+        image: "Plugine/Narrative Tales - Node Based Quests and Dialogue/1.webp",
+        images: [
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/1.webp",
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/17ce8344-facd-4335-a4e7-9dad3ad2b87d.webp",
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/2.webp",
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/48cf0bdf-7976-45da-8495-1a96c66a578a.webp",
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/7a20d99a-3757-4f5b-bf54-1bedc2968b9e.webp",
+          "Plugine/Narrative Tales - Node Based Quests and Dialogue/c9cde64b-5a99-4f17-996d-789538473794.webp"
+        ]
+      },
+      {
+        id: 10,
+        title: "Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)",
+        folder: "Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)",
+        image: "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/1.webp",
+        images: [
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/1.webp",
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/06de30de-3b78-4395-b90a-00d3765ffda6.webp",
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/2.webp",
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/b36cd313-ff72-47dd-b875-0dfb2a21cdb4.webp",
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/c840ec81-95ca-44aa-b163-df8a51f11b74.webp",
+          "Plugine/Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)/e4f15338-d6be-40ed-b9ed-ea0120710d2f.webp"
+        ]
+      },
+      {
+        id: 11,
+        title: "Skinned Decal Component",
+        folder: "Skinned Decal Component",
+        image: "Plugine/Skinned Decal Component/1.webp",
+        images: [
+          "Plugine/Skinned Decal Component/1.webp",
+          "Plugine/Skinned Decal Component/5bf741c5-7716-4840-bef3-791bdb52c1dc.webp",
+          "Plugine/Skinned Decal Component/6b6a986e-e67a-44ee-92ba-b1261ed0a3a6.webp",
+          "Plugine/Skinned Decal Component/6bb33fe5-a057-4b98-86c4-30ff3a2a9fa5.webp",
+          "Plugine/Skinned Decal Component/852f926e-2cee-4f7f-a885-c2499a3a25de.webp",
+          "Plugine/Skinned Decal Component/96598ac6-a700-4ee7-b25a-08c01c65f760.webp"
+        ]
+      }
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const pluginId = parseInt(urlParams.get('id'));
+    const plugin = unrealPlugins.find(item => item.id === pluginId);
+
+    if (!plugin) {
+      document.querySelector('.container').innerHTML = '<p class="error-message">Plugin not found</p>';
+    } else {
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        heroImage.loading = 'eager';
+        heroImage.decoding = 'async';
+        heroImage.fetchPriority = 'high';
+        heroImage.src = plugin.image;
+      }
+      document.getElementById('productTitle').textContent = plugin.title;
+
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+
+        if (diffDays > 0) return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        if (diffHours > 0) return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffMinutes > 0) return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        return 'Uploaded just now';
+      }
+
+      const daysAgo = Math.max(1, Math.floor(40 - plugin.id) / 2);
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+
+      function formatViews(count) {
+        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
+        return count + ' views';
+      }
+      const viewCountKey = `unreal_plugin_views_${plugin.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++;
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      const galleryImages = (plugin.images && plugin.images.length > 0 ? plugin.images : [plugin.image]).slice(0, 6);
+      galleryImages.forEach((img, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+
+        const thumbImage = document.createElement('img');
+        thumbImage.src = img;
+        thumbImage.alt = `Preview ${idx + 1}`;
+        thumbImage.loading = 'lazy';
+        thumbImage.decoding = 'async';
+        thumbImage.onerror = () => { thumb.style.display = 'none'; };
+
+        thumb.appendChild(thumbImage);
+        thumb.onclick = () => {
+          if (heroImage) {
+            heroImage.decoding = 'async';
+            heroImage.src = img;
+          }
+          document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        };
+        galleryContainer.appendChild(thumb);
+      });
+
+      // Download buttons
+      const multipleLinks = multipleUnrealPluginDownloadLinksMap[plugin.title];
+      const downloadBtn = document.getElementById('downloadBtn');
+      const downloadButtonsMultiple = document.getElementById('downloadButtonsMultiple');
+      const downloadLink = unrealPluginDownloadLinksMap[plugin.title];
+
+      if (multipleLinks) {
+        if (downloadBtn) downloadBtn.style.display = 'none';
+        if (downloadButtonsMultiple) {
+          downloadButtonsMultiple.style.display = 'flex';
+          downloadButtonsMultiple.style.gap = '8px';
+          downloadButtonsMultiple.style.flexDirection = 'row';
+          downloadButtonsMultiple.style.flexWrap = 'wrap';
+          downloadButtonsMultiple.style.alignItems = 'center';
+        }
+
+        const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
+        if (downloadBtnPart1) {
+          downloadBtnPart1.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart1.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '') {
+              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 1 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
+        if (downloadBtnPart2) {
+          downloadBtnPart2.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart2.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '') {
+              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 2 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart3 = document.getElementById('downloadBtnPart3');
+        if (downloadBtnPart3) {
+          if (multipleLinks.part3 === undefined) {
+            downloadBtnPart3.style.display = 'none';
+          } else {
+            downloadBtnPart3.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart3.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part3 && multipleLinks.part3.trim() !== '') {
+                window.open(multipleLinks.part3, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 3 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart4 = document.getElementById('downloadBtnPart4');
+        if (downloadBtnPart4) {
+          if (multipleLinks.part4 === undefined) {
+            downloadBtnPart4.style.display = 'none';
+          } else {
+            downloadBtnPart4.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart4.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part4 && multipleLinks.part4.trim() !== '') {
+                window.open(multipleLinks.part4, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 4 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+      } else if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (downloadLink && downloadLink.trim() !== '') {
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available for this plugin. Please contact support.');
+          }
+        }, false);
+      }
+    }
+  </script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

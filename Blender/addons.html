@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blender Addons | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="addons.html">Addons</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="brushes.html">Brushes</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../unreal/3d-models.html">3D Models</a></li>
+            <li><a href="../unreal/plugins.html">Plugins</a></li>
+            <li><a href="../unreal/assets.html">Assets</a></li>
+            <li><a href="../unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main product-listing-page">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Blender Addons</h1>
+        <p class="product-count" id="productCount">0 Addons</p>
+      </div>
+
+      <!-- Top Controls -->
+      <div class="page-controls">
+        <div class="showing-text" id="showingText">Showing 0–0</div>
+        <div class="sort-menu-wrapper">
+          <div class="sort-menu-trigger" id="sortMenuTrigger">
+            <span class="sort-menu-trigger-text">Name</span>
+            <svg class="sort-menu-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sort-menu" id="sortMenu">
+            <div class="sort-menu-title">SORT BY</div>
+            <div class="sort-menu-separator"></div>
+            <div class="sort-option active" data-value="name">Name</div>
+            <div class="sort-option" data-value="newest">Upload date</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+      <div class="pagination" id="pagination" style="margin-top: 60px;"></div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <!-- Auto-reload for development - Remove in production -->
+  <script src="../auto-reload.js"></script>
+  <script>
+    // Product data - Each folder is one product, using folder name as title
+    // First image from each folder is used as thumbnail
+    const blenderAddons = [
+      {
+        id: 1,
+        title: "Alt Tab Easy Fog 2",
+        image: "../Blender/Addon/Alt Tab Easy Fog 2/1.webp"
+      },
+      {
+        id: 2,
+        title: "Animoxtend Ai Animotion & Generation Toolbox",
+        image: "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/1.webp"
+      },
+      {
+        id: 3,
+        title: "Aqua Under Water",
+        image: "../Blender/Addon/Aqua Under Water/1.webp"
+      },
+      {
+        id: 4,
+        title: "Auto building",
+        image: "../Blender/Addon/Auto building/1.webp"
+      },
+      {
+        id: 5,
+        title: "Auto-Rig Pro Rig Library",
+        image: "../Blender/Addon/Auto-Rig Pro Rig Library/1.webp"
+      },
+      {
+        id: 6,
+        title: "AutoCam",
+        image: "../Blender/Addon/AutoCam/1.webp"
+      },
+      {
+        id: 7,
+        title: "Baga Rain Generator",
+        image: "../Blender/Addon/Baga Rain Generator/1.webp"
+      },
+      {
+        id: 8,
+        title: "Baga River Generator",
+        image: "../Blender/Addon/Baga River Generator/1.webp"
+      },
+      {
+        id: 9,
+        title: "blendbricks",
+        image: "../Blender/Addon/blendbricks/1.webp"
+      },
+      {
+        id: 10,
+        title: "Blender Addon 3D Hair Brush - Support New Hair System",
+        image: "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/1.webp"
+      },
+      {
+        id: 11,
+        title: "Breakdown Maker",
+        image: "../Blender/Addon/Breakdown Maker/1.webp"
+      },
+      {
+        id: 12,
+        title: "Camera tracker",
+        image: "../Blender/Addon/Camera tracker/1.webp"
+      },
+      {
+        id: 13,
+        title: "Compositor Pro",
+        image: "../Blender/Addon/Compositor Pro/1.webp"
+      },
+      {
+        id: 14,
+        title: "Cyberscape Pro  Procedural City Generator",
+        image: "../Blender/Addon/Cyberscape Pro  Procedural City Generator/1.webp"
+      },
+      {
+        id: 15,
+        title: "Divine Cut Smart Cloth Generator V3",
+        image: "../Blender/Addon/Divine Cut Smart Cloth Generator V3/1.webp"
+      },
+      {
+        id: 16,
+        title: "Easy Envelope",
+        image: "../Blender/Addon/Easy Envelope/1.webp"
+      },
+      {
+        id: 17,
+        title: "Engon",
+        image: "../Blender/Addon/Engon/1.webp"
+      },
+      {
+        id: 18,
+        title: "Faceit",
+        image: "../Blender/Addon/Faceit/1.webp"
+      },
+      {
+        id: 19,
+        title: "Flared2 - Cinematic Lens Flares In Real-Time",
+        image: "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/1.webp"
+      },
+      {
+        id: 20,
+        title: "Fluent 4 - Hard Surface Modeling Tool Suite",
+        image: "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/1.webp"
+      },
+      {
+        id: 21,
+        title: "Fluent Materializer",
+        image: "../Blender/Addon/Fluent Materializer/1.webp"
+      },
+      {
+        id: 22,
+        title: "G Trash",
+        image: "../Blender/Addon/G Trash/1.webp"
+      },
+      {
+        id: 23,
+        title: "GeoTracker for Blender",
+        image: "../Blender/Addon/GeoTracker for Blender/1.webp"
+      },
+      {
+        id: 24,
+        title: "Globalskin - Ultimate Skin Shader",
+        image: "../Blender/Addon/Globalskin - Ultimate Skin Shader/1.webp"
+      },
+      {
+        id: 25,
+        title: "Hair Brick Pro",
+        image: "../Blender/Addon/Hair Brick Pro/1.webp"
+      },
+      {
+        id: 26,
+        title: "Hardops 26 Lead",
+        image: "../Blender/Addon/Hardops 26 Lead/1.webp"
+      },
+      {
+        id: 27,
+        title: "Human Generator Ultimate",
+        image: "../Blender/Addon/Human Generator Ultimate/1.webp"
+      },
+      {
+        id: 28,
+        title: "HumanPro",
+        image: "../Blender/Addon/HumanPro/1.webp"
+      },
+      {
+        id: 29,
+        title: "Icity City Generator",
+        image: "../Blender/Addon/Icity City Generator/1.webp"
+      },
+      {
+        id: 30,
+        title: "Inkwood 2.0 - Ink Drawing Shader Pack",
+        image: "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/1.webp"
+      },
+      {
+        id: 31,
+        title: "Laces Generator",
+        image: "../Blender/Addon/Laces Generator/1.webp"
+      },
+      {
+        id: 32,
+        title: "MetaBlRiger",
+        image: "../Blender/Addon/MetaBlRiger/1.webp"
+      },
+      {
+        id: 33,
+        title: "Mio3 UV",
+        image: "../Blender/Addon/Mio3 UV/1.webp"
+      },
+      {
+        id: 34,
+        title: "Node-it",
+        image: "../Blender/Addon/Node-it/1.webp"
+      },
+      {
+        id: 35,
+        title: "One click slow motion",
+        image: "../Blender/Addon/One click slow motion/1.webp"
+      },
+      {
+        id: 36,
+        title: "Organic Addon - Procedural Organic Tools",
+        image: "../Blender/Addon/Organic Addon - Procedural Organic Tools/1.webp"
+      },
+      {
+        id: 37,
+        title: "PBR Bridge",
+        image: "../Blender/Addon/PBR Bridge/1.webp"
+      },
+      {
+        id: 38,
+        title: "Physical Open Waters - Ocean",
+        image: "../Blender/Addon/Physical Open Waters - Ocean/1.webp"
+      },
+      {
+        id: 39,
+        title: "Physical Weather Fx  One-Click Weather System",
+        image: "../Blender/Addon/Physical Weather Fx  One-Click Weather System/1.webp"
+      },
+      {
+        id: 40,
+        title: "Physics Placer",
+        image: "../Blender/Addon/Physics Placer/1.webp"
+      },
+      {
+        id: 41,
+        title: "Point Animate By Kiri Engine",
+        image: "../Blender/Addon/Point Animate By Kiri Engine/1.webp"
+      },
+      {
+        id: 42,
+        title: "Procedural Crowds PRO",
+        image: "../Blender/Addon/Procedural Crowds PRO/1.webp"
+      },
+      {
+        id: 44,
+        title: "Pure-Sky Pro",
+        image: "../Blender/Addon/Pure-Sky Pro/1.webp"
+      },
+      {
+        id: 45,
+        title: "Random Flow",
+        image: "../Blender/Addon/Random Flow/1.webp"
+      },
+      {
+        id: 46,
+        title: "Rbc A Physics-Based Vehicle Rigging Addon",
+        image: "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/1.webp"
+      },
+      {
+        id: 47,
+        title: "Retopoflow 4",
+        image: "../Blender/Addon/Retopoflow 4/1.webp"
+      },
+      {
+        id: 48,
+        title: "Sanctus Library",
+        image: "../Blender/Addon/Sanctus Library/1.webp"
+      },
+      {
+        id: 49,
+        title: "Simplify+",
+        image: "../Blender/Addon/Simplify+/1.webp"
+      },
+      {
+        id: 50,
+        title: "Simply Material Fashion Design",
+        image: "../Blender/Addon/Simply Material Fashion Design/1.webp"
+      },
+      {
+        id: 51,
+        title: "Stylized Asset Suite for Blender",
+        image: "../Blender/Addon/Stylized Asset Suite for Blender/1.webp"
+      },
+      {
+        id: 52,
+        title: "Surface Diagnostics",
+        image: "../Blender/Addon/Surface Diagnostics/1.webp"
+      },
+      {
+        id: 53,
+        title: "The City Generator",
+        image: "../Blender/Addon/The City Generator/1.webp"
+      },
+      {
+        id: 54,
+        title: "True Fire",
+        image: "../Blender/Addon/True Fire/1.webp"
+      },
+      {
+        id: 55,
+        title: "True-Space 2.0",
+        image: "../Blender/Addon/True-Space 2.0/1.webp"
+      },
+      {
+        id: 56,
+        title: "uvpackmaster 3",
+        image: "../Blender/Addon/uvpackmaster 3/1.webp"
+      },
+      {
+        id: 57,
+        title: "Vera Light Studio",
+        image: "../Blender/Addon/Vera Light Studio/1.webp"
+      },
+      {
+        id: 58,
+        title: "Wrap Gen - Generate Fully Customisable",
+        image: "../Blender/Addon/Wrap Gen - Generate Fully Customisable/1.webp"
+      },
+      {
+        id: 59,
+        title: "Xdecal™ Manager",
+        image: "../Blender/Addon/Xdecal™ Manager/1.webp"
+      },
+      {
+        id: 60,
+        title: "Zform - Transform Depth Maps And Images To 3D Mesh",
+        image: "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/1.webp"
+      },
+      {
+        id: 61,
+        title: "Аnimаtion Lаyers",
+        image: "../Blender/Addon/Аnimаtion Lаyers/1.webp"
+      },
+      {
+        id: 62,
+        title: "keentools facebuilder",
+        image: "../Blender/Addon/keentools facebuilder.webp"
+      },
+      {
+        id: 63,
+        title: "Modern Primitive",
+        image: "../Blender/Addon/Modern Primitive.webp"
+      },
+      {
+        id: 64,
+        title: "Quad Remesher",
+        image: "../Blender/Addon/Quad Remesher.webp"
+      },
+      {
+        id: 65,
+        title: "One Click Age",
+        image: "../Blender/Addon/One Click Age/1.webp"
+      }
+    ];
+
+    // Render products
+    (function() {
+      'use strict';
+      
+      // Cache DOM elements
+      const grid = document.getElementById('productsGrid');
+      const productCountElement = document.getElementById('productCount');
+      const showingTextElement = document.getElementById('showingText');
+      const paginationElement = document.getElementById('pagination');
+      const imageFallback = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'225\'%3E%3Crect fill=\'%231a1a1a\' width=\'400\' height=\'225\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ENo Image%3C/text%3E%3C/svg%3E';
+      const pageSize = 20;
+      let currentPage = 1;
+      let currentSort = 'name';
+      const storageKey = `listingState:${window.location.pathname}`;
+      let pendingScrollY = null;
+
+      function saveListingState() {
+        try {
+          sessionStorage.setItem(storageKey, JSON.stringify({
+            scrollY: window.scrollY || 0,
+            page: currentPage,
+            sort: currentSort
+          }));
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+
+      function loadListingState() {
+        try {
+          const raw = sessionStorage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          return null;
+        }
+      }
+      
+      function renderProducts(sortBy = currentSort) {
+        if (!grid) return;
+        
+        // Use requestAnimationFrame for smooth rendering
+        requestAnimationFrame(() => {
+          currentSort = sortBy;
+          // Sort products array
+          let sortedProducts = [...blenderAddons];
+          if (sortBy === 'name') {
+            sortedProducts.sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }));
+          } else if (sortBy === 'newest') {
+            sortedProducts.sort((a, b) => b.id - a.id);
+          }
+          
+          const totalProducts = sortedProducts.length;
+          const totalPages = Math.max(1, Math.ceil(totalProducts / pageSize));
+          if (currentPage > totalPages) currentPage = totalPages;
+          
+          const startIndex = totalProducts === 0 ? 0 : (currentPage - 1) * pageSize;
+          const endIndex = totalProducts === 0 ? 0 : Math.min(startIndex + pageSize, totalProducts);
+          const pageProducts = sortedProducts.slice(startIndex, endIndex);
+          
+          // Update counts
+          if (productCountElement) {
+            productCountElement.textContent = `${totalProducts} Addon${totalProducts !== 1 ? 's' : ''}`;
+          }
+          if (showingTextElement) {
+            showingTextElement.textContent = totalProducts > 0 ? `Showing ${startIndex + 1}–${endIndex}` : 'Showing 0–0';
+          }
+          
+          // Use DocumentFragment for batch DOM operations
+          const fragment = document.createDocumentFragment();
+          
+          if (totalProducts === 0) {
+            const emptyMsg = document.createElement('p');
+            emptyMsg.className = 'no-products';
+            emptyMsg.textContent = 'No Blender Addons available yet';
+            fragment.appendChild(emptyMsg);
+          } else {
+            pageProducts.forEach(product => {
+              const card = document.createElement('div');
+              card.className = 'product-card';
+              card.onclick = () => {
+                saveListingState();
+                window.location.href = 'addon-detail.html?id=' + product.id;
+              };
+              
+              const escapedTitle = product.title.replace(/"/g, '&quot;');
+              // Validate image source to ensure it's a valid local path (not Drive URL)
+              const validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
+                ? validateImageSource(product.image) 
+                : product.image;
+              const imageSrc = validatedImage || imageFallback;
+              
+              // Load images directly for immediate display (LQIP removed for reliability)
+              card.innerHTML = 
+                '<div class="product-image-wrapper">' +
+                  '<img src="' + imageSrc + '" alt="' + escapedTitle + '" class="product-image" loading="lazy" decoding="async" onerror="this.onerror=null; this.src=\'' + imageFallback + '\';">' +
+                '</div>' +
+                '<div class="product-info">' +
+                  '<h3 class="product-title">' + product.title + '</h3>' +
+                '</div>';
+              
+              fragment.appendChild(card);
+            });
+          }
+          
+          grid.innerHTML = '';
+          grid.appendChild(fragment);
+          renderPagination(totalPages);
+
+          if (pendingScrollY !== null) {
+            const targetScroll = pendingScrollY;
+            pendingScrollY = null;
+            requestAnimationFrame(() => {
+              window.scrollTo(0, targetScroll);
+            });
+          }
+        });
+      }
+
+      function renderPagination(totalPages) {
+        if (!paginationElement) return;
+        paginationElement.innerHTML = '';
+        if (totalPages <= 1) return;
+
+        const fragment = document.createDocumentFragment();
+        const createButton = (label, page, disabled = false, isActive = false) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `pagination-button${isActive ? ' active' : ''}${disabled ? ' disabled' : ''}`;
+          button.textContent = label;
+          button.disabled = disabled;
+          button.addEventListener('click', () => {
+            if (page === currentPage || disabled) return;
+            currentPage = page;
+            renderProducts(currentSort);
+          });
+          return button;
+        };
+
+        fragment.appendChild(createButton('Prev', Math.max(1, currentPage - 1), currentPage === 1));
+
+        for (let page = 1; page <= totalPages; page++) {
+          fragment.appendChild(createButton(String(page), page, false, page === currentPage));
+        }
+
+        fragment.appendChild(createButton('Next', Math.min(totalPages, currentPage + 1), currentPage === totalPages));
+
+        paginationElement.appendChild(fragment);
+      }
+      
+      // Sort menu functionality - optimized
+      function initSortMenu() {
+        const sortMenuWrapper = document.querySelector('.sort-menu-wrapper');
+        if (!sortMenuWrapper) return;
+        
+        const sortMenuTrigger = document.getElementById('sortMenuTrigger');
+        const triggerText = sortMenuTrigger?.querySelector('.sort-menu-trigger-text');
+        const options = sortMenuWrapper.querySelectorAll('.sort-option');
+        const activeOption = Array.from(options).find(opt => opt.getAttribute('data-value') === currentSort);
+        if (activeOption) {
+          options.forEach(opt => opt.classList.remove('active'));
+          activeOption.classList.add('active');
+          if (triggerText) triggerText.textContent = activeOption.textContent;
+        }
+        
+        // Toggle dropdown
+        sortMenuTrigger?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sortMenuWrapper.classList.toggle('active');
+        });
+        
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+          if (!sortMenuWrapper.contains(e.target)) {
+            sortMenuWrapper.classList.remove('active');
+          }
+        });
+        
+        // Event delegation for options
+        sortMenuWrapper.addEventListener('click', (e) => {
+          const option = e.target.closest('.sort-option');
+          if (!option) return;
+          
+          // Update active state
+          sortMenuWrapper.querySelectorAll('.sort-option').forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          
+          // Update trigger text
+          if (triggerText) triggerText.textContent = option.textContent;
+          
+          // Close dropdown
+          sortMenuWrapper.classList.remove('active');
+          
+          // Update and render
+          currentSort = option.getAttribute('data-value');
+          currentPage = 1;
+          renderProducts(currentSort);
+        });
+      }
+      
+      // Restore listing state (page/sort/scroll)
+      const savedState = loadListingState();
+      if (savedState) {
+        if (savedState.sort) currentSort = savedState.sort;
+        if (savedState.page) currentPage = savedState.page;
+        if (typeof savedState.scrollY === 'number') pendingScrollY = savedState.scrollY;
+        try {
+          sessionStorage.removeItem(storageKey);
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+      
+      // Run when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          renderProducts(currentSort);
+          initSortMenu();
+        });
+      } else {
+        renderProducts(currentSort);
+        initSortMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

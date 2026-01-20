@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unreal Asset Detail | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../blender/3d-models.html">3D Models</a></li>
+              <li><a href="../blender/addons.html">Addons</a></li>
+              <li><a href="../blender/assets.html">Assets</a></li>
+              <li><a href="../blender/brushes.html">Brushes</a></li>
+              <li><a href="../blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      <a href="assets.html" class="back-link">← Back to Assets</a>
+
+      <div class="product-hero-grid">
+        <div class="hero-left-column">
+          <div class="hero-image-wrapper">
+            <img src="" alt="Product Preview" class="hero-main-image" id="heroMainImage">
+          </div>
+
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+          </div>
+        </div>
+
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Product Title</h1>
+
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+
+          <p class="product-description" id="productDescription">
+            If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
+          </p>
+
+          <button type="button" class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none; flex-wrap: wrap;">
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+              <span>Download Part 1</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+              <span>Download Part 2</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart3">
+              <span>Download Part 3</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart4">
+              <span>Download Part 4</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart5">
+              <span>Download Part 5</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script src="../auto-reload.js"></script>
+  <script>
+    // Download Links Mapping - Yahan product name aur link add karein
+    // Format: "Product Name": "Download Link"
+    const unrealAssetDownloadLinksMap = {
+      "20 HDRIs ANIME PANORAMAS": "https://link-center.net/1422046/E1OOfOkINA6M",
+      "AutoEnv Procedural Rock Cliffs": "https://direct-link.net/1422046/8d9adeIsYyA9",
+      "CAR DEALER - Automotive Gallery": "https://link-target.net/1422046/cbxaOuDydTfj",
+      "Cyber Scrapyard Environment Kit": "https://link-hub.net/1422046/KxJcvVxZ0gQp",
+      "Cyber Steampunk Museum": "https://link-target.net/1422046/IdnJs7PxWm7D",
+      "Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )": "https://direct-link.net/1422046/Gt9uvYbM7nOK",
+      "Fluid Ninja VFX Tools": "https://link-target.net/1422046/Muly3jTkr0J4",
+      "FPS First Person Shooter Framework (SKG Shooter Framework V2)": "https://direct-link.net/1422046/umghtqsAorfo",
+      "Medieval Props Vol 3 Farm": "https://link-target.net/1422046/9ZW9nufjkFMg",
+      "Modular Sci-Fi - Polaris Colony": "https://direct-link.net/1422046/b6Zwcqyvm9JW",
+      "Nebula Space Scene": "https://link-hub.net/1422046/fPqJ9A6L2zD4",
+      "PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)": "https://link-hub.net/1422046/1akcj9Lqe6YI",
+      "Procedural World Generator": "https://direct-link.net/1422046/fbFt8GWxmdwR",
+      "Realistic Looking Cliff and Rock": "https://link-center.net/1422046/MsitCXJAuDYY",
+      "Survival Game Kit V2": "https://link-hub.net/1422046/bDSxMHlpSVOG",
+      "The Sacred Threshold - Asian Temple Interior Environment Kit": "https://link-hub.net/1422046/TApSzcC5LgVC",
+      "TRAIL MASTER": "https://direct-link.net/1422046/SQX3ifsljtBT",
+      "VDB Ocean Waves & Tsunami Pack": "https://link-hub.net/1422046/7VNCgtOrT0Za",
+      "Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)": "https://link-target.net/1422046/TEzEg1OndZSN",
+      "Assassin Spell VFX Pack": "https://direct-link.net/1422046/VnfDJyYmhdMR",
+      "Environment Set": "",
+      "MW Shrubs & Bushes Biome": "https://link-center.net/1422046/g7fRmowt8FzE",
+      "Magic Aura VFX": "https://link-target.net/1422046/PkK1NlQPlEw5",
+      "Desert Cliff and Rock Collection": "https://link-hub.net/1422046/jgp5EZz2MeKS"
+    };
+    const multipleUnrealAssetDownloadLinksMap = {
+      "BigMediumSmall - Watervillage": {
+        part1: "https://direct-link.net/1422046/MXvrHxrAtCaJ",
+        part2: "https://link-target.net/1422046/yz00CbPh6qSx",
+        part3: "https://direct-link.net/1422046/IVNqX2AiEq6J",
+        part4: "https://link-center.net/1422046/ss5yqjD1posJ",
+        part5: "https://link-hub.net/1422046/P9qvUWnhHahn"
+      }
+    };
+    
+    // Product data with all images from each folder
+    const unrealAssets = [
+      {
+        id: 1,
+        title: "20 HDRIs ANIME PANORAMAS",
+        image: "Assets/20 HDRIs ANIME PANORAMAS/20 HDRIs ANIME PANORAMAS.webp",
+        folder: "20 HDRIs ANIME PANORAMAS",
+        images: [
+          "Assets/20 HDRIs ANIME PANORAMAS/20 HDRIs ANIME PANORAMAS.webp",
+          "Assets/20 HDRIs ANIME PANORAMAS/photo_2025-11-10_01-31-04.webp",
+          "Assets/20 HDRIs ANIME PANORAMAS/photo_2025-11-10_01-31-04 (2).webp",
+          "Assets/20 HDRIs ANIME PANORAMAS/photo_2025-11-10_01-31-04 (3).webp"
+        ]
+      },
+      {
+        id: 2,
+        title: "AutoEnv Procedural Rock Cliffs",
+        image: "Assets/AutoEnv Procedural Rock Cliffs/1.webp",
+        folder: "AutoEnv Procedural Rock Cliffs",
+        images: [
+          "Assets/AutoEnv Procedural Rock Cliffs/1.webp",
+          "Assets/AutoEnv Procedural Rock Cliffs/2.webp",
+          "Assets/AutoEnv Procedural Rock Cliffs/3.webp",
+          "Assets/AutoEnv Procedural Rock Cliffs/4.webp",
+          "Assets/AutoEnv Procedural Rock Cliffs/5.webp",
+          "Assets/AutoEnv Procedural Rock Cliffs/6.webp"
+        ]
+      },
+      {
+        id: 3,
+        title: "BigMediumSmall - Watervillage",
+        image: "Assets/BigMediumSmall - Watervillage/1.webp",
+        folder: "BigMediumSmall - Watervillage",
+        images: [
+          "Assets/BigMediumSmall - Watervillage/1.webp",
+          "Assets/BigMediumSmall - Watervillage/2.webp",
+          "Assets/BigMediumSmall - Watervillage/All_Buildings.webp",
+          "Assets/BigMediumSmall - Watervillage/BuildingD_05.webp",
+          "Assets/BigMediumSmall - Watervillage/Buildings_CommonView_01.webp",
+          "Assets/BigMediumSmall - Watervillage/Screenshot 2026-01-16 132627.webp"
+        ]
+      },
+      {
+        id: 4,
+        title: "CAR DEALER - Automotive Gallery",
+        image: "Assets/CAR DEALER - Automotive Gallery/CAR DEALER - Automotive Gallery.webp",
+        folder: "CAR DEALER - Automotive Gallery",
+        images: [
+          "Assets/CAR DEALER - Automotive Gallery/CAR DEALER - Automotive Gallery.webp",
+          "Assets/CAR DEALER - Automotive Gallery/photo_2025-11-10_01-12-54.webp",
+          "Assets/CAR DEALER - Automotive Gallery/photo_2025-11-10_01-12-54 (2).webp",
+          "Assets/CAR DEALER - Automotive Gallery/photo_2025-11-10_01-12-54 (3).webp"
+        ]
+      },
+      {
+        id: 5,
+        title: "Cyber Scrapyard Environment Kit",
+        image: "Assets/Cyber Scrapyard Environment Kit/1.webp",
+        folder: "Cyber Scrapyard Environment Kit",
+        images: [
+          "Assets/Cyber Scrapyard Environment Kit/1.webp",
+          "Assets/Cyber Scrapyard Environment Kit/23bd90dd-59bb-4822-acb2-37e2b675c335.webp",
+          "Assets/Cyber Scrapyard Environment Kit/b9160aab-4f07-47e8-8038-543f815c82cc.webp",
+          "Assets/Cyber Scrapyard Environment Kit/photo_2025-12-28_03-30-35.webp",
+          "Assets/Cyber Scrapyard Environment Kit/photo_2025-12-28_03-30-35 (2).webp",
+          "Assets/Cyber Scrapyard Environment Kit/photo_2025-12-28_03-30-35 (3).webp"
+        ]
+      },
+      {
+        id: 6,
+        title: "Cyber Steampunk Museum",
+        image: "Assets/Cyber Steampunk Museum/1.webp",
+        folder: "Cyber Steampunk Museum",
+        images: [
+          "Assets/Cyber Steampunk Museum/1.webp",
+          "Assets/Cyber Steampunk Museum/photo_2025-12-01_10-27-40 (2).webp",
+          "Assets/Cyber Steampunk Museum/photo_2025-12-01_10-27-40 (3).webp",
+          "Assets/Cyber Steampunk Museum/photo_2025-12-01_10-27-41.webp",
+          "Assets/Cyber Steampunk Museum/photo_2025-12-01_10-27-41 (2).webp",
+          "Assets/Cyber Steampunk Museum/photo_2025-12-01_10-27-42.webp"
+        ]
+      },
+      {
+        id: 7,
+        title: "Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )",
+        image: "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/1.webp",
+        folder: "Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )",
+        images: [
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/1.webp",
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/1abd6df6-db93-4294-9a03-07961364cd2a.webp",
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/54092f7b-87d5-4295-a408-7c1428b04c58.webp",
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/54c08312-a765-4c26-930a-1b861953f651.webp",
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/59691b00-f378-4f33-9868-2b51a3f4205b.webp",
+          "Assets/Fantasy Castle Environment ( Fantasy Soulslike Castle Fantasy Castle )/76763a96-cfc3-4ce1-ad32-233130e824f6.webp"
+        ]
+      },
+      {
+        id: 8,
+        title: "Fluid Ninja VFX Tools",
+        image: "Assets/Fluid Ninja VFX Tools/1.webp",
+        folder: "Fluid Ninja VFX Tools",
+        images: [
+          "Assets/Fluid Ninja VFX Tools/1.webp",
+          "Assets/Fluid Ninja VFX Tools/25dd7838-7fe8-4897-b458-682ec839f90f.webp",
+          "Assets/Fluid Ninja VFX Tools/5dd7f9bc-28e8-43a1-8942-1fe4e051ac2d.webp",
+          "Assets/Fluid Ninja VFX Tools/be6199d6-324a-47db-82b6-7e7901f047a6.webp",
+          "Assets/Fluid Ninja VFX Tools/c4b5848a-f2b6-40f3-83d3-b23b8708b2a3.webp",
+          "Assets/Fluid Ninja VFX Tools/d82f583c-8341-45ab-be17-9e1a66b9903c.webp"
+        ]
+      },
+      {
+        id: 9,
+        title: "FPS First Person Shooter Framework (SKG Shooter Framework V2)",
+        image: "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/1.webp",
+        folder: "FPS First Person Shooter Framework (SKG Shooter Framework V2)",
+        images: [
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/1.webp",
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/28b3a8f4-7f4f-46fc-be43-4b66d836d0b1.webp",
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/502e4179-ac25-4d27-9c97-36741a89ab5a.webp",
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/790851f8-0677-4830-866a-3a5defea4ef2.webp",
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/photo_2025-12-28_03-39-38 (2).webp",
+          "Assets/FPS First Person Shooter Framework (SKG Shooter Framework V2)/photo_2025-12-28_03-39-38 (3).webp"
+        ]
+      },
+      {
+        id: 10,
+        title: "Medieval Props Vol 3 Farm",
+        image: "Assets/Medieval Props Vol 3 Farm/1.webp",
+        folder: "Medieval Props Vol 3 Farm",
+        images: [
+          "Assets/Medieval Props Vol 3 Farm/1.webp",
+          "Assets/Medieval Props Vol 3 Farm/photo_2025-12-28_03-42-42.webp",
+          "Assets/Medieval Props Vol 3 Farm/photo_2025-12-28_03-42-43.webp",
+          "Assets/Medieval Props Vol 3 Farm/photo_2025-12-28_03-42-43 (2).webp",
+          "Assets/Medieval Props Vol 3 Farm/photo_2025-12-28_03-42-43 (3).webp",
+          "Assets/Medieval Props Vol 3 Farm/photo_2025-12-28_03-42-43 (4).webp"
+        ]
+      },
+      {
+        id: 11,
+        title: "Modular Sci-Fi - Polaris Colony",
+        image: "Assets/Modular Sci-Fi - Polaris Colony/1.webp",
+        folder: "Modular Sci-Fi - Polaris Colony",
+        images: [
+          "Assets/Modular Sci-Fi - Polaris Colony/1.webp",
+          "Assets/Modular Sci-Fi - Polaris Colony/199f893c-e460-40e8-b5fd-de86288753a1.webp",
+          "Assets/Modular Sci-Fi - Polaris Colony/1ebdc18b-4b27-403f-8f0b-b0959a5f1b81.webp",
+          "Assets/Modular Sci-Fi - Polaris Colony/2d18ea7b-403b-4523-9701-66619207d1aa.webp",
+          "Assets/Modular Sci-Fi - Polaris Colony/8d176703-2245-46fa-ac6e-4ebc81402d97.webp",
+          "Assets/Modular Sci-Fi - Polaris Colony/f1a882ef-4f60-40d5-9dfd-08cf8a2c47db.webp"
+        ]
+      },
+      {
+        id: 12,
+        title: "Nebula Space Scene",
+        image: "Assets/Nebula Space Scene/1.webp",
+        folder: "Nebula Space Scene",
+        images: [
+          "Assets/Nebula Space Scene/1.webp",
+          "Assets/Nebula Space Scene/file.webp",
+          "Assets/Nebula Space Scene/file (1).webp",
+          "Assets/Nebula Space Scene/file (2).webp",
+          "Assets/Nebula Space Scene/file (3).webp",
+          "Assets/Nebula Space Scene/file (4).webp"
+        ]
+      },
+      {
+        id: 13,
+        title: "PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)",
+        image: "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/1.webp",
+        folder: "PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)",
+        images: [
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/1.webp",
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/2.webp",
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/3.webp",
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/4.webp",
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/5.webp",
+          "Assets/PCG Biome Forest Poplar (Interactive Foliage, Trees, Wind System, Nature)/c8b982f3-f653-4139-98dd-ad7d823a2708.webp"
+        ]
+      },
+      {
+        id: 14,
+        title: "Procedural World Generator",
+        image: "Assets/Procedural World Generator/1.webp",
+        folder: "Procedural World Generator",
+        images: [
+          "Assets/Procedural World Generator/1.webp",
+          "Assets/Procedural World Generator/2b5690bc-9e0f-4dc6-b4d7-8a3a66ace65d.webp",
+          "Assets/Procedural World Generator/40b6c26d-1f99-4c24-8df8-523ca328cfa4.webp",
+          "Assets/Procedural World Generator/7d475d01-49e9-434c-8dd2-21ca739ffd0c.webp",
+          "Assets/Procedural World Generator/a49a62e2-5279-4fac-a7d8-bef5e938960e.webp",
+          "Assets/Procedural World Generator/ec7c3e85-25ef-491f-a446-7673a0ef8e75.webp"
+        ]
+      },
+      {
+        id: 15,
+        title: "Realistic Looking Cliff and Rock",
+        image: "Assets/Realistic Looking Cliff and Rock/1.webp",
+        folder: "Realistic Looking Cliff and Rock",
+        images: [
+          "Assets/Realistic Looking Cliff and Rock/1.webp",
+          "Assets/Realistic Looking Cliff and Rock/11d3799d-3604-4638-8855-47b928835559.webp",
+          "Assets/Realistic Looking Cliff and Rock/2a966985-4724-497b-97ab-61cad1041a68.webp",
+          "Assets/Realistic Looking Cliff and Rock/3fc8939b-d7c9-46a1-87bc-832661a2ac64.webp",
+          "Assets/Realistic Looking Cliff and Rock/7e0d3f80-7791-41a1-be31-3669ad2ff9d8.webp",
+          "Assets/Realistic Looking Cliff and Rock/96147558-f23f-4772-9deb-a7263a2c8bfc.webp"
+        ]
+      },
+      {
+        id: 16,
+        title: "Survival Game Kit V2",
+        image: "Assets/Survival Game Kit V2/1.webp",
+        folder: "Survival Game Kit V2",
+        images: [
+          "Assets/Survival Game Kit V2/1.webp",
+          "Assets/Survival Game Kit V2/4.webp",
+          "Assets/Survival Game Kit V2/e8ec86f9-ea9e-4a9a-b9d2-7b320371f27d.webp",
+          "Assets/Survival Game Kit V2/eeaf5945-acf4-4e55-8fd3-2741a1ddcff3.webp",
+          "Assets/Survival Game Kit V2/f7d9a0d0-0bb2-4258-876a-b46ffde197f1.webp",
+          "Assets/Survival Game Kit V2/f99a8723-b5ec-4738-8ba6-521c60a11ff6.webp"
+        ]
+      },
+      {
+        id: 17,
+        title: "The Sacred Threshold - Asian Temple Interior Environment Kit",
+        image: "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/1.webp",
+        folder: "The Sacred Threshold - Asian Temple Interior Environment Kit",
+        images: [
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/1.webp",
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/photo_2025-12-06_03-26-10 (2).webp",
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/photo_2025-12-06_03-26-11.webp",
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/photo_2025-12-06_03-26-11 (2).webp",
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/photo_2025-12-06_03-26-11 (3).webp",
+          "Assets/The Sacred Threshold - Asian Temple Interior Environment Kit/photo_2025-12-06_03-26-12.webp"
+        ]
+      },
+      {
+        id: 18,
+        title: "TRAIL MASTER",
+        image: "Assets/TRAIL MASTER/1.webp",
+        folder: "TRAIL MASTER",
+        images: [
+          "Assets/TRAIL MASTER/1.webp",
+          "Assets/TRAIL MASTER/photo_2023-11-26_19-36-12.webp",
+          "Assets/TRAIL MASTER/photo_2023-11-26_19-36-12 (2).webp",
+          "Assets/TRAIL MASTER/photo_2023-11-26_19-36-12 (3).webp"
+        ]
+      },
+      {
+        id: 19,
+        title: "VDB Ocean Waves & Tsunami Pack",
+        image: "Assets/VDB Ocean Waves & Tsunami Pack/0734605f-847b-41d5-9149-167f078a3f0d.webp",
+        folder: "VDB Ocean Waves & Tsunami Pack",
+        images: [
+          "Assets/VDB Ocean Waves & Tsunami Pack/0734605f-847b-41d5-9149-167f078a3f0d.webp",
+          "Assets/VDB Ocean Waves & Tsunami Pack/1.webp",
+          "Assets/VDB Ocean Waves & Tsunami Pack/2.webp",
+          "Assets/VDB Ocean Waves & Tsunami Pack/5c883527-655a-48f8-aa1b-ee1215c07835.webp",
+          "Assets/VDB Ocean Waves & Tsunami Pack/99cd6057-9b90-46a7-903f-712a57950a6f.webp",
+          "Assets/VDB Ocean Waves & Tsunami Pack/a1bd8264-c8a7-48de-a20d-9c13b67fcfe7.webp"
+        ]
+      },
+      {
+        id: 20,
+        title: "Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)",
+        image: "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/1.webp",
+        folder: "Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)",
+        images: [
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/1.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/1e6aee51-d87b-405f-aaa8-59e82d1a7f57.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/9f0804c5-24a5-413f-9932-a8b8bd2bc96c.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/ba4fc8f5-6679-4d09-a6e7-f8222782580f.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/c0f155a3-80ad-41a1-9107-63819ee4b1cb.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/e3004bef-29ca-4df7-88f2-96f48caed039.webp",
+          "Assets/Villa Forge (Modular House, Modular Building, Modular Villa, Coastal Town, Town)/fdb3168d-66d0-4f3c-813c-7dfd15900468.webp"
+        ]
+      },
+      {
+        id: 21,
+        title: "Assassin Spell VFX Pack",
+        folder: "Assassin Spell VFX Pack",
+        image: "Assets/Assassin Spell VFX Pack/1.webp",
+        images: [
+          "Assets/Assassin Spell VFX Pack/1.webp",
+          "Assets/Assassin Spell VFX Pack/photo_2026-01-10_18-34-23.webp",
+          "Assets/Assassin Spell VFX Pack/photo_2026-01-10_18-34-23 (2).webp",
+          "Assets/Assassin Spell VFX Pack/photo_2026-01-10_18-34-23 (3).webp",
+          "Assets/Assassin Spell VFX Pack/photo_2026-01-10_18-34-23 (4).webp",
+          "Assets/Assassin Spell VFX Pack/photo_2026-01-10_18-34-23 (5).webp"
+        ]
+      },
+      {
+        id: 22,
+        title: "Environment Set",
+        folder: "Environment Set",
+        image: "Assets/Environment Set/1.webp",
+        images: [
+          "Assets/Environment Set/1.webp",
+          "Assets/Environment Set/33776bbb-9c65-4fec-adc1-d6cd95d12224.webp",
+          "Assets/Environment Set/3483f310-776a-4ae0-b4da-46bd8c99f017.webp",
+          "Assets/Environment Set/6f3d39b3-7fcc-4e9c-98c2-d8ab0bafab72.webp",
+          "Assets/Environment Set/f46c0919-8b49-48d5-ab38-c454d8e4ccfe.webp",
+          "Assets/Environment Set/f86259df-46d5-4b08-a2b2-c44d00d9693e.webp"
+        ]
+      },
+      {
+        id: 23,
+        title: "MW Shrubs & Bushes Biome",
+        folder: "MW Shrubs & Bushes Biome",
+        image: "Assets/MW Shrubs & Bushes Biome/0bad6109-c48c-4b63-8713-068299a3e3cc.webp",
+        images: [
+          "Assets/MW Shrubs & Bushes Biome/0bad6109-c48c-4b63-8713-068299a3e3cc.webp",
+          "Assets/MW Shrubs & Bushes Biome/49ce3c8c-7f8b-40d5-a076-8681e089a517.webp",
+          "Assets/MW Shrubs & Bushes Biome/69202e24-c7f2-4056-b152-0d6f9d19087e.webp",
+          "Assets/MW Shrubs & Bushes Biome/7ad9a42b-0e2c-494b-99b1-d7eac2d739af.webp",
+          "Assets/MW Shrubs & Bushes Biome/b57aa6d1-8f90-49fa-9d00-35a813b175c5.webp",
+          "Assets/MW Shrubs & Bushes Biome/ddab2695-d8dd-453d-865c-b4cb9a8ea1ff.webp"
+        ]
+      },
+      {
+        id: 24,
+        title: "Magic Aura VFX",
+        folder: "Magic Aura VFX",
+        image: "Assets/Magic Aura VFX/photo_2026-01-10_18-38-29.webp",
+        images: [
+          "Assets/Magic Aura VFX/photo_2026-01-10_18-38-29.webp",
+          "Assets/Magic Aura VFX/photo_2026-01-10_18-38-29 (2).webp",
+          "Assets/Magic Aura VFX/photo_2026-01-10_18-38-29 (3).webp",
+          "Assets/Magic Aura VFX/photo_2026-01-10_18-38-29 (4).webp"
+        ]
+      },
+      {
+        id: 25,
+        title: "Desert Cliff and Rock Collection",
+        folder: "Desert Cliff and Rock Collection",
+        image: "Assets/Desert Cliff and Rock Collection/1.webp",
+        images: [
+          "Assets/Desert Cliff and Rock Collection/1.webp",
+          "Assets/Desert Cliff and Rock Collection/43464971-005d-4ad6-8c95-ad251339c537.webp",
+          "Assets/Desert Cliff and Rock Collection/458c4590-f7f8-4aae-b1c6-5f4ace4169ab.webp",
+          "Assets/Desert Cliff and Rock Collection/8aaebd60-43c5-4242-8023-7d66e4997b9e.webp",
+          "Assets/Desert Cliff and Rock Collection/9b26718b-6dbe-4df5-a58f-f59b99e2b071.webp",
+          "Assets/Desert Cliff and Rock Collection/de8909e0-abc0-4a4f-9c3f-89888c17b64b.webp"
+        ]
+      }
+    ];
+    window.unrealAssets = unrealAssets;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const assetId = parseInt(urlParams.get('id'));
+    const asset = unrealAssets.find(item => item.id === assetId);
+
+    if (!asset) {
+      document.querySelector('.container').innerHTML = '<p class="error-message">Asset not found</p>';
+    } else {
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        heroImage.loading = 'eager';
+        heroImage.decoding = 'async';
+        heroImage.fetchPriority = 'high';
+        heroImage.src = asset.image;
+      }
+      document.getElementById('productTitle').textContent = asset.title;
+
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+
+        if (diffDays > 0) return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        if (diffHours > 0) return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffMinutes > 0) return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        return 'Uploaded just now';
+      }
+
+      const daysAgo = Math.max(1, Math.floor(40 - asset.id) / 2);
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+
+      function formatViews(count) {
+        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
+        return count + ' views';
+      }
+      const viewCountKey = `unreal_asset_views_${asset.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++;
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      const galleryImages = (asset.images && asset.images.length > 0 ? asset.images : [asset.image]).slice(0, 6);
+      galleryImages.forEach((img, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+
+        const thumbImage = document.createElement('img');
+        thumbImage.src = img;
+        thumbImage.alt = `Preview ${idx + 1}`;
+        thumbImage.loading = 'lazy';
+        thumbImage.decoding = 'async';
+        thumbImage.onerror = () => { thumb.style.display = 'none'; };
+
+        thumb.appendChild(thumbImage);
+        thumb.onclick = () => {
+          if (heroImage) {
+            heroImage.decoding = 'async';
+            heroImage.src = img;
+          }
+          document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        };
+        galleryContainer.appendChild(thumb);
+      });
+
+      // Download buttons
+      const multipleLinks = multipleUnrealAssetDownloadLinksMap[asset.title];
+      const downloadBtn = document.getElementById('downloadBtn');
+      const downloadButtonsMultiple = document.getElementById('downloadButtonsMultiple');
+      const downloadLink = unrealAssetDownloadLinksMap[asset.title];
+
+      if (multipleLinks) {
+        if (downloadBtn) downloadBtn.style.display = 'none';
+        if (downloadButtonsMultiple) {
+          downloadButtonsMultiple.style.display = 'flex';
+          downloadButtonsMultiple.style.gap = '8px';
+          downloadButtonsMultiple.style.flexDirection = 'row';
+          downloadButtonsMultiple.style.flexWrap = 'wrap';
+          downloadButtonsMultiple.style.alignItems = 'center';
+        }
+
+        const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
+        if (downloadBtnPart1) {
+          downloadBtnPart1.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart1.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '') {
+              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 1 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
+        if (downloadBtnPart2) {
+          downloadBtnPart2.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart2.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '') {
+              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 2 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart3 = document.getElementById('downloadBtnPart3');
+        if (downloadBtnPart3) {
+          if (multipleLinks.part3 === undefined) {
+            downloadBtnPart3.style.display = 'none';
+          } else {
+            downloadBtnPart3.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart3.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part3 && multipleLinks.part3.trim() !== '') {
+                window.open(multipleLinks.part3, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 3 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart4 = document.getElementById('downloadBtnPart4');
+        if (downloadBtnPart4) {
+          if (multipleLinks.part4 === undefined) {
+            downloadBtnPart4.style.display = 'none';
+          } else {
+            downloadBtnPart4.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart4.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part4 && multipleLinks.part4.trim() !== '') {
+                window.open(multipleLinks.part4, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 4 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart5 = document.getElementById('downloadBtnPart5');
+        if (downloadBtnPart5) {
+          if (multipleLinks.part5 === undefined) {
+            downloadBtnPart5.style.display = 'none';
+          } else {
+            downloadBtnPart5.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart5.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part5 && multipleLinks.part5.trim() !== '') {
+                window.open(multipleLinks.part5, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 5 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+      } else if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (downloadLink && downloadLink.trim() !== '') {
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available for this asset. Please contact support.');
+          }
+        }, false);
+      }
+    }
+  </script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unreal Courses | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../blender/3d-models.html">3D Models</a></li>
+              <li><a href="../blender/addons.html">Addons</a></li>
+              <li><a href="../blender/assets.html">Assets</a></li>
+              <li><a href="../blender/brushes.html">Brushes</a></li>
+              <li><a href="../blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-listing-page">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Unreal Courses</h1>
+        <p class="product-count" id="productCount">0 Courses</p>
+      </div>
+
+      <div class="page-controls">
+        <div class="showing-text" id="showingText">Showing 0–0</div>
+        <div class="sort-menu-wrapper">
+          <div class="sort-menu-trigger" id="sortMenuTrigger">
+            <span class="sort-menu-trigger-text">Name</span>
+            <svg class="sort-menu-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sort-menu" id="sortMenu">
+            <div class="sort-menu-title">SORT BY</div>
+            <div class="sort-menu-separator"></div>
+            <div class="sort-option active" data-value="name">Name</div>
+            <div class="sort-option" data-value="newest">Upload date</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid"></div>
+      <div class="pagination" id="pagination" style="margin-top: 60px;"></div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script src="../auto-reload.js"></script>
+  <script src="./unreal-courses-data.js"></script>
+  <script>
+    // Render products
+    (function() {
+      'use strict';
+      
+      // Cache DOM elements
+      const grid = document.getElementById('productsGrid');
+      const productCountElement = document.getElementById('productCount');
+      const showingTextElement = document.getElementById('showingText');
+      const paginationElement = document.getElementById('pagination');
+      const imageFallback = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'225\'%3E%3Crect fill=\'%231a1a1a\' width=\'400\' height=\'225\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ENo Image%3C/text%3E%3C/svg%3E';
+      const pageSize = 20;
+      let currentPage = 1;
+      let currentSort = 'name';
+      const storageKey = `listingState:${window.location.pathname}`;
+      let pendingScrollY = null;
+
+      function saveListingState() {
+        try {
+          sessionStorage.setItem(storageKey, JSON.stringify({
+            scrollY: window.scrollY || 0,
+            page: currentPage,
+            sort: currentSort
+          }));
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+
+      function loadListingState() {
+        try {
+          const raw = sessionStorage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function renderProducts(sortBy = currentSort) {
+        if (!grid) return;
+        currentSort = sortBy;
+        let sorted = [...unrealCourses];
+        if (sortBy === 'name') {
+          sorted.sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }));
+        } else if (sortBy === 'newest') {
+          sorted.sort((a, b) => b.id - a.id);
+        }
+        const total = sorted.length;
+        const totalPages = Math.max(1, Math.ceil(total / pageSize));
+        if (currentPage > totalPages) currentPage = totalPages;
+        const start = total ? (currentPage - 1) * pageSize : 0;
+        const end = total ? Math.min(start + pageSize, total) : 0;
+        const pageProducts = sorted.slice(start, end);
+        productCountElement.textContent = `${total} Course${total !== 1 ? 's' : ''}`;
+        showingTextElement.textContent = total ? `Showing ${start + 1}–${end}` : 'Showing 0–0';
+        const frag = document.createDocumentFragment();
+        if (!total) {
+          const p = document.createElement('p');
+          p.className = 'no-products';
+          p.textContent = 'No Unreal Courses available yet';
+          frag.appendChild(p);
+        } else {
+          pageProducts.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.onclick = () => {
+              saveListingState();
+              window.location.href = 'course-detail.html?id=' + p.id;
+            };
+            const esc = p.title.replace(/"/g, '&quot;');
+            card.innerHTML = `<div class="product-image-wrapper"><img src="${p.image}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div><div class="product-info"><h3 class="product-title">${p.title}</h3></div>`;
+            frag.appendChild(card);
+          });
+        }
+        grid.innerHTML = '';
+        grid.appendChild(frag);
+        renderPagination(totalPages);
+        if (pendingScrollY !== null) {
+          const y = pendingScrollY;
+          pendingScrollY = null;
+          requestAnimationFrame(() => window.scrollTo(0, y));
+        }
+      }
+
+      // Make renderProducts globally accessible for search functionality
+      window.renderProducts = renderProducts;
+
+      function renderPagination(totalPages) {
+        if (!paginationElement || totalPages <= 1) {
+          paginationElement.innerHTML = '';
+          return;
+        }
+        const frag = document.createDocumentFragment();
+        const btn = (label, page, dis, act) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = `pagination-button${act ? ' active' : ''}${dis ? ' disabled' : ''}`;
+          b.textContent = label;
+          b.disabled = dis;
+          if (!dis) b.onclick = () => {
+            if (page !== currentPage) {
+              currentPage = page;
+              renderProducts(currentSort);
+            }
+          };
+          return b;
+        };
+        frag.appendChild(btn('Prev', Math.max(1, currentPage - 1), currentPage === 1));
+        for (let i = 1; i <= totalPages; i++) frag.appendChild(btn(String(i), i, false, i === currentPage));
+        frag.appendChild(btn('Next', Math.min(totalPages, currentPage + 1), currentPage === totalPages));
+        paginationElement.innerHTML = '';
+        paginationElement.appendChild(frag);
+      }
+
+      // Sort menu logic
+      const sortMenuTrigger = document.getElementById('sortMenuTrigger');
+      const sortMenu = document.getElementById('sortMenu');
+      const sortTriggerText = document.querySelector('.sort-menu-trigger-text');
+
+      if (sortMenuTrigger && sortMenu) {
+        const options = sortMenu.querySelectorAll('.sort-option');
+        const activeOption = Array.from(options).find(opt => opt.getAttribute('data-value') === currentSort);
+        if (activeOption) {
+          options.forEach(opt => opt.classList.remove('active'));
+          activeOption.classList.add('active');
+          if (sortTriggerText) {
+            sortTriggerText.textContent = activeOption.textContent;
+          }
+        }
+
+        sortMenuTrigger.addEventListener('click', () => {
+          sortMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!sortMenu.contains(e.target) && !sortMenuTrigger.contains(e.target)) {
+            sortMenu.classList.remove('open');
+          }
+        });
+
+        sortMenu.onclick = (e) => {
+          const opt = e.target.closest('.sort-option');
+          if (!opt) return;
+          options.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          if (sortTriggerText) sortTriggerText.textContent = opt.textContent;
+          currentPage = 1;
+          renderProducts(opt.dataset.value);
+          sortMenu.classList.remove('open');
+        };
+      }
+
+      const savedState = loadListingState();
+      if (savedState && typeof savedState.scrollY === 'number') {
+        pendingScrollY = savedState.scrollY;
+        try {
+          sessionStorage.removeItem(storageKey);
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+      
+      if (!unrealCourses || unrealCourses.length === 0) {
+        grid.innerHTML = '<p class="no-products">No Unreal Courses available yet. Add products in unreal-courses-data.js</p>';
+        if (pendingScrollY !== null) {
+          const targetScroll = pendingScrollY;
+          pendingScrollY = null;
+          requestAnimationFrame(() => {
+            window.scrollTo(0, targetScroll);
+          });
+        }
+        return;
+      }
+
+      if (savedState) {
+        if (savedState.sort) currentSort = savedState.sort;
+        if (savedState.page) currentPage = savedState.page;
+      }
+
+      renderProducts(currentSort);
+    })();
+  </script>
+</body>
+</html>

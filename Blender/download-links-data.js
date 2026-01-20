@@ -1,0 +1,36 @@
+// Blender 3D Models download links (shared for global search)
+// Exposed globally so script.js can access from any page.
+window.blenderDownloadLinksMap = window.blenderDownloadLinksMap || {
+  "16 Hydraulic Kitbash Elements for Blender": "https://link-hub.net/1422046/KII2W5aREWmA",
+  "1982 2019 Blade Runner Ground Police Car": "https://link-hub.net/1422046/FPNnSpKNlypG",
+  "45 Stylized Rock Asset Pack": "https://link-hub.net/1422046/GLF3R7dZnwXh",
+  "Akna 3D Complete Cloud Catalogue Low Res Sample Pack": "https://link-target.net/1422046/l1MO992VzqsI",
+  "All my characters are +18": "https://link-center.net/1422046/7n9IyyjVALjG",
+  "Ankha 3d model set": "https://f005.backblazeb2.com/file/kokix3d/Blender%203D%20Modles/Ankha%203d%20model%20set.rar",
+  "Asuka Langley Model": "https://link-hub.net/1422046/4MqhIKJqC6Nu",
+  "Black Jaguar 3D, Blender Black Jaguar": "https://link-hub.net/1422046/XukjFmGPWLNs",
+  "BlenderKit Architecture Pack 1": "https://direct-link.net/1422046/DfBiUk2l15b8",
+  "BlenderKit Characters Pack 1": "https://link-center.net/1422046/w6IsLtFawlj9",
+  "BlenderKit Transport Pack": "https://link-hub.net/1422046/7kwDxSxlMWbn",
+  "Call of Duty 3D Cars Models Collection": "https://link-hub.net/1422046/3bWT6fQFg6M7",
+  "Call Of Duty Modern Warfare Female Characters Collection": "https://link-hub.net/1422046/IbQNzTZqtNCJ",
+  "Early 2000s GiGN": "https://link-target.net/1422046/tE9WuKXMcn5P",
+  "KitBash3D - City Cars Municipal": "https://link-hub.net/1422046/cwDgV2BvNJte",
+  "KitBash3D - Sci-Fi Kits - Spaceships Armada": "https://direct-link.net/1422046/CsYUYcnts8GB",
+  "Kitbash3D Props Rooftops": "https://link-hub.net/1422046/Di3jeJH5M6Ni",
+  "KONNI GROUP  COD MW III": "https://link-target.net/1422046/hYx6a0oByext",
+  "Mech Constructor [Trial]": "https://direct-link.net/1422046/WcBAaeyvlJ4h",
+  "Mega Pack KITBASH 500 DETAILS": "https://direct-link.net/1422046/Cvm2tYGSmVzR",
+  "Mini Kit Neo City": "https://link-center.net/1422046/Vfjpg9CmpbO7",
+  "Portal 1 & 2 Blender 3D Models and Rigs": "https://link-hub.net/1422046/pG4eWYwBekjc",
+  "Props High Tech Streets": "https://link-target.net/1422046/UbCHUHGt4TpP",
+  "Ryan Reos - Cyberpunk Elf - Game Ready": "https://link-center.net/1422046/kIZ6fSooJ9wt",
+  "Spider Gwen Stacy Spiderman Spiderverse Lowpoly RIgged": "https://link-hub.net/1422046/lSkvhS3z2fZI",
+  "Tekken 7 Items and Accessories": "https://direct-link.net/1422046/JxKWlYJ5rW1M",
+  "Tekken 8 Items and Accessories": "https://direct-link.net/1422046/CwdIRUWm0gWY",
+  "The Sixth Doctor - 3D NPR Model": "https://link-center.net/1422046/D1BIbzm87Yvi",
+  "US Modern Assault Soldier Low-poly 3D model": "https://link-center.net/1422046/kJQK3uLNFHfz",
+  "BlenderKit Monsters Pack 1": "https://link-center.net/1422046/HsbK3pMVPDfg",
+  "BlenderKit Monsters Pack 2": "https://link-center.net/1422046/XbYXz0iK90n4"
+};
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Houdini Courses | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Unreal/3d-models.html">3D Models</a></li>
+            <li><a href="../Unreal/plugins.html">Plugins</a></li>
+            <li><a href="../Unreal/assets.html">Assets</a></li>
+            <li><a href="../Unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main product-listing-page">
+    <div class="container">
+      <h1>Houdini Courses</h1>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>

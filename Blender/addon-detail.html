@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Addon Detail | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="addons.html">Addons</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="brushes.html">Brushes</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../unreal/3d-models.html">3D Models</a></li>
+            <li><a href="../unreal/plugins.html">Plugins</a></li>
+            <li><a href="../unreal/assets.html">Assets</a></li>
+            <li><a href="../unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="addons.html">Addons</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="brushes.html">Brushes</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../unreal/3d-models.html">3D Models</a></li>
+              <li><a href="../unreal/plugins.html">Plugins</a></li>
+              <li><a href="../unreal/assets.html">Assets</a></li>
+              <li><a href="../unreal/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      <a href="addons.html" class="back-link">← Back to Addons</a>
+      
+      <!-- Hero Section with Perfect Alignment -->
+      <div class="product-hero-grid">
+        <!-- Left Column: Image + Gallery (Aligned) -->
+        <div class="hero-left-column">
+          <!-- Hero Image -->
+          <div class="hero-image-wrapper">
+            <img src="" alt="Addon Preview" class="hero-main-image" id="heroMainImage" loading="eager" decoding="async" fetchpriority="high">
+          </div>
+          
+          <!-- Preview Gallery - Directly Below Hero Image -->
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+              <!-- Exactly 6 thumbnails will be loaded here -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column: Product Info -->
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Addon Title</h1>
+          
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+          
+          <p class="product-description" id="productDescription">
+            If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
+          </p>
+          
+          <!-- Single Download Button (Default) -->
+          <button class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <!-- Multiple Download Buttons Container (For addons with multiple parts) -->
+          <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none;">
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+              <span>Download Part 1</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+              <span>Download Part 2</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script>
+    // Image Source Validation - Ensure validateImageSource is available in this scope
+    if (typeof validateImageSource === 'undefined') {
+      function validateImageSource(imageSrc) {
+        if (!imageSrc || typeof imageSrc !== 'string') return null;
+        // Block Google Drive URLs from being used as preview images
+        if (imageSrc.includes('drive.google.com') || 
+            imageSrc.includes('googleusercontent.com') ||
+            imageSrc.includes('thumbnail?id=') ||
+            imageSrc.includes('uc?export=view')) {
+          console.warn('Google Drive URL blocked from preview:', imageSrc);
+          return null;
+        }
+        return imageSrc; // Allow local paths
+      }
+    }
+  </script>
+  <script>
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get('id'));
+    
+    // Download Links Mapping - Yahan addon name aur link add karein
+    // Format: "Addon Name": "Download Link"
+    const downloadLinksMap = {
+      "Alt Tab Easy Fog 2": "https://link-target.net/1422046/2hZBNjBRsUU6",
+      "Animoxtend Ai Animotion & Generation Toolbox": "https://link-target.net/1422046/yXOLMrXFzFWr",
+      "Aqua Under Water": "https://link-target.net/1422046/J6jZ5g6xS0wA",
+      "Auto building": "https://link-target.net/1422046/S3XLHGII6xqW",
+      "Auto-Rig Pro Rig Library": "https://direct-link.net/1422046/I4jbHttjRy9F",
+      "AutoCam": "https://link-hub.net/1422046/6b5Z0e8CcXMJ",
+      "Baga Rain Generator": "https://link-center.net/1422046/NnCDrmOqz8Tb",
+      "Baga River Generator": "https://link-center.net/1422046/Ny9ZUH25I1js",
+      "blendbricks": "https://direct-link.net/1422046/PNinqKRIkjON",
+      "Blender Addon 3D Hair Brush - Support New Hair System": "https://link-target.net/1422046/PixcuDXWEAxj",
+      "Breakdown Maker": "https://link-center.net/1422046/7CO2cB8d6clb",
+      "Camera tracker": "https://link-center.net/1422046/SR15vmkZWuLP",
+      "Compositor Pro": "https://link-target.net/1422046/kkVOisfHIxhc",
+      "Cyberscape Pro  Procedural City Generator": "https://link-target.net/1422046/2zw4fSYlKAfa",
+      "Divine Cut Smart Cloth Generator V3": "https://link-hub.net/1422046/e4eraVBvopLo",
+      "Easy Envelope": "https://direct-link.net/1422046/Ap4geZbgXwgu",
+      "Engon": "https://link-hub.net/1422046/sgVudfYbroxK",
+      "Faceit": "https://link-target.net/1422046/lciV4hIIxcBy",
+      "Flared2 - Cinematic Lens Flares In Real-Time": "https://link-hub.net/1422046/H57Zyyb0faTg",
+      "Fluent 4 - Hard Surface Modeling Tool Suite": "https://link-center.net/1422046/g30ilEi8u8oW",
+      "Fluent Materializer": "https://link-target.net/1422046/s2wNcO4eKtS3",
+      "G Trash": "https://link-target.net/1422046/IE9zTh96xhtm",
+      "GeoTracker for Blender": "https://link-center.net/1422046/TtI9FTTC09MY",
+      "Hair Brick Pro": "https://link-target.net/1422046/A80eAFWYk75V",
+      "Hardops 26 Lead": "https://link-center.net/1422046/kf3tFvq6qC4h",
+      "Human Generator Ultimate": "https://direct-link.net/1422046/VsvgvU6KgF0R",
+      "HumanPro": "https://link-target.net/1422046/OITdHRUHyQHE",
+      "Inkwood 2.0 - Ink Drawing Shader Pack": "https://link-hub.net/1422046/3AUmJVksj94z",
+      "keentools facebuilder": "https://link-center.net/1422046/izK89h60Pf1R",
+      "Laces Generator": "https://direct-link.net/1422046/GaFmw0ok1JOJ",
+      "MetaBlRiger": "https://link-hub.net/1422046/KA9U4hwPaR7S",
+      "Mio3 UV": "https://link-hub.net/1422046/fsWY588jekKx",
+      "Modern Primitive": "https://link-target.net/1422046/5ZskkCNoIpSn",
+      "Node-it": "https://link-hub.net/1422046/QFB7kbO2uDhW",
+      "One click slow motion": "https://direct-link.net/1422046/6afPcNlPWjtx",
+      "Organic Addon - Procedural Organic Tools": "https://link-center.net/1422046/TdU4LLUJD87c",
+      "PBR Bridge": "https://link-center.net/1422046/E8EmG2oJocVc",
+      "Physical Open Waters - Ocean": "https://link-hub.net/1422046/0wWxW4vBmbev",
+      "Physical Weather Fx  One-Click Weather System": "https://link-target.net/1422046/7NpP5En4KSQl",
+      "Physics Placer": "https://direct-link.net/1422046/PY1VIU6u9iXE",
+      "Point Animate By Kiri Engine": "https://direct-link.net/1422046/IS1pp6essLa0",
+      "Procedural Crowds PRO": "https://link-center.net/1422046/LxB64pCMgi96",
+      "Pure-Comic Shader": "https://link-center.net/1422046/7C3pgV3nwhah",
+      "Pure-Sky Pro": "https://link-center.net/1422046/Ps2mqQFJzjrk",
+      "Quad Remesher": "https://link-target.net/1422046/86DA2UlmEsiz",
+      "Random Flow": "https://link-center.net/1422046/OZgWJfEPmgCt",
+      "Rbc A Physics-Based Vehicle Rigging Addon": "https://link-target.net/1422046/O3ZnB0ADHAve",
+      "Retopoflow 4": "https://link-center.net/1422046/OaXjm0Vk2UOC",
+      "Sanctus Library": "https://link-center.net/1422046/Wshdy2eOJ7gD",
+      "Simplify+": "https://direct-link.net/1422046/UEPEKiEzlZEG",
+      "Simply Material Fashion Design": "https://link-hub.net/1422046/VWsSR9FcugFC",
+      "Stylized Asset Suite for Blender": "https://link-hub.net/1422046/HgmSIedRvh7u",
+      "Surface Diagnostics": "https://link-hub.net/1422046/sNUuhi04wVN1",
+      "The City Generator": "https://link-hub.net/1422046/0p4UdXnkbRRg",
+      "True Fire": "https://link-target.net/1422046/0FEUjqbVD5EM",
+      "True-Space 2.0": "https://link-target.net/1422046/no2UEPAtX8c8",
+      "uvpackmaster 3": "https://link-center.net/1422046/I1wIB4PuQSMP",
+      "Vera Light Studio": "https://direct-link.net/1422046/fMH50EoHaYbf",
+      "Wrap Gen - Generate Fully Customisable": "https://link-center.net/1422046/Fxx2dlv1ec6Q",
+      "Xdecal™ Manager": "https://link-target.net/1422046/oPWtshAkVfcj",
+      "Zform - Transform Depth Maps And Images To 3D Mesh": "https://link-target.net/1422046/agLONOI0sUCJ",
+      "Аnimаtion Lаyers": "https://direct-link.net/1422046/Qqi2mLPdP58d",
+      "One Click Age": "https://direct-link.net/1422046/szWErusvp7rL",
+      // Naye addons ke liye yahan add karein:
+      // "Addon Name": "Download Link",
+    };
+    
+    // Multiple Download Links Mapping (For addons with multiple parts)
+    // Format: "Addon Name": { part1: "Link 1", part2: "Link 2" }
+    const multipleDownloadLinksMap = {
+      "Globalskin - Ultimate Skin Shader": {
+        part1: "https://link-center.net/1422046/2Bamxt5mER57",
+        part2: "https://link-center.net/1422046/A6CmDUIdTUfv"
+      },
+      "Icity City Generator": {
+        part1: "https://direct-link.net/1422046/79XGkoNpJbGu",
+        part2: "https://link-target.net/1422046/oIrNpVcnsiQq"
+      }
+      // "Addon Name": "Download Link",
+    };
+    
+    // Addon data - using same structure as addons.html
+    const blenderAddons = [
+      {
+        id: 1,
+        title: "Alt Tab Easy Fog 2",
+        image: "../Blender/Addon/Alt Tab Easy Fog 2/1.webp",
+        folder: "Alt Tab Easy Fog 2",
+        images: [
+          "../Blender/Addon/Alt Tab Easy Fog 2/1.webp",
+          "../Blender/Addon/Alt Tab Easy Fog 2/image_processing20250804-2-1d3skc.webp",
+          "../Blender/Addon/Alt Tab Easy Fog 2/image_processing20250804-2-qm9jdp.webp",
+          "../Blender/Addon/Alt Tab Easy Fog 2/image_processing20250804-2-uina8r.webp",
+          "../Blender/Addon/Alt Tab Easy Fog 2/image_processing20250804-2-vjunsy.webp",
+          "../Blender/Addon/Alt Tab Easy Fog 2/Auto-Rig Pro Rig Library.webp"
+        ]
+      },
+      {
+        id: 2,
+        title: "Animoxtend Ai Animotion & Generation Toolbox",
+        image: "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/1.webp",
+        folder: "Animoxtend Ai Animotion & Generation Toolbox",
+        images: [
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/1.webp",
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/Text_to_Model.webp",
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/Text_to_Motion.webp",
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/auto_bone_mapping.webp",
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/quck_retargeting.webp",
+          "../Blender/Addon/Animoxtend Ai Animotion & Generation Toolbox/part_quck_retargeting.webp"
+        ]
+      },
+      {
+        id: 3,
+        title: "Aqua Under Water",
+        image: "../Blender/Addon/Aqua Under Water/1.webp",
+        folder: "Aqua Under Water",
+        images: [
+          "../Blender/Addon/Aqua Under Water/1.webp",
+          "../Blender/Addon/Aqua Under Water/Blender 1_27_2023 8_41_22 PM.webp",
+          "../Blender/Addon/Aqua Under Water/vlcsnap-2023-01-14-09h08m57s629.webp",
+          "../Blender/Addon/Aqua Under Water/vlcsnap-2023-01-14-09h09m16s574.webp",
+          "../Blender/Addon/Aqua Under Water/elle.webp",
+          "../Blender/Addon/Aqua Under Water/wota.webp"
+        ]
+      },
+      {
+        id: 4,
+        title: "Auto building",
+        image: "../Blender/Addon/Auto building/1.webp",
+        folder: "Auto building",
+        images: [
+          "../Blender/Addon/Auto building/1.webp",
+          "../Blender/Addon/Auto building/AutoBaseVariations.webp",
+          "../Blender/Addon/Auto building/ImportAssetBrowser.webp",
+          "../Blender/Addon/Auto building/RoofGrid.webp",
+          "../Blender/Addon/Auto building/CreaseDeformFit.webp",
+          "../Blender/Addon/Auto building/MaterialAssignment.webp"
+        ]
+      },
+      {
+        id: 5,
+        title: "Auto-Rig Pro Rig Library",
+        image: "../Blender/Addon/Auto-Rig Pro Rig Library/1.webp",
+        folder: "Auto-Rig Pro Rig Library",
+        images: [
+          "../Blender/Addon/Auto-Rig Pro Rig Library/1.webp",
+          "../Blender/Addon/Auto-Rig Pro Rig Library/PlaceBones.webp",
+          "../Blender/Addon/Auto-Rig Pro Rig Library/ScaleRig.webp",
+          "../Blender/Addon/Auto-Rig Pro Rig Library/SelectRig.webp",
+          "../Blender/Addon/Auto-Rig Pro Rig Library/Installation.webp",
+          "../Blender/Addon/Auto-Rig Pro Rig Library/Library.webp"
+        ]
+      },
+      {
+        id: 6,
+        title: "AutoCam",
+        image: "../Blender/Addon/AutoCam/1.webp",
+        folder: "AutoCam",
+        images: [
+          "../Blender/Addon/AutoCam/1.webp",
+          "../Blender/Addon/AutoCam/2.webp",
+          "../Blender/Addon/AutoCam/3.webp",
+          "../Blender/Addon/AutoCam/image_processing20250509-2-r5naoj.webp",
+          "../Blender/Addon/AutoCam/image_processing20250515-2-kzjr2t.webp"
+        ]
+      },
+      {
+        id: 7,
+        title: "Baga Rain Generator",
+        image: "../Blender/Addon/Baga Rain Generator/1.webp",
+        folder: "Baga Rain Generator",
+        images: [
+          "../Blender/Addon/Baga Rain Generator/1.webp",
+          "../Blender/Addon/Baga Rain Generator/Demo file Breakdown.webp",
+          "../Blender/Addon/Baga Rain Generator/giphy.webp",
+          "../Blender/Addon/Baga Rain Generator/giphy (1).webp",
+          "../Blender/Addon/Baga Rain Generator/giphy (2).webp",
+          "../Blender/Addon/Baga Rain Generator/2.webp"
+        ]
+      },
+      {
+        id: 8,
+        title: "Baga River Generator",
+        image: "../Blender/Addon/Baga River Generator/1.webp",
+        folder: "Baga River Generator",
+        images: [
+          "../Blender/Addon/Baga River Generator/1.webp",
+          "../Blender/Addon/Baga River Generator/gif draw river.webp",
+          "../Blender/Addon/Baga River Generator/gif select draw river resize.webp",
+          "../Blender/Addon/Baga River Generator/Draw in Existant.webp",
+          "../Blender/Addon/Baga River Generator/Insert river.webp",
+          "../Blender/Addon/Baga River Generator/Foam.webp"
+        ]
+      },
+      {
+        id: 9,
+        title: "blendbricks",
+        image: "../Blender/Addon/blendbricks/1.webp",
+        folder: "blendbricks",
+        images: [
+          "../Blender/Addon/blendbricks/1.webp",
+          "../Blender/Addon/blendbricks/2x4 Brick HD.webp",
+          "../Blender/Addon/blendbricks/b.webp",
+          "../Blender/Addon/blendbricks/Render.webp",
+          "../Blender/Addon/blendbricks/Tardis White BG.webp",
+          "../Blender/Addon/blendbricks/Tower.webp"
+        ]
+      },
+      {
+        id: 10,
+        title: "Blender Addon 3D Hair Brush - Support New Hair System",
+        image: "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/1.webp",
+        folder: "Blender Addon 3D Hair Brush - Support New Hair System",
+        images: [
+          "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/1.webp",
+          "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/2.webp",
+          "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/5.webp",
+          "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/6.webp",
+          "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/7.webp"
+        ]
+      },
+      {
+        id: 11,
+        title: "Breakdown Maker",
+        image: "../Blender/Addon/Breakdown Maker/1.webp",
+        folder: "Breakdown Maker",
+        images: [
+          "../Blender/Addon/Breakdown Maker/1.webp",
+          "../Blender/Addon/Breakdown Maker/02_ANIMATION.webp",
+          "../Blender/Addon/Breakdown Maker/03_CORTINILLA.webp",
+          "../Blender/Addon/Breakdown Maker/06_LIGHTSCHEME2.webp",
+          "../Blender/Addon/Breakdown Maker/08_HDRI.webp",
+          "../Blender/Addon/Breakdown Maker/10_TURNTABLEBASE.webp"
+        ]
+      },
+      {
+        id: 12,
+        title: "Camera tracker",
+        image: "../Blender/Addon/Camera tracker/1.webp",
+        folder: "Camera tracker",
+        images: [
+          "../Blender/Addon/Camera tracker/1.webp",
+          "../Blender/Addon/Camera tracker/2.webp",
+          "../Blender/Addon/Camera tracker/3.webp",
+          "../Blender/Addon/Camera tracker/image_processing20250721-2-rpr41b.webp",
+          "../Blender/Addon/Camera tracker/image_processing20251117-2-ino4cl.webp",
+          "../Blender/Addon/Camera tracker/image_processing20251117-2-av02zw.webp"
+        ]
+      },
+      {
+        id: 13,
+        title: "Compositor Pro",
+        image: "../Blender/Addon/Compositor Pro/1.webp",
+        folder: "Compositor Pro",
+        images: [
+          "../Blender/Addon/Compositor Pro/1.webp",
+          "../Blender/Addon/Compositor Pro/img1.webp",
+          "../Blender/Addon/Compositor Pro/Promo_2.webp",
+          "../Blender/Addon/Compositor Pro/74fee38fec167e68d3dc8da9fa69b98d_1.webp",
+          "../Blender/Addon/Compositor Pro/ee492b7c355e4ac98b2ac7a3287b02f6_2.webp",
+          "../Blender/Addon/Compositor Pro/90dcdf2a5e66783222cc765408325303.webp"
+        ]
+      },
+      {
+        id: 14,
+        title: "Cyberscape Pro  Procedural City Generator",
+        image: "../Blender/Addon/Cyberscape Pro  Procedural City Generator/1.webp",
+        folder: "Cyberscape Pro  Procedural City Generator",
+        images: [
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/1.webp",
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/seed (1).webp",
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/texture seed.webp",
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/ads.webp",
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/building size.webp",
+          "../Blender/Addon/Cyberscape Pro  Procedural City Generator/shape.webp"
+        ]
+      },
+      {
+        id: 15,
+        title: "Divine Cut Smart Cloth Generator V3",
+        image: "../Blender/Addon/Divine Cut Smart Cloth Generator V3/1.webp",
+        folder: "Divine Cut Smart Cloth Generator V3",
+        images: [
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/1.webp",
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/BM UI3.webp",
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/image_processing20240820-2-15cykhi.webp",
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/image_processing20250211-2-u6j1l1.webp",
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/Panel.webp",
+          "../Blender/Addon/Divine Cut Smart Cloth Generator V3/Presets (1).webp"
+        ]
+      },
+      {
+        id: 16,
+        title: "Easy Envelope",
+        image: "../Blender/Addon/Easy Envelope/1.webp",
+        folder: "Easy Envelope",
+        images: [
+          "../Blender/Addon/Easy Envelope/1.webp",
+          "../Blender/Addon/Easy Envelope/2.webp",
+          "../Blender/Addon/Easy Envelope/ignore_mode.webp",
+          "../Blender/Addon/Easy Envelope/line_shape_demo.webp",
+          "../Blender/Addon/Easy Envelope/range_demo.webp",
+          "../Blender/Addon/Easy Envelope/M_}6QCDXF(~1SNEUVDN(BOT.webp"
+        ]
+      },
+      {
+        id: 17,
+        title: "Engon",
+        image: "../Blender/Addon/Engon/1.webp",
+        folder: "Engon",
+        images: [
+          "../Blender/Addon/Engon/1.webp",
+          "../Blender/Addon/Engon/image_processing20250226-2-10cxak2.webp",
+          "../Blender/Addon/Engon/image_processing20250226-2-f0b0tq.webp",
+          "../Blender/Addon/Engon/image_processing20250226-2-wh2vmg.webp",
+          "../Blender/Addon/Engon/asset_browser-optimized.webp"
+        ]
+      },
+      {
+        id: 18,
+        title: "Faceit",
+        image: "../Blender/Addon/Faceit/1.webp",
+        folder: "Faceit",
+        images: [
+          "../Blender/Addon/Faceit/1.webp",
+          "../Blender/Addon/Faceit/pivot-00.webp",
+          "../Blender/Addon/Faceit/chloe_rig_13.webp",
+          "../Blender/Addon/Faceit/assign-06.webp",
+          "../Blender/Addon/Faceit/proog_rig_03.webp",
+          "../Blender/Addon/Faceit/f.webp"
+        ]
+      },
+      {
+        id: 19,
+        title: "Flared2 - Cinematic Lens Flares In Real-Time",
+        image: "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/1.webp",
+        folder: "Flared2 - Cinematic Lens Flares In Real-Time",
+        images: [
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/1.webp",
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/02.webp",
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/05GIF2025-ezgif.com-video-to-webp-converter.webp",
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/06GIF2025-ezgif.com-video-to-webp-converter.webp",
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/lens-flare-out-of-view.webp",
+          "../Blender/Addon/Flared2 - Cinematic Lens Flares In Real-Time/no-compositor-needed.webp"
+        ]
+      },
+      {
+        id: 20,
+        title: "Fluent 4 - Hard Surface Modeling Tool Suite",
+        image: "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/1.webp",
+        folder: "Fluent 4 - Hard Surface Modeling Tool Suite",
+        images: [
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/1.webp",
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/image_processing20240820-2-1179ws1.webp",
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/image_processing20240820-2-1xd58vl.webp",
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/image_processing20240820-2-euvqr4.webp",
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/image_processing20240820-2-lxfb6i.webp",
+          "../Blender/Addon/Fluent 4 - Hard Surface Modeling Tool Suite/Fluent 4 - Hard surface modeling tool suite - Superhive (formerly Blender Market).mp4"
+        ]
+      },
+      {
+        id: 21,
+        title: "Fluent Materializer",
+        image: "../Blender/Addon/Fluent Materializer/1.webp",
+        folder: "Fluent Materializer",
+        images: [
+          "../Blender/Addon/Fluent Materializer/1.webp",
+          "../Blender/Addon/Fluent Materializer/photo_2026-01-10_19-05-21.webp",
+          "../Blender/Addon/Fluent Materializer/photo_2026-01-10_19-05-23.webp",
+          "../Blender/Addon/Fluent Materializer/photo_2026-01-10_19-05-25.webp",
+          "../Blender/Addon/Fluent Materializer/photo_2026-01-10_19-05-28.webp",
+          "../Blender/Addon/Fluent Materializer/photo_2026-01-10_19-05-32.webp"
+        ]
+      },
+      {
+        id: 22,
+        title: "G Trash",
+        image: "../Blender/Addon/G Trash/1.webp",
+        folder: "G Trash",
+        images: [
+          "../Blender/Addon/G Trash/1.webp",
+          "../Blender/Addon/G Trash/image03.webp",
+          "../Blender/Addon/G Trash/G Trash.mp4",
+          "../Blender/Addon/G Trash/G Trash_2.mp4",
+          "../Blender/Addon/G Trash/G Trash_3.mp4",
+          "../Blender/Addon/G Trash/G Trash_4.mp4"
+        ]
+      },
+      {
+        id: 23,
+        title: "GeoTracker for Blender",
+        image: "../Blender/Addon/GeoTracker for Blender/1.webp",
+        folder: "GeoTracker for Blender",
+        images: [
+          "../Blender/Addon/GeoTracker for Blender/1.webp",
+          "../Blender/Addon/GeoTracker for Blender/2.mp4",
+          "../Blender/Addon/GeoTracker for Blender/3.mp4",
+          "../Blender/Addon/GeoTracker for Blender/4.mp4",
+          "../Blender/Addon/GeoTracker for Blender/5.mp4",
+          "../Blender/Addon/GeoTracker for Blender/6.mp4"
+        ]
+      },
+      {
+        id: 24,
+        title: "Globalskin - Ultimate Skin Shader",
+        image: "../Blender/Addon/Globalskin - Ultimate Skin Shader/1.webp",
+        folder: "Globalskin - Ultimate Skin Shader",
+        images: [
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/1.webp",
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/features-bg-4.webp",
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/image_processing20240904-2-1wiuozp.webp",
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/image_processing20240904-2-4u5n4l.webp",
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/image_processing20240904-2-9mmxq3.webp",
+          "../Blender/Addon/Globalskin - Ultimate Skin Shader/g.webp"
+        ]
+      },
+      {
+        id: 25,
+        title: "Hair Brick Pro",
+        image: "../Blender/Addon/Hair Brick Pro/1.webp",
+        folder: "Hair Brick Pro",
+        images: [
+          "../Blender/Addon/Hair Brick Pro/1.webp",
+          "../Blender/Addon/Hair Brick Pro/Fase.webp",
+          "../Blender/Addon/Hair Brick Pro/child.webp",
+          "../Blender/Addon/Hair Brick Pro/image masking.webp",
+          "../Blender/Addon/Hair Brick Pro/hair modifiers.webp",
+          "../Blender/Addon/Hair Brick Pro/management.webp"
+        ]
+      },
+      {
+        id: 26,
+        title: "Hardops 26 Lead",
+        image: "../Blender/Addon/Hardops 26 Lead/1.webp",
+        folder: "Hardops 26 Lead",
+        images: [
+          "../Blender/Addon/Hardops 26 Lead/1.webp",
+          "../Blender/Addon/Hardops 26 Lead/b5.webp",
+          "../Blender/Addon/Hardops 26 Lead/c3.webp",
+          "../Blender/Addon/Hardops 26 Lead/v2.webp",
+          "../Blender/Addon/Hardops 26 Lead/c2.webp",
+          "../Blender/Addon/Hardops 26 Lead/b1.webp"
+        ]
+      },
+      {
+        id: 27,
+        title: "Human Generator Ultimate",
+        image: "../Blender/Addon/Human Generator Ultimate/1.webp",
+        folder: "Human Generator Ultimate",
+        images: [
+          "../Blender/Addon/Human Generator Ultimate/1.webp",
+          "../Blender/Addon/Human Generator Ultimate/06_hair.webp",
+          "../Blender/Addon/Human Generator Ultimate/04_skinAdjustment.webp",
+          "../Blender/Addon/Human Generator Ultimate/03_faceSliders.webp",
+          "../Blender/Addon/Human Generator Ultimate/2.webp",
+          "../Blender/Addon/Human Generator Ultimate/hh.webp"
+        ]
+      },
+      {
+        id: 28,
+        title: "HumanPro",
+        image: "../Blender/Addon/HumanPro/1.webp",
+        folder: "HumanPro",
+        images: [
+          "../Blender/Addon/HumanPro/1.webp",
+          "../Blender/Addon/HumanPro/img1.webp",
+          "../Blender/Addon/HumanPro/img2.webp",
+          "../Blender/Addon/HumanPro/photo_2025-01-28_19-16-04.webp"
+        ]
+      },
+      {
+        id: 29,
+        title: "Icity City Generator",
+        image: "../Blender/Addon/Icity City Generator/1.webp",
+        folder: "Icity City Generator",
+        images: [
+          "../Blender/Addon/Icity City Generator/1.webp",
+          "../Blender/Addon/Icity City Generator/3-2.webp",
+          "../Blender/Addon/Icity City Generator/8.webp",
+          "../Blender/Addon/Icity City Generator/s1-ezgif.com-video-to-gif-converter.webp",
+          "../Blender/Addon/Icity City Generator/dynamic generation.webp",
+          "../Blender/Addon/Icity City Generator/procedural road.webp"
+        ]
+      },
+      {
+        id: 30,
+        title: "Inkwood 2.0 - Ink Drawing Shader Pack",
+        image: "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/1.webp",
+        folder: "Inkwood 2.0 - Ink Drawing Shader Pack",
+        images: [
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/1.webp",
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/image_processing20200819-4-1a0o3q.webp",
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/image_processing20200819-4-1aygmj5.webp",
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/image_processing20200825-4-t1wggk.webp",
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/uploads_1597861591977-Boxed_Durink.webp",
+          "../Blender/Addon/Inkwood 2.0 - Ink Drawing Shader Pack/uploads_1597861545436-Boxed_Waterink.webp"
+        ]
+      },
+      {
+        id: 31,
+        title: "Laces Generator",
+        image: "../Blender/Addon/Laces Generator/1.webp",
+        folder: "Laces Generator",
+        images: [
+          "../Blender/Addon/Laces Generator/1.webp",
+          "../Blender/Addon/Laces Generator/image_processing20251124-2-w0r0on.webp",
+          "../Blender/Addon/Laces Generator/MainA.webp",
+          "../Blender/Addon/Laces Generator/MainC2.webp",
+          "../Blender/Addon/Laces Generator/MainZ2.webp",
+          "../Blender/Addon/Laces Generator/MainB2.webp"
+        ]
+      },
+      {
+        id: 32,
+        title: "MetaBlRiger",
+        image: "../Blender/Addon/MetaBlRiger/1.webp",
+        folder: "MetaBlRiger",
+        images: [
+          "../Blender/Addon/MetaBlRiger/1.webp",
+          "../Blender/Addon/MetaBlRiger/metablrigerV2.6.webp",
+          "../Blender/Addon/MetaBlRiger/V2.5Cover.webp",
+          "../Blender/Addon/MetaBlRiger/Intruction_1.webp"
+        ]
+      },
+      {
+        id: 33,
+        title: "Mio3 UV",
+        image: "../Blender/Addon/Mio3 UV/1.webp",
+        folder: "Mio3 UV",
+        images: [
+          "../Blender/Addon/Mio3 UV/1.webp",
+          "../Blender/Addon/Mio3 UV/orient_edge.webp",
+          "../Blender/Addon/Mio3 UV/align_edge_loops.webp",
+          "../Blender/Addon/Mio3 UV/align_vert.webp",
+          "../Blender/Addon/Mio3 UV/rectify.webp",
+          "../Blender/Addon/Mio3 UV/normalize.webp"
+        ]
+      },
+      {
+        id: 34,
+        title: "Node-it",
+        image: "../Blender/Addon/Node-it/1.webp",
+        folder: "Node-it",
+        images: [
+          "../Blender/Addon/Node-it/1.webp",
+          "../Blender/Addon/Node-it/4.webp",
+          "../Blender/Addon/Node-it/image_processing20250121-2-mu4mh0.webp",
+          "../Blender/Addon/Node-it/3.mp4",
+          "../Blender/Addon/Node-it/2.mp4",
+          "../Blender/Addon/Node-it/5.mp4"
+        ]
+      },
+      {
+        id: 35,
+        title: "One click slow motion",
+        image: "../Blender/Addon/One click slow motion/1.webp",
+        folder: "One click slow motion",
+        images: [
+          "../Blender/Addon/One click slow motion/1.webp",
+          "../Blender/Addon/One click slow motion/2.webp",
+          "../Blender/Addon/One click slow motion/3.webp",
+          "../Blender/Addon/One click slow motion/4.webp",
+          "../Blender/Addon/One click slow motion/5.webp"
+        ]
+      },
+      {
+        id: 36,
+        title: "Organic Addon - Procedural Organic Tools",
+        image: "../Blender/Addon/Organic Addon - Procedural Organic Tools/1.webp",
+        folder: "Organic Addon - Procedural Organic Tools",
+        images: [
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/1.webp",
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/4.webp",
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/2.webp",
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/3.webp",
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/6.webp",
+          "../Blender/Addon/Organic Addon - Procedural Organic Tools/5.webp"
+        ]
+      },
+      {
+        id: 37,
+        title: "PBR Bridge",
+        image: "../Blender/Addon/PBR Bridge/1.webp",
+        folder: "PBR Bridge",
+        images: [
+          "../Blender/Addon/PBR Bridge/1.webp",
+          "../Blender/Addon/PBR Bridge/cavity.webp",
+          "../Blender/Addon/PBR Bridge/from_mat_id.webp",
+          "../Blender/Addon/PBR Bridge/keep_modifiers.webp",
+          "../Blender/Addon/PBR Bridge/multi_meshes.webp",
+          "../Blender/Addon/PBR Bridge/UDIMs.webp"
+        ]
+      },
+      {
+        id: 38,
+        title: "Physical Open Waters - Ocean",
+        image: "../Blender/Addon/Physical Open Waters - Ocean/1.webp",
+        folder: "Physical Open Waters - Ocean",
+        images: [
+          "../Blender/Addon/Physical Open Waters - Ocean/1.webp",
+          "../Blender/Addon/Physical Open Waters - Ocean/image_processing20240819-2-126vafh.webp",
+          "../Blender/Addon/Physical Open Waters - Ocean/image_processing20240819-2-1fizkvb.webp",
+          "../Blender/Addon/Physical Open Waters - Ocean/image_processing20240819-2-1g1rju3.webp",
+          "../Blender/Addon/Physical Open Waters - Ocean/image_processing20240819-2-u0n71d.webp",
+          "../Blender/Addon/Physical Open Waters - Ocean/image_processing20240819-2-wuhpt9.webp"
+        ]
+      },
+      {
+        id: 39,
+        title: "Physical Weather Fx  One-Click Weather System",
+        image: "../Blender/Addon/Physical Weather Fx  One-Click Weather System/1.webp",
+        folder: "Physical Weather Fx  One-Click Weather System",
+        images: [
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/1.webp",
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/image_processing20250222-2-13yi2gj.webp",
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/image_processing20250222-2-9xfqfw.webp",
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/ecosystme.webp",
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/Presets (1).webp",
+          "../Blender/Addon/Physical Weather Fx  One-Click Weather System/Presets.webp"
+        ]
+      },
+      {
+        id: 40,
+        title: "Physics Placer",
+        image: "../Blender/Addon/Physics Placer/1.webp",
+        folder: "Physics Placer",
+        images: [
+          "../Blender/Addon/Physics Placer/1.webp",
+          "../Blender/Addon/Physics Placer/render 2_00001.webp",
+          "../Blender/Addon/Physics Placer/gif01.webp",
+          "../Blender/Addon/Physics Placer/gif02.webp",
+          "../Blender/Addon/Physics Placer/gif03.webp"
+        ]
+      },
+      {
+        id: 41,
+        title: "Point Animate By Kiri Engine",
+        image: "../Blender/Addon/Point Animate By Kiri Engine/1.webp",
+        folder: "Point Animate By Kiri Engine",
+        images: [
+          "../Blender/Addon/Point Animate By Kiri Engine/1.webp",
+          "../Blender/Addon/Point Animate By Kiri Engine/Kiri Point Animate Images_1.6.1.webp",
+          "../Blender/Addon/Point Animate By Kiri Engine/Kiri Point Animate Images_1.6.2.webp",
+          "../Blender/Addon/Point Animate By Kiri Engine/image_processing20250113-2-1as5bds.webp",
+          "../Blender/Addon/Point Animate By Kiri Engine/image_processing20250113-2-r5uvwd.webp",
+          "../Blender/Addon/Point Animate By Kiri Engine/image_processing20250113-2-z6zs7k.webp"
+        ]
+      },
+      {
+        id: 42,
+        title: "Procedural Crowds PRO",
+        image: "../Blender/Addon/Procedural Crowds PRO/1.webp",
+        folder: "Procedural Crowds PRO",
+        images: [
+          "../Blender/Addon/Procedural Crowds PRO/1.webp",
+          "../Blender/Addon/Procedural Crowds PRO/Groups_NEW.webp",
+          "../Blender/Addon/Procedural Crowds PRO/FollowCurve.webp",
+          "../Blender/Addon/Procedural Crowds PRO/Circle.webp",
+          "../Blender/Addon/Procedural Crowds PRO/Audience.webp",
+          "../Blender/Addon/Procedural Crowds PRO/2.webp"
+        ]
+      },
+      {
+        id: 43,
+        title: "Pure-Comic Shader",
+        image: "../Blender/Addon/Pure-Comic Shader/1.webp",
+        folder: "Pure-Comic Shader",
+        images: [
+          "../Blender/Addon/Pure-Comic Shader/1.webp",
+          "../Blender/Addon/Pure-Comic Shader/2.webp",
+          "../Blender/Addon/Pure-Comic Shader/3.webp",
+          "../Blender/Addon/Pure-Comic Shader/4.webp"
+        ]
+      },
+      {
+        id: 44,
+        title: "Pure-Sky Pro",
+        image: "../Blender/Addon/Pure-Sky Pro/1.webp",
+        folder: "Pure-Sky Pro",
+        images: [
+          "../Blender/Addon/Pure-Sky Pro/1.webp",
+          "../Blender/Addon/Pure-Sky Pro/Pure-Sky_Collision.webp",
+          "../Blender/Addon/Pure-Sky Pro/Pure-Sky_Render_Mode.webp",
+          "../Blender/Addon/Pure-Sky Pro/Pure-Sky_Hybrid.webp",
+          "../Blender/Addon/Pure-Sky Pro/Pure-Sky_Clouds.webp",
+          "../Blender/Addon/Pure-Sky Pro/Pure-Sky_Presets.webp"
+        ]
+      },
+      {
+        id: 45,
+        title: "Random Flow",
+        image: "../Blender/Addon/Random Flow/1.webp",
+        folder: "Random Flow",
+        images: [
+          "../Blender/Addon/Random Flow/1.webp",
+          "../Blender/Addon/Random Flow/blender_ErF4SrGn8A.webp",
+          "../Blender/Addon/Random Flow/blender_HhNcdV05sd.webp",
+          "../Blender/Addon/Random Flow/blender_2LQ9aCieTR.webp",
+          "../Blender/Addon/Random Flow/blender_pOevQwVxLP.webp",
+          "../Blender/Addon/Random Flow/blender_MtVzV6nMxu.webp"
+        ]
+      },
+      {
+        id: 46,
+        title: "Rbc A Physics-Based Vehicle Rigging Addon",
+        image: "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/1.webp",
+        folder: "Rbc A Physics-Based Vehicle Rigging Addon",
+        images: [
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/1.webp",
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/Rbc 7.webp",
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/Rbc 6.webp",
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/Rbc 5.webp",
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/Rbc 4.webp",
+          "../Blender/Addon/Rbc A Physics-Based Vehicle Rigging Addon/Rbc 2.webp"
+        ]
+      },
+      {
+        id: 47,
+        title: "Retopoflow 4",
+        image: "../Blender/Addon/Retopoflow 4/1.webp",
+        folder: "Retopoflow 4",
+        images: [
+          "../Blender/Addon/Retopoflow 4/1.webp",
+          "../Blender/Addon/Retopoflow 4/Relax-Shark-Small.webp",
+          "../Blender/Addon/Retopoflow 4/PolyPen-Lion-Small.webp",
+          "../Blender/Addon/Retopoflow 4/Strokes-Face-Small.webp",
+          "../Blender/Addon/Retopoflow 4/PolyStrips-Face-Small.webp",
+          "../Blender/Addon/Retopoflow 4/Contours-Arm-Small.webp"
+        ]
+      },
+      {
+        id: 48,
+        title: "Sanctus Library",
+        image: "../Blender/Addon/Sanctus Library/1.webp",
+        folder: "Sanctus Library",
+        images: [
+          "../Blender/Addon/Sanctus Library/1.webp",
+          "../Blender/Addon/Sanctus Library/Sanctus Library - Procedural Materials - Superhive (formerly Blender Market).mp4",
+          "../Blender/Addon/Sanctus Library/Sanctus Library - Procedural Materials - Superhive (formerly Blender Market)_2.mp4",
+          "../Blender/Addon/Sanctus Library/Sanctus Library - Procedural Materials - Superhive (formerly Blender Market)_3.mp4"
+        ]
+      },
+      {
+        id: 49,
+        title: "Simplify+",
+        image: "../Blender/Addon/Simplify+/1.webp",
+        folder: "Simplify+",
+        images: [
+          "../Blender/Addon/Simplify+/1.webp",
+          "../Blender/Addon/Simplify+/6.webp",
+          "../Blender/Addon/Simplify+/4.webp",
+          "../Blender/Addon/Simplify+/5.webp",
+          "../Blender/Addon/Simplify+/2.webp",
+          "../Blender/Addon/Simplify+/3.webp"
+        ]
+      },
+      {
+        id: 50,
+        title: "Simply Material Fashion Design",
+        image: "../Blender/Addon/Simply Material Fashion Design/1.webp",
+        folder: "Simply Material Fashion Design",
+        images: [
+          "../Blender/Addon/Simply Material Fashion Design/1.webp",
+          "../Blender/Addon/Simply Material Fashion Design/Dirt-V2.webp",
+          "../Blender/Addon/Simply Material Fashion Design/Additional-Logo-V2.webp",
+          "../Blender/Addon/Simply Material Fashion Design/gif_alpha.webp",
+          "../Blender/Addon/Simply Material Fashion Design/Emission-V1.webp",
+          "../Blender/Addon/Simply Material Fashion Design/gif_subsurf.webp"
+        ]
+      },
+      {
+        id: 51,
+        title: "Stylized Asset Suite for Blender",
+        image: "../Blender/Addon/Stylized Asset Suite for Blender/1.webp",
+        folder: "Stylized Asset Suite for Blender",
+        images: [
+          "../Blender/Addon/Stylized Asset Suite for Blender/1.webp",
+          "../Blender/Addon/Stylized Asset Suite for Blender/anotheroneeee.webp",
+          "../Blender/Addon/Stylized Asset Suite for Blender/brushpack.webp",
+          "../Blender/Addon/Stylized Asset Suite for Blender/CC_blurred.webp",
+          "../Blender/Addon/Stylized Asset Suite for Blender/iqxlnrw0dq7f8gxmedmbejj2nro9.webp"
+        ]
+      },
+      {
+        id: 52,
+        title: "Surface Diagnostics",
+        image: "../Blender/Addon/Surface Diagnostics/1.webp",
+        folder: "Surface Diagnostics",
+        images: [
+          "../Blender/Addon/Surface Diagnostics/1.webp",
+          "../Blender/Addon/Surface Diagnostics/curvature.webp",
+          "../Blender/Addon/Surface Diagnostics/cut.webp",
+          "../Blender/Addon/Surface Diagnostics/draft.webp",
+          "../Blender/Addon/Surface Diagnostics/minmax_rad.webp",
+          "../Blender/Addon/Surface Diagnostics/sections.webp"
+        ]
+      },
+      {
+        id: 53,
+        title: "The City Generator",
+        image: "../Blender/Addon/The City Generator/1.webp",
+        folder: "The City Generator",
+        images: [
+          "../Blender/Addon/The City Generator/1.webp",
+          "../Blender/Addon/The City Generator/image_processing20250106-2-16w1yqx.webp",
+          "../Blender/Addon/The City Generator/image_processing20250106-2-57jnsi.webp",
+          "../Blender/Addon/The City Generator/image_processing20250106-2-buymr0.webp",
+          "../Blender/Addon/The City Generator/still_1.14.1.webp",
+          "../Blender/Addon/The City Generator/still_1.5.1.webp"
+        ]
+      },
+      {
+        id: 54,
+        title: "True Fire",
+        image: "../Blender/Addon/True Fire/1.webp",
+        folder: "True Fire",
+        images: [
+          "../Blender/Addon/True Fire/1.webp",
+          "../Blender/Addon/True Fire/2.webp",
+          "../Blender/Addon/True Fire/uploads_1615476696114-Comp_00000.webp",
+          "../Blender/Addon/True Fire/uploads_1615494966912-Tornado+GIF.webp",
+          "../Blender/Addon/True Fire/uploads_1615552610947-Flame+Thrower+GIF.webp"
+        ]
+      },
+      {
+        id: 55,
+        title: "True-Space 2.0",
+        image: "../Blender/Addon/True-Space 2.0/1.webp",
+        folder: "True-Space 2.0",
+        images: [
+          "../Blender/Addon/True-Space 2.0/1.webp",
+          "../Blender/Addon/True-Space 2.0/image_processing20190706-4-ua54is.webp",
+          "../Blender/Addon/True-Space 2.0/image_processing20201127-4-1k48cr1.webp",
+          "../Blender/Addon/True-Space 2.0/image_processing20201127-4-4rb22l.webp",
+          "../Blender/Addon/True-Space 2.0/image_processing20201127-4-mo73q3.webp",
+          "../Blender/Addon/True-Space 2.0/TSpace_Main.webp"
+        ]
+      },
+      {
+        id: 56,
+        title: "uvpackmaster 3",
+        image: "../Blender/Addon/uvpackmaster 3/1.webp",
+        folder: "uvpackmaster 3",
+        images: [
+          "../Blender/Addon/uvpackmaster 3/1.webp",
+          "../Blender/Addon/uvpackmaster 3/40_UVPM_screens_aligning-2160x1080.webp",
+          "../Blender/Addon/uvpackmaster 3/image_processing20240904-2-afl69n.webp",
+          "../Blender/Addon/uvpackmaster 3/image_processing20241125-2-gfmq1z.webp",
+          "../Blender/Addon/uvpackmaster 3/non-uniform-align.webp",
+          "../Blender/Addon/uvpackmaster 3/NormalizeMultiplier.webp"
+        ]
+      },
+      {
+        id: 57,
+        title: "Vera Light Studio",
+        image: "../Blender/Addon/Vera Light Studio/1.webp",
+        folder: "Vera Light Studio",
+        images: [
+          "../Blender/Addon/Vera Light Studio/1.webp",
+          "../Blender/Addon/Vera Light Studio/uploads_1622129202369-led.webp",
+          "../Blender/Addon/Vera Light Studio/uploads_1622243359562-12222.webp",
+          "../Blender/Addon/Vera Light Studio/uploads_1622129506752-fgh.webp",
+          "../Blender/Addon/Vera Light Studio/uploads_1622243492405-1111.webp",
+          "../Blender/Addon/Vera Light Studio/uploads_1622243314061-1111u.webp"
+        ]
+      },
+      {
+        id: 58,
+        title: "Wrap Gen - Generate Fully Customisable",
+        image: "../Blender/Addon/Wrap Gen - Generate Fully Customisable/1.webp",
+        folder: "Wrap Gen - Generate Fully Customisable",
+        images: [
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/1.webp",
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/GIF_01 (1).webp",
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/HORN_GIF_01.webp",
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/CollisionGIF_01.webp",
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/Collections_01.webp",
+          "../Blender/Addon/Wrap Gen - Generate Fully Customisable/GIF.webp"
+        ]
+      },
+      {
+        id: 59,
+        title: "Xdecal™ Manager",
+        image: "../Blender/Addon/Xdecal™ Manager/1.webp",
+        folder: "Xdecal™ Manager",
+        images: [
+          "../Blender/Addon/Xdecal™ Manager/1.webp",
+          "../Blender/Addon/Xdecal™ Manager/BlenderMarket - Thumbs a02.webp",
+          "../Blender/Addon/Xdecal™ Manager/BlenderMarket - Thumbs a03.webp",
+          "../Blender/Addon/Xdecal™ Manager/BlenderMarket - Thumbs a04.webp",
+          "../Blender/Addon/Xdecal™ Manager/Dragging.webp"
+        ]
+      },
+      {
+        id: 60,
+        title: "Zform - Transform Depth Maps And Images To 3D Mesh",
+        image: "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/1.webp",
+        folder: "Zform - Transform Depth Maps And Images To 3D Mesh",
+        images: [
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/1.webp",
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/2.webp",
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/image_processing20241121-2-nt516.webp",
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/image_processing20241121-2-zhuq5h.webp",
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/image_processing20250329-2-3pdbax.webp",
+          "../Blender/Addon/Zform - Transform Depth Maps And Images To 3D Mesh/image_processing20250329-2-vyn38l.webp"
+        ]
+      },
+      {
+        id: 61,
+        title: "Аnimаtion Lаyers",
+        image: "../Blender/Addon/Аnimаtion Lаyers/1.webp",
+        folder: "Аnimаtion Lаyers",
+        images: [
+          "../Blender/Addon/Аnimаtion Lаyers/1.webp",
+          "../Blender/Addon/Аnimаtion Lаyers/Screenshot 2026-01-10 185631.webp",
+          "../Blender/Addon/Аnimаtion Lаyers/Screenshot 2026-01-10 185639.webp",
+          "../Blender/Addon/Аnimаtion Lаyers/Screenshot 2026-01-10 185645.webp"
+        ]
+      },
+      {
+        id: 62,
+        title: "keentools facebuilder",
+        image: "../Blender/Addon/keentools facebuilder.webp",
+        folder: "",
+        images: [
+          "../Blender/Addon/keentools facebuilder.webp",
+          "../Blender/Addon/keentools facebuilder.webp",
+          "../Blender/Addon/keentools facebuilder.webp",
+          "../Blender/Addon/keentools facebuilder.webp",
+          "../Blender/Addon/keentools facebuilder.webp",
+          "../Blender/Addon/keentools facebuilder.webp"
+        ]
+      },
+      {
+        id: 63,
+        title: "Modern Primitive",
+        image: "../Blender/Addon/Modern Primitive.webp",
+        folder: "",
+        images: [
+          "../Blender/Addon/Modern Primitive.webp",
+          "../Blender/Addon/Modern Primitive.webp",
+          "../Blender/Addon/Modern Primitive.webp",
+          "../Blender/Addon/Modern Primitive.webp",
+          "../Blender/Addon/Modern Primitive.webp",
+          "../Blender/Addon/Modern Primitive.webp"
+        ]
+      },
+      {
+        id: 64,
+        title: "Quad Remesher",
+        image: "../Blender/Addon/Quad Remesher.webp",
+        folder: "",
+        images: [
+          "../Blender/Addon/Quad Remesher.webp",
+          "../Blender/Addon/Quad Remesher.webp",
+          "../Blender/Addon/Quad Remesher.webp",
+          "../Blender/Addon/Quad Remesher.webp",
+          "../Blender/Addon/Quad Remesher.webp",
+          "../Blender/Addon/Quad Remesher.webp"
+        ]
+      },
+      {
+        id: 65,
+        title: "One Click Age",
+        image: "../Blender/Addon/One Click Age/1.webp",
+        folder: "One Click Age",
+        images: [
+          "../Blender/Addon/One Click Age/1.webp",
+          "../Blender/Addon/One Click Age/Dresser Variations.webp",
+          "../Blender/Addon/One Click Age/Flashbang Variations.webp",
+          "../Blender/Addon/One Click Age/Grenade Age Value.webp",
+          "../Blender/Addon/One Click Age/Log Variations.webp",
+          "../Blender/Addon/One Click Age/M4A1 Variations.webp"
+        ]
+      }
+    ];
+
+    // Load addon detail
+    document.addEventListener('DOMContentLoaded', function() {
+      const addon = blenderAddons.find(a => a.id === productId);
+      
+      if (!addon) {
+        document.querySelector('.container').innerHTML = '<p class="error-message">Addon not found</p>';
+        return;
+      }
+
+      // Set hero content
+      // IMPORTANT: Validate image source - Google Drive URLs should ONLY be used for downloads, NOT previews
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        // Validate image source to prevent Google Drive URLs
+        const validatedImage = validateImageSource ? validateImageSource(addon.image) : addon.image;
+        if (!validatedImage) {
+          console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', addon.image);
+          heroImage.style.display = 'none';
+        } else {
+          heroImage.loading = 'eager';
+          heroImage.decoding = 'async';
+          heroImage.fetchPriority = 'high';
+          heroImage.src = validatedImage;
+        }
+      }
+      document.getElementById('productTitle').textContent = addon.title;
+      
+      // Real-time upload date calculation
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+        
+        if (diffDays > 0) {
+          return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        } else if (diffHours > 0) {
+          return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        } else if (diffMinutes > 0) {
+          return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        } else {
+          return 'Uploaded just now';
+        }
+      }
+      
+      // Calculate upload date based on product ID (newer products = more recent)
+      // You can also add actual uploadDate to each addon object
+      const daysAgo = Math.max(1, Math.floor(65 - addon.id) / 2); // Older products = more days ago
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      
+      // Update upload date
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        // Update every minute
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+      
+      // Real-time views count (increment on page load)
+      function formatViews(count) {
+        if (count >= 1000) {
+          return (count / 1000).toFixed(1) + 'K views';
+        }
+        return count + ' views';
+      }
+      
+      // Get or initialize view count from localStorage
+      const viewCountKey = `addon_views_${addon.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++; // Increment on each view
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      
+      // Update view count
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) {
+        viewCountElement.textContent = formatViews(viewCount);
+      }
+      
+      // Generate gallery thumbnails
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      const galleryRow = galleryContainer ? galleryContainer.closest('.preview-gallery-row') : null;
+      
+      // Hide grid for specific addon
+      if (addon.title === 'keentools facebuilder' || addon.title === 'Modern Primitive') {
+        if (galleryRow) {
+          galleryRow.style.display = 'none';
+        }
+      } else {
+      // Use actual images array if available, otherwise use main image
+      const galleryImages = addon.images && addon.images.length > 0 ? addon.images : [addon.image];
+      
+      // Show exact number of images (no repeating)
+      // Render gallery thumbnails - show only available images
+      // IMPORTANT: Validate all image sources - Google Drive URLs should ONLY be used for downloads, NOT previews
+      galleryImages.forEach((img, idx) => {
+        // Validate image source to prevent Google Drive URLs
+        const validatedImg = validateImageSource ? validateImageSource(img) : img;
+        if (!validatedImg) {
+          console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
+          return; // Skip this image
+        }
+        
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+
+          const thumbImage = document.createElement('img');
+          thumbImage.src = validatedImg;
+          thumbImage.alt = `Preview ${idx + 1}`;
+          thumbImage.loading = 'lazy';
+          thumbImage.decoding = 'async';
+          thumbImage.onerror = () => {
+            thumb.style.display = 'none';
+          };
+
+          thumb.appendChild(thumbImage);
+        thumb.onclick = () => {
+            if (heroImage) {
+              heroImage.decoding = 'async';
+              heroImage.src = validatedImg; // Use validated image source
+            }
+          document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        };
+        galleryContainer.appendChild(thumb);
+      });
+      }
+      
+      // Check if addon has multiple download parts
+      const multipleLinks = multipleDownloadLinksMap[addon.title];
+      const downloadBtn = document.getElementById('downloadBtn');
+      const downloadButtonsMultiple = document.getElementById('downloadButtonsMultiple');
+      
+      if (multipleLinks) {
+        // Hide single button, show multiple buttons
+        if (downloadBtn) {
+          downloadBtn.style.display = 'none';
+        }
+        if (downloadButtonsMultiple) {
+          downloadButtonsMultiple.style.display = 'flex';
+          downloadButtonsMultiple.style.gap = '8px';
+          downloadButtonsMultiple.style.flexDirection = 'row';
+          downloadButtonsMultiple.style.flexWrap = 'nowrap';
+          downloadButtonsMultiple.style.alignItems = 'center';
+        }
+        
+        // Setup Part 1 button
+        const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
+        if (downloadBtnPart1 && multipleLinks.part1) {
+          downloadBtnPart1.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '' && !multipleLinks.part1.includes('PLACEHOLDER')) {
+              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 1 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+        
+        // Setup Part 2 button
+        const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
+        if (downloadBtnPart2 && multipleLinks.part2) {
+          downloadBtnPart2.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '' && !multipleLinks.part2.includes('PLACEHOLDER')) {
+              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 2 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+      } else {
+        // Single download button logic (existing)
+      // Automatically set download link from mapping if available
+      if (!addon.downloadLink && downloadLinksMap[addon.title]) {
+        addon.downloadLink = downloadLinksMap[addon.title];
+      }
+      
+      if (downloadBtn) {
+          // Hide multiple buttons if visible
+          if (downloadButtonsMultiple) {
+            downloadButtonsMultiple.style.display = 'none';
+          }
+          
+        // Ensure download link is set from mapping if not already in addon
+        if (!addon.downloadLink && downloadLinksMap[addon.title]) {
+          addon.downloadLink = downloadLinksMap[addon.title];
+        }
+        
+        // Add click handler
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Get download link from addon or mapping
+          let downloadLink = addon.downloadLink;
+          
+          // If still no link, try mapping again
+          if (!downloadLink && downloadLinksMap[addon.title]) {
+            downloadLink = downloadLinksMap[addon.title];
+            addon.downloadLink = downloadLink; // Cache it
+          }
+          
+          if (downloadLink && downloadLink.trim() !== '') {
+            // Open link in new tab
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available for this addon. Please contact support.');
+          }
+        }, false);
+        }
+      }
+    });
+  </script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

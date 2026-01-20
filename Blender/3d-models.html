@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blender 3D Models | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="addons.html">Addons</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="brushes.html">Brushes</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../unreal/3d-models.html">3D Models</a></li>
+            <li><a href="../unreal/plugins.html">Plugins</a></li>
+            <li><a href="../unreal/assets.html">Assets</a></li>
+            <li><a href="../unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="addons.html">Addons</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="brushes.html">Brushes</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../unreal/3d-models.html">3D Models</a></li>
+              <li><a href="../unreal/plugins.html">Plugins</a></li>
+              <li><a href="../unreal/assets.html">Assets</a></li>
+              <li><a href="../unreal/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-listing-page">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Blender 3D Models</h1>
+        <p class="product-count" id="productCount">0 Products</p>
+      </div>
+
+      <!-- Top Controls -->
+      <div class="page-controls">
+        <div class="showing-text" id="showingText">Showing 0–0</div>
+        <div class="sort-menu-wrapper">
+          <div class="sort-menu-trigger" id="sortMenuTrigger">
+            <span class="sort-menu-trigger-text">Name</span>
+            <svg class="sort-menu-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="sort-menu" id="sortMenu">
+            <div class="sort-menu-title">SORT BY</div>
+            <div class="sort-menu-separator"></div>
+            <div class="sort-option active" data-value="name">Name</div>
+            <div class="sort-option" data-value="newest">Upload date</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+      <div class="pagination" id="pagination" style="margin-top: 60px;"></div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <!-- Auto-reload for development - Remove in production -->
+  <script src="../auto-reload.js"></script>
+  <script>
+    // Product data - Each folder is one product, using folder name as title
+    // First image from each folder is used as thumbnail
+    // Expose as window variable for search functionality
+    const blenderProducts = [
+      {
+        id: 1,
+        title: "16 Hydraulic Kitbash Elements for Blender",
+        image: "../Blender/3D Models/16 Hydraulic Kitbash Elements for Blender/16 Hydraulic Kitbash Elements for Blender.webp"
+      },
+      {
+        id: 2,
+        title: "1982 2019 Blade Runner Ground Police Car",
+        image: "../Blender/3D Models/1982 2019 Blade Runner Ground Police Car/1.webp"
+      },
+      {
+        id: 3,
+        title: "45 Stylized Rock Asset Pack",
+        image: "../Blender/3D Models/45 Stylized Rock Asset Pack/1.webp"
+      },
+      {
+        id: 4,
+        title: "Akna 3D Complete Cloud Catalogue Low Res Sample Pack",
+        image: "../Blender/3D Models/Akna 3D Complete Cloud Catalogue Low Res Sample Pack/1.webp"
+      },
+      {
+        id: 5,
+        title: "All my characters are +18",
+        image: "../Blender/3D Models/All my characters are +18/1.webp"
+      },
+      {
+        id: 6,
+        title: "Ankha 3d model set",
+        image: "../Blender/3D Models/Ankha 3d model set/1.webp"
+      },
+      {
+        id: 7,
+        title: "Asuka Langley Model",
+        image: "../Blender/3D Models/Asuka Langley Model/1.webp"
+      },
+      {
+        id: 8,
+        title: "Black Jaguar 3D, Blender Black Jaguar",
+        image: "../Blender/3D Models/Black Jaguar 3D, Blender Black Jaguar/1.webp"
+      },
+      {
+        id: 9,
+        title: "BlenderKit Architecture Pack 1",
+        image: "../Blender/3D Models/BlenderKit Architecture Pack 1/1.webp"
+      },
+      {
+        id: 10,
+        title: "BlenderKit Characters Pack 1",
+        image: "../Blender/3D Models/BlenderKit Characters Pack 1/photo_2026-01-02_22-37-18.webp"
+      },
+      {
+        id: 11,
+        title: "Call of Duty 3D Cars Models Collection",
+        image: "../Blender/3D Models/Call of Duty 3D Cars Models Collection/Call of Duty 3D Cars Models Collection.webp"
+      },
+      {
+        id: 12,
+        title: "Call Of Duty Modern Warfare Female Characters Collection",
+        image: "../Blender/3D Models/Call Of Duty Modern Warfare Female Characters Collection/1.webp"
+      },
+      {
+        id: 13,
+        title: "Early 2000s GiGN",
+        image: "../Blender/3D Models/Early 2000s GiGN/1.webp"
+      },
+      {
+        id: 14,
+        title: "KitBash3D - City Cars Municipal",
+        image: "../Blender/3D Models/KitBash3D - City Cars Municipal/1.webp"
+      },
+      {
+        id: 15,
+        title: "KitBash3D - Sci-Fi Kits - Spaceships Armada",
+        image: "../Blender/3D Models/KitBash3D - Sci-Fi Kits - Spaceships Armada/1.webp"
+      },
+      {
+        id: 16,
+        title: "Kitbash3D Props Rooftops",
+        image: "../Blender/3D Models/Kitbash3D Props Rooftops/1.webp"
+      },
+      {
+        id: 17,
+        title: "KONNI GROUP  COD MW III",
+        image: "../Blender/3D Models/KONNI GROUP  COD MW III/1.webp"
+      },
+      {
+        id: 18,
+        title: "Mech Constructor [Trial]",
+        image: "../Blender/3D Models/Mech Constructor [Trial]/1.webp"
+      },
+      {
+        id: 19,
+        title: "Mega Pack KITBASH 500 DETAILS",
+        image: "../Blender/3D Models/Mega Pack KITBASH 500 DETAILS/1.webp"
+      },
+      {
+        id: 20,
+        title: "Mini Kit Neo City",
+        image: "../Blender/3D Models/Mini Kit Neo City/photo_2025-12-28_18-23-49.webp"
+      },
+      {
+        id: 21,
+        title: "Portal 1 & 2 Blender 3D Models and Rigs",
+        image: "../Blender/3D Models/Portal 1 & 2 Blender 3D Models and Rigs/1.webp"
+      },
+      {
+        id: 22,
+        title: "Props High Tech Streets",
+        image: "../Blender/3D Models/Props High Tech Streets/Props High Tech Streets.webp"
+      },
+      {
+        id: 23,
+        title: "Spider Gwen Stacy Spiderman Spiderverse Lowpoly RIgged",
+        image: "../Blender/3D Models/Spider Gwen Stacy Spiderman Spiderverse Lowpoly RIgged/photo_2024-08-17_15-13-57.webp"
+      },
+      {
+        id: 24,
+        title: "The Sixth Doctor - 3D NPR Model",
+        image: "../Blender/3D Models/The Sixth Doctor - 3D NPR Model/1.webp"
+      },
+      {
+        id: 25,
+        title: "US Modern Assault Soldier Low-poly 3D model",
+        image: "../Blender/3D Models/US Modern Assault Soldier Low-poly 3D model/1.webp"
+      },
+      {
+        id: 26,
+        title: "Tekken 7 Items and Accessories",
+        image: "../Blender/3D Models/Tekken 7 Items and Accessories/photo_2026-01-04_14-46-44.webp"
+      },
+      {
+        id: 27,
+        title: "Tekken 8 Items and Accessories",
+        image: "../Blender/3D Models/Tekken 8 Items and Accessories/1.webp"
+      },
+      {
+        id: 28,
+        title: "Ryan Reos - Cyberpunk Elf - Game Ready",
+        image: "../Blender/3D Models/Ryan Reos - Cyberpunk Elf - Game Ready/1.webp"
+      },
+      {
+        id: 29,
+        title: "BlenderKit Transport Pack",
+        image: "../Blender/3D Models/BlenderKit Transport Pack/1.webp"
+      },
+      {
+        id: 30,
+        title: "BlenderKit Monsters Pack 1",
+        image: "../Blender/3D Models/BlenderKit Monsters Pack 1/1.webp"
+      },
+      {
+        id: 31,
+        title: "BlenderKit Monsters Pack 2",
+        image: "../Blender/3D Models/BlenderKit Monsters Pack 2/1.webp"
+      },
+      {
+        id: 32,
+        title: "The Dark Ages - Props & Stuff",
+        image: "../Blender/3D Models/The Dark Ages - Props & Stuff/photo_2026-01-16_13-25-40.webp"
+      },
+      {
+        id: 33,
+        title: "Megalania dinosaur Low-poly 3D model",
+        image: "../Blender/3D Models/Megalania dinosaur Low-poly 3D model/1.webp"
+      }
+    ];
+
+    // Expose to window for search functionality
+    window.blender3DModels = blenderProducts;
+
+    // Render products
+    (function() {
+      'use strict';
+      
+      // Cache DOM elements
+      const grid = document.getElementById('productsGrid');
+      const productCountElement = document.getElementById('productCount');
+      const showingTextElement = document.getElementById('showingText');
+      const paginationElement = document.getElementById('pagination');
+      const imageFallback = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'225\'%3E%3Crect fill=\'%231a1a1a\' width=\'400\' height=\'225\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ENo Image%3C/text%3E%3C/svg%3E';
+      const pageSize = 20;
+      let currentPage = 1;
+      let currentSort = 'name';
+      const storageKey = `listingState:${window.location.pathname}`;
+      let pendingScrollY = null;
+
+      function saveListingState() {
+        try {
+          sessionStorage.setItem(storageKey, JSON.stringify({
+            scrollY: window.scrollY || 0,
+            page: currentPage,
+            sort: currentSort
+          }));
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+
+      function loadListingState() {
+        try {
+          const raw = sessionStorage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          return null;
+        }
+      }
+      
+      function renderProducts(sortBy = currentSort) {
+        if (!grid) return;
+        
+        // Use requestAnimationFrame for smooth rendering
+        requestAnimationFrame(() => {
+          currentSort = sortBy;
+          // Sort products array
+          let sortedProducts = [...blenderProducts];
+          if (sortBy === 'name') {
+            sortedProducts.sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }));
+          } else if (sortBy === 'newest') {
+            sortedProducts.sort((a, b) => b.id - a.id);
+          }
+          
+          const totalProducts = sortedProducts.length;
+          const totalPages = Math.max(1, Math.ceil(totalProducts / pageSize));
+          if (currentPage > totalPages) currentPage = totalPages;
+          
+          const startIndex = totalProducts === 0 ? 0 : (currentPage - 1) * pageSize;
+          const endIndex = totalProducts === 0 ? 0 : Math.min(startIndex + pageSize, totalProducts);
+          const pageProducts = sortedProducts.slice(startIndex, endIndex);
+          
+          // Update counts
+          if (productCountElement) {
+            productCountElement.textContent = `${totalProducts} Product${totalProducts !== 1 ? 's' : ''}`;
+          }
+          if (showingTextElement) {
+            showingTextElement.textContent = totalProducts > 0 ? `Showing ${startIndex + 1}–${endIndex}` : 'Showing 0–0';
+          }
+          
+          // Use DocumentFragment for batch DOM operations
+          const fragment = document.createDocumentFragment();
+          
+          if (totalProducts === 0) {
+            const emptyMsg = document.createElement('p');
+            emptyMsg.className = 'no-products';
+            emptyMsg.textContent = 'No Blender 3D Models available yet';
+            fragment.appendChild(emptyMsg);
+          } else {
+            pageProducts.forEach(product => {
+              const card = document.createElement('div');
+              card.className = 'product-card';
+              card.onclick = () => {
+                saveListingState();
+                window.location.href = 'product-detail.html?id=' + product.id;
+              };
+              
+              const escapedTitle = product.title.replace(/"/g, '&quot;');
+              // Validate image source to ensure it's a valid local path (not Drive URL)
+              const validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
+                ? validateImageSource(product.image) 
+                : product.image;
+              const imageSrc = validatedImage || imageFallback;
+              
+              // Load images directly for immediate display
+              card.innerHTML = 
+                '<div class="product-image-wrapper">' +
+                  '<img src="' + imageSrc + '" alt="' + escapedTitle + '" class="product-image" loading="lazy" decoding="async" onerror="this.onerror=null; this.src=\'' + imageFallback + '\';">' +
+                '</div>' +
+                '<div class="product-info">' +
+                  '<h3 class="product-title">' + product.title + '</h3>' +
+                '</div>';
+              
+              fragment.appendChild(card);
+            });
+          }
+          
+          grid.innerHTML = '';
+          grid.appendChild(fragment);
+          renderPagination(totalPages);
+
+          if (pendingScrollY !== null) {
+            const targetScroll = pendingScrollY;
+            pendingScrollY = null;
+            requestAnimationFrame(() => {
+              window.scrollTo(0, targetScroll);
+            });
+          }
+        });
+      }
+
+      function renderPagination(totalPages) {
+        if (!paginationElement) return;
+        paginationElement.innerHTML = '';
+        if (totalPages <= 1) return;
+
+        const fragment = document.createDocumentFragment();
+        const createButton = (label, page, disabled = false, isActive = false) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `pagination-button${isActive ? ' active' : ''}${disabled ? ' disabled' : ''}`;
+          button.textContent = label;
+          button.disabled = disabled;
+          button.addEventListener('click', () => {
+            if (page === currentPage || disabled) return;
+            currentPage = page;
+            renderProducts(currentSort);
+          });
+          return button;
+        };
+
+        fragment.appendChild(createButton('Prev', Math.max(1, currentPage - 1), currentPage === 1));
+
+        for (let page = 1; page <= totalPages; page++) {
+          fragment.appendChild(createButton(String(page), page, false, page === currentPage));
+        }
+
+        fragment.appendChild(createButton('Next', Math.min(totalPages, currentPage + 1), currentPage === totalPages));
+
+        paginationElement.appendChild(fragment);
+      }
+      
+      // Sort menu functionality - optimized
+      function initSortMenu() {
+        const sortMenuWrapper = document.querySelector('.sort-menu-wrapper');
+        if (!sortMenuWrapper) return;
+        
+        const sortMenuTrigger = document.getElementById('sortMenuTrigger');
+        const triggerText = sortMenuTrigger?.querySelector('.sort-menu-trigger-text');
+        const options = sortMenuWrapper.querySelectorAll('.sort-option');
+        const activeOption = Array.from(options).find(opt => opt.getAttribute('data-value') === currentSort);
+        if (activeOption) {
+          options.forEach(opt => opt.classList.remove('active'));
+          activeOption.classList.add('active');
+          if (triggerText) triggerText.textContent = activeOption.textContent;
+        }
+        
+        // Toggle dropdown
+        sortMenuTrigger?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sortMenuWrapper.classList.toggle('active');
+        });
+        
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+          if (!sortMenuWrapper.contains(e.target)) {
+            sortMenuWrapper.classList.remove('active');
+          }
+        });
+        
+        // Event delegation for options
+        sortMenuWrapper.addEventListener('click', (e) => {
+          const option = e.target.closest('.sort-option');
+          if (!option) return;
+          
+          // Update active state
+          sortMenuWrapper.querySelectorAll('.sort-option').forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          
+          // Update trigger text
+          if (triggerText) triggerText.textContent = option.textContent;
+          
+          // Close dropdown
+          sortMenuWrapper.classList.remove('active');
+          
+          // Update and render
+          currentSort = option.getAttribute('data-value');
+          currentPage = 1;
+          renderProducts(currentSort);
+        });
+      }
+      
+      const savedState = loadListingState();
+      if (savedState) {
+        if (savedState.sort) currentSort = savedState.sort;
+        if (savedState.page) currentPage = savedState.page;
+        if (typeof savedState.scrollY === 'number') pendingScrollY = savedState.scrollY;
+        try {
+          sessionStorage.removeItem(storageKey);
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+      
+      // Expose renderProducts globally for search functionality
+      window.renderProducts = renderProducts;
+      window.currentSort = currentSort;
+
+      // Run when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          renderProducts(currentSort);
+          initSortMenu();
+        });
+      } else {
+        renderProducts(currentSort);
+        initSortMenu();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unreal 3D Model Detail | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="3d-models.html">3D Models</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="assets.html">Assets</a></li>
+            <li><a href="courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../houdini/assets.html">Assets</a></li>
+            <li><a href="../houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../blender/3d-models.html">3D Models</a></li>
+              <li><a href="../blender/addons.html">Addons</a></li>
+              <li><a href="../blender/assets.html">Assets</a></li>
+              <li><a href="../blender/brushes.html">Brushes</a></li>
+              <li><a href="../blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="3d-models.html">3D Models</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+              <li><a href="assets.html">Assets</a></li>
+              <li><a href="courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../houdini/assets.html">Assets</a></li>
+              <li><a href="../houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      <a href="3d-models.html" class="back-link">← Back to 3D Models</a>
+
+      <div class="product-hero-grid">
+        <div class="hero-left-column">
+          <div class="hero-image-wrapper">
+            <img src="" alt="Product Preview" class="hero-main-image" id="heroMainImage" loading="eager" decoding="async" fetchpriority="high" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          </div>
+
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+          </div>
+        </div>
+
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Product Title</h1>
+
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+
+          <p class="product-description" id="productDescription">
+            If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
+          </p>
+
+          <button type="button" class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script src="../auto-reload.js"></script>
+  <script>
+    // Download Links Mapping - yahan model name aur link add karein
+    const unreal3dModelDownloadLinksMap = {
+      "Fantasy Characters (Pack)": "https://link-center.net/1422046/qowe7RjFR7HR",
+      "GR Customizable Female 01": "https://link-hub.net/1422046/l3ruVmKdjzok",
+      "Monsters - Mummy": "https://link-hub.net/1422046/EJZK21zYzmi8",
+      "Sci-Fi Kits Spaceships Armada": "https://direct-link.net/1422046/CsYUYcnts8GB",
+      "Sekhmet": "https://link-center.net/1422046/xdEUJZLwpFSs",
+      "Skeleton Knight Modular": "https://link-target.net/1422046/FOoRMXasyOLC",
+      "Stylized Fantasy Girls NPC Pack": "https://direct-link.net/1422046/dTFnoI2yQFrk",
+      "Camel Fantasy": "https://link-hub.net/1422046/SsEK7uDyqsEJ"
+    };
+
+    // Unreal 3D models data (same pattern as 20 HDRIs asset page)
+    const unreal3dModels = [
+      {
+        id: 1,
+        title: "Fantasy Characters (Pack)",
+        folder: "Fantasy Characters (Pack)",
+        image: "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09.webp",
+        images: [
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09.webp",
+          "3D modles/Fantasy Characters (Pack)/1.webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09 (2).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09 (3).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09 (4).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09 (5).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-09 (6).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-10 (2).webp",
+          "3D modles/Fantasy Characters (Pack)/photo_2025-11-10_01-11-10.webp"
+        ]
+      },
+      {
+        id: 2,
+        title: "GR Customizable Female 01",
+        folder: "GR Customizable Female 01",
+        image: "3D modles/GR Customizable Female 01/1.webp",
+        images: [
+          "3D modles/GR Customizable Female 01/1.webp",
+          "3D modles/GR Customizable Female 01/GRFemaleHeroine01_screenshot_01-1920x1080-c8b9c523c9a94d125e7945154b912ff4.webp",
+          "3D modles/GR Customizable Female 01/GRFemaleHeroine01_screenshot_02-1920x1080-82355240da78b73e2551160047846f43.webp",
+          "3D modles/GR Customizable Female 01/Screenshot 2020-09-10 171918-1920x1080-d45edde56cd9d6b656c86378da913d51.webp"
+        ]
+      },
+      {
+        id: 3,
+        title: "Monsters - Mummy",
+        folder: "Monsters - Mummy",
+        image: "3D modles/Monsters - Mummy/1.webp",
+        images: [
+          "3D modles/Monsters - Mummy/1.webp",
+          "3D modles/Monsters - Mummy/47b6bec7-76f5-4561-b5bf-ce46dfb0898e.webp",
+          "3D modles/Monsters - Mummy/92f547aa-4c57-4755-8ded-d86a83ca20a4.webp",
+          "3D modles/Monsters - Mummy/e7d41b3b-93c9-4943-bb52-3ffcc252d29d.webp"
+        ]
+      },
+      {
+        id: 4,
+        title: "Sci-Fi Kits Spaceships Armada",
+        folder: "Sci-Fi Kits Spaceships Armada",
+        image: "3D modles/Sci-Fi Kits Spaceships Armada/Sci-Fi Kits Spaceships Armada.webp",
+        images: [
+          "3D modles/Sci-Fi Kits Spaceships Armada/Sci-Fi Kits Spaceships Armada.webp"
+        ]
+      },
+      {
+        id: 5,
+        title: "Sekhmet",
+        folder: "Sekhmet",
+        image: "3D modles/Sekhmet/Sekhmet.webp",
+        images: [
+          "3D modles/Sekhmet/1.webp",
+          "3D modles/Sekhmet/photo_2025-11-10_01-28-50.webp",
+          "3D modles/Sekhmet/Sekhmet.webp"
+        ]
+      },
+      {
+        id: 6,
+        title: "Skeleton Knight Modular",
+        folder: "Skeleton Knight Modular",
+        image: "3D modles/Skeleton Knight Modular/1.webp",
+        images: [
+          "3D modles/Skeleton Knight Modular/1.webp",
+          "3D modles/Skeleton Knight Modular/74beec2f-5cdf-4938-ae79-3a548040cb04.webp",
+          "3D modles/Skeleton Knight Modular/8f2949af-5e93-4cd1-843a-a3cdccaa9de6.webp",
+          "3D modles/Skeleton Knight Modular/b2cc2e0f-f497-460d-ab45-72ea037e2f3b.webp",
+          "3D modles/Skeleton Knight Modular/b7d08fd6-dc49-4a4f-a450-e0ce7587195a.webp",
+          "3D modles/Skeleton Knight Modular/eb7fb7d8-2a60-4c94-99d9-2871f20164ef.webp"
+        ]
+      },
+      {
+        id: 7,
+        title: "Stylized Fantasy Girls NPC Pack",
+        folder: "Stylized Fantasy Girls NPC Pack",
+        image: "3D modles/Stylized Fantasy Girls NPC Pack/Stylized Fantasy Girls NPC Pack.webp",
+        images: [
+          "3D modles/Stylized Fantasy Girls NPC Pack/1.webp",
+          "3D modles/Stylized Fantasy Girls NPC Pack/14951652-be8a-42d5-850f-b8e67a403c46.webp",
+          "3D modles/Stylized Fantasy Girls NPC Pack/51326a3f-fa8f-4865-9754-40876887990f.webp",
+          "3D modles/Stylized Fantasy Girls NPC Pack/d966589e-4682-4e2a-8592-fc554de62e15.webp",
+          "3D modles/Stylized Fantasy Girls NPC Pack/ea903459-df86-405d-915b-372a1e8f1d1f.webp",
+          "3D modles/Stylized Fantasy Girls NPC Pack/Stylized Fantasy Girls NPC Pack.webp"
+        ]
+      },
+      {
+        id: 8,
+        title: "Camel Fantasy",
+        folder: "Camel Fantasy",
+        image: "3D modles/Camel Fantasy/81001e10-f456-4353-9897-e15bfd1ae481.webp",
+        images: [
+          "3D modles/Camel Fantasy/81001e10-f456-4353-9897-e15bfd1ae481.webp",
+          "3D modles/Camel Fantasy/932fca50-3fe0-4d84-ae12-f9362ff0e9b6.webp",
+          "3D modles/Camel Fantasy/b75eba11-4ca3-4fe5-9428-f555e5230ba7.webp"
+        ]
+      }
+    ];
+
+    // Expose globally (optional)
+    window.unreal3dModels = unreal3dModels;
+
+    // Page logic - same pattern as Unreal asset detail
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const modelId = parseInt(urlParams.get('id'));
+      const model = unreal3dModels.find(item => item.id === modelId);
+
+      if (!model) {
+        const container = document.querySelector('.container');
+        if (container) {
+          container.innerHTML = '<p class="error-message">Model not found</p>';
+        }
+        return;
+      }
+
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        heroImage.loading = 'eager';
+        heroImage.decoding = 'async';
+        heroImage.fetchPriority = 'high';
+        heroImage.src = model.image;
+        heroImage.onerror = () => { heroImage.style.display = 'none'; };
+      }
+
+      const titleEl = document.getElementById('productTitle');
+      if (titleEl) titleEl.textContent = model.title;
+
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+
+        if (diffDays > 0) return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        if (diffHours > 0) return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffMinutes > 0) return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        return 'Uploaded just now';
+      }
+
+      const daysAgo = Math.max(1, Math.floor(40 - model.id) / 2);
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+
+      function formatViews(count) {
+        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
+        return count + ' views';
+      }
+      const viewCountKey = `unreal_model_views_${model.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++;
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+
+      // Gallery thumbnails (same style as 20 HDRIs page)
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      if (galleryContainer) {
+        const galleryImages = (model.images && model.images.length > 0 ? model.images : [model.image]).slice(0, 6);
+        galleryImages.forEach((img, idx) => {
+          const thumb = document.createElement('div');
+          thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+
+          const thumbImage = document.createElement('img');
+          thumbImage.src = img;
+          thumbImage.alt = `Preview ${idx + 1}`;
+          thumbImage.loading = 'lazy';
+          thumbImage.decoding = 'async';
+          thumbImage.onerror = () => { thumb.style.display = 'none'; };
+
+          thumb.appendChild(thumbImage);
+          thumb.onclick = () => {
+            if (heroImage) {
+              heroImage.decoding = 'async';
+              heroImage.src = img;
+            }
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+          };
+          galleryContainer.appendChild(thumb);
+        });
+      }
+
+      // Single download button
+      const downloadBtn = document.getElementById('downloadBtn');
+      const downloadLink = unreal3dModelDownloadLinksMap[model.title];
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (downloadLink && downloadLink.trim() !== '') {
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available. Please contact support.');
+          }
+        }, false);
+      }
+    });
+  </script>
+</body>
+</html>

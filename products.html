@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Membership/membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="blender/3d-models.html">3D Models</a></li>
+            <li><a href="blender/addons.html">Addons</a></li>
+            <li><a href="blender/assets.html">Assets</a></li>
+            <li><a href="blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="unreal/3d-models.html">3D Models</a></li>
+            <li><a href="unreal/plugins.html">Plugins</a></li>
+            <li><a href="unreal/assets.html">Assets</a></li>
+            <li><a href="unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="ae/plugins.html">Plugins</a></li>
+            <li><a href="ae/assets.html">Assets</a></li>
+            <li><a href="ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="pp/plugins.html">Plugins</a></li>
+            <li><a href="pp/assets.html">Assets</a></li>
+            <li><a href="pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="houdini/assets.html">Assets</a></li>
+            <li><a href="houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="software.html">Software</a></li>
+        <li><a href="templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Membership/membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="blender/3d-models.html">3D Models</a></li>
+              <li><a href="blender/addons.html">Addons</a></li>
+              <li><a href="blender/assets.html">Assets</a></li>
+              <li><a href="blender/brushes.html">Brushes</a></li>
+              <li><a href="blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="unreal/3d-models.html">3D Models</a></li>
+              <li><a href="unreal/plugins.html">Plugins</a></li>
+              <li><a href="unreal/assets.html">Assets</a></li>
+              <li><a href="unreal/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="ae/plugins.html">Plugins</a></li>
+              <li><a href="ae/assets.html">Assets</a></li>
+              <li><a href="ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="pp/plugins.html">Plugins</a></li>
+              <li><a href="pp/assets.html">Assets</a></li>
+              <li><a href="pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="houdini/assets.html">Assets</a></li>
+              <li><a href="houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="software.html">Software</a></li>
+          <li><a href="templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <h1>All Products</h1>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Load and display products
+    document.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('productsGrid');
+      const storageKey = `listingState:${window.location.pathname}`;
+      let pendingScrollY = null;
+
+      function saveListingState() {
+        try {
+          sessionStorage.setItem(storageKey, JSON.stringify({
+            scrollY: window.scrollY || 0
+          }));
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+
+      function loadListingState() {
+        try {
+          const raw = sessionStorage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : null;
+        } catch (err) {
+          return null;
+        }
+      }
+
+      const savedState = loadListingState();
+      if (savedState && typeof savedState.scrollY === 'number') {
+        pendingScrollY = savedState.scrollY;
+        try {
+          sessionStorage.removeItem(storageKey);
+        } catch (err) {
+          // Ignore storage errors
+        }
+      }
+      
+      if (products.length === 0) {
+        grid.innerHTML = '<p class="no-products">No products available yet. Add products in script.js</p>';
+        if (pendingScrollY !== null) {
+          const targetScroll = pendingScrollY;
+          pendingScrollY = null;
+          requestAnimationFrame(() => {
+            window.scrollTo(0, targetScroll);
+          });
+        }
+        return;
+      }
+
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => {
+          saveListingState();
+          window.location.href = `product-detail.html?id=${product.id}`;
+        };
+        
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.title}" onerror="this.src='placeholder.webp'">
+          <div class="product-info">
+            <h3>${product.title}</h3>
+            <p class="product-category">${product.category || 'Product'}</p>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+
+      if (pendingScrollY !== null) {
+        const targetScroll = pendingScrollY;
+        pendingScrollY = null;
+        requestAnimationFrame(() => {
+          window.scrollTo(0, targetScroll);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

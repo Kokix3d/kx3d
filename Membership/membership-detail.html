@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Detail | Kx3d</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Grid layout for Adobe Creative Cloud description - High specificity */
+    #productDescription {
+      display: block !important;
+      width: 100% !important;
+      margin: 1rem 0 !important;
+      color: rgba(255, 255, 255, 0.8) !important;
+      line-height: 1.6 !important;
+      font-size: 0.9rem !important;
+    }
+    
+    #productDescription > * {
+      display: block !important;
+    }
+    
+    /* Force grid display with maximum specificity - Smaller sizes */
+    #productDescription .membership-price-grid,
+    #productDescription div.membership-price-grid,
+    div.membership-price-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.75rem !important;
+      margin-bottom: 0.75rem !important;
+      width: 100% !important;
+    }
+    
+    #productDescription .membership-info-box,
+    #productDescription div.membership-info-box,
+    div.membership-info-box {
+      background: rgba(255, 255, 255, 0.05) !important;
+      padding: 0.625rem !important;
+      border-radius: 6px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      font-size: 0.9rem !important;
+    }
+    
+    #productDescription .membership-features-grid,
+    #productDescription div.membership-features-grid,
+    div.membership-features-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 0.5rem !important;
+      margin-bottom: 0.75rem !important;
+      width: 100% !important;
+    }
+    
+    #productDescription .membership-feature-item,
+    #productDescription div.membership-feature-item,
+    div.membership-feature-item {
+      background: rgba(255, 255, 255, 0.05) !important;
+      padding: 0.5rem !important;
+      border-radius: 5px !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: background 0.2s ease !important;
+      font-size: 0.85rem !important;
+    }
+    
+    #productDescription .membership-feature-item:hover,
+    div.membership-feature-item:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+    
+    #productDescription .membership-feature-item p,
+    div.membership-feature-item p {
+      margin: 0 !important;
+      line-height: 1.4 !important;
+      font-size: 0.85rem !important;
+    }
+    
+    #productDescription .membership-info-box p,
+    div.membership-info-box p {
+      margin: 0 !important;
+      line-height: 1.5 !important;
+      font-size: 0.9rem !important;
+    }
+    
+    #productDescription .membership-info-box p:first-child,
+    div.membership-info-box p:first-child {
+      margin-bottom: 0.375rem !important;
+    }
+    
+    #productDescription .membership-info-box strong,
+    div.membership-info-box strong {
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+    }
+    
+    #productDescription p[style*="margin-bottom: 1rem"] {
+      margin-bottom: 0.5rem !important;
+      font-size: 0.95rem !important;
+    }
+    
+    @media (max-width: 768px) {
+      .membership-price-grid,
+      .membership-features-grid,
+      div[style*="grid-template-columns: 1fr 1fr"],
+      div[style*="grid-template-columns: repeat(2, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <!-- Hamburger Menu Button (Mobile Only) -->
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li class="dropdown">
+          <a href="#">Blender <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Blender/3d-models.html">3D Models</a></li>
+            <li><a href="../Blender/addons.html">Addons</a></li>
+            <li><a href="../Blender/assets.html">Assets</a></li>
+            <li><a href="../Blender/brushes.html">Brushes</a></li>
+            <li><a href="../Blender/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Unreal <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Unreal/3d-models.html">3D Models</a></li>
+            <li><a href="../Unreal/plugins.html">Plugins</a></li>
+            <li><a href="../Unreal/assets.html">Assets</a></li>
+            <li><a href="../Unreal/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">After Effects <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../ae/plugins.html">Plugins</a></li>
+            <li><a href="../ae/assets.html">Assets</a></li>
+            <li><a href="../ae/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../pp/plugins.html">Plugins</a></li>
+            <li><a href="../pp/assets.html">Assets</a></li>
+            <li><a href="../pp/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../photoshop.html">Photoshop</a></li>
+        <li class="dropdown">
+          <a href="#">Houdini <span class="chevron">▼</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../Houdini/assets.html">Assets</a></li>
+            <li><a href="../Houdini/courses.html">Courses</a></li>
+          </ul>
+        </li>
+        <li><a href="../software.html">Software</a></li>
+        <li><a href="../templates.html">Website Templates</a></li>
+      </ul>
+      
+      <!-- Global Search Bar -->
+      <div class="search-container-global" id="globalSearchContainer">
+        <button class="search-icon-btn-mobile" id="searchIconBtnMobile" aria-label="Open search">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="search-bar-wrapper-global" id="globalSearchWrapper">
+          <svg class="search-icon-global" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-input-global" id="globalSearchInput" placeholder="Search all products..." autocomplete="off">
+          <div class="search-dropdown" id="globalSearchDropdown">
+            <div class="search-results-list" id="searchResultsList"></div>
+            <div class="search-view-all" id="searchViewAll" style="display: none;">
+              <a href="#" class="view-all-link" id="viewAllLink">View all results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Mobile Slide-in Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <div class="logo-link-mobile">
+          <img src="../logo/white.png" alt="Kx3D Logo" class="logo" loading="lazy" width="120" height="40">
+        </div>
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-menu-nav">
+        <ul class="mobile-menu-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Blender <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../Blender/3d-models.html">3D Models</a></li>
+              <li><a href="../Blender/addons.html">Addons</a></li>
+              <li><a href="../Blender/assets.html">Assets</a></li>
+              <li><a href="../Blender/brushes.html">Brushes</a></li>
+              <li><a href="../Blender/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Unreal <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../Unreal/3d-models.html">3D Models</a></li>
+              <li><a href="../Unreal/plugins.html">Plugins</a></li>
+              <li><a href="../Unreal/assets.html">Assets</a></li>
+              <li><a href="../Unreal/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">After Effects <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../ae/plugins.html">Plugins</a></li>
+              <li><a href="../ae/assets.html">Assets</a></li>
+              <li><a href="../ae/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Premiere Pro <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../pp/plugins.html">Plugins</a></li>
+              <li><a href="../pp/assets.html">Assets</a></li>
+              <li><a href="../pp/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html">Photoshop</a></li>
+          <li class="mobile-menu-item-dropdown">
+            <a href="#" class="mobile-menu-toggle">Houdini <span class="chevron">▼</span></a>
+            <ul class="mobile-menu-submenu">
+              <li><a href="../Houdini/assets.html">Assets</a></li>
+              <li><a href="../Houdini/courses.html">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html">Software</a></li>
+          <li><a href="../templates.html">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      <a href="membership.html" class="back-link">← Back to Membership</a>
+
+      <div class="product-hero-grid">
+        <div class="hero-left-column">
+          <div class="hero-image-wrapper">
+            <img src="" alt="Membership Preview" class="hero-main-image" id="heroMainImage" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          </div>
+
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+          </div>
+        </div>
+
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Membership Title</h1>
+
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+
+          <div class="product-description" id="productDescription">
+            <!-- Description will be set dynamically via JavaScript -->
+          </div>
+
+          <button type="button" class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script src="../auto-reload.js"></script>
+  <script src="./membership-data.js"></script>
+  <script>
+    // Wait for DOM and data to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Download Links Mapping - Inline map for detail page
+      const membershipDownloadLinksMap = window.membershipDownloadLinksMap || {};
+      // Ensure the link is available
+      if (!membershipDownloadLinksMap["Adobe Creative Cloud"]) {
+        membershipDownloadLinksMap["Adobe Creative Cloud"] = "https://discord.com/channels/1383778525634629642/1441725589907312650/1441726954477850694";
+      }
+      window.membershipDownloadLinksMap = membershipDownloadLinksMap;
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const membershipId = parseInt(urlParams.get('id'));
+      let membership = null;
+      
+      // Try to get membership from global or local scope
+      if (window.membershipProducts && window.membershipProducts.length > 0) {
+        membership = window.membershipProducts.find(m => m.id === membershipId);
+      } else if (typeof membershipProducts !== 'undefined' && membershipProducts.length > 0) {
+        membership = membershipProducts.find(m => m.id === membershipId);
+      }
+      
+      // If still not found, wait a bit for script to load
+      if (!membership) {
+        setTimeout(function() {
+          if (window.membershipProducts && window.membershipProducts.length > 0) {
+            membership = window.membershipProducts.find(m => m.id === membershipId);
+            if (membership) {
+              loadMembershipData(membership);
+            }
+          }
+        }, 100);
+      } else {
+        loadMembershipData(membership);
+      }
+    });
+    
+    function loadMembershipData(membership) {
+      if (!membership) {
+        document.querySelector('.container').innerHTML = '<p class="error-message">Membership not found</p>';
+        return;
+      }
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        // Use image path as-is if it already contains a folder path, otherwise use as-is from root
+        let imagePath = membership.image;
+        // Only prepend folder if image doesn't already have a path (no '/' in it) and doesn't start with http or ../
+        if (!imagePath.startsWith('http') && !imagePath.startsWith('../') && !imagePath.includes('/')) {
+          // Image is in root, use as-is
+          imagePath = imagePath;
+        }
+        heroImage.loading = 'eager';
+        heroImage.decoding = 'async';
+        heroImage.fetchPriority = 'high';
+        heroImage.src = imagePath;
+        heroImage.onerror = () => {
+          heroImage.style.display = 'none';
+          // Try to load first gallery image as fallback
+          if (membership.images && membership.images.length > 0) {
+            let fallbackPath = membership.images[0];
+            if (!fallbackPath.startsWith('http') && !fallbackPath.startsWith('../') && !fallbackPath.includes('/')) {
+              // Image is in root, use as-is
+              fallbackPath = fallbackPath;
+            }
+            heroImage.src = fallbackPath;
+            heroImage.style.display = 'block';
+          }
+        };
+      }
+      document.getElementById('productTitle').textContent = membership.title;
+
+      // Set description based on membership
+      const descriptionElement = document.getElementById('productDescription');
+      if (descriptionElement) {
+        if (membership.title === "Adobe Creative Cloud") {
+          descriptionElement.innerHTML = `
+            <div class="membership-price-grid" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0.75rem !important; margin-bottom: 0.75rem !important; width: 100%;">
+              <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
+                <p style="margin: 0 0 0.375rem 0;"><strong style="font-size: 0.95rem;">💰 Official Adobe Price</strong></p>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">Annual, prepaid: $389.71/year (50% off first year)</p>
+              </div>
+              <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
+                <p style="margin: 0 0 0.375rem 0;"><strong style="font-size: 0.95rem;">💰 Our Price</strong></p>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">$120 / Year Only<br>$50$ / 4 Months</p>
+              </div>
+            </div>
+
+            <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 0.75rem; font-size: 0.9rem;">
+              <p style="color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.5;">Official Subscription | 1-Year Warranty + Support<br>
+              Instant Gmail ID Activation | Invoice Provided | Pay After Activation | Shows Proper Expiry Date</p>
+            </div>
+
+            <p style="margin-bottom: 0.5rem !important; font-size: 0.95rem;"><strong>🚀 Key Features</strong></p>
+
+            <div class="membership-features-grid" style="display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; margin-bottom: 0.75rem !important; width: 100%;">
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ 20+ Premium Creative Apps<br>
+                <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.8rem;">(Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, Lightroom & more)</span></p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ 4000 Generative AI Credits Per Month</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ Always Latest Version Updates</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ Use on 2 Devices</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ 1TB Cloud Storage</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ Best for Design, Video Editing, Animation, Web, Photography & More</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ Works on Windows & macOS</p>
+              </div>
+              <div class="membership-feature-item" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.5rem !important; border-radius: 5px !important; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem;">
+                <p style="margin: 0 !important; line-height: 1.4;">✅ Affordable Pricing with Limited Slots</p>
+              </div>
+            </div>
+
+            <div class="membership-info-box" style="background: rgba(255, 255, 255, 0.05) !important; padding: 0.625rem !important; border-radius: 6px !important; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem;">
+              <p style="margin: 0 0 0.375rem 0 !important;"><strong style="font-size: 0.95rem;">📧 Activation Process</strong></p>
+              <p style="color: rgba(255, 255, 255, 0.9); margin: 0 !important; line-height: 1.5;">Instant activation via customer Gmail ID<br>
+              Fast • Safe • Verified ✔️</p>
+            </div>
+          `;
+        } else {
+          descriptionElement.innerHTML = `
+            <p>If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a></p>
+          `;
+        }
+      }
+
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+        if (diffDays > 0) return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        if (diffHours > 0) return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffMinutes > 0) return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        return 'Uploaded just now';
+      }
+
+      const daysAgo = Math.max(1, Math.floor(40 - membership.id) / 2);
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+
+      function formatViews(count) {
+        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
+        return count + ' views';
+      }
+      const viewCountKey = `membership_views_${membership.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++;
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      if (galleryContainer && membership.images && membership.images.length > 0) {
+        const galleryImages = membership.images.slice(0, 6);
+        galleryImages.forEach((img, idx) => {
+          const thumb = document.createElement('div');
+          thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+
+          const thumbImage = document.createElement('img');
+          let thumbPath = img;
+          // Use image path as-is if it already contains a folder path, otherwise use as-is from root
+          if (!thumbPath.startsWith('http') && !thumbPath.startsWith('../') && !thumbPath.includes('/')) {
+            // Image is in root, use as-is
+            thumbPath = thumbPath;
+          }
+          thumbImage.src = thumbPath;
+          thumbImage.alt = `Preview ${idx + 1}`;
+          thumbImage.loading = 'lazy';
+          thumbImage.decoding = 'async';
+          thumbImage.onerror = () => { thumb.style.display = 'none'; };
+          thumbImage.onload = () => { thumbImage.style.opacity = '1'; };
+
+          thumb.appendChild(thumbImage);
+          thumb.onclick = () => {
+            if (heroImage) {
+              heroImage.decoding = 'async';
+              heroImage.src = thumbPath;
+            }
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+          };
+          galleryContainer.appendChild(thumb);
+        });
+      }
+
+      // Download button
+      const downloadBtn = document.getElementById('downloadBtn');
+      // Get download link - check both global and local map
+      let downloadLink = window.membershipDownloadLinksMap ? window.membershipDownloadLinksMap[membership.title] : null;
+      if (!downloadLink && membershipDownloadLinksMap) {
+        downloadLink = membershipDownloadLinksMap[membership.title];
+      }
+      // Fallback for Adobe Creative Cloud
+      if (membership.title === "Adobe Creative Cloud" && !downloadLink) {
+        downloadLink = "https://discord.com/channels/1383778525634629642/1441725589907312650/1441726954477850694";
+      }
+
+      if (downloadBtn) {
+        // Change button text to "Buy Now" for Adobe Creative Cloud
+        if (membership.title === "Adobe Creative Cloud") {
+          const buttonSpan = downloadBtn.querySelector('span');
+          if (buttonSpan) {
+            buttonSpan.textContent = 'Buy Now';
+          }
+        }
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (downloadLink && downloadLink.trim() !== '') {
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available for this membership. Please contact support.');
+          }
+        }, false);
+      }
+    }
+    
+    // Also try to run immediately if DOM is already loaded
+    if (document.readyState === 'loading') {
+      // DOM is still loading, wait for DOMContentLoaded
+    } else {
+      // DOM is already loaded, run immediately
+      const urlParams = new URLSearchParams(window.location.search);
+      const membershipId = parseInt(urlParams.get('id'));
+      let membership = null;
+      
+      if (window.membershipProducts && window.membershipProducts.length > 0) {
+        membership = window.membershipProducts.find(m => m.id === membershipId);
+      } else if (typeof membershipProducts !== 'undefined' && membershipProducts.length > 0) {
+        membership = membershipProducts.find(m => m.id === membershipId);
+      }
+      
+      if (membership) {
+        loadMembershipData(membership);
+      } else {
+        // Wait a bit for script to load
+        setTimeout(function() {
+          if (window.membershipProducts && window.membershipProducts.length > 0) {
+            membership = window.membershipProducts.find(m => m.id === membershipId);
+            if (membership) {
+              loadMembershipData(membership);
+            }
+          }
+        }, 200);
+      }
+    }
+  </script>
+</body>
+</html>
