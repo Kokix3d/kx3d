@@ -1,0 +1,24 @@
+{
+  "name": "kx3d",
+  "version": "1.0.0",
+  "description": "Kx3D - Premium 3D models, assets, plugins, and courses",
+  "type": "module",
+  "keywords": [
+    "3D models",
+    "Blender",
+    "Unreal Engine",
+    "After Effects",
+    "assets",
+    "courses"
+  ],
+  "author": "Kx3D",
+  "license": "ISC",
+  "devDependencies": {
+    "@vercel/speed-insights": "^1.0.0"
+  },
+  "scripts": {
+    "dev": "echo 'Static HTML project - no build needed'",
+    "build": "echo 'Static HTML project - no build needed'",
+    "start": "echo 'Deploy to Vercel for hosting'"
+  }
+}

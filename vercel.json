@@ -1,0 +1,12 @@
+{
+  "buildCommand": "echo 'Static HTML project'",
+  "outputDirectory": ".",
+  "framework": null,
+  "env": [],
+  "functions": {
+    "api/**/*.{js,ts}": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  }
+}
