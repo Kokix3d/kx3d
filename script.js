@@ -576,12 +576,14 @@ function validateImageSource(imageSrc) {
           const title = product.title || 'Untitled';
           const escapedTitle = title.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
           const imageSrc = product.image || imageFallback;
+          // Normalize image path for Vercel (handles spaces, case sensitivity)
+          const normalizedImageSrc = typeof getImagePath === 'function' ? getImagePath(imageSrc, '') : imageSrc;
           
           const card = document.createElement('div');
           card.className = 'product-card';
           card.dataset.productId = product.id;
           card.dataset.detailPage = detailPage;
-          card.innerHTML = cardStart + product.id + cardMiddle + detailPage + cardMiddle2 + imageSrc + cardMiddle3 + escapedTitle + cardMiddle4 + title + cardEnd;
+          card.innerHTML = cardStart + product.id + cardMiddle + detailPage + cardMiddle2 + normalizedImageSrc + cardMiddle3 + escapedTitle + cardMiddle4 + title + cardEnd;
           fragment.appendChild(card);
         }
 
@@ -1065,9 +1067,21 @@ function validateImageSource(imageSrc) {
         imagePath = imagePath.substring(3);
       }
       
+      // Normalize path for Vercel (handles spaces, case sensitivity)
+      // Use getImagePath if available, otherwise normalize manually
+      if (typeof getImagePath === 'function') {
+        imagePath = getImagePath(imagePath, '');
+      } else {
+        // Fallback: URL encode spaces
+        imagePath = imagePath.split('/').map(part => {
+          if (part === '..' || part === '.' || part === '') return part;
+          return encodeURIComponent(part);
+        }).join('/');
+      }
+      
       return `
         <div class="featured-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
-          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'">
+          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
           <div class="featured-card-info">
             <h3 class="featured-card-title">${product.title}</h3>
             <div class="featured-card-meta">
@@ -1168,6 +1182,10 @@ function validateImageSource(imageSrc) {
     
     // Optimized: Create path fixer function
     const fixImagePath = (imagePath) => {
+      // Normalize path for Vercel (handles spaces, case sensitivity)
+      if (typeof normalizeImagePath === 'function') {
+        imagePath = normalizeImagePath(imagePath);
+      }
       if (!imagePath) return '';
       if (imagePath.startsWith('../')) return imagePath.substring(3);
       if (imagePath.startsWith('http') || imagePath.startsWith('/')) return imagePath;
@@ -1188,13 +1206,25 @@ function validateImageSource(imageSrc) {
     
     for (let i = 0; i < totalCards; i++) {
       const product = products[i % productCount];
-      const imagePath = fixImagePath(product.image);
+      let imagePath = fixImagePath(product.image);
+      
+      // Normalize path for Vercel (handles spaces, case sensitivity)
+      if (typeof getImagePath === 'function') {
+        imagePath = getImagePath(imagePath, '');
+      } else {
+        // Fallback: URL encode spaces
+        imagePath = imagePath.split('/').map(part => {
+          if (part === '..' || part === '.' || part === '') return part;
+          return encodeURIComponent(part);
+        }).join('/');
+      }
+      
       const escapedTitle = product.title.replace(/"/g, '&quot;');
       
       htmlString += `
         <div class="slider-product-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
           <div class="slider-product-card-image-wrapper">
-            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'">
+            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
             <span class="slider-product-card-new-badge">New</span>
           </div>
           <div class="slider-product-card-info">
@@ -1290,13 +1320,39 @@ function validateImageSource(imageSrc) {
     '3D Models': '3D Model'
   };
   
-  // Helper function to get correct image path relative to current page (Global scope)
-  function getImagePath(imagePath, category) {
+  // Helper function to normalize image paths for Vercel/case-sensitive systems
+  // Handles: case sensitivity, spaces, relative paths, URL encoding
+  function normalizeImagePath(imagePath) {
     if (!imagePath) return '';
     
     // If path is already absolute or external, return as-is
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
       return imagePath;
+    }
+    
+    // URL encode spaces and special characters in path segments
+    // Split path, encode each segment, then rejoin
+    const pathParts = imagePath.split('/');
+    const encodedParts = pathParts.map(part => {
+      // Don't encode if already encoded or if it's a relative path marker
+      if (part === '..' || part === '.' || part === '') return part;
+      // Encode spaces and special characters but preserve slashes
+      return encodeURIComponent(part).replace(/%2F/g, '/');
+    });
+    
+    return encodedParts.join('/');
+  }
+  
+  // Helper function to get correct image path relative to current page (Global scope)
+  function getImagePath(imagePath, category) {
+    if (!imagePath) return '';
+    
+    // Normalize path first (handles spaces, encoding)
+    let normalizedPath = normalizeImagePath(imagePath);
+    
+    // If path is already absolute or external, return normalized version
+    if (normalizedPath.startsWith('http://') || normalizedPath.startsWith('https://') || normalizedPath.startsWith('/')) {
+      return normalizedPath;
     }
     
     // Calculate depth from root (how many directories up we need to go to reach root)
@@ -1312,7 +1368,7 @@ function validateImageSource(imageSrc) {
     const depth = pathParts.length > 1 ? pathParts.length - 1 : 0;
     
     // Remove existing ../ prefixes to get clean path relative to root
-    let cleanPath = imagePath;
+    let cleanPath = normalizedPath;
     while (cleanPath.startsWith('../')) {
       cleanPath = cleanPath.substring(3);
     }
