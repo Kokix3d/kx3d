@@ -1336,10 +1336,25 @@ function validateImageSource(imageSrc) {
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('/')) {
       return imagePath;
     }
+
+    // Fix known folder-name casing/typos to match actual repo folders.
+    // This prevents 404s on case-sensitive hosts (e.g., Vercel/Linux) and keeps
+    // local Live Server behavior consistent.
+    //
+    // Repo folders (as on disk):
+    // - Blender/3d Models/...
+    // - Unreal/3d modles/...  (note: "modles" is intentionally kept as-is)
+    const normalizeKnownSegments = (segment) => {
+      const s = String(segment);
+      const lower = s.toLowerCase();
+      if (lower === '3d models') return '3d Models';
+      if (lower === '3d modles') return '3d modles';
+      return s;
+    };
     
     // URL encode spaces and special characters in path segments
     // Split path, encode each segment, then rejoin
-    const pathParts = imagePath.split('/');
+    const pathParts = imagePath.split('/').map(normalizeKnownSegments);
     const encodedParts = pathParts.map(part => {
       // Don't encode if already encoded or if it's a relative path marker
       if (part === '..' || part === '.' || part === '') return part;
