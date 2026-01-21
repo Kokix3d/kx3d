@@ -383,7 +383,8 @@ body::before {
   align-items: center;
 }
 
-.nav-menu > li > a {
+.nav-menu > li > a,
+.nav-menu > li > .dropdown-trigger {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-size: clamp(0.75rem, 1.5vw, 0.9375rem); /* 12px-15px - Better scaling */
@@ -398,9 +399,20 @@ body::before {
   position: relative;
   cursor: pointer;
   white-space: nowrap;
+  background: none;
+  border: none;
+  font-family: inherit;
 }
 
-.nav-menu > li > a::after {
+/* Button-specific styles */
+.nav-menu > li > .dropdown-trigger {
+  width: 100%;
+  text-align: left;
+  outline: none;
+}
+
+.nav-menu > li > a::after,
+.nav-menu > li > .dropdown-trigger::after {
   content: '';
   position: absolute;
   bottom: 20px;
@@ -413,12 +425,16 @@ body::before {
   transform-origin: left;
 }
 
-.nav-menu > li > a:hover {
+.nav-menu > li > a:hover,
+.nav-menu > li > .dropdown-trigger:hover,
+.nav-menu > li > .dropdown-trigger:focus {
   color: #ffffff;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.nav-menu > li > a:hover::after {
+.nav-menu > li > a:hover::after,
+.nav-menu > li > .dropdown-trigger:hover::after,
+.nav-menu > li > .dropdown-trigger:focus::after {
   transform: scaleX(1);
 }
 
@@ -426,10 +442,13 @@ body::before {
   font-size: 10px;
   opacity: 0.7;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  display: inline-block;
 }
 
-.dropdown:hover .chevron {
+.dropdown:hover .chevron,
+.dropdown.active .chevron {
   opacity: 1;
+  transform: rotate(180deg);
 }
 
 /* Dropdown Menu */
@@ -461,14 +480,16 @@ body::before {
   contain: layout style paint;
 }
 
-.dropdown:hover .dropdown-menu {
+/* Show dropdown on hover (desktop) */
+.dropdown:hover .dropdown-menu,
+.dropdown.active .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translate3d(0, 0, 0);
 }
 
 /* Remove will-change after animation */
-.dropdown:not(:hover) .dropdown-menu {
+.dropdown:not(:hover):not(.active) .dropdown-menu {
   will-change: auto;
 }
 

@@ -2269,6 +2269,117 @@ function validateImageSource(imageSrc) {
 })();
 
 // ============================================
+// NAVBAR DROPDOWN - SEMANTIC HTML & ACCESSIBLE
+// ============================================
+(function() {
+  'use strict';
+  
+  function initNavbarDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    
+    dropdowns.forEach(dropdown => {
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      
+      if (!trigger || !menu) return;
+      
+      // Mobile: Toggle on click
+      if (isMobile) {
+        trigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Close other dropdowns
+          dropdowns.forEach(other => {
+            if (other !== dropdown) {
+              other.classList.remove('active');
+              const otherTrigger = other.querySelector('.dropdown-trigger');
+              if (otherTrigger) {
+                otherTrigger.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+          
+          // Toggle current dropdown
+          const isActive = dropdown.classList.contains('active');
+          dropdown.classList.toggle('active');
+          trigger.setAttribute('aria-expanded', isActive ? 'false' : 'true');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+      
+      // Desktop: Hover support (CSS handles this, but we ensure aria-expanded is updated)
+      if (!isMobile) {
+        dropdown.addEventListener('mouseenter', function() {
+          trigger.setAttribute('aria-expanded', 'true');
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+      }
+      
+      // Keyboard navigation support
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trigger.click();
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('active');
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+      });
+      
+      // Close dropdown when menu item is clicked (mobile)
+      if (isMobile) {
+        const menuItems = menu.querySelectorAll('a[role="menuitem"]');
+        menuItems.forEach(item => {
+          item.addEventListener('click', function() {
+            dropdown.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
+    
+    // Handle window resize to update mobile/desktop behavior
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        const newIsMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (newIsMobile !== isMobile) {
+          // Reset all dropdowns on breakpoint change
+          dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            if (trigger) {
+              trigger.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+      }, 250);
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbarDropdowns);
+  } else {
+    initNavbarDropdowns();
+  }
+})();
+
+// ============================================
 // SCROLL TO TOP BUTTON
 // ============================================
 (function() {

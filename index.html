@@ -92,14 +92,19 @@
       align-items: center !important;
       gap: 1.5rem !important;
     }
-    .nav-menu > li > a {
+    .nav-menu > li > a,
+    .nav-menu > li > .dropdown-trigger {
       color: rgba(255, 255, 255, 0.9) !important;
       text-decoration: none !important;
       font-size: 0.9rem !important;
       font-weight: 500 !important;
       transition: color 0.2s ease !important;
+      background: none !important;
+      border: none !important;
+      font-family: inherit !important;
     }
-    .nav-menu > li > a:hover {
+    .nav-menu > li > a:hover,
+    .nav-menu > li > .dropdown-trigger:hover {
       color: #ffffff !important;
     }
     
@@ -300,46 +305,56 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="Membership/membership.html">Membership</a></li>
         <li class="dropdown">
-          <a href="#">Blender <span class="chevron">▼</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Blender/3d-models.html">3D Models</a></li>
-            <li><a href="Blender/addons.html">Addons</a></li>
-            <li><a href="Blender/assets.html">Assets</a></li>
-            <li><a href="Blender/brushes.html">Brushes</a></li>
-            <li><a href="Blender/courses.html">Courses</a></li>
+          <button type="button" class="dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-label="Blender menu">
+            Blender <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="Blender/3d-models.html" role="menuitem">3D Models</a></li>
+            <li role="none"><a href="Blender/addons.html" role="menuitem">Addons</a></li>
+            <li role="none"><a href="Blender/assets.html" role="menuitem">Assets</a></li>
+            <li role="none"><a href="Blender/brushes.html" role="menuitem">Brushes</a></li>
+            <li role="none"><a href="Blender/courses.html" role="menuitem">Courses</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#">Unreal <span class="chevron">▼</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Unreal/3d-models.html">3D Models</a></li>
-            <li><a href="Unreal/plugins.html">Plugins</a></li>
-            <li><a href="Unreal/assets.html">Assets</a></li>
-            <li><a href="Unreal/courses.html">Courses</a></li>
+          <button type="button" class="dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-label="Unreal menu">
+            Unreal <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="Unreal/3d-models.html" role="menuitem">3D Models</a></li>
+            <li role="none"><a href="Unreal/plugins.html" role="menuitem">Plugins</a></li>
+            <li role="none"><a href="Unreal/assets.html" role="menuitem">Assets</a></li>
+            <li role="none"><a href="Unreal/courses.html" role="menuitem">Courses</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#">After Effects <span class="chevron">▼</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="ae/plugins.html">Plugins</a></li>
-            <li><a href="ae/assets.html">Assets</a></li>
-            <li><a href="ae/courses.html">Courses</a></li>
+          <button type="button" class="dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-label="After Effects menu">
+            After Effects <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="ae/plugins.html" role="menuitem">Plugins</a></li>
+            <li role="none"><a href="ae/assets.html" role="menuitem">Assets</a></li>
+            <li role="none"><a href="ae/courses.html" role="menuitem">Courses</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#">Premiere Pro <span class="chevron">▼</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="pp/plugins.html">Plugins</a></li>
-            <li><a href="pp/assets.html">Assets</a></li>
-            <li><a href="pp/courses.html">Courses</a></li>
+          <button type="button" class="dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-label="Premiere Pro menu">
+            Premiere Pro <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="pp/plugins.html" role="menuitem">Plugins</a></li>
+            <li role="none"><a href="pp/assets.html" role="menuitem">Assets</a></li>
+            <li role="none"><a href="pp/courses.html" role="menuitem">Courses</a></li>
           </ul>
         </li>
         <li><a href="photoshop.html">Photoshop</a></li>
         <li class="dropdown">
-          <a href="#">Houdini <span class="chevron">▼</span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Houdini/assets.html">Assets</a></li>
-            <li><a href="Houdini/courses.html">Courses</a></li>
+          <button type="button" class="dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-label="Houdini menu">
+            Houdini <span class="chevron" aria-hidden="true">▼</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="none"><a href="Houdini/assets.html" role="menuitem">Assets</a></li>
+            <li role="none"><a href="Houdini/courses.html" role="menuitem">Courses</a></li>
           </ul>
         </li>
         <li><a href="software.html">Software</a></li>
