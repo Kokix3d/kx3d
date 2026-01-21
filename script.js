@@ -128,12 +128,8 @@ function validateImageSource(imageSrc) {
                     // Force GPU layer for smooth rendering
                     img.style.transform = 'translate3d(0, 0, 0)';
                     img.style.willChange = 'auto'; // Remove will-change after load
-                    // Add smooth fade-in
-                    img.style.opacity = '0';
-                    img.style.transition = 'opacity 0.2s ease';
-                    requestAnimationFrame(() => {
-                      img.style.opacity = '1';
-                    });
+                    // CRITICAL: No opacity fade-in for instant visibility (removed delay)
+                    // Images should appear instantly, not fade in
                   });
                 };
                 imageLoader.onerror = () => {
@@ -153,9 +149,16 @@ function validateImageSource(imageSrc) {
               }
             }
             
-            // Optimize attributes
+            // Optimize attributes - but don't override explicit loading="eager" or fetchpriority
+            // Only set lazy if no loading attribute exists AND image is not above-fold
             if (!img.hasAttribute('loading')) {
-              img.setAttribute('loading', 'lazy');
+              // Check if image is above-fold (in hero, header, or first viewport)
+              const rect = img.getBoundingClientRect();
+              const isAboveFold = rect.top < window.innerHeight * 1.5; // 1.5x viewport for safety
+              img.setAttribute('loading', isAboveFold ? 'eager' : 'lazy');
+              if (isAboveFold && !img.hasAttribute('fetchpriority')) {
+                img.setAttribute('fetchpriority', 'high');
+              }
             }
             if (!img.hasAttribute('decoding')) {
               img.setAttribute('decoding', 'async');
@@ -1079,9 +1082,13 @@ function validateImageSource(imageSrc) {
         }).join('/');
       }
       
+      // First 4 featured products are above-fold: use eager loading with high priority
+      const isAboveFold = products.indexOf(product) < 4;
+      const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+      
       return `
         <div class="featured-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
-          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
+          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
           <div class="featured-card-info">
             <h3 class="featured-card-title">${product.title}</h3>
             <div class="featured-card-meta">
