@@ -1456,6 +1456,16 @@ h1 {
     max-width: min(112.5rem, 100vw); /* 1800px max */
   }
   
+  /* Logo on left for desktop */
+  .logo-link {
+    position: absolute !important;
+    left: clamp(1rem, 4vw, 2rem) !important;
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    right: auto !important;
+    max-width: clamp(7rem, 14vw, 9rem) !important;
+  }
+  
   /* Ensure normal search bar for all desktop resolutions */
   .search-container {
     position: absolute;
@@ -1695,8 +1705,18 @@ h1 {
     .product-listing-page .products-grid {
       gap: 1.5rem;
     }
+    
+    /* Logo on left side for desktop */
+    .logo-link {
+      position: absolute !important;
+      left: clamp(1rem, 4vw, 2rem) !important;
+      transform: translateY(-50%) !important;
+      top: 50% !important;
+      right: auto !important;
+    }
   }
 }
+
 
 /* Desktop resolutions (1367px-1199px) - Normal search bar */
 @media (min-width: 1367px) and (max-width: 1599px) {
@@ -5458,10 +5478,14 @@ body.animation-started::before {
     width: auto;
   }
   
-  /* Logo link positioning - Adjusted for smaller logo */
+  /* Logo link positioning - Adjusted for smaller logo - Only for laptop, not desktop */
   .logo-link {
-    left: clamp(0.75rem, 3vw, 1.5rem);
-    max-width: clamp(5.25rem, 10.5vw, 6.75rem);
+    position: absolute !important;
+    left: clamp(0.75rem, 3vw, 1.5rem) !important;
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    max-width: clamp(5.25rem, 10.5vw, 6.75rem) !important;
+    right: auto !important;
   }
   
   
@@ -5893,5 +5917,50 @@ body.animation-started::before {
   
   .featured-grid {
     gap: clamp(0.625rem, 1.25vw, 1rem);
+  }
+}
+
+/* ============================================
+   DESKTOP (1440px and above) - Logo on LEFT
+   Must come after laptop media queries
+   ============================================ */
+@media (min-width: 1441px) {
+  .logo-link {
+    position: absolute !important;
+    left: clamp(1rem, 4vw, 2rem) !important;
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    right: auto !important;
+    max-width: clamp(7rem, 14vw, 9rem) !important;
+    z-index: 1 !important;
+  }
+  
+  .logo {
+    height: clamp(28px, 4vh, 40px) !important;
+    width: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Desktop (2560px and above) - Logo on left - Larger size */
+@media (min-width: 2560px) {
+  .logo-link {
+    position: absolute !important;
+    left: clamp(1.5rem, 4vw, 2.5rem) !important;
+    transform: translateY(-50%) !important;
+    top: 50% !important;
+    right: auto !important;
+    max-width: clamp(8rem, 15vw, 10rem) !important;
+    z-index: 1 !important;
+  }
+  
+  .logo {
+    height: clamp(32px, 4.5vh, 45px) !important;
+    width: auto !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
