@@ -47,9 +47,11 @@
     
     /* Header & Navigation - prevent unstyled flash */
     .header {
-      background: transparent !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-      position: sticky !important;
+      position: fixed !important;
       top: 0 !important;
       z-index: 1000 !important;
       height: clamp(4.375rem, 8vh, 4.5rem) !important;

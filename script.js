@@ -602,7 +602,7 @@ function validateImageSource(imageSrc) {
         grid.addEventListener('click', (e) => {
           const card = e.target.closest('.product-card');
           if (card && card.dataset.productId) {
-            window.location.href = card.dataset.detailPage + '?id=' + card.dataset.productId;
+            window.open(card.dataset.detailPage + '?id=' + card.dataset.productId, '_blank', 'noopener,noreferrer');
           }
         }, { passive: true });
         clickHandlerAttached = true;
@@ -634,7 +634,7 @@ function validateImageSource(imageSrc) {
       
       // Restore original view
       if (typeof window.renderProducts === 'function') {
-        const currentSort = window.currentSort || 'name';
+        const currentSort = window.currentSort || 'newest';
         window.renderProducts(currentSort);
       } else {
         // Fallback: reload page data
@@ -1087,7 +1087,7 @@ function validateImageSource(imageSrc) {
       const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
       
       return `
-        <div class="featured-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
+        <div class="featured-card" onclick="window.open('${detailPage}?id=${product.id}', '_blank', 'noopener,noreferrer')">
           <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
           <div class="featured-card-info">
             <h3 class="featured-card-title">${product.title}</h3>
@@ -1229,7 +1229,7 @@ function validateImageSource(imageSrc) {
       const escapedTitle = product.title.replace(/"/g, '&quot;');
       
       htmlString += `
-        <div class="slider-product-card" onclick="window.location.href='${detailPage}?id=${product.id}'">
+        <div class="slider-product-card" onclick="window.open('${detailPage}?id=${product.id}', '_blank', 'noopener,noreferrer')">
           <div class="slider-product-card-image-wrapper">
             <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
             <span class="slider-product-card-new-badge">New</span>
@@ -2265,5 +2265,49 @@ function validateImageSource(imageSrc) {
     document.addEventListener('DOMContentLoaded', initGlobalSearch);
   } else {
     initGlobalSearch();
+  }
+})();
+
+// ============================================
+// SCROLL TO TOP BUTTON
+// ============================================
+(function() {
+  'use strict';
+  
+  function initScrollToTop() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    if (!scrollToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    function toggleScrollButton() {
+      if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    }
+    
+    // Scroll to top function
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Event listeners
+    scrollToTopBtn.addEventListener('click', scrollToTop);
+    window.addEventListener('scroll', toggleScrollButton, { passive: true });
+    
+    // Check initial scroll position
+    toggleScrollButton();
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollToTop);
+  } else {
+    initScrollToTop();
   }
 })();

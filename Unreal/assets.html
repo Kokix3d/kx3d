@@ -38,9 +38,11 @@
     
     /* Header & Navigation - prevent unstyled flash */
     .header {
-      background: transparent !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-      position: sticky !important;
+      position: fixed !important;
       top: 0 !important;
       z-index: 1000 !important;
       height: clamp(4.375rem, 8vh, 4.5rem) !important;
@@ -114,7 +116,9 @@
       border-radius: 0.5rem !important;
     }
     .search-input-global {
-      background: transparent !important;
+      background: rgba(0, 0, 0, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
       color: #ffffff !important;
       border: none !important;
     }
@@ -292,7 +296,7 @@
       <div class="showing-text" id="showingText">Showing 0–0</div>
       <div class="sort-menu-wrapper">
         <div class="sort-menu-trigger" id="sortMenuTrigger">
-          <span class="sort-menu-trigger-text">Name</span>
+          <span class="sort-menu-trigger-text">Upload date</span>
           <svg class="sort-menu-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 9L1 4H11L6 9Z" fill="currentColor"/>
           </svg>
@@ -300,8 +304,8 @@
         <div class="sort-menu" id="sortMenu">
           <div class="sort-menu-title">SORT BY</div>
           <div class="sort-menu-separator"></div>
-          <div class="sort-option active" data-value="name">Name</div>
-          <div class="sort-option" data-value="newest">Upload date</div>
+          <div class="sort-option" data-value="name">Name</div>
+          <div class="sort-option active" data-value="newest">Upload date</div>
         </div>
       </div>
     </div>
@@ -328,7 +332,7 @@
     const imageFallback = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'225\'%3E%3Crect fill=\'%231a1a1a\' width=\'400\' height=\'225\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ENo Image%3C/text%3E%3C/svg%3E';
     const pageSize = 20;
     let currentPage = 1;
-    let currentSort = 'name';
+    let currentSort = 'newest';
     const storageKey = `listingState:${window.location.pathname}`;
     let pendingScrollY = null;
 
@@ -387,7 +391,7 @@
           card.className = 'product-card';
           card.onclick = () => {
             saveListingState();
-            window.location.href = p.detailUrl || ('asset-detail.html?id=' + p.id);
+            window.open(p.detailUrl || ('asset-detail.html?id=' + p.id), '_blank', 'noopener,noreferrer');
           };
           const esc = p.title.replace(/"/g, '&quot;');
           card.innerHTML = `<div class="product-image-wrapper"><img src="${p.image}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div><div class="product-info"><h3 class="product-title">${p.title}</h3></div>`;
@@ -498,5 +502,12 @@
     renderProducts(currentSort);
   })();
 </script>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 </body>
 </html>
