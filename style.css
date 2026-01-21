@@ -1706,47 +1706,6 @@ h1 {
   }
 }
 
-/* Laptop (1280px–1366px) - Responsive design for 1366x768 */
-@media (min-width: 1280px) and (max-width: 1366px) {
-  .product-listing-page .products-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(0.875rem, 2vw, 1.125rem);
-  }
-  
-  .container {
-    max-width: min(1200px, 95vw);
-    padding: 0 clamp(1rem, 2vw, 1.5rem);
-  }
-  
-  .nav {
-    max-width: min(1200px, 100vw);
-    padding: 0 clamp(1rem, 2vw, 1.5rem);
-  }
-  
-  /* Responsive header */
-  .header {
-    height: clamp(3rem, 5vh, 3.5rem);
-  }
-  
-  .logo {
-    height: clamp(28px, 4vh, 32px);
-  }
-  
-  .nav-menu > li > a {
-    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-    padding: 0 clamp(0.375rem, 1vw, 0.5rem);
-  }
-  
-  /* Responsive search bar */
-  .search-bar-wrapper {
-    width: clamp(9rem, 16vw, 11rem);
-    min-width: 9rem;
-  }
-  
-  .search-input {
-    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  }
-}
 
 /* Laptop (1367px–1599px) - 3 columns - Responsive */
 @media (min-width: 1367px) and (max-width: 1599px) {
@@ -1814,6 +1773,17 @@ h1 {
     position: sticky;
     top: 0;
     z-index: 1000;
+  }
+  
+  /* Center the logo */
+  .logo-link {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
   }
   
   .logo {
@@ -2596,8 +2566,13 @@ h1 {
   }
   
   .logo-link {
-    left: 2.75rem;
-    transform: translateY(-50%);
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
   }
   
   /* Fix search container to prevent overlap */
@@ -3104,6 +3079,7 @@ h1 {
 }
 
 /* Hide mobile menu on desktop only (show on mobile and tablet) */
+/* Exception: Show on 1366×768 (1280px-1366px) - handled in specific media query */
 @media (min-width: 1025px) {
   .mobile-menu-overlay,
   .mobile-menu {
@@ -3126,9 +3102,15 @@ h1 {
     display: none !important;
   }
   
-  /* Adjust logo position for hamburger menu */
+  /* Center the logo */
   .logo-link {
-    left: 2.75rem; /* Space for hamburger icon */
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
   }
 }
   
@@ -3139,7 +3121,13 @@ h1 {
   }
   
   .logo-link {
-    left: 3.125rem; /* Adjust logo position for smaller hamburger (13px + 15px + 8px = 36px) */
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
   }
 }
 
@@ -3377,10 +3365,14 @@ h1 {
   }
   
   .logo-link {
-    position: relative;
-    left: 0;
-    transform: none;
-    height: auto;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
+    height: 100% !important;
   }
   
   .logo {
@@ -5441,5 +5433,465 @@ body.animation-started::before {
   
   .search-result-type {
     font-size: 0.7rem;
+  }
+}
+
+/* ============================================
+   LAPTOP / MEDIUM DEVICES (1024px - 1440px)
+   Optimized for 1366×768 - ~75% visual scale
+   Desktop layout (≥1440px) remains unchanged
+   ============================================ */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  /* ============================================
+     NAVBAR & HEADER - ~75% scale
+     ============================================ */
+  
+  /* Header height - Reduced from 4.5rem to ~3.375rem (75%) */
+  .header {
+    height: clamp(3rem, 5.5vh, 3.375rem);
+    min-height: 3rem;
+  }
+  
+  /* Logo size - Reduced from 40px to ~30px (75%) */
+  .logo {
+    height: clamp(21px, 3vh, 30px);
+    width: auto;
+  }
+  
+  /* Logo link positioning - Adjusted for smaller logo */
+  .logo-link {
+    left: clamp(0.75rem, 3vw, 1.5rem);
+    max-width: clamp(5.25rem, 10.5vw, 6.75rem);
+  }
+  
+  
+  /* Search bar - Reduced width ~25% */
+  .search-bar-wrapper-global {
+    width: clamp(6rem, 10.5vw, 7.5rem);
+    min-width: 6rem;
+    max-width: 7.5rem;
+    padding: clamp(0.28125rem, 0.5625vw, 0.375rem) clamp(0.5625rem, 1.125vw, 0.65625rem);
+  }
+  
+  .search-input-global {
+    font-size: clamp(0.5625rem, 1.125vw, 0.609375rem);
+  }
+  
+  .search-icon-global {
+    width: clamp(13.5px, 1.35vw, 15px);
+    height: clamp(13.5px, 1.35vw, 15px);
+  }
+  
+  /* Container - Reduced max-width and padding */
+  .container {
+    max-width: min(90rem, 93vw);
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  }
+  
+  .nav {
+    max-width: min(90rem, 100vw);
+    padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+  }
+  
+  /* ============================================
+     HERO SECTION - ~75% scale
+     ============================================ */
+  
+  .hero-section {
+    padding: clamp(1.5rem, 3vh, 2.25rem) 0;
+    min-height: clamp(45vh, 50vh, 55vh);
+  }
+  
+  .hero-wrapper {
+    gap: clamp(1.5rem, 2.25vw, 2.25rem);
+    max-width: min(105rem, 90vw);
+  }
+  
+  .hero-title {
+    font-size: clamp(1.5rem, 3.375vw, 2.25rem);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.703125rem, 1.35vw, 0.84375rem);
+    margin-bottom: clamp(1.3125rem, 2.625vw, 1.75rem);
+    line-height: 1.5;
+  }
+  
+  .hero-cta-btn {
+    padding: clamp(0.5625rem, 1.125vw, 0.75rem) clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
+    gap: clamp(0.375rem, 0.75vw, 0.5rem);
+    border-radius: clamp(6px, 0.6vw, 8px);
+  }
+  
+  .hero-cta-btn svg {
+    width: clamp(15px, 1.5vw, 20px);
+    height: clamp(15px, 1.5vw, 20px);
+  }
+  
+  .video-title {
+    font-size: clamp(1.125rem, 2.625vw, 1.5rem);
+    padding-top: clamp(0.75rem, 1.5vw, 1rem);
+  }
+  
+  /* ============================================
+     PRODUCT GRIDS - ~75% scale, maintain 4 columns
+     ============================================ */
+  
+  .product-listing-page .products-grid,
+  .products-grid {
+    gap: clamp(0.75rem, 1.5vw, 1.125rem);
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .featured-grid {
+    gap: clamp(0.75rem, 1.5vw, 1.125rem);
+  }
+  
+  /* ============================================
+     PRODUCT CARDS - ~75% scale
+     ============================================ */
+  
+  .product-card {
+    border-radius: clamp(6px, 0.75vw, 9px);
+  }
+  
+  .product-image-wrapper {
+    padding-top: 56.25%;
+  }
+  
+  .product-card .product-info {
+    padding: clamp(0.65625rem, 1.125vw, 0.9375rem);
+    gap: clamp(0.1875rem, 0.375vw, 0.375rem);
+  }
+  
+  .product-card .product-title {
+    font-size: clamp(0.65625rem, 1.05vw, 0.75rem);
+    line-height: 1.4;
+    margin-bottom: clamp(0.1875rem, 0.375vw, 0.375rem);
+  }
+  
+  .product-card .product-price {
+    font-size: clamp(0.65625rem, 0.975vw, 0.703125rem);
+    font-weight: 600;
+  }
+  
+  .new-badge {
+    top: clamp(3.75px, 0.5vw, 5px);
+    left: clamp(3.75px, 0.5vw, 5px);
+    font-size: clamp(0.46875rem, 0.75vw, 0.5625rem);
+    padding: clamp(0.09375rem, 0.1875vw, 0.1875rem) clamp(0.1875rem, 0.375vw, 0.375rem);
+    border-radius: clamp(2.25px, 0.3vw, 3px);
+  }
+  
+  /* ============================================
+     PRODUCT DETAIL PAGE - ~75% scale
+     ============================================ */
+  
+  .product-hero-grid {
+    gap: clamp(1.5rem, 2.25vw, 2.25rem);
+  }
+  
+  .hero-info-panel {
+    padding: clamp(1.125rem, 1.875vw, 1.5rem);
+  }
+  
+  .product-hero-title {
+    font-size: clamp(1.3125rem, 2.625vw, 1.875rem);
+    line-height: 1.3;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  }
+  
+  .product-description {
+    font-size: clamp(0.65625rem, 0.975vw, 0.703125rem);
+    line-height: 1.7;
+    margin: clamp(0.9375rem, 1.5vw, 1.3125rem) 0;
+  }
+  
+  .product-meta-single-line {
+    gap: clamp(0.375rem, 0.75vw, 0.5625rem);
+    font-size: clamp(0.5625rem, 0.9vw, 0.609375rem);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  }
+  
+  .product-meta-single-line svg {
+    width: clamp(10.5px, 1.05vw, 12px);
+    height: clamp(10.5px, 1.05vw, 12px);
+  }
+  
+  .download-btn-primary {
+    padding: clamp(0.65625rem, 1.125vw, 0.75rem) clamp(0.9375rem, 1.5vw, 1.125rem);
+    font-size: clamp(0.65625rem, 0.975vw, 0.703125rem);
+    min-height: clamp(33px, 3.3vw, 36px);
+    border-radius: clamp(6px, 0.6vw, 8px);
+  }
+  
+  .download-btn-primary svg {
+    width: clamp(15px, 1.5vw, 18px);
+    height: clamp(15px, 1.5vw, 18px);
+  }
+  
+  .download-btn-part {
+    padding: clamp(0.5625rem, 0.975vw, 0.65625rem) clamp(0.75rem, 1.35vw, 0.9375rem);
+    font-size: clamp(0.609375rem, 0.975vw, 0.65625rem);
+  }
+  
+  .download-buttons-multiple {
+    gap: clamp(0.375rem, 0.75vw, 0.5625rem);
+  }
+  
+  .back-link {
+    font-size: clamp(0.65625rem, 0.975vw, 0.703125rem);
+    margin-bottom: clamp(0.9375rem, 1.5vw, 1.3125rem);
+  }
+  
+  /* Gallery thumbnails - Reduced size */
+  .gallery-thumbnails {
+    grid-template-columns: repeat(auto-fit, minmax(clamp(75px, 7.5vw, 90px), 1fr));
+    gap: clamp(0.375rem, 0.75vw, 0.5625rem);
+  }
+  
+  .gallery-thumb {
+    aspect-ratio: 16 / 9;
+    border-radius: clamp(6px, 0.75vw, 9px);
+    border-width: clamp(1.5px, 0.15vw, 2px);
+  }
+  
+  /* ============================================
+     PAGE HEADERS & CONTROLS - ~75% scale
+     ============================================ */
+  
+  .page-header {
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.125rem);
+  }
+  
+  .page-title {
+    font-size: clamp(1.3125rem, 2.25vw, 1.6875rem);
+    margin-bottom: clamp(0.375rem, 0.75vw, 0.5625rem);
+  }
+  
+  .product-count {
+    font-size: clamp(0.609375rem, 0.975vw, 0.65625rem);
+  }
+  
+  .page-controls {
+    margin-bottom: clamp(0.65625rem, 1.125vw, 0.9375rem);
+    padding-bottom: clamp(0.375rem, 0.75vw, 0.5625rem);
+  }
+  
+  .showing-text {
+    font-size: clamp(0.5625rem, 0.975vw, 0.609375rem);
+  }
+  
+  .sort-menu-trigger {
+    padding: clamp(0.375rem, 0.75vw, 0.46875rem) clamp(0.75rem, 1.125vw, 0.9375rem) clamp(0.375rem, 0.75vw, 0.46875rem) clamp(0.375rem, 0.75vw, 0.46875rem);
+    font-size: clamp(0.5625rem, 0.975vw, 0.609375rem);
+    min-width: clamp(75px, 9vw, 90px);
+    border-radius: clamp(4.5px, 0.45vw, 6px);
+  }
+  
+  /* ============================================
+     SLIDER SECTIONS - ~75% scale
+     ============================================ */
+  
+  .new-products-slider-section {
+    padding: clamp(2.25rem, 3.75vh, 3rem) 0;
+  }
+  
+  .slider-header {
+    margin-bottom: clamp(1.125rem, 1.875vw, 1.5rem);
+    padding: 0 clamp(0.75rem, 1.5vw, 1.125rem);
+  }
+  
+  .slider-section-title {
+    font-size: clamp(1.125rem, 2.25vw, 1.5rem);
+  }
+  
+  .products-slider-wrapper {
+    padding: 0 clamp(0.75rem, 1.5vw, 1.125rem);
+    max-width: min(90rem, 93vw);
+  }
+  
+  .products-slider-wrapper::before,
+  .products-slider-wrapper::after {
+    width: clamp(60px, 9vw, 90px);
+  }
+  
+  .slider-product-card {
+    margin-right: clamp(0.5625rem, 1.125vw, 0.75rem);
+    min-width: clamp(150px, 13.5vw, 210px);
+  }
+  
+  /* ============================================
+     FOOTER - ~75% scale
+     ============================================ */
+  
+  .footer {
+    padding: clamp(1.5rem, 2.25vw, 1.875rem) 0 clamp(0.9375rem, 1.5vw, 1.3125rem);
+  }
+  
+  .footer-content {
+    gap: clamp(0.75rem, 1.5vw, 1.125rem);
+    margin-bottom: clamp(0.9375rem, 1.5vw, 1.3125rem);
+  }
+  
+  .footer-links {
+    gap: clamp(0.75rem, 1.5vw, 1.125rem);
+  }
+  
+  .footer-links a {
+    font-size: clamp(0.609375rem, 0.9vw, 0.65625rem);
+  }
+  
+  /* ============================================
+     SEARCH DROPDOWN - ~75% scale
+     ============================================ */
+  
+  .search-dropdown {
+    max-width: clamp(15rem, 26.25vw, 21rem);
+    border-radius: clamp(6px, 0.6vw, 8px);
+  }
+  
+  .search-result-item {
+    padding: clamp(0.46875rem, 0.75vw, 0.5625rem) clamp(0.5625rem, 0.975vw, 0.75rem);
+  }
+  
+  .search-result-thumbnail {
+    width: clamp(45px, 4.5vw, 60px);
+    height: clamp(33.75px, 3.375vw, 45px);
+  }
+  
+  .search-result-title {
+    font-size: clamp(0.609375rem, 0.975vw, 0.65625rem);
+  }
+  
+  .search-result-meta {
+    font-size: clamp(0.5625rem, 0.9vw, 0.609375rem);
+    gap: clamp(0.375rem, 0.75vw, 0.5625rem);
+  }
+  
+  .search-result-badge {
+    font-size: clamp(0.46875rem, 0.75vw, 0.5625rem);
+    padding: clamp(0.075rem, 0.15vw, 0.15rem) clamp(0.3rem, 0.6vw, 0.45rem);
+  }
+  
+  .view-all-link {
+    padding: clamp(0.5625rem, 1.125vw, 0.75rem) clamp(1.125rem, 2.25vw, 1.5rem);
+    font-size: clamp(0.65625rem, 0.975vw, 0.703125rem);
+    border-radius: clamp(4.5px, 0.45vw, 6px);
+  }
+  
+  /* ============================================
+     IMAGES & ASPECT RATIOS - Preserve quality
+     ============================================ */
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .product-image-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .hero-image-wrapper {
+    aspect-ratio: 16 / 9;
+    max-height: none;
+  }
+  
+  .hero-video-container {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .youtube-thumbnail {
+    aspect-ratio: 16 / 9;
+  }
+  
+  /* ============================================
+     PREVENT OVERFLOW & LAYOUT SHIFTS
+     ============================================ */
+  
+  body,
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ============================================
+   FINE-TUNED FOR 1366×768 SPECIFICALLY
+   Mobile-style header: Hamburger (left) | Logo (center) | Search (right)
+   ============================================ */
+@media (min-width: 1280px) and (max-width: 1366px) {
+  /* Slightly tighter spacing for 1366px width */
+  .container {
+    max-width: min(85rem, 92vw);
+    padding: 0 clamp(0.625rem, 2.5vw, 1.25rem);
+  }
+  
+  .nav {
+    max-width: min(85rem, 100vw);
+    padding: 0 clamp(0.625rem, 2.5vw, 1.25rem);
+  }
+  
+  /* Show hamburger menu on left */
+  .hamburger-menu {
+    display: flex !important;
+    position: absolute;
+    left: clamp(0.75rem, 1.5vw, 1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+  }
+  
+  /* Hide desktop navigation menu */
+  .nav-menu {
+    display: none !important;
+  }
+  
+  /* Center the logo */
+  .logo-link {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    top: 50% !important;
+    margin: 0 !important;
+    max-width: none !important;
+    right: auto !important;
+  }
+  
+  /* Position search bar on right */
+  .search-container-global {
+    position: absolute !important;
+    right: clamp(0.75rem, 1.5vw, 1rem) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    margin-left: 0 !important;
+    left: auto !important;
+  }
+  
+  .search-bar-wrapper-global {
+    width: clamp(12rem, 18vw, 14rem) !important;
+    min-width: 12rem !important;
+    max-width: 14rem !important;
+  }
+  
+  /* Product grid - Slightly tighter gap */
+  .product-listing-page .products-grid,
+  .products-grid {
+    gap: clamp(0.625rem, 1.25vw, 1rem);
+  }
+  
+  .featured-grid {
+    gap: clamp(0.625rem, 1.25vw, 1rem);
   }
 }

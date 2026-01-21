@@ -111,4 +111,11 @@ const unrealCourseDownloadLinksMap = window.unrealCourseDownloadLinksMap = {
 
 // Multiple Download Links Mapping (For courses with multiple parts)
 // Format: "Course Name": { part1: "Link 1", part2: "Link 2" }
-const multipleUnrealCourseDownloadLinksMap = window.multipleUnrealCourseDownloadLinksMap = {};
+const multipleUnrealCourseDownloadLinksMap = window.multipleUnrealCourseDownloadLinksMap = {
+  "Multiplayer in Unreal with GAS and AWS Dedicated Servers": {
+    part1: "https://link-target.net/1422046/placeholder1",
+    part2: "https://link-center.net/1422046/placeholder2",
+    part3: "https://link-hub.net/1422046/placeholder3",
+    part4: "https://direct-link.net/1422046/placeholder4"
+  }
+};
