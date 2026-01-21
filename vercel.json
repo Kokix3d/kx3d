@@ -32,13 +32,16 @@
   ],
   "redirects": [
     { "source": "/unreal", "destination": "/Unreal/3d-models.html", "permanent": false },
-    { "source": "/unreal/(.+)", "destination": "/Unreal/$1.html", "permanent": false },
+    { "source": "^/unreal/(.+)\\.html$", "destination": "/Unreal/$1.html", "permanent": false },
+    { "source": "^/unreal/(.+)$", "destination": "/Unreal/$1.html", "permanent": false },
 
     { "source": "/blender", "destination": "/Blender/3d-models.html", "permanent": false },
-    { "source": "/blender/(.+)", "destination": "/Blender/$1.html", "permanent": false },
+    { "source": "^/blender/(.+)\\.html$", "destination": "/Blender/$1.html", "permanent": false },
+    { "source": "^/blender/(.+)$", "destination": "/Blender/$1.html", "permanent": false },
 
     { "source": "/after-effects", "destination": "/ae/plugins.html", "permanent": false },
-    { "source": "/after-effects/(.+)", "destination": "/ae/$1.html", "permanent": false }
+    { "source": "^/after-effects/(.+)\\.html$", "destination": "/ae/$1.html", "permanent": false },
+    { "source": "^/after-effects/(.+)$", "destination": "/ae/$1.html", "permanent": false }
   ],
   "rewrites": [
     { "source": "/", "destination": "/index.html" }
