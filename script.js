@@ -1358,6 +1358,8 @@ function validateImageSource(imageSrc) {
     const encodedParts = pathParts.map(part => {
       // Don't encode if already encoded or if it's a relative path marker
       if (part === '..' || part === '.' || part === '') return part;
+      // Avoid double-encoding (e.g. "My%20Folder" should stay as-is)
+      if (/%[0-9A-Fa-f]{2}/.test(part)) return part;
       // Encode spaces and special characters but preserve slashes
       return encodeURIComponent(part).replace(/%2F/g, '/');
     });
