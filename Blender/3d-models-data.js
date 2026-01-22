@@ -22,11 +22,6 @@ window.blender3DModels = window.blender3DModels || [
     image: "../Blender/3D Models/Akna 3D Complete Cloud Catalogue Low Res Sample Pack/1.webp"
   },
   {
-    id: 5,
-    title: "All my characters are +18",
-    image: "../Blender/3d Models/All my characters are +18/1.webp"
-  },
-  {
     id: 6,
     title: "Ankha 3d model set",
     image: "../Blender/3D Models/Ankha 3d model set/1.webp"
