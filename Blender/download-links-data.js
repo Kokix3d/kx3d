@@ -5,7 +5,7 @@ window.blenderDownloadLinksMap = window.blenderDownloadLinksMap || {
   "1982 2019 Blade Runner Ground Police Car": "https://link-hub.net/1422046/FPNnSpKNlypG",
   "45 Stylized Rock Asset Pack": "https://link-hub.net/1422046/GLF3R7dZnwXh",
   "Akna 3D Complete Cloud Catalogue Low Res Sample Pack": "https://link-target.net/1422046/l1MO992VzqsI",
-  "All my characters are +18": "https://link-center.net/1422046/7n9IyyjVALjG",
+  "All my characters": "https://link-center.net/1422046/7n9IyyjVALjG",
   "Ankha 3d model set": "https://f005.backblazeb2.com/file/kokix3d/Blender%203D%20Modles/Ankha%203d%20model%20set.rar",
   "Asuka Langley Model": "https://link-hub.net/1422046/4MqhIKJqC6Nu",
   "Black Jaguar 3D, Blender Black Jaguar": "https://link-hub.net/1422046/XukjFmGPWLNs",
