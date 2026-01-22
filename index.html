@@ -520,9 +520,53 @@
 
   </main>
 
+  <!-- Noise Effect Overlay -->
+  <canvas id="noiseOverlay" class="noise-overlay"></canvas>
+
   <!-- JavaScript - Deferred and optimized for non-blocking load -->
   <script src="script.js" defer></script>
   <!-- Auto-reload for development - Remove in production -->
   <!-- <script src="auto-reload.js"></script> -->
+  
+  <!-- Noise Effect Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('noiseOverlay');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      let animationFrame;
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      function generateNoise() {
+        const imageData = ctx.createImageData(canvas.width, canvas.height);
+        const data = imageData.data;
+        
+        // Very strong noise effect - maximum intensity
+        for (let i = 0; i < data.length; i += 4) {
+          const value = Math.random() * 255;
+          data[i] = value;     // R
+          data[i + 1] = value; // G
+          data[i + 2] = value; // B
+          data[i + 3] = 150;   // Alpha - very strong opacity for maximum visible noise
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+        animationFrame = requestAnimationFrame(generateNoise);
+      }
+      
+      function initNoise() {
+        resizeCanvas();
+        generateNoise();
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      initNoise();
+    })();
+  </script>
 </body>
 </html>
