@@ -585,11 +585,18 @@
               };
               
               const escapedTitle = product.title.replace(/"/g, '&quot;');
+              // Normalize image path for live server (handles spaces, case sensitivity, URL encoding)
+              let imageSrc = product.image;
+              if (typeof getImagePath === 'function') {
+                imageSrc = getImagePath(product.image, '');
+              } else if (typeof normalizeImagePath === 'function') {
+                imageSrc = normalizeImagePath(product.image);
+              }
               // Validate image source to ensure it's a valid local path (not Drive URL)
               const validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
-                ? validateImageSource(product.image) 
-                : product.image;
-              const imageSrc = validatedImage || imageFallback;
+                ? validateImageSource(imageSrc) 
+                : imageSrc;
+              imageSrc = validatedImage || imageFallback;
               
               // Load images directly for immediate display
               card.innerHTML = 
