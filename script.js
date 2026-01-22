@@ -1342,12 +1342,13 @@ function validateImageSource(imageSrc) {
     // local Live Server behavior consistent.
     //
     // Repo folders (as on disk):
-    // - Blender/3d Models/...
+    // - Blender/3d Models/...  (lowercase "3d", capital "M")
     // - Unreal/3d modles/...  (note: "modles" is intentionally kept as-is)
     const normalizeKnownSegments = (segment) => {
       const s = String(segment);
       const lower = s.toLowerCase();
-      if (lower === '3d models') return '3d Models';
+      // Fix case sensitivity: "3D Models" or "3d models" -> "3d Models" (matches actual folder)
+      if (lower === '3d models' || lower === '3d models') return '3d Models';
       if (lower === '3d modles') return '3d modles';
       return s;
     };
@@ -1360,7 +1361,8 @@ function validateImageSource(imageSrc) {
       if (part === '..' || part === '.' || part === '') return part;
       // Avoid double-encoding (e.g. "My%20Folder" should stay as-is)
       if (/%[0-9A-Fa-f]{2}/.test(part)) return part;
-      // Encode spaces and special characters but preserve slashes
+      // Encode spaces and special characters (including +, which becomes %2B)
+      // This is critical for live servers which are case-sensitive and require URL encoding
       return encodeURIComponent(part).replace(/%2F/g, '/');
     });
     
@@ -1405,6 +1407,10 @@ function validateImageSource(imageSrc) {
     // At root level, return path as-is (relative to root)
     return cleanPath;
   }
+  
+  // Expose functions globally for use in other scopes (homepage, etc.)
+  window.normalizeImagePath = normalizeImagePath;
+  window.getImagePath = getImagePath;
   
   // Helper function to resolve internal links from any subfolder page
   function getLinkPath(url) {
