@@ -171,7 +171,6 @@ body::before {
   100% { transform: translate3d(0, 100%, 0); }
 }
 
-
 /* Reduce animation on low-end devices */
 @media (prefers-reduced-motion: reduce) {
   body::before {
