@@ -352,8 +352,8 @@
       },
       {
         id: 5,
-        title: "All my characters",
-        image: "../Blender/3d Models/All my characters/1.webp"
+        title: "All my characters are +18",
+        image: "../Blender/3d Models/All my characters are +18/1.webp"
       },
       {
         id: 6,
@@ -585,18 +585,11 @@
               };
               
               const escapedTitle = product.title.replace(/"/g, '&quot;');
-              // Normalize image path for live server (handles spaces, case sensitivity, URL encoding)
-              let imageSrc = product.image;
-              if (typeof getImagePath === 'function') {
-                imageSrc = getImagePath(product.image, '');
-              } else if (typeof normalizeImagePath === 'function') {
-                imageSrc = normalizeImagePath(product.image);
-              }
               // Validate image source to ensure it's a valid local path (not Drive URL)
               const validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
-                ? validateImageSource(imageSrc) 
-                : imageSrc;
-              imageSrc = validatedImage || imageFallback;
+                ? validateImageSource(product.image) 
+                : product.image;
+              const imageSrc = validatedImage || imageFallback;
               
               // Load images directly for immediate display
               card.innerHTML = 

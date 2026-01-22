@@ -23,8 +23,8 @@ window.blender3DModels = window.blender3DModels || [
   },
   {
     id: 5,
-    title: "All my characters",
-    image: "../Blender/3d Models/All my characters/1.webp"
+    title: "All my characters are +18",
+    image: "../Blender/3d Models/All my characters are +18/1.webp"
   },
   {
     id: 6,
