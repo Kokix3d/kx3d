@@ -394,14 +394,7 @@
             window.open(p.detailUrl || ('asset-detail.html?id=' + p.id), '_blank', 'noopener,noreferrer');
           };
           const esc = p.title.replace(/"/g, '&quot;');
-          // Normalize path for case sensitivity and spaces (critical for live servers)
-          let normalizedImage = p.image;
-          if (typeof getImagePath === 'function') {
-            normalizedImage = getImagePath(normalizedImage, '');
-          } else if (typeof normalizeImagePath === 'function') {
-            normalizedImage = normalizeImagePath(normalizedImage);
-          }
-          card.innerHTML = `<div class="product-image-wrapper"><img src="${normalizedImage}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div><div class="product-info"><h3 class="product-title">${p.title}</h3></div>`;
+          card.innerHTML = `<div class="product-image-wrapper"><img src="${p.image}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div><div class="product-info"><h3 class="product-title">${p.title}</h3></div>`;
           frag.appendChild(card);
         });
       }

@@ -412,15 +412,9 @@
 
               const escapedTitle = product.title.replace(/"/g, '&quot;');
               // Validate image source to ensure it's a valid local path (not Drive URL)
-              let validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
+              const validatedImage = (typeof validateImageSource !== 'undefined' && validateImageSource) 
                 ? validateImageSource(product.image) 
                 : product.image;
-              // Normalize path for case sensitivity and spaces (critical for live servers)
-              if (validatedImage && typeof getImagePath === 'function') {
-                validatedImage = getImagePath(validatedImage, '');
-              } else if (validatedImage && typeof normalizeImagePath === 'function') {
-                validatedImage = normalizeImagePath(validatedImage);
-              }
               const imageSrc = validatedImage || imageFallback;
               
               // Load images directly for immediate display
