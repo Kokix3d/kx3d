@@ -1367,6 +1367,9 @@ function validateImageSource(imageSrc) {
     return encodedParts.join('/');
   }
   
+  // Expose normalizeImagePath globally for use in detail pages
+  window.normalizeImagePath = normalizeImagePath;
+  
   // Helper function to get correct image path relative to current page (Global scope)
   function getImagePath(imagePath, category) {
     if (!imagePath) return '';
@@ -1405,6 +1408,9 @@ function validateImageSource(imageSrc) {
     // At root level, return path as-is (relative to root)
     return cleanPath;
   }
+  
+  // Expose getImagePath globally for use in detail pages
+  window.getImagePath = getImagePath;
   
   // Helper function to resolve internal links from any subfolder page
   function getLinkPath(url) {

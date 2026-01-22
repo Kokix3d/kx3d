@@ -395,11 +395,17 @@
       const heroImage = document.getElementById('heroMainImage');
       if (heroImage) {
         // Validate image source - Google Drive URLs should ONLY be used for downloads, NOT previews
-        const validatedImage = validateImageSource ? validateImageSource(asset.image) : asset.image;
+        let validatedImage = validateImageSource ? validateImageSource(asset.image) : asset.image;
         if (!validatedImage) {
           console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', asset.image);
           heroImage.style.display = 'none';
         } else {
+          // Normalize path for case sensitivity and spaces (critical for live servers)
+          if (typeof getImagePath === 'function') {
+            validatedImage = getImagePath(validatedImage, '');
+          } else if (typeof normalizeImagePath === 'function') {
+            validatedImage = normalizeImagePath(validatedImage);
+          }
           heroImage.loading = 'eager';
           heroImage.decoding = 'async';
           heroImage.fetchPriority = 'high';
@@ -451,10 +457,17 @@
       const galleryImages = asset.images && asset.images.length > 0 ? asset.images : [asset.image];
       galleryImages.forEach((img, idx) => {
         // Validate image source to prevent Google Drive URLs
-        const validatedImg = validateImageSource ? validateImageSource(img) : img;
+        let validatedImg = validateImageSource ? validateImageSource(img) : img;
         if (!validatedImg) {
           console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
           return; // Skip this image
+        }
+        
+        // Normalize path for case sensitivity and spaces (critical for live servers)
+        if (typeof getImagePath === 'function') {
+          validatedImg = getImagePath(validatedImg, '');
+        } else if (typeof normalizeImagePath === 'function') {
+          validatedImg = normalizeImagePath(validatedImg);
         }
         
         const thumb = document.createElement('div');

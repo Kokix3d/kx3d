@@ -472,10 +472,17 @@
 
       const heroImage = document.getElementById('heroMainImage');
       if (heroImage) {
+        // Normalize path for case sensitivity and spaces (critical for live servers)
+        let normalizedImage = model.image;
+        if (typeof getImagePath === 'function') {
+          normalizedImage = getImagePath(normalizedImage, '');
+        } else if (typeof normalizeImagePath === 'function') {
+          normalizedImage = normalizeImagePath(normalizedImage);
+        }
         heroImage.loading = 'eager';
         heroImage.decoding = 'async';
         heroImage.fetchPriority = 'high';
-        heroImage.src = model.image;
+        heroImage.src = normalizedImage;
         heroImage.onerror = () => { heroImage.style.display = 'none'; };
       }
 
@@ -522,11 +529,19 @@
       if (galleryContainer) {
         const galleryImages = (model.images && model.images.length > 0 ? model.images : [model.image]).slice(0, 6);
         galleryImages.forEach((img, idx) => {
+          // Normalize path for case sensitivity and spaces (critical for live servers)
+          let normalizedImg = img;
+          if (typeof getImagePath === 'function') {
+            normalizedImg = getImagePath(normalizedImg, '');
+          } else if (typeof normalizeImagePath === 'function') {
+            normalizedImg = normalizeImagePath(normalizedImg);
+          }
+          
           const thumb = document.createElement('div');
           thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
 
           const thumbImage = document.createElement('img');
-          thumbImage.src = img;
+          thumbImage.src = normalizedImg;
           thumbImage.alt = `Preview ${idx + 1}`;
           thumbImage.loading = 'lazy';
           thumbImage.decoding = 'async';
@@ -536,7 +551,7 @@
           thumb.onclick = () => {
             if (heroImage) {
               heroImage.decoding = 'async';
-              heroImage.src = img;
+              heroImage.src = normalizedImg;
             }
             document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
