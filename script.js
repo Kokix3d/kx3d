@@ -213,41 +213,57 @@ function validateImageSource(imageSrc) {
     }
   }
   
-  // Intersection Observer for data-src images (separate from optimizeImages)
+  // Intersection Observer for data-src images - Optimized to avoid duplicate work
   function initIntersectionObserver() {
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-              // Preload for instant display
-              const imageLoader = new Image();
-              imageLoader.src = img.dataset.src;
-              imageLoader.onload = () => {
-                img.src = img.dataset.src;
+    // Skip if optimizeImages already handles this
+    if (!('IntersectionObserver' in window)) return;
+    
+    const dataSrcImages = document.querySelectorAll('img[data-src]');
+    if (dataSrcImages.length === 0) return;
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src && !img.dataset.loaded) {
+            // Validate and normalize image source
+            const validatedSrc = validateImageSource ? validateImageSource(img.dataset.src) : img.dataset.src;
+            if (!validatedSrc) {
+              img.removeAttribute('data-src');
+              observer.unobserve(img);
+              return;
+            }
+            
+            // Preload for instant display
+            const imageLoader = new Image();
+            imageLoader.src = validatedSrc;
+            imageLoader.onload = () => {
+              requestAnimationFrame(() => {
+                img.src = validatedSrc;
                 img.removeAttribute('data-src');
+                img.dataset.loaded = 'true';
                 // GPU acceleration for smooth rendering
                 img.style.transform = 'translate3d(0, 0, 0)';
-              };
-              imageLoader.onerror = () => {
-                img.removeAttribute('data-src');
-              };
-            }
-            observer.unobserve(img);
+              });
+            };
+            imageLoader.onerror = () => {
+              img.removeAttribute('data-src');
+            };
           }
-        });
-      }, {
-        rootMargin: '200px' // Start loading 200px earlier for 120fps instant display
+          observer.unobserve(img);
+        }
       });
-      
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-      });
-    }
+    }, {
+      rootMargin: '200px' // Start loading 200px earlier for 120fps instant display
+    });
+    
+    dataSrcImages.forEach(img => {
+      imageObserver.observe(img);
+    });
   }
   
-  // Optimized debounce function for performance
+  // Shared utility functions - Optimized and reusable
+  // Debounce: Delay function execution until after wait time
   function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -256,7 +272,7 @@ function validateImageSource(imageSrc) {
     };
   }
   
-  // 120fps Optimized Throttle - Uses requestAnimationFrame for smooth performance
+  // Throttle: Limit function execution frequency
   function throttle(func, limit) {
     let inThrottle;
     let lastRan;
@@ -274,6 +290,10 @@ function validateImageSource(imageSrc) {
       }
     };
   }
+  
+  // Expose utilities globally for reuse
+  window.debounce = debounce;
+  window.throttle = throttle;
   
   // 120fps Smooth Scroll - Uses requestAnimationFrame for ultra-smooth scrolling
   function smoothScrollTo(element, offset = 0) {
@@ -326,10 +346,34 @@ function validateImageSource(imageSrc) {
     }
   }
   
-  // Global Search Functionality - Optimized
+  // Global Search Functionality - Optimized with DOM caching
   function initGlobalSearch() {
     const searchInput = document.getElementById('searchInput');
     if (!searchInput) return;
+    
+    // Cache DOM elements to avoid repeated queries
+    const domCache = {
+      searchInput,
+      grid: null,
+      productCount: null,
+      pagination: null
+    };
+    
+    // Lazy load DOM elements when needed
+    const getGrid = () => {
+      if (!domCache.grid) domCache.grid = document.getElementById('productsGrid');
+      return domCache.grid;
+    };
+    
+    const getProductCount = () => {
+      if (!domCache.productCount) domCache.productCount = document.getElementById('productCount') || document.getElementById('searchResultsCount');
+      return domCache.productCount;
+    };
+    
+    const getPagination = () => {
+      if (!domCache.pagination) domCache.pagination = document.getElementById('pagination');
+      return domCache.pagination;
+    };
 
     // Cache for page data and search results
     let cachedPageData = null;
@@ -476,9 +520,9 @@ function validateImageSource(imageSrc) {
       updateListingPageWithSearch(results, pageData);
     }
 
-    // Show search unavailable message
+    // Show search unavailable message - Uses cached DOM
     function showSearchUnavailable() {
-      const grid = document.getElementById('productsGrid');
+      const grid = getGrid();
       if (grid) {
         const emptyMsg = document.createElement('p');
         emptyMsg.className = 'no-products';
@@ -499,9 +543,9 @@ function validateImageSource(imageSrc) {
       'membership': 'Product'
     };
 
-    // Optimized update listing page with search results
+    // Optimized update listing page with search results - Uses cached DOM elements
     function updateListingPageWithSearch(results, pageData) {
-      let grid = document.getElementById('productsGrid');
+      let grid = getGrid();
       
       // If on homepage and no grid, show search results section
       const isHomepage = document.body.classList.contains('homepage') || 
@@ -514,7 +558,7 @@ function validateImageSource(imageSrc) {
         
         if (searchResultsSection) {
           searchResultsSection.style.display = 'block';
-          grid = document.getElementById('productsGrid');
+          grid = getGrid(); // Refresh cache
           // Scroll to search results
           searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -528,8 +572,8 @@ function validateImageSource(imageSrc) {
       if (!grid) return;
 
       const showingTextElement = document.getElementById('showingText');
-      const productCountElement = document.getElementById('productCount') || document.getElementById('searchResultsCount');
-      const paginationElement = document.getElementById('pagination');
+      const productCountElement = getProductCount();
+      const paginationElement = getPagination();
       const resultsLength = results.length;
       
       // Update counts efficiently
@@ -569,10 +613,10 @@ function validateImageSource(imageSrc) {
         // Pre-compile HTML template parts for better performance
         const cardStart = '<div class="product-card" data-product-id="';
         const cardMiddle = '" data-detail-page="';
-        const cardMiddle2 = '"><div class="product-image-wrapper"><img src="';
+        const cardMiddle2 = '"><div class="product-image-group"><div class="product-image-wrapper"><img src="';
         const cardMiddle3 = '" alt="';
-        const cardMiddle4 = '" class="product-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.src=\'' + imageFallback + '\'"></div><div class="product-info"><h3 class="product-title">';
-        const cardEnd = '</h3></div></div>';
+        const cardMiddle4 = '" class="product-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.src=\'' + imageFallback + '\'"></div></div><div class="product-content-group"><div class="product-info"><h3 class="product-title">';
+        const cardEnd = '</h3></div></div><div class="product-meta-group"></div></div>';
 
         for (let i = 0; i < resultsLength; i++) {
           const product = results[i];
@@ -708,7 +752,7 @@ function validateImageSource(imageSrc) {
   // Preload critical resources
   function preloadCriticalResources() {
     // Preload logo if not already loaded
-    const logo = document.querySelector('.logo');
+    const logo = document.querySelector('.main-header__logo-image');
     if (logo && logo.src) {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -911,8 +955,12 @@ function validateImageSource(imageSrc) {
   // Expose capabilities for use in other scripts
   window.deviceCapabilities = deviceCapabilities;
   
-  // Initialize optimizations - Optimized loading strategy
+  // Initialize optimizations - Optimized loading strategy with better memory management
   function init() {
+    // Critical features - load immediately (blocking)
+    initMobileMenu();
+    initExpandableSearch();
+    
     // Use requestIdleCallback for non-critical optimizations
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
@@ -921,7 +969,7 @@ function validateImageSource(imageSrc) {
         preloadCriticalResources();
       }, { timeout: 2000 });
     } else {
-      // Fallback for older browsers - use setTimeout
+      // Fallback for older browsers - use setTimeout with lower priority
       setTimeout(() => {
         optimizeImages();
         initIntersectionObserver();
@@ -929,15 +977,25 @@ function validateImageSource(imageSrc) {
       }, 100);
     }
     
-    // Critical features - load immediately
-    initMobileMenu();
-    initExpandableSearch();
-    
     // Initialize search after a small delay to ensure data files are loaded
-    setTimeout(() => {
-      initGlobalSearch();
-    }, 100);
+    // Use requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        initGlobalSearch();
+      }, 100);
+    });
   }
+  
+  // Cleanup function for memory management
+  function cleanup() {
+    // Clear any large caches on page unload
+    if (window.searchCache) {
+      window.searchCache.clear();
+    }
+  }
+  
+  // Register cleanup on page unload
+  window.addEventListener('beforeunload', cleanup);
   
   // Optimized DOM ready check
   if (document.readyState === 'loading') {
@@ -1344,27 +1402,47 @@ function validateImageSource(imageSrc) {
     // Repo folders (as on disk):
     // - Blender/3d Models/...  (lowercase "3d", capital "M")
     // - Unreal/3d modles/...  (note: "modles" is intentionally kept as-is)
+    // Optimized: Cache normalized segments to avoid repeated processing
+    const segmentCache = new Map();
     const normalizeKnownSegments = (segment) => {
+      if (segmentCache.has(segment)) return segmentCache.get(segment);
+      
       const s = String(segment);
       const lower = s.toLowerCase();
+      let result = s;
+      
       // Fix case sensitivity: "3D Models" or "3d models" -> "3d Models" (matches actual folder)
-      if (lower === '3d models' || lower === '3d models') return '3d Models';
-      if (lower === '3d modles') return '3d modles';
-      return s;
+      if (lower === '3d models') result = '3d Models';
+      else if (lower === '3d modles') result = '3d modles';
+      
+      segmentCache.set(segment, result);
+      return result;
     };
     
     // URL encode spaces and special characters in path segments
     // Split path, encode each segment, then rejoin
-    const pathParts = imagePath.split('/').map(normalizeKnownSegments);
-    const encodedParts = pathParts.map(part => {
+    const pathParts = imagePath.split('/');
+    const encodedParts = new Array(pathParts.length);
+    
+    for (let i = 0; i < pathParts.length; i++) {
+      let part = normalizeKnownSegments(pathParts[i]);
+      
       // Don't encode if already encoded or if it's a relative path marker
-      if (part === '..' || part === '.' || part === '') return part;
+      if (part === '..' || part === '.' || part === '') {
+        encodedParts[i] = part;
+        continue;
+      }
+      
       // Avoid double-encoding (e.g. "My%20Folder" should stay as-is)
-      if (/%[0-9A-Fa-f]{2}/.test(part)) return part;
+      if (/%[0-9A-Fa-f]{2}/.test(part)) {
+        encodedParts[i] = part;
+        continue;
+      }
+      
       // Encode spaces and special characters (including +, which becomes %2B)
       // This is critical for live servers which are case-sensitive and require URL encoding
-      return encodeURIComponent(part).replace(/%2F/g, '/');
-    });
+      encodedParts[i] = encodeURIComponent(part).replace(/%2F/g, '/');
+    }
     
     return encodedParts.join('/');
   }
@@ -1918,18 +1996,14 @@ function validateImageSource(imageSrc) {
     return globalSearchIndex;
   }
   
-  // Debounce function
-  function debounce(func, wait) {
+  // Debounce function - Use shared utility from main scope
+  const debounce = window.debounce || function(func, wait) {
     let timeout;
     return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
       clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+      timeout = setTimeout(() => func.apply(this, args), wait);
     };
-  }
+  };
   
   // Search function - Enhanced: Case-insensitive partial matching with exact match priority
   function performGlobalSearch(query) {
@@ -1972,8 +2046,10 @@ function validateImageSource(imageSrc) {
       finalResults[i] = rest;
     }
     
-    // Limit cache size
-    if (searchCache.size > 50) {
+    // Limit cache size - Use LRU eviction for better memory management
+    const MAX_CACHE_SIZE = 50;
+    if (searchCache.size >= MAX_CACHE_SIZE) {
+      // Remove oldest entry (first key)
       const firstKey = searchCache.keys().next().value;
       searchCache.delete(firstKey);
     }
@@ -1984,6 +2060,7 @@ function validateImageSource(imageSrc) {
   
   // Render search results - Enhanced with premium UI
   function renderSearchResults(results, query) {
+    // Support both old and new search structure
     const resultsList = document.getElementById('searchResultsList');
     const viewAll = document.getElementById('searchViewAll');
     const viewAllLink = document.getElementById('viewAllLink');
@@ -2077,28 +2154,162 @@ function validateImageSource(imageSrc) {
     }
   }
   
-  // Initialize global search
-  function initGlobalSearch() {
-    const searchContainer = document.getElementById('globalSearchContainer');
-    const searchWrapper = document.getElementById('globalSearchWrapper');
-    const searchInput = document.getElementById('globalSearchInput');
-    const searchDropdown = document.getElementById('globalSearchDropdown');
-    const searchIconMobile = document.getElementById('searchIconBtnMobile');
+  // ============================================
+  // RIGHT SIDE SEARCH PANEL - Mirrors Left Menu
+  // ============================================
+  function initSearchPanel() {
+    const searchTrigger = document.getElementById('searchTrigger');
+    const searchPanel = document.getElementById('searchPanel');
+    const searchPanelClose = document.getElementById('searchPanelClose');
+    const searchPanelOverlay = document.getElementById('searchPanelOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResultsList = document.getElementById('searchResultsList');
     
-    if (!searchContainer || !searchInput || !searchDropdown) return;
+    if (!searchTrigger || !searchPanel) return;
     
-    let isOpen = false;
+    /**
+     * Open the search panel
+     */
+    function openSearchPanel() {
+      searchPanel.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Auto-focus input
+      setTimeout(() => {
+        if (searchInput) {
+          searchInput.focus();
+        }
+      }, 150);
+    }
     
-    // Load search index with retry logic
+    /**
+     * Close the search panel
+     */
+    function closeSearchPanel() {
+      searchPanel.classList.remove('active');
+      document.body.style.overflow = '';
+      if (searchInput) {
+        searchInput.blur();
+        searchInput.value = '';
+      }
+      // Clear results
+      if (searchResultsList) {
+        searchResultsList.innerHTML = '';
+      }
+      const viewAll = document.getElementById('searchViewAll');
+      if (viewAll) {
+        viewAll.style.display = 'none';
+      }
+    }
+    
+    /**
+     * Toggle the search panel
+     */
+    function toggleSearchPanel() {
+      if (searchPanel.classList.contains('active')) {
+        closeSearchPanel();
+      } else {
+        openSearchPanel();
+      }
+    }
+    
+    /**
+     * Handle search input and render results
+     */
+    let searchTimeout;
+    const performSearch = debounce(async () => {
+      if (!searchInput || !searchResultsList) return;
+      
+      const query = searchInput.value.trim();
+      
+      if (query.length === 0) {
+        searchResultsList.innerHTML = '';
+        const viewAll = document.getElementById('searchViewAll');
+        if (viewAll) {
+          viewAll.style.display = 'none';
+        }
+        return;
+      }
+      
+      // Load search index if needed
+      if (globalSearchIndex.length === 0) {
+        await loadGlobalSearchIndex();
+      }
+      
+      // Perform search and render results
+      requestAnimationFrame(() => {
+        const results = performGlobalSearch(query);
+        renderSearchResults(results, query);
+      });
+    }, DEBOUNCE_DELAY);
+    
+    // Search trigger button click
+    searchTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleSearchPanel();
+    });
+    
+    // Close button click
+    if (searchPanelClose) {
+      searchPanelClose.addEventListener('click', closeSearchPanel);
+    }
+    
+    // Overlay click to close
+    if (searchPanelOverlay) {
+      searchPanelOverlay.addEventListener('click', closeSearchPanel);
+    }
+    
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchPanel.classList.contains('active')) {
+        closeSearchPanel();
+      }
+    });
+    
+    // Input event - perform search
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        performSearch();
+      });
+    }
+    
+    // Mouse-based control: Keep panel open when mouse is inside
+    const searchPanelContent = searchPanel.querySelector('.search-panel__content');
+    if (searchPanelContent) {
+      let mouseInsidePanel = false;
+      let closeTimeout;
+      
+      searchPanelContent.addEventListener('mouseenter', () => {
+        mouseInsidePanel = true;
+        clearTimeout(closeTimeout);
+      });
+      
+      searchPanelContent.addEventListener('mouseleave', (e) => {
+        // Check if mouse is moving to overlay (should close immediately)
+        const relatedTarget = e.relatedTarget;
+        if (relatedTarget && relatedTarget.classList.contains('search-panel__overlay')) {
+          mouseInsidePanel = false;
+          closeSearchPanel();
+        } else {
+          mouseInsidePanel = false;
+          // Close panel when mouse leaves panel area (with delay for smooth UX)
+          closeTimeout = setTimeout(() => {
+            if (!mouseInsidePanel && searchPanel.classList.contains('active')) {
+              closeSearchPanel();
+            }
+          }, 300);
+        }
+      });
+    }
+    
+    // Load search index on initialization
     let indexLoadAttempts = 0;
     const maxLoadAttempts = 3;
     
     async function loadSearchIndexWithRetry() {
       try {
         await loadGlobalSearchIndex();
-        console.log(`Global search index loaded: ${globalSearchIndex.length} products`);
+        console.log(`Search index loaded: ${globalSearchIndex.length} products`);
         
-        // If index is still empty after loading, wait a bit and retry
         if (globalSearchIndex.length === 0 && indexLoadAttempts < maxLoadAttempts) {
           indexLoadAttempts++;
           setTimeout(loadSearchIndexWithRetry, 500);
@@ -2113,275 +2324,81 @@ function validateImageSource(imageSrc) {
     }
     
     loadSearchIndexWithRetry();
-    
-    // Show dropdown
-    function showDropdown() {
-      if (!isOpen && searchInput.value.trim().length > 0) {
-        searchDropdown.classList.add('active');
-        isOpen = true;
-      }
-    }
-    
-    // Hide dropdown
-    function hideDropdown() {
-      searchDropdown.classList.remove('active');
-      isOpen = false;
-    }
-    
-    // Perform search and update UI - Enhanced with performance optimizations
-    let searchTimeout;
-    const performSearch = debounce(async () => {
-      const query = searchInput.value.trim();
-      
-      if (query.length === 0) {
-        hideDropdown();
-        return;
-      }
-      
-      // Show loading state (optional - can add spinner)
-      if (globalSearchIndex.length === 0) {
-        await loadGlobalSearchIndex();
-      }
-      
-      // Use requestAnimationFrame for smooth UI updates
-      requestAnimationFrame(() => {
-        const results = performGlobalSearch(query);
-        renderSearchResults(results, query);
-        showDropdown();
-      });
-    }, DEBOUNCE_DELAY);
-    
-    // Input event
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      if (query.length > 0) {
-        performSearch();
-      } else {
-        hideDropdown();
-      }
-    });
-    
-    // Focus event
-    searchInput.addEventListener('focus', () => {
-      if (searchInput.value.trim().length > 0) {
-        performSearch();
-      }
-    });
-    
-    // Enhanced keyboard navigation
-    let selectedIndex = -1;
-    const getResultItems = () => resultsList.querySelectorAll('.search-result-item');
-    
-    searchInput.addEventListener('keydown', (e) => {
-      const items = getResultItems();
-      
-      if (e.key === 'Escape') {
-        hideDropdown();
-        searchInput.blur();
-        selectedIndex = -1;
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (selectedIndex >= 0 && items[selectedIndex]) {
-          items[selectedIndex].click();
-        } else {
-          const query = searchInput.value.trim();
-          if (query.length > 0) {
-            const searchPageUrl = `products.html?search=${encodeURIComponent(query)}`;
-            window.location.href = getLinkPath(searchPageUrl);
-          }
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (items.length > 0) {
-          selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
-          if (selectedIndex >= 0) {
-            items[selectedIndex]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-          }
-          items.forEach((item, idx) => {
-            item.classList.toggle('selected', idx === selectedIndex);
-          });
-        }
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (items.length > 0) {
-          selectedIndex = Math.max(selectedIndex - 1, -1);
-          if (selectedIndex >= 0) {
-            items[selectedIndex]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-          }
-          items.forEach((item, idx) => {
-            item.classList.toggle('selected', idx === selectedIndex);
-          });
-        }
-      }
-    });
-    
-    // Click outside to close
-    document.addEventListener('click', (e) => {
-      if (!searchContainer.contains(e.target)) {
-        hideDropdown();
-        selectedIndex = -1;
-      }
-    });
-    
-    // Enhanced mobile search icon toggle
-    if (searchIconMobile) {
-      searchIconMobile.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = searchWrapper.classList.contains('mobile-active');
-        if (isActive) {
-          searchWrapper.classList.remove('mobile-active');
-          searchInput.blur();
-          hideDropdown();
-        } else {
-          searchWrapper.classList.add('mobile-active');
-          setTimeout(() => searchInput.focus(), 100);
-        }
-      });
-      
-      // Close mobile search when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!searchContainer.contains(e.target) && !searchIconMobile.contains(e.target)) {
-          searchWrapper.classList.remove('mobile-active');
-        }
-      });
-    }
-    
-    // Reset selection when new results are rendered
-    const originalRenderSearchResults = renderSearchResults;
-    renderSearchResults = function(results, query) {
-      selectedIndex = -1;
-      originalRenderSearchResults(results, query);
-    };
-    
-    // Expose search functions globally for debugging (optional)
-    window.globalSearchDebug = {
-      getIndexSize: () => globalSearchIndex.length,
-      search: (query) => performGlobalSearch(query),
-      reloadIndex: async () => {
-        globalSearchIndex = [];
-        searchCache.clear();
-        await loadGlobalSearchIndex();
-        return globalSearchIndex.length;
-      }
-    };
   }
   
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobalSearch);
+    document.addEventListener('DOMContentLoaded', initSearchPanel);
   } else {
-    initGlobalSearch();
+    initSearchPanel();
   }
 })();
 
 // ============================================
-// NAVBAR DROPDOWN - SEMANTIC HTML & ACCESSIBLE
+// SLIDE PANEL - Dropdown Submenu Toggle
 // ============================================
 (function() {
   'use strict';
   
-  function initNavbarDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  function initSlidePanelSubmenus() {
+    const slidePanel = document.getElementById('slidePanel');
+    if (!slidePanel) return;
     
-    dropdowns.forEach(dropdown => {
-      const trigger = dropdown.querySelector('.dropdown-trigger');
-      const menu = dropdown.querySelector('.dropdown-menu');
+    // Get all menu items that have children (submenus)
+    const menuItemsWithChildren = slidePanel.querySelectorAll('.slide-panel__item--has-children');
+    
+    menuItemsWithChildren.forEach(item => {
+      const submenu = item.querySelector('.slide-panel__submenu');
+      const link = item.querySelector('.slide-panel__link');
       
-      if (!trigger || !menu) return;
+      if (!submenu || !link) return;
       
-      // Mobile: Toggle on click
-      if (isMobile) {
-        trigger.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Close other dropdowns
-          dropdowns.forEach(other => {
-            if (other !== dropdown) {
-              other.classList.remove('active');
-              const otherTrigger = other.querySelector('.dropdown-trigger');
-              if (otherTrigger) {
-                otherTrigger.setAttribute('aria-expanded', 'false');
-              }
-            }
-          });
-          
-          // Toggle current dropdown
-          const isActive = dropdown.classList.contains('active');
-          dropdown.classList.toggle('active');
-          trigger.setAttribute('aria-expanded', isActive ? 'false' : 'true');
-        });
+      /**
+       * Toggle submenu on parent link click
+       * IMPORTANT: This should NOT close the side panel
+       */
+      link.addEventListener('click', (e) => {
+        // Prevent default navigation and stop event bubbling
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-          if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-            trigger.setAttribute('aria-expanded', 'false');
+        // Toggle active state
+        const isActive = item.classList.contains('active');
+        
+        // Close other open submenus (optional - can be removed if you want multiple open)
+        menuItemsWithChildren.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
           }
         });
-      }
-      
-      // Desktop: Hover support (CSS handles this, but we ensure aria-expanded is updated)
-      if (!isMobile) {
-        dropdown.addEventListener('mouseenter', function() {
-          trigger.setAttribute('aria-expanded', 'true');
-        });
         
-        dropdown.addEventListener('mouseleave', function() {
-          trigger.setAttribute('aria-expanded', 'false');
-        });
-      }
-      
-      // Keyboard navigation support
-      trigger.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          trigger.click();
-        } else if (e.key === 'Escape') {
-          dropdown.classList.remove('active');
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
+        // Toggle current item
+        if (isActive) {
+          item.classList.remove('active');
+        } else {
+          item.classList.add('active');
         }
+        
+        // DO NOT close the side panel - let it stay open
       });
-      
-      // Close dropdown when menu item is clicked (mobile)
-      if (isMobile) {
-        const menuItems = menu.querySelectorAll('a[role="menuitem"]');
-        menuItems.forEach(item => {
-          item.addEventListener('click', function() {
-            dropdown.classList.remove('active');
-            trigger.setAttribute('aria-expanded', 'false');
-          });
-        });
-      }
     });
     
-    // Handle window resize to update mobile/desktop behavior
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function() {
-        const newIsMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (newIsMobile !== isMobile) {
-          // Reset all dropdowns on breakpoint change
-          dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            if (trigger) {
-              trigger.setAttribute('aria-expanded', 'false');
-            }
-          });
-        }
-      }, 250);
+    // Handle submenu item clicks - allow navigation but don't force panel close
+    const submenuLinks = slidePanel.querySelectorAll('.slide-panel__sublink');
+    submenuLinks.forEach(sublink => {
+      sublink.addEventListener('click', (e) => {
+        // Allow navigation to proceed naturally
+        // Panel will close when page navigates or user moves mouse away
+        // Don't force immediate close
+      });
     });
   }
   
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNavbarDropdowns);
+    document.addEventListener('DOMContentLoaded', initSlidePanelSubmenus);
   } else {
-    initNavbarDropdowns();
+    initSlidePanelSubmenus();
   }
 })();
 
@@ -2426,5 +2443,110 @@ function validateImageSource(imageSrc) {
     document.addEventListener('DOMContentLoaded', initScrollToTop);
   } else {
     initScrollToTop();
+  }
+})();
+
+// ============================================
+// NEW HEADER - Hamburger Menu & Slide Panel
+// ============================================
+(function() {
+  'use strict';
+  
+  function initHamburgerMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const slidePanel = document.getElementById('slidePanel');
+    const slidePanelClose = document.getElementById('slidePanelClose');
+    const slidePanelOverlay = document.getElementById('slidePanelOverlay');
+    
+    if (!hamburgerBtn || !slidePanel) return;
+    
+    /**
+     * Open the slide panel
+     */
+    function openPanel() {
+      slidePanel.classList.add('active');
+      hamburgerBtn.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    /**
+     * Close the slide panel
+     */
+    function closePanel() {
+      slidePanel.classList.remove('active');
+      hamburgerBtn.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    /**
+     * Toggle the slide panel
+     */
+    function togglePanel() {
+      if (slidePanel.classList.contains('active')) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    }
+    
+    // Hamburger button click
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePanel();
+    });
+    
+    // Close button click
+    if (slidePanelClose) {
+      slidePanelClose.addEventListener('click', closePanel);
+    }
+    
+    // Overlay click to close
+    if (slidePanelOverlay) {
+      slidePanelOverlay.addEventListener('click', closePanel);
+    }
+    
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && slidePanel.classList.contains('active')) {
+        closePanel();
+      }
+    });
+    
+    // Mouse-based control: Keep panel open when mouse is inside panel
+    // Panel should NOT close when clicking dropdown items
+    const slidePanelContent = slidePanel.querySelector('.slide-panel__content');
+    if (slidePanelContent) {
+      let mouseInsidePanel = false;
+      let closeTimeout;
+      
+      slidePanelContent.addEventListener('mouseenter', () => {
+        mouseInsidePanel = true;
+        clearTimeout(closeTimeout);
+      });
+      
+      slidePanelContent.addEventListener('mouseleave', (e) => {
+        // Check if mouse is moving to overlay (should close)
+        const relatedTarget = e.relatedTarget;
+        if (relatedTarget && relatedTarget.classList.contains('slide-panel__overlay')) {
+          mouseInsidePanel = false;
+          closePanel();
+        } else {
+          mouseInsidePanel = false;
+          // Close panel when mouse leaves (with delay for smooth UX)
+          closeTimeout = setTimeout(() => {
+            if (!mouseInsidePanel && slidePanel.classList.contains('active')) {
+              closePanel();
+            }
+          }, 300);
+        }
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHamburgerMenu);
+  } else {
+    initHamburgerMenu();
   }
 })();

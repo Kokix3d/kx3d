@@ -160,6 +160,16 @@ window.blender3DModels = window.blender3DModels || [
     id: 33,
     title: "Megalania dinosaur Low-poly 3D model",
     image: "../Blender/3D Models/Megalania dinosaur Low-poly 3D model/1.webp"
+  },
+  {
+    id: 34,
+    title: "MOMO YAOYOROZU - Blender 3D",
+    image: "../Blender/3D Models/MOMO YAOYOROZU - Blender 3D/1.webp"
+  },
+  {
+    id: 35,
+    title: "Mitsuri Kanroji - Demon Slayer - Blender 3D",
+    image: "../Blender/3D Models/Mitsuri Kanroji - Demon Slayer - Blender 3D/1.webp"
   }
 ];
 

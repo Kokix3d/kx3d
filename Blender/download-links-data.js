@@ -30,6 +30,8 @@ window.blenderDownloadLinksMap = window.blenderDownloadLinksMap || {
   "The Sixth Doctor - 3D NPR Model": "https://link-center.net/1422046/D1BIbzm87Yvi",
   "US Modern Assault Soldier Low-poly 3D model": "https://link-center.net/1422046/kJQK3uLNFHfz",
   "BlenderKit Monsters Pack 1": "https://link-center.net/1422046/HsbK3pMVPDfg",
-  "BlenderKit Monsters Pack 2": "https://link-center.net/1422046/XbYXz0iK90n4"
+  "BlenderKit Monsters Pack 2": "https://link-center.net/1422046/XbYXz0iK90n4",
+  "MOMO YAOYOROZU - Blender 3D": "",
+  "Mitsuri Kanroji - Demon Slayer - Blender 3D": ""
 };
 

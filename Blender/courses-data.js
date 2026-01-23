@@ -477,6 +477,20 @@ const blenderCourses = [
       "../Blender/Courses/Steampunk Gun Tutorial - Tutorial Full Process/3.webp",
       "../Blender/Courses/Steampunk Gun Tutorial - Tutorial Full Process/4.webp"
     ]
+  },
+  {
+    id: 37,
+    title: "Blender Grease Pencil Draw & Animate 2D Art in a 3D World",
+    folder: "Blender Grease Pencil Draw & Animate 2D Art in a 3D World",
+    image: "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/1.png",
+    images: [
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/1.png",
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/photo_2025-10-26_21-14-49.jpg",
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/photo_2025-10-26_21-14-49 (2).jpg",
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/photo_2025-10-26_21-14-49 (3).jpg",
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/Screenshot 2026-01-22 200638.png",
+      "../Blender/Courses/Blender Grease Pencil Draw & Animate 2D Art in a 3D World/Screenshot 2026-01-22 200646.png"
+    ]
   }
 ];
 
@@ -498,7 +512,8 @@ const courseDownloadLinksMap = {
   "Stylized characters mastered with Blender": "https://direct-link.net/1422046/IWYCW49drqsq",
   "The Art of Effective Rigging 2": "https://direct-link.net/1422046/ZkgqhVPuSkGj",
   "Udemy Blender Career Starter From Zero to StudioReady": "https://link-target.net/1422046/YWf87f3fitGo",
-  "Steampunk Gun Tutorial - Tutorial Full Process": "https://direct-link.net/1422046/GZ7xQsaZSS5C"
+  "Steampunk Gun Tutorial - Tutorial Full Process": "https://direct-link.net/1422046/GZ7xQsaZSS5C",
+  "Blender Grease Pencil Draw & Animate 2D Art in a 3D World": "https://direct-link.net/1422046/JSDAI5njGmNQ"
 };
 
 // Multiple Download Links Mapping (For courses with multiple parts)

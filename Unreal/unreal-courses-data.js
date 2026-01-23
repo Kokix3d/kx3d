@@ -47,7 +47,12 @@ const unrealCourses = window.unrealCourses = [
     folder: "Multiplayer in Unreal with GAS and AWS Dedicated Servers",
     image: "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/image.webp",
     images: [
-      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/image.webp"
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/image.webp",
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/Screenshot 2026-01-22 202800.png",
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/Screenshot 2026-01-22 202819.png",
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/Screenshot 2026-01-22 202827.png",
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/Screenshot 2026-01-22 202833.png",
+      "Courses/Multiplayer in Unreal with GAS and AWS Dedicated Servers/Screenshot 2026-01-22 202841.png"
     ]
   },
   {
@@ -106,16 +111,25 @@ const unrealCourses = window.unrealCourses = [
 const unrealCourseDownloadLinksMap = window.unrealCourseDownloadLinksMap = {
   "Create a First Person Shooter (FPS) Game in Unreal Engine 5": "https://link-target.net/1422046/rqdSQD3IRmzT",
   "Main Menu Masterclass - Unreal Engine": "https://link-hub.net/1422046/Qv7abJNWSKEv",
-  "Quick Environment Creation in UE5": "https://link-center.net/1422046/bOpckIFkHBPX"
+  "Quick Environment Creation in UE5": "https://link-center.net/1422046/bOpckIFkHBPX",
+  "Creating Assets & Architecture for Game Environments": "https://direct-link.net/1422046/ofMXuHal1cRk",
+  "Real life complex materials for UE": "https://link-center.net/1422046/GGmlBffOdMZ4"
 };
 
 // Multiple Download Links Mapping (For courses with multiple parts)
 // Format: "Course Name": { part1: "Link 1", part2: "Link 2" }
 const multipleUnrealCourseDownloadLinksMap = window.multipleUnrealCourseDownloadLinksMap = {
   "Multiplayer in Unreal with GAS and AWS Dedicated Servers": {
-    part1: "https://link-target.net/1422046/placeholder1",
-    part2: "https://link-center.net/1422046/placeholder2",
-    part3: "https://link-hub.net/1422046/placeholder3",
-    part4: "https://direct-link.net/1422046/placeholder4"
+    part1: "https://link-center.net/1422046/If8kPxDs83cx",
+    part2: "https://link-target.net/1422046/iHnCusuPv8Ll",
+    part3: "https://link-target.net/1422046/Ty8jeFsDyIBD",
+    part4: "https://link-center.net/1422046/sbqhnTh9uihS"
+  },
+  "Unreal Engine 5 for artists": {
+    part1: "https://link-hub.net/1422046/5niL4tDvdaJs",
+    part2: "https://direct-link.net/1422046/4lcfCy0gxo4k",
+    part3: "https://link-hub.net/1422046/zB81dJyHdG15",
+    part4: "https://link-center.net/1422046/RoVrlnX9ZKuC",
+    part5: "https://link-target.net/1422046/GNrSZJuYqVtE"
   }
 };

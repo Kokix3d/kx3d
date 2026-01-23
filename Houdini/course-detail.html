@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Course Detail | Kx3d</title>
+  
+  <!-- Critical CSS - Prevents FOUC (Flash of Unstyled Content) -->
+  <style>
+    /* Base dark theme - instant first paint */
+    html, body { 
+      background: #000000 !important; 
+      color: #ffffff !important; 
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    body {
+      min-height: 100vh !important;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+      line-height: 1.6 !important;
+    }
+    *, *::before, *::after { 
+      box-sizing: border-box !important; 
+    }
+    
+    /* Prevent default link styling (blue links) */
+    a {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+    a:visited {
+      color: #ffffff !important;
+    }
+    a:hover {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* New Header - Critical FOUC prevention */
+    body {
+      padding-top: 64px !important;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 56px !important;
+      }
+    }
+    .main-header {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 1000 !important;
+      background: #000000 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+      height: 64px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 1.5rem !important;
+      box-sizing: border-box !important;
+    }
+    .main-header__logo {
+      position: absolute !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 1 !important;
+    }
+    .main-header__logo-image {
+      height: 32px !important;
+      width: auto !important;
+      display: block !important;
+    }
+    .main-header__hamburger {
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      padding: 0.5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+      z-index: 2 !important;
+    }
+    .main-header__hamburger-line {
+      width: 24px !important;
+      height: 2px !important;
+      background: #ffffff !important;
+      display: block !important;
+    }
+    .main-header__search-trigger {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 0.5rem !important;
+      padding: 0.5rem !important;
+      color: rgba(255, 255, 255, 0.8) !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 2 !important;
+    }
+    .search-panel {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 100vh !important;
+      z-index: 9999 !important;
+      pointer-events: none !important;
+    }
+    .search-panel__content {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 400px !important;
+      max-width: 85vw !important;
+      background: #000000 !important;
+      border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+      transform: translateX(100%) !important;
+      transition: transform 0.3s ease-in-out !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5) !important;
+    }
+    .search-panel.active .search-panel__content {
+      transform: translateX(0) !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Container & Main content */
+    .container {
+      width: 100% !important;
+      max-width: min(100rem, 100vw) !important;
+      margin: 0 auto !important;
+      padding: 0 clamp(1rem, 4vw, 2rem) !important;
+    }
+    .main {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+    
+    /* Dropdown menus - prevent unstyled flash */
+    .dropdown {
+      position: relative !important;
+    }
+    .dropdown-menu {
+      background: rgba(0, 0, 0, 0.7) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 8px !important;
+      list-style: none !important;
+      padding: 8px 0 !important;
+      margin: 0 !important;
+    }
+    .dropdown-menu a {
+      color: rgba(255, 255, 255, 0.85) !important;
+      text-decoration: none !important;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: #ffffff !important;
+    }
+    
+    /* Buttons - prevent unstyled flash */
+    button {
+      background: transparent !important;
+      border: none !important;
+      color: #ffffff !important;
+      cursor: pointer !important;
+      font-family: inherit !important;
+    }
+    
+    /* Inputs - prevent unstyled flash */
+    input, textarea, select {
+      background: transparent !important;
+      color: #ffffff !important;
+      border: none !important;
+      font-family: inherit !important;
+    }
+    
+    /* Lists - prevent default styling */
+    ul, ol {
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    /* Images - prevent layout shift */
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+      display: block !important;
+    }
+  </style>
+  
+  <!-- Main stylesheet (blocking load to prevent FOUC) -->
+  <link rel="stylesheet" href="../style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ============================================
+       NEW HEADER - Three Zone Layout
+       ============================================
+       Zone 1: Left - Hamburger Menu (opens left slide panel)
+       Zone 2: Center - Logo (perfectly centered)
+       Zone 3: Right - Search Bar
+       ============================================ -->
+  <header class="main-header">
+    <!-- Zone 1: Left - Hamburger Menu -->
+    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+      <span class="main-header__hamburger-line"></span>
+      <span class="main-header__hamburger-line"></span>
+      <span class="main-header__hamburger-line"></span>
+    </button>
+    
+    <!-- Zone 2: Center - Logo -->
+    <div class="main-header__logo">
+      <a href="../index.html" class="main-header__logo-link">
+        <img src="../logo/white.png" alt="Kx3D Logo" class="main-header__logo-image" width="120" height="40" loading="eager" fetchpriority="high">
+      </a>
+    </div>
+    
+    <!-- Zone 3: Right - Search Icon Trigger -->
+    <button class="main-header__search-trigger" id="searchTrigger" aria-label="Open search">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.89 12.22L17.5 15.83L15.83 17.5L12.22 13.89C11.24 14.58 10.05 15 8.75 15C5.3 15 2.5 12.2 2.5 8.75C2.5 5.3 5.3 2.5 8.75 2.5C12.2 2.5 15 5.3 15 8.75C15 10.05 14.58 11.24 13.89 12.22ZM8.75 13.33C11.24 13.33 13.33 11.24 13.33 8.75C13.33 6.26 11.24 4.17 8.75 4.17C6.26 4.17 4.17 6.26 4.17 8.75C4.17 11.24 6.26 13.33 8.75 13.33Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ============================================
+       LEFT SIDE SLIDE PANEL - Navigation Menu
+       ============================================
+       Completely separate from header - opens from left side
+       ============================================ -->
+  <div class="slide-panel" id="slidePanel">
+    <div class="slide-panel__overlay" id="slidePanelOverlay"></div>
+    <div class="slide-panel__content">
+      <div class="slide-panel__header">
+        <h2 class="slide-panel__title">Navigation</h2>
+        <button class="slide-panel__close" id="slidePanelClose" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="slide-panel__nav">
+        <ul class="slide-panel__menu">
+          <li><a href="../index.html" class="slide-panel__link">Home</a></li>
+          <li><a href="../Membership/membership.html" class="slide-panel__link">Membership</a></li>
+          <li class="slide-panel__item--has-children">
+            <a href="../Blender/3d-models.html" class="slide-panel__link">
+              <span>Blender</span>
+              <svg class="slide-panel__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="slide-panel__submenu">
+              <li><a href="../Blender/3d-models.html" class="slide-panel__sublink">3D Models</a></li>
+              <li><a href="../Blender/addons.html" class="slide-panel__sublink">Addons</a></li>
+              <li><a href="../Blender/assets.html" class="slide-panel__sublink">Assets</a></li>
+              <li><a href="../Blender/brushes.html" class="slide-panel__sublink">Brushes</a></li>
+              <li><a href="../Blender/courses.html" class="slide-panel__sublink">Courses</a></li>
+            </ul>
+          </li>
+          <li class="slide-panel__item--has-children">
+            <a href="../Unreal/3d-models.html" class="slide-panel__link">
+              <span>Unreal</span>
+              <svg class="slide-panel__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="slide-panel__submenu">
+              <li><a href="../Unreal/3d-models.html" class="slide-panel__sublink">3D Models</a></li>
+              <li><a href="../Unreal/plugins.html" class="slide-panel__sublink">Plugins</a></li>
+              <li><a href="../Unreal/assets.html" class="slide-panel__sublink">Assets</a></li>
+              <li><a href="../Unreal/courses.html" class="slide-panel__sublink">Courses</a></li>
+            </ul>
+          </li>
+          <li class="slide-panel__item--has-children">
+            <a href="../ae/plugins.html" class="slide-panel__link">
+              <span>After Effects</span>
+              <svg class="slide-panel__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="slide-panel__submenu">
+              <li><a href="../ae/plugins.html" class="slide-panel__sublink">Plugins</a></li>
+              <li><a href="../ae/assets.html" class="slide-panel__sublink">Assets</a></li>
+              <li><a href="../ae/courses.html" class="slide-panel__sublink">Courses</a></li>
+            </ul>
+          </li>
+          <li class="slide-panel__item--has-children">
+            <a href="../pp/plugins.html" class="slide-panel__link">
+              <span>Premiere Pro</span>
+              <svg class="slide-panel__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="slide-panel__submenu">
+              <li><a href="../pp/plugins.html" class="slide-panel__sublink">Plugins</a></li>
+              <li><a href="../pp/assets.html" class="slide-panel__sublink">Assets</a></li>
+              <li><a href="../pp/courses.html" class="slide-panel__sublink">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../photoshop.html" class="slide-panel__link">Photoshop</a></li>
+          <li class="slide-panel__item--has-children">
+            <a href="assets.html" class="slide-panel__link">
+              <span>Houdini</span>
+              <svg class="slide-panel__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <ul class="slide-panel__submenu">
+              <li><a href="assets.html" class="slide-panel__sublink">Assets</a></li>
+              <li><a href="courses.html" class="slide-panel__sublink">Courses</a></li>
+            </ul>
+          </li>
+          <li><a href="../software.html" class="slide-panel__link">Software</a></li>
+          <li><a href="../templates.html" class="slide-panel__link">Website Templates</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ============================================
+       RIGHT SIDE SLIDE PANEL - Search Panel
+       ============================================
+       Completely separate from header - opens from right side
+       Mirrors the left side navigation panel
+       ============================================ -->
+  <div class="search-panel" id="searchPanel">
+    <div class="search-panel__overlay" id="searchPanelOverlay"></div>
+    <div class="search-panel__content">
+      <div class="search-panel__header">
+        <h2 class="search-panel__title">Search</h2>
+        <button class="search-panel__close" id="searchPanelClose" aria-label="Close search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-panel__body">
+        <div class="search-panel__input-wrapper">
+          <svg class="search-panel__input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.89 12.22L17.5 15.83L15.83 17.5L12.22 13.89C11.24 14.58 10.05 15 8.75 15C5.3 15 2.5 12.2 2.5 8.75C2.5 5.3 5.3 2.5 8.75 2.5C12.2 2.5 15 5.3 15 8.75C15 10.05 14.58 11.24 13.89 12.22ZM8.75 13.33C11.24 13.33 13.33 11.24 13.33 8.75C13.33 6.26 11.24 4.17 8.75 4.17C6.26 4.17 4.17 6.26 4.17 8.75C4.17 11.24 6.26 13.33 8.75 13.33Z" fill="currentColor"/>
+          </svg>
+          <input type="text" class="search-panel__input" id="searchInput" placeholder="Search all products..." autocomplete="off">
+        </div>
+        <div class="search-panel__results" id="searchResults">
+          <div class="search-panel__results-list" id="searchResultsList"></div>
+          <div class="search-panel__view-all" id="searchViewAll" style="display: none;">
+            <a href="#" class="search-panel__view-all-link" id="viewAllLink">View all results</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main product-detail-page">
+    <div class="container">
+      
+      <div class="product-hero-grid">
+        <div class="hero-left-column">
+          <div class="hero-image-wrapper">
+            <img src="" alt="Course Preview" class="hero-main-image" id="heroMainImage" loading="eager" decoding="async" fetchpriority="high">
+          </div>
+          
+          <div class="preview-gallery-row">
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+          </div>
+        </div>
+        
+        <div class="hero-info-panel">
+          <h1 class="product-hero-title" id="productTitle">Course Title</h1>
+          
+          <div class="product-meta-single-line">
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="uploadDate">Uploaded 2 days ago</span>
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM8 14C4.69 14 2 11.31 2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14ZM7.5 4V8.5L11 10.5L10.25 11.75L6 9.25V4H7.5Z" fill="currentColor"/>
+              </svg>
+              <span id="viewCount">1.2K views</span>
+            </span>
+          </div>
+          
+          <p class="product-description" id="productDescription">
+            If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
+          </p>
+          
+          <button type="button" class="download-btn-primary" id="downloadBtn">
+            <span>Download Now</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none; flex-wrap: wrap;">
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+              <span>Download Part 1</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+              <span>Download Part 2</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart3">
+              <span>Download Part 3</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart4">
+              <span>Download Part 4</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart5">
+              <span>Download Part 5</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart6">
+              <span>Download Part 6</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart7">
+              <span>Download Part 7</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="download-btn-primary download-btn-part" id="downloadBtnPart8">
+              <span>Download Part 8</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script.js"></script>
+  <script>
+    // Image Source Validation - Ensure validateImageSource is available in this scope
+    if (typeof validateImageSource === 'undefined') {
+      function validateImageSource(imageSrc) {
+        if (!imageSrc || typeof imageSrc !== 'string') return null;
+        // Block Google Drive URLs from being used as preview images
+        if (imageSrc.includes('drive.google.com') || 
+            imageSrc.includes('googleusercontent.com') ||
+            imageSrc.includes('thumbnail?id=') ||
+            imageSrc.includes('uc?export=view')) {
+          console.warn('Google Drive URL blocked from preview:', imageSrc);
+          return null;
+        }
+        return imageSrc; // Allow local paths
+      }
+    }
+  </script>
+  <script src="./houdini-courses-data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = parseInt(urlParams.get('id'));
+    const course = houdiniCourses.find(c => c.id === courseId);
+    
+    if (!course) {
+      document.querySelector('.container').innerHTML = '<p class="error-message">Course not found</p>';
+    } else {
+      const heroImage = document.getElementById('heroMainImage');
+      if (heroImage) {
+        // Validate image source - Google Drive URLs should ONLY be used for downloads, NOT previews
+        const validatedImage = validateImageSource ? validateImageSource(course.image) : course.image;
+        if (!validatedImage) {
+          console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', course.image);
+          heroImage.style.display = 'none';
+        } else {
+          heroImage.loading = 'eager';
+          heroImage.decoding = 'async';
+          heroImage.fetchPriority = 'high';
+          heroImage.src = validatedImage;
+        }
+      }
+      document.getElementById('productTitle').textContent = course.title;
+      
+      function getTimeAgo(uploadDate) {
+        const now = new Date();
+        const diffTime = Math.abs(now - uploadDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffTime / (1000 * 60));
+        if (diffDays > 0) return `Uploaded ${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        if (diffHours > 0) return `Uploaded ${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffMinutes > 0) return `Uploaded ${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        return 'Uploaded just now';
+      }
+      
+      const daysAgo = Math.max(1, Math.floor(40 - course.id) / 2);
+      const uploadDate = new Date();
+      uploadDate.setDate(uploadDate.getDate() - daysAgo);
+      const uploadDateElement = document.getElementById('uploadDate');
+      if (uploadDateElement) {
+        uploadDateElement.textContent = getTimeAgo(uploadDate);
+        setInterval(() => {
+          uploadDateElement.textContent = getTimeAgo(uploadDate);
+        }, 60000);
+      }
+      
+      function formatViews(count) {
+        if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
+        return count + ' views';
+      }
+      const viewCountKey = `houdini_course_views_${course.id}`;
+      let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
+      viewCount++;
+      localStorage.setItem(viewCountKey, viewCount.toString());
+      const viewCountElement = document.getElementById('viewCount');
+      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+      
+      // IMPORTANT: Validate all image sources - Google Drive URLs should ONLY be used for downloads, NOT previews
+      const galleryContainer = document.getElementById('galleryThumbnails');
+      const galleryImages = course.images && course.images.length > 0 ? course.images : [course.image];
+      galleryImages.forEach((img, idx) => {
+        // Validate image source to prevent Google Drive URLs
+        const validatedImg = validateImageSource ? validateImageSource(img) : img;
+        if (!validatedImg) {
+          console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
+          return; // Skip this image
+        }
+        
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
+        
+        const thumbImage = document.createElement('img');
+        thumbImage.src = validatedImg;
+        thumbImage.alt = `Preview ${idx + 1}`;
+        thumbImage.loading = 'lazy';
+        thumbImage.decoding = 'async';
+        thumbImage.onerror = () => { thumb.style.display = 'none'; };
+        
+        thumb.appendChild(thumbImage);
+        thumb.onclick = () => {
+          if (heroImage) {
+            heroImage.decoding = 'async';
+            heroImage.src = validatedImg; // Use validated image source
+          }
+          document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        };
+        galleryContainer.appendChild(thumb);
+      });
+      
+      const multipleLinks = multipleCourseDownloadLinksMap[course.title];
+      const downloadBtn = document.getElementById('downloadBtn');
+      const downloadButtonsMultiple = document.getElementById('downloadButtonsMultiple');
+      const downloadLink = courseDownloadLinksMap[course.title];
+
+      if (multipleLinks) {
+        if (downloadBtn) downloadBtn.style.display = 'none';
+        if (downloadButtonsMultiple) {
+          downloadButtonsMultiple.style.display = 'flex';
+          downloadButtonsMultiple.style.gap = '8px';
+          downloadButtonsMultiple.style.flexDirection = 'row';
+          downloadButtonsMultiple.style.flexWrap = 'wrap';
+          downloadButtonsMultiple.style.alignItems = 'center';
+        }
+
+        const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
+        if (downloadBtnPart1) {
+          downloadBtnPart1.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart1.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '') {
+              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 1 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
+        if (downloadBtnPart2) {
+          downloadBtnPart2.style.flex = '1 1 calc(50% - 8px)';
+          downloadBtnPart2.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '') {
+              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
+            } else {
+              alert('Part 2 download link not available. Please contact support.');
+            }
+          }, false);
+        }
+
+        const downloadBtnPart3 = document.getElementById('downloadBtnPart3');
+        if (downloadBtnPart3) {
+          if (multipleLinks.part3 === undefined) {
+            downloadBtnPart3.style.display = 'none';
+          } else {
+            downloadBtnPart3.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart3.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part3 && multipleLinks.part3.trim() !== '') {
+                window.open(multipleLinks.part3, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 3 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart4 = document.getElementById('downloadBtnPart4');
+        if (downloadBtnPart4) {
+          if (multipleLinks.part4 === undefined) {
+            downloadBtnPart4.style.display = 'none';
+          } else {
+            downloadBtnPart4.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart4.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part4 && multipleLinks.part4.trim() !== '') {
+                window.open(multipleLinks.part4, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 4 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart5 = document.getElementById('downloadBtnPart5');
+        if (downloadBtnPart5) {
+          if (multipleLinks.part5 === undefined) {
+            downloadBtnPart5.style.display = 'none';
+          } else {
+            downloadBtnPart5.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart5.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part5 && multipleLinks.part5.trim() !== '') {
+                window.open(multipleLinks.part5, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 5 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart6 = document.getElementById('downloadBtnPart6');
+        if (downloadBtnPart6) {
+          if (multipleLinks.part6 === undefined) {
+            downloadBtnPart6.style.display = 'none';
+          } else {
+            downloadBtnPart6.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart6.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part6 && multipleLinks.part6.trim() !== '') {
+                window.open(multipleLinks.part6, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 6 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart7 = document.getElementById('downloadBtnPart7');
+        if (downloadBtnPart7) {
+          if (multipleLinks.part7 === undefined) {
+            downloadBtnPart7.style.display = 'none';
+          } else {
+            downloadBtnPart7.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart7.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part7 && multipleLinks.part7.trim() !== '') {
+                window.open(multipleLinks.part7, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 7 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+
+        const downloadBtnPart8 = document.getElementById('downloadBtnPart8');
+        if (downloadBtnPart8) {
+          if (multipleLinks.part8 === undefined) {
+            downloadBtnPart8.style.display = 'none';
+          } else {
+            downloadBtnPart8.style.flex = '1 1 calc(50% - 8px)';
+            downloadBtnPart8.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (multipleLinks.part8 && multipleLinks.part8.trim() !== '') {
+                window.open(multipleLinks.part8, '_blank', 'noopener,noreferrer');
+              } else {
+                alert('Part 8 download link not available. Please contact support.');
+              }
+            }, false);
+          }
+        }
+      } else if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (downloadLink && downloadLink.trim() !== '') {
+            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+          } else {
+            alert('Download link not available for this course. Please contact support.');
+          }
+        }, false);
+      }
+    }
+  </script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
