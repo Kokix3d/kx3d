@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -209,13 +210,21 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Blender sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="blender-subnav" aria-label="Blender section navigation">
+        <a href="3d-models.html" class="blender-subnav__link blender-subnav__link--active">3D Models</a>
+        <a href="addons.html" class="blender-subnav__link">Addons</a>
+        <a href="assets.html" class="blender-subnav__link">Assets</a>
+        <a href="brushes.html" class="blender-subnav__link">Brushes</a>
+        <a href="courses.html" class="blender-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -362,7 +371,6 @@
 
   <main class="main product-detail-page">
     <div class="container">
-      
       <!-- Hero Section with Perfect Alignment -->
       <div class="product-hero-grid">
         <!-- Left Column: Image + Gallery (Aligned) -->
@@ -404,12 +412,12 @@
             If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
           </p>
           
-          <button type="button" class="download-btn-primary" id="downloadBtn">
+          <a href="#" class="download-btn-primary" id="downloadBtn" target="_blank" rel="noopener noreferrer">
             <span>Download Now</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -417,25 +425,8 @@
   </main>
 
   <script src="../script.js"></script>
-  <!-- Auto-reload for development - Remove in production -->
-  <script src="../auto-reload.js"></script>
   <script>
-    // Image Source Validation - Ensure validateImageSource is available in this scope
-    // If not defined in script.js, define it here as a fallback
-    if (typeof validateImageSource === 'undefined') {
-      function validateImageSource(imageSrc) {
-        if (!imageSrc || typeof imageSrc !== 'string') return null;
-        // Block Google Drive URLs from being used as preview images
-        if (imageSrc.includes('drive.google.com') || 
-            imageSrc.includes('googleusercontent.com') ||
-            imageSrc.includes('thumbnail?id=') ||
-            imageSrc.includes('uc?export=view')) {
-          console.warn('Google Drive URL blocked from preview:', imageSrc);
-          return null;
-        }
-        return imageSrc; // Allow local paths
-      }
-    }
+    // validateImageSource is now globally available from script.js
   </script>
   <script>
     // Get product ID from URL
@@ -1088,27 +1079,18 @@
           product.downloadLink = downloadLinksMap[product.title];
         }
         
-        // Add click handler
-        downloadBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Get download link from product or mapping
-          let downloadLink = product.downloadLink;
-          
-          // If still no link, try mapping again
-          if (!downloadLink && downloadLinksMap[product.title]) {
-            downloadLink = downloadLinksMap[product.title];
-            product.downloadLink = downloadLink; // Cache it
-          }
-          
-          if (downloadLink && downloadLink.trim() !== '') {
-            // Open link in new tab
-            window.open(downloadLink, '_blank', 'noopener,noreferrer');
-          } else {
-            alert('Download link not available for this product. Please contact support.');
-          }
-        }, false);
+        // Set download link directly on <a> tag
+        let downloadLink = product.downloadLink;
+        if (!downloadLink && downloadLinksMap[product.title]) {
+          downloadLink = downloadLinksMap[product.title];
+        }
+        
+        if (downloadLink && downloadLink.trim() !== '') {
+          downloadBtn.href = downloadLink;
+        } else {
+          downloadBtn.style.display = 'none';
+          console.warn('Download link not available for product:', product.title);
+        }
       }
     });
   </script>

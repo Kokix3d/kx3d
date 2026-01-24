@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -209,13 +210,20 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Unreal sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="unreal-subnav" aria-label="Unreal section navigation">
+        <a href="3d-models.html" class="unreal-subnav__link">3D Models</a>
+        <a href="plugins.html" class="unreal-subnav__link">Plugins</a>
+        <a href="assets.html" class="unreal-subnav__link unreal-subnav__link--active">Assets</a>
+        <a href="courses.html" class="unreal-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -397,44 +405,44 @@
             If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
           </p>
 
-          <button type="button" class="download-btn-primary" id="downloadBtn">
+          <a href="#" class="download-btn-primary" id="downloadBtn" target="_blank" rel="noopener noreferrer">
             <span>Download Now</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
 
           <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none; flex-wrap: wrap;">
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart1" target="_blank" rel="noopener noreferrer">
               <span>Download Part 1</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+            </a>
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart2" target="_blank" rel="noopener noreferrer">
               <span>Download Part 2</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart3">
+            </a>
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart3" target="_blank" rel="noopener noreferrer">
               <span>Download Part 3</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart4">
+            </a>
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart4" target="_blank" rel="noopener noreferrer">
               <span>Download Part 4</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart5">
+            </a>
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart5" target="_blank" rel="noopener noreferrer">
               <span>Download Part 5</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -442,7 +450,6 @@
   </main>
 
   <script src="../script.js"></script>
-  <script src="../auto-reload.js"></script>
   <script>
     // Download Links Mapping - Yahan product name aur link add karein
     // Format: "Product Name": "Download Link"
@@ -925,29 +932,21 @@
         const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
         if (downloadBtnPart1) {
           downloadBtnPart1.style.flex = '1 1 calc(50% - 8px)';
-          downloadBtnPart1.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '') {
-              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
-            } else {
-              alert('Part 1 download link not available. Please contact support.');
-            }
-          }, false);
+          if (multipleLinks.part1 && multipleLinks.part1.trim() !== '') {
+            downloadBtnPart1.href = multipleLinks.part1;
+          } else {
+            downloadBtnPart1.style.display = 'none';
+          }
         }
 
         const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
         if (downloadBtnPart2) {
           downloadBtnPart2.style.flex = '1 1 calc(50% - 8px)';
-          downloadBtnPart2.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '') {
-              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
-            } else {
-              alert('Part 2 download link not available. Please contact support.');
-            }
-          }, false);
+          if (multipleLinks.part2 && multipleLinks.part2.trim() !== '') {
+            downloadBtnPart2.href = multipleLinks.part2;
+          } else {
+            downloadBtnPart2.style.display = 'none';
+          }
         }
 
         const downloadBtnPart3 = document.getElementById('downloadBtnPart3');
@@ -956,15 +955,11 @@
             downloadBtnPart3.style.display = 'none';
           } else {
             downloadBtnPart3.style.flex = '1 1 calc(50% - 8px)';
-            downloadBtnPart3.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (multipleLinks.part3 && multipleLinks.part3.trim() !== '') {
-                window.open(multipleLinks.part3, '_blank', 'noopener,noreferrer');
-              } else {
-                alert('Part 3 download link not available. Please contact support.');
-              }
-            }, false);
+            if (multipleLinks.part3 && multipleLinks.part3.trim() !== '') {
+              downloadBtnPart3.href = multipleLinks.part3;
+            } else {
+              downloadBtnPart3.style.display = 'none';
+            }
           }
         }
 
@@ -974,15 +969,11 @@
             downloadBtnPart4.style.display = 'none';
           } else {
             downloadBtnPart4.style.flex = '1 1 calc(50% - 8px)';
-            downloadBtnPart4.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (multipleLinks.part4 && multipleLinks.part4.trim() !== '') {
-                window.open(multipleLinks.part4, '_blank', 'noopener,noreferrer');
-              } else {
-                alert('Part 4 download link not available. Please contact support.');
-              }
-            }, false);
+            if (multipleLinks.part4 && multipleLinks.part4.trim() !== '') {
+              downloadBtnPart4.href = multipleLinks.part4;
+            } else {
+              downloadBtnPart4.style.display = 'none';
+            }
           }
         }
 
@@ -992,27 +983,20 @@
             downloadBtnPart5.style.display = 'none';
           } else {
             downloadBtnPart5.style.flex = '1 1 calc(50% - 8px)';
-            downloadBtnPart5.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (multipleLinks.part5 && multipleLinks.part5.trim() !== '') {
-                window.open(multipleLinks.part5, '_blank', 'noopener,noreferrer');
-              } else {
-                alert('Part 5 download link not available. Please contact support.');
-              }
-            }, false);
+            if (multipleLinks.part5 && multipleLinks.part5.trim() !== '') {
+              downloadBtnPart5.href = multipleLinks.part5;
+            } else {
+              downloadBtnPart5.style.display = 'none';
+            }
           }
         }
       } else if (downloadBtn) {
-        downloadBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (downloadLink && downloadLink.trim() !== '') {
-            window.open(downloadLink, '_blank', 'noopener,noreferrer');
-          } else {
-            alert('Download link not available for this asset. Please contact support.');
-          }
-        }, false);
+        if (downloadLink && downloadLink.trim() !== '') {
+          downloadBtn.href = downloadLink;
+        } else {
+          downloadBtn.style.display = 'none';
+          console.warn('Download link not available for asset:', asset.title);
+        }
       }
     }
   </script>

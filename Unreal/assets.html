@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -209,13 +210,20 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Unreal sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="unreal-subnav" aria-label="Unreal section navigation">
+        <a href="3d-models.html" class="unreal-subnav__link">3D Models</a>
+        <a href="plugins.html" class="unreal-subnav__link">Plugins</a>
+        <a href="assets.html" class="unreal-subnav__link unreal-subnav__link--active">Assets</a>
+        <a href="courses.html" class="unreal-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -391,7 +399,6 @@
 </main>
 
 <script src="../script.js"></script>
-<script src="../auto-reload.js"></script>
 <script src="./unreal-assets-data.js"></script>
 <script>
   // Product data loaded from unreal-assets-data.js
@@ -466,7 +473,7 @@
           card.className = 'product-card';
           card.onclick = () => {
             saveListingState();
-            window.open(p.detailUrl || ('asset-detail.html?id=' + p.id), '_blank', 'noopener,noreferrer');
+            window.location.href = p.detailUrl || ('asset-detail.html?id=' + p.id);
           };
           const esc = p.title.replace(/"/g, '&quot;');
           card.innerHTML = `<div class="product-image-group"><div class="product-image-wrapper"><img src="${p.image}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div></div><div class="product-content-group"><div class="product-info"><h3 class="product-title">${p.title}</h3></div></div><div class="product-meta-group"></div>`;

@@ -204,6 +204,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  
 </head>
 <body>
   <!-- ============================================
@@ -214,13 +215,21 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Blender sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="blender-subnav" aria-label="Blender section navigation">
+        <a href="3d-models.html" class="blender-subnav__link">3D Models</a>
+        <a href="addons.html" class="blender-subnav__link blender-subnav__link--active">Addons</a>
+        <a href="assets.html" class="blender-subnav__link">Assets</a>
+        <a href="brushes.html" class="blender-subnav__link">Brushes</a>
+        <a href="courses.html" class="blender-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -401,8 +410,6 @@
   </main>
 
   <script src="../script.js"></script>
-  <!-- Auto-reload for development - Remove in production -->
-  <script src="../auto-reload.js"></script>
   <script>
     // Product data - Each folder is one product, using folder name as title
     // First image from each folder is used as thumbnail
@@ -811,7 +818,7 @@
               card.className = 'product-card';
               card.onclick = () => {
                 saveListingState();
-                window.open('addon-detail.html?id=' + product.id, '_blank', 'noopener,noreferrer');
+                window.location.href = 'addon-detail.html?id=' + product.id;
               };
               
               const escapedTitle = product.title.replace(/"/g, '&quot;');

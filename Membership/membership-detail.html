@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     /* Optimized Grid Layout for Adobe Creative Cloud */
     #productDescription {
@@ -480,19 +481,18 @@
             <!-- Description will be set dynamically via JavaScript -->
           </div>
 
-          <button type="button" class="download-btn-primary" id="downloadBtn">
+          <a href="#" class="download-btn-primary" id="downloadBtn" target="_blank" rel="noopener noreferrer">
             <span>Download Now</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </main>
 
   <script src="../script.js"></script>
-  <script src="../auto-reload.js"></script>
   <script src="./membership-data.js"></script>
   <script>
     // Wait for DOM and data to be ready
@@ -701,15 +701,12 @@
           if (buttonSpan) buttonSpan.textContent = 'Buy Now';
         }
         
-        downloadBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (downloadLink?.trim()) {
-            window.open(downloadLink, '_blank', 'noopener,noreferrer');
-          } else {
-            alert('Download link not available for this membership. Please contact support.');
-          }
-        });
+        if (downloadLink?.trim()) {
+          downloadBtn.href = downloadLink;
+        } else {
+          downloadBtn.style.display = 'none';
+          console.warn('Download link not available for membership:', membership.title);
+        }
       }
     }
     

@@ -1,9 +1,6 @@
-// Products Array - Add your products here
-const products = [];
-
 // Image Source Validation - Prevent Google Drive URLs from being used as preview images
-// Google Drive links should ONLY be used for downloads, NOT for preview images
-function validateImageSource(imageSrc) {
+// Expose globally so HTML files can use it without duplication
+window.validateImageSource = function validateImageSource(imageSrc) {
   if (!imageSrc || typeof imageSrc !== 'string') {
     return null; // Invalid source
   }
@@ -13,7 +10,7 @@ function validateImageSource(imageSrc) {
       imageSrc.includes('googleusercontent.com') ||
       imageSrc.includes('thumbnail?id=') ||
       imageSrc.includes('uc?export=view')) {
-    console.warn('Google Drive URL detected in preview image source. Drive links should only be used for downloads, not previews:', imageSrc);
+    // Google Drive URL blocked from preview images
     return null; // Return null to prevent Drive URLs from being used
   }
   
@@ -44,12 +41,11 @@ function validateImageSource(imageSrc) {
     return imageSrc; // YouTube thumbnails are allowed (used in index.html)
   }
   
-  console.warn('External URL detected in preview image source. Only local paths should be used for previews:', imageSrc);
+    // External URL blocked from preview images
   return null; // Block external URLs
-}
+};
 
 // Security: Prevent Google Drive link crawling and prefetching
-// This ensures Drive links are only used for downloads, not previews
 (function preventDriveCrawling() {
   'use strict';
   
@@ -59,7 +55,7 @@ function validateImageSource(imageSrc) {
     window.fetch = function(...args) {
       const url = args[0];
       if (typeof url === 'string' && (url.includes('drive.google.com') || url.includes('googleusercontent.com'))) {
-        console.warn('Blocked fetch request to Google Drive (Drive links should only be used for downloads):', url);
+        // Blocked fetch request to Google Drive
         return Promise.reject(new Error('Google Drive URLs cannot be fetched for preview purposes'));
       }
       return originalFetch.apply(this, args);
@@ -75,7 +71,7 @@ function validateImageSource(imageSrc) {
       element.setAttribute = function(name, value) {
         if (name === 'src' && typeof value === 'string' && 
             (value.includes('drive.google.com') || value.includes('googleusercontent.com'))) {
-          console.warn('Blocked iframe creation with Google Drive URL (Drive links should only be used for downloads):', value);
+          // Blocked iframe creation with Google Drive URL
           return; // Block the iframe
         }
         return originalSetAttribute.call(this, name, value);
@@ -111,7 +107,7 @@ function validateImageSource(imageSrc) {
             if (img.dataset.src && !img.src) {
               const validatedSrc = validateImageSource(img.dataset.src);
               if (!validatedSrc) {
-                console.warn('Blocked Google Drive URL from being used as preview image:', img.dataset.src);
+                // Blocked Google Drive URL from preview image
                 img.style.display = 'none'; // Hide invalid image
                 observer.unobserve(img);
                 return;
@@ -142,7 +138,7 @@ function validateImageSource(imageSrc) {
             if (img.src && !img.dataset.loaded) {
               const validatedSrc = validateImageSource(img.src);
               if (!validatedSrc) {
-                console.warn('Blocked Google Drive URL from being used as preview image:', img.src);
+                // Blocked Google Drive URL from preview image
                 img.style.display = 'none'; // Hide invalid image
                 observer.unobserve(img);
                 return;
@@ -213,54 +209,7 @@ function validateImageSource(imageSrc) {
     }
   }
   
-  // Intersection Observer for data-src images - Optimized to avoid duplicate work
-  function initIntersectionObserver() {
-    // Skip if optimizeImages already handles this
-    if (!('IntersectionObserver' in window)) return;
-    
-    const dataSrcImages = document.querySelectorAll('img[data-src]');
-    if (dataSrcImages.length === 0) return;
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src && !img.dataset.loaded) {
-            // Validate and normalize image source
-            const validatedSrc = validateImageSource ? validateImageSource(img.dataset.src) : img.dataset.src;
-            if (!validatedSrc) {
-              img.removeAttribute('data-src');
-              observer.unobserve(img);
-              return;
-            }
-            
-            // Preload for instant display
-            const imageLoader = new Image();
-            imageLoader.src = validatedSrc;
-            imageLoader.onload = () => {
-              requestAnimationFrame(() => {
-                img.src = validatedSrc;
-                img.removeAttribute('data-src');
-                img.dataset.loaded = 'true';
-                // GPU acceleration for smooth rendering
-                img.style.transform = 'translate3d(0, 0, 0)';
-              });
-            };
-            imageLoader.onerror = () => {
-              img.removeAttribute('data-src');
-            };
-          }
-          observer.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '200px' // Start loading 200px earlier for 120fps instant display
-    });
-    
-    dataSrcImages.forEach(img => {
-      imageObserver.observe(img);
-    });
-  }
+  // initIntersectionObserver removed - optimizeImages already handles all image loading
   
   // Shared utility functions - Optimized and reusable
   // Debounce: Delay function execution until after wait time
@@ -295,56 +244,7 @@ function validateImageSource(imageSrc) {
   window.debounce = debounce;
   window.throttle = throttle;
   
-  // 120fps Smooth Scroll - Uses requestAnimationFrame for ultra-smooth scrolling
-  function smoothScrollTo(element, offset = 0) {
-    if (!element) return;
-    
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset + offset;
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = Math.min(Math.abs(distance) * 0.5, 600); // Cap at 600ms
-    let startTime = null;
-    
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      
-      // Easing function for smooth deceleration
-      const ease = 1 - Math.pow(1 - progress, 3);
-      
-      window.scrollTo(0, startPosition + distance * ease);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animation);
-      }
-    }
-    
-    requestAnimationFrame(animation);
-  }
-  
-  // 120fps Optimized: Batch DOM reads/writes to prevent layout thrashing
-  const domUpdateQueue = [];
-  let rafScheduled = false;
-  
-  function batchDOMUpdate(callback) {
-    domUpdateQueue.push(callback);
-    if (!rafScheduled) {
-      rafScheduled = true;
-      requestAnimationFrame(() => {
-        // Batch all reads first
-        const reads = domUpdateQueue.filter(fn => fn.type === 'read');
-        reads.forEach(fn => fn());
-        
-        // Then batch all writes
-        const writes = domUpdateQueue.filter(fn => fn.type === 'write');
-        writes.forEach(fn => fn());
-        
-        domUpdateQueue.length = 0;
-        rafScheduled = false;
-      });
-    }
-  }
+  // smoothScrollTo and batchDOMUpdate removed - unused functions
   
   // Global Search Functionality - Optimized with DOM caching
   function initGlobalSearch() {
@@ -408,15 +308,11 @@ function validateImageSource(imageSrc) {
           cachedPageData = { data: windowData, type: item.type, detailPage: item.detailPage };
           return cachedPageData;
         }
-        // Fallback to global scope
-        try {
-          const globalData = eval(globalVar);
-          if (globalData && Array.isArray(globalData) && globalData.length > 0) {
-            cachedPageData = { data: globalData, type: item.type, detailPage: item.detailPage };
-            return cachedPageData;
-          }
-        } catch (e) {
-          // Variable doesn't exist, continue
+        // Fallback: Check window object (safer than eval)
+        const globalData = window[globalVar];
+        if (globalData && Array.isArray(globalData) && globalData.length > 0) {
+          cachedPageData = { data: globalData, type: item.type, detailPage: item.detailPage };
+          return cachedPageData;
         }
       }
       
@@ -646,7 +542,8 @@ function validateImageSource(imageSrc) {
         grid.addEventListener('click', (e) => {
           const card = e.target.closest('.product-card');
           if (card && card.dataset.productId) {
-            window.open(card.dataset.detailPage + '?id=' + card.dataset.productId, '_blank', 'noopener,noreferrer');
+            // Open product detail page in same tab
+            window.location.href = card.dataset.detailPage + '?id=' + card.dataset.productId;
           }
         }, { passive: true });
         clickHandlerAttached = true;
@@ -762,83 +659,7 @@ function validateImageSource(imageSrc) {
     }
   }
   
-  // Expandable Search for 1366×768 and iPad - Premium Animation
-  function initExpandableSearch() {
-    const searchWrapper = document.querySelector('.search-bar-wrapper');
-    const searchInput = document.getElementById('searchInput');
-    const searchContainer = document.querySelector('.search-container');
-    
-    if (!searchWrapper || !searchInput || !searchContainer) return;
-    
-    // Check if we're in expandable search range (iPad, or Mobile)
-    function checkScreenSize() {
-      const isiPad = window.matchMedia('(min-width: 768px) and (max-width: 1024px)').matches;
-      const isMobile = window.matchMedia('(max-width: 767px)').matches;
-      return isiPad || isMobile;
-    }
-    
-    if (!checkScreenSize()) return; // Only for expandable search enabled resolutions
-    
-    // Click on search container to expand - Ultra-smooth 60fps animation
-    searchContainer.addEventListener('click', (e) => {
-      if (!searchWrapper.classList.contains('expanded')) {
-        e.stopPropagation();
-        // Use double RAF for guaranteed smooth animation
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            searchWrapper.classList.add('expanded');
-            // Force GPU layer
-            searchWrapper.style.willChange = 'width, padding, border-radius';
-            // Focus after animation starts
-            requestAnimationFrame(() => {
-              searchInput.focus();
-            });
-          });
-        });
-      }
-    });
-    
-    // Clean up will-change after animation completes
-    const transitionDuration = 400; // Match CSS transition duration
-    searchWrapper.addEventListener('transitionend', () => {
-      searchWrapper.style.willChange = 'auto';
-    }, { once: false });
-    
-    // Click outside to collapse
-    document.addEventListener('click', (e) => {
-      if (searchWrapper.classList.contains('expanded') && 
-          !searchContainer.contains(e.target) && 
-          !searchInput.value.trim()) {
-        searchWrapper.classList.remove('expanded');
-        searchInput.blur();
-      }
-    });
-    
-    // Keep expanded if input has value
-    searchInput.addEventListener('input', () => {
-      if (searchInput.value.trim()) {
-        searchWrapper.classList.add('expanded');
-      }
-    });
-    
-    // Escape key to collapse
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !searchInput.value.trim()) {
-        searchWrapper.classList.remove('expanded');
-        searchInput.blur();
-      }
-    });
-    
-    // Handle window resize - Optimized with passive listener and RAF
-    const throttledResize = throttle(() => {
-      if (!checkScreenSize() && searchWrapper.classList.contains('expanded')) {
-        requestAnimationFrame(() => {
-          searchWrapper.classList.remove('expanded');
-        });
-      }
-    }, 150);
-    window.addEventListener('resize', throttledResize, { passive: true });
-  }
+  // initExpandableSearch removed - elements don't exist in current HTML
   
   // Mobile Hamburger Menu
   function initMobileMenu() {
@@ -959,20 +780,17 @@ function validateImageSource(imageSrc) {
   function init() {
     // Critical features - load immediately (blocking)
     initMobileMenu();
-    initExpandableSearch();
     
     // Use requestIdleCallback for non-critical optimizations
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
         optimizeImages();
-        initIntersectionObserver();
         preloadCriticalResources();
       }, { timeout: 2000 });
     } else {
       // Fallback for older browsers - use setTimeout with lower priority
       setTimeout(() => {
         optimizeImages();
-        initIntersectionObserver();
         preloadCriticalResources();
       }, 100);
     }
@@ -988,10 +806,7 @@ function validateImageSource(imageSrc) {
   
   // Cleanup function for memory management
   function cleanup() {
-    // Clear any large caches on page unload
-    if (window.searchCache) {
-      window.searchCache.clear();
-    }
+    // Local searchCache is automatically garbage collected on page unload
   }
   
   // Register cleanup on page unload
@@ -1005,18 +820,7 @@ function validateImageSource(imageSrc) {
     requestAnimationFrame(init);
   }
   
-  // Performance monitoring (only in development)
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    window.addEventListener('load', () => {
-      if ('performance' in window) {
-        const perfData = performance.getEntriesByType('navigation')[0];
-        // Performance logging removed for production
-        // Uncomment for debugging:
-        // console.log('Page Load Time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
-        // console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.fetchStart, 'ms');
-      }
-    });
-  }
+  // Performance monitoring removed - uncomment in development if needed
 })();
 
 // ============================================
@@ -1032,47 +836,9 @@ function validateImageSource(imageSrc) {
     document.body.classList.add('animation-started');
   } else {
     document.body.classList.add('animation-started');
-    // Keep animation running but don't restart
-    const bgElement = document.querySelector('body::before');
-    if (bgElement) {
-      bgElement.style.animationPlayState = 'running';
-    }
   }
   
-  // Search Icon Click Animation (Homepage)
-  function initHomepageSearch() {
-    const searchIconBtn = document.getElementById('searchIconBtn');
-    const searchBarWrapper = document.getElementById('searchBarWrapper');
-    const searchInput = document.getElementById('searchInput');
-    
-    if (!searchIconBtn || !searchBarWrapper) return;
-    
-    searchIconBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      searchBarWrapper.classList.add('active');
-      setTimeout(() => {
-        if (searchInput) searchInput.focus();
-      }, 200);
-    });
-    
-    // Close search when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!searchBarWrapper.contains(e.target) && !searchIconBtn.contains(e.target)) {
-        if (searchInput && !searchInput.value.trim()) {
-          searchBarWrapper.classList.remove('active');
-        }
-      }
-    });
-    
-    // Close on Escape key
-    if (searchInput) {
-      searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !this.value.trim()) {
-          searchBarWrapper.classList.remove('active');
-        }
-      });
-    }
-  }
+  // initHomepageSearch removed - elements don't exist in current HTML
   
   // Load Featured Products
   function loadFeaturedProducts() {
@@ -1145,8 +911,8 @@ function validateImageSource(imageSrc) {
       const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
       
       return `
-        <div class="featured-card" onclick="window.open('${detailPage}?id=${product.id}', '_blank', 'noopener,noreferrer')">
-          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
+        <a href="${detailPage}?id=${product.id}" class="featured-card" style="text-decoration: none; color: inherit; display: block;">
+          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3';">
           <div class="featured-card-info">
             <h3 class="featured-card-title">${product.title}</h3>
             <div class="featured-card-meta">
@@ -1156,16 +922,12 @@ function validateImageSource(imageSrc) {
               </div>
             </div>
           </div>
-        </div>
+        </a>
       `;
     }).join('');
   }
   
-  // Initialize YouTube video link functionality
-  function initVideoFullscreen() {
-    // Video wrapper is now a link, no JavaScript needed
-    // Link opens YouTube in new tab automatically
-  }
+  // initVideoFullscreen removed - video links are now simple <a> tags
   
   // Load Blender Products for Slider
   function loadBlenderProductsSlider() {
@@ -1258,10 +1020,6 @@ function validateImageSource(imageSrc) {
       return imagePath;
     };
     
-    // Optimized: Use DocumentFragment for better performance
-    const fragment = document.createDocumentFragment();
-    const tempDiv = document.createElement('div');
-    
     // Optimized: Duplicate products efficiently (4x for seamless loop)
     const productCount = products.length;
     const totalCards = productCount * 4;
@@ -1287,16 +1045,16 @@ function validateImageSource(imageSrc) {
       const escapedTitle = product.title.replace(/"/g, '&quot;');
       
       htmlString += `
-        <div class="slider-product-card" onclick="window.open('${detailPage}?id=${product.id}', '_blank', 'noopener,noreferrer')">
+        <a href="${detailPage}?id=${product.id}" class="slider-product-card" style="text-decoration: none; color: inherit; display: block;">
           <div class="slider-product-card-image-wrapper">
-            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3'; console.error('Image failed to load:', this.src);">
+            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3';">
             <span class="slider-product-card-new-badge">New</span>
           </div>
           <div class="slider-product-card-info">
             <h3 class="slider-product-card-title">${escapedTitle}</h3>
             <span class="slider-product-card-tag">${source}</span>
           </div>
-        </div>
+        </a>
       `;
     }
     
@@ -1325,8 +1083,7 @@ function validateImageSource(imageSrc) {
                        window.location.pathname.endsWith('index.html');
     
     if (isHomepage) {
-      initHomepageSearch();
-      initVideoFullscreen();
+      // Homepage search handled by search panel system
       
       // Load Unreal products slider
       setTimeout(() => {
@@ -1459,6 +1216,42 @@ function validateImageSource(imageSrc) {
       return normalizedPath;
     }
     
+    // Remove existing ../ prefixes to get clean path relative to root
+    let cleanPath = normalizedPath;
+    while (cleanPath.startsWith('../')) {
+      cleanPath = cleanPath.substring(3);
+    }
+    
+    // Fix: Add category prefix (Unreal/, Blender/, etc.) if category is provided and path doesn't already include it
+    // This fixes Unreal images not loading in search (Unreal data files have paths like "Assets/..." instead of "Unreal/Assets/...")
+    if (category) {
+      const categoryLower = category.toLowerCase();
+      const pathLower = cleanPath.toLowerCase();
+      
+      // Check if path already includes the category folder
+      const hasCategoryPrefix = pathLower.startsWith(categoryLower + '/') || 
+                                pathLower.includes('/' + categoryLower + '/') ||
+                                cleanPath.startsWith('../' + category + '/') ||
+                                cleanPath.includes('/../' + category + '/');
+      
+      // If category is provided and path doesn't include it, prepend the category folder
+      if (!hasCategoryPrefix) {
+        // Map category names to folder names
+        const categoryFolderMap = {
+          'Blender': 'Blender',
+          'Unreal': 'Unreal',
+          'After Effects': 'ae',
+          'Premiere Pro': 'pp',
+          'Photoshop': 'photoshop',
+          'Houdini': 'Houdini',
+          'Software': 'Membership' // Software products are in Membership folder
+        };
+        
+        const folderName = categoryFolderMap[category] || category;
+        cleanPath = folderName + '/' + cleanPath;
+      }
+    }
+    
     // Calculate depth from root (how many directories up we need to go to reach root)
     const currentPath = window.location.pathname;
     // Remove leading / and split
@@ -1470,12 +1263,6 @@ function validateImageSource(imageSrc) {
     // Blender/3d-models.html -> depth 1
     // Blender/assets.html -> depth 1
     const depth = pathParts.length > 1 ? pathParts.length - 1 : 0;
-    
-    // Remove existing ../ prefixes to get clean path relative to root
-    let cleanPath = normalizedPath;
-    while (cleanPath.startsWith('../')) {
-      cleanPath = cleanPath.substring(3);
-    }
     
     // Add correct number of ../ based on current depth
     if (depth > 0) {
@@ -1764,15 +1551,23 @@ function validateImageSource(imageSrc) {
     // Membership Products - Check both global and window variables
     const membershipProductsData = typeof membershipProducts !== 'undefined' ? membershipProducts : 
                                   (typeof window.membershipProducts !== 'undefined' ? window.membershipProducts : null);
-    if (membershipProductsData && Array.isArray(membershipProductsData)) {
+    if (membershipProductsData && Array.isArray(membershipProductsData) && membershipProductsData.length > 0) {
       membershipProductsData.forEach(item => {
+        // Fix image path: if it doesn't start with http/https and doesn't include Membership/, prepend it
+        let imagePath = item.image || '';
+        if (imagePath && !imagePath.startsWith('http://') && !imagePath.startsWith('https://') && !imagePath.startsWith('/')) {
+          if (!imagePath.includes('Membership/') && !imagePath.startsWith('../')) {
+            imagePath = 'Membership/' + imagePath;
+          }
+        }
+        
         products.push({
           ...item,
           category: 'Software',
           type: 'Membership',
           searchUrl: `Membership/membership.html#product-${item.id}`,
           detailUrl: `Membership/membership-detail.html?id=${item.id}`,
-          image: item.image // Store original path, fix at render time
+          image: imagePath // Fixed path with Membership/ prefix
         });
       });
     }
@@ -2308,14 +2103,14 @@ function validateImageSource(imageSrc) {
     async function loadSearchIndexWithRetry() {
       try {
         await loadGlobalSearchIndex();
-        console.log(`Search index loaded: ${globalSearchIndex.length} products`);
+        // Search index loaded successfully
         
         if (globalSearchIndex.length === 0 && indexLoadAttempts < maxLoadAttempts) {
           indexLoadAttempts++;
           setTimeout(loadSearchIndexWithRetry, 500);
         }
       } catch (error) {
-        console.warn('Error loading search index:', error);
+        // Error loading search index
         if (indexLoadAttempts < maxLoadAttempts) {
           indexLoadAttempts++;
           setTimeout(loadSearchIndexWithRetry, 500);
@@ -2325,6 +2120,18 @@ function validateImageSource(imageSrc) {
     
     loadSearchIndexWithRetry();
   }
+  
+  // Expose for products.html "All Products" page
+  window.loadGlobalSearchIndex = loadGlobalSearchIndex;
+  window.getProductsForListing = function() {
+    const list = [];
+    for (let i = 0; i < globalSearchIndex.length; i++) {
+      const p = globalSearchIndex[i];
+      const { _titleLower, _searchText, ...rest } = p;
+      list.push(rest);
+    }
+    return list;
+  };
   
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {

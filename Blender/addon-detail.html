@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -209,13 +210,21 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Blender sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="blender-subnav" aria-label="Blender section navigation">
+        <a href="3d-models.html" class="blender-subnav__link">3D Models</a>
+        <a href="addons.html" class="blender-subnav__link blender-subnav__link--active">Addons</a>
+        <a href="assets.html" class="blender-subnav__link">Assets</a>
+        <a href="brushes.html" class="blender-subnav__link">Brushes</a>
+        <a href="courses.html" class="blender-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -362,7 +371,6 @@
 
   <main class="main product-detail-page">
     <div class="container">
-      
       <!-- Hero Section with Perfect Alignment -->
       <div class="product-hero-grid">
         <!-- Left Column: Image + Gallery (Aligned) -->
@@ -405,27 +413,27 @@
           </p>
           
           <!-- Single Download Button (Default) -->
-          <button class="download-btn-primary" id="downloadBtn">
+          <a href="#" class="download-btn-primary" id="downloadBtn" target="_blank" rel="noopener noreferrer">
             <span>Download Now</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
           
           <!-- Multiple Download Buttons Container (For addons with multiple parts) -->
           <div class="download-buttons-multiple" id="downloadButtonsMultiple" style="display: none;">
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart1">
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart1" target="_blank" rel="noopener noreferrer">
               <span>Download Part 1</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="download-btn-primary download-btn-part" id="downloadBtnPart2">
+            </a>
+            <a href="#" class="download-btn-primary download-btn-part" id="downloadBtnPart2" target="_blank" rel="noopener noreferrer">
               <span>Download Part 2</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+            </a>
           </div>
         </div>
       </div>
@@ -435,21 +443,7 @@
 
   <script src="../script.js"></script>
   <script>
-    // Image Source Validation - Ensure validateImageSource is available in this scope
-    if (typeof validateImageSource === 'undefined') {
-      function validateImageSource(imageSrc) {
-        if (!imageSrc || typeof imageSrc !== 'string') return null;
-        // Block Google Drive URLs from being used as preview images
-        if (imageSrc.includes('drive.google.com') || 
-            imageSrc.includes('googleusercontent.com') ||
-            imageSrc.includes('thumbnail?id=') ||
-            imageSrc.includes('uc?export=view')) {
-          console.warn('Google Drive URL blocked from preview:', imageSrc);
-          return null;
-        }
-        return imageSrc; // Allow local paths
-      }
-    }
+    // validateImageSource is now globally available from script.js
   </script>
   <script>
     // Get product ID from URL
@@ -1588,69 +1582,52 @@
         // Setup Part 1 button
         const downloadBtnPart1 = document.getElementById('downloadBtnPart1');
         if (downloadBtnPart1 && multipleLinks.part1) {
-          downloadBtnPart1.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (multipleLinks.part1 && multipleLinks.part1.trim() !== '' && !multipleLinks.part1.includes('PLACEHOLDER')) {
-              window.open(multipleLinks.part1, '_blank', 'noopener,noreferrer');
-            } else {
-              alert('Part 1 download link not available. Please contact support.');
-            }
-          }, false);
+          if (multipleLinks.part1 && multipleLinks.part1.trim() !== '' && !multipleLinks.part1.includes('PLACEHOLDER')) {
+            downloadBtnPart1.href = multipleLinks.part1;
+          } else {
+            downloadBtnPart1.style.display = 'none';
+          }
         }
         
         // Setup Part 2 button
         const downloadBtnPart2 = document.getElementById('downloadBtnPart2');
         if (downloadBtnPart2 && multipleLinks.part2) {
-          downloadBtnPart2.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (multipleLinks.part2 && multipleLinks.part2.trim() !== '' && !multipleLinks.part2.includes('PLACEHOLDER')) {
-              window.open(multipleLinks.part2, '_blank', 'noopener,noreferrer');
-            } else {
-              alert('Part 2 download link not available. Please contact support.');
-            }
-          }, false);
+          if (multipleLinks.part2 && multipleLinks.part2.trim() !== '' && !multipleLinks.part2.includes('PLACEHOLDER')) {
+            downloadBtnPart2.href = multipleLinks.part2;
+          } else {
+            downloadBtnPart2.style.display = 'none';
+          }
         }
       } else {
-        // Single download button logic (existing)
-      // Automatically set download link from mapping if available
-      if (!addon.downloadLink && downloadLinksMap[addon.title]) {
-        addon.downloadLink = downloadLinksMap[addon.title];
-      }
-      
-      if (downloadBtn) {
+        // Single download button logic
+        // Automatically set download link from mapping if available
+        if (!addon.downloadLink && downloadLinksMap[addon.title]) {
+          addon.downloadLink = downloadLinksMap[addon.title];
+        }
+        
+        if (downloadBtn) {
           // Hide multiple buttons if visible
           if (downloadButtonsMultiple) {
             downloadButtonsMultiple.style.display = 'none';
           }
           
-        // Ensure download link is set from mapping if not already in addon
-        if (!addon.downloadLink && downloadLinksMap[addon.title]) {
-          addon.downloadLink = downloadLinksMap[addon.title];
-        }
-        
-        // Add click handler
-        downloadBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
+          // Ensure download link is set from mapping if not already in addon
+          if (!addon.downloadLink && downloadLinksMap[addon.title]) {
+            addon.downloadLink = downloadLinksMap[addon.title];
+          }
           
-          // Get download link from addon or mapping
+          // Set download link directly on <a> tag
           let downloadLink = addon.downloadLink;
-          
-          // If still no link, try mapping again
           if (!downloadLink && downloadLinksMap[addon.title]) {
             downloadLink = downloadLinksMap[addon.title];
-            addon.downloadLink = downloadLink; // Cache it
           }
           
           if (downloadLink && downloadLink.trim() !== '') {
-            // Open link in new tab
-            window.open(downloadLink, '_blank', 'noopener,noreferrer');
+            downloadBtn.href = downloadLink;
           } else {
-            alert('Download link not available for this addon. Please contact support.');
+            downloadBtn.style.display = 'none';
+            console.warn('Download link not available for addon:', addon.title);
           }
-        }, false);
         }
       }
     });

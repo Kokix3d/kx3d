@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -372,8 +373,7 @@
 
   <script src="script.js"></script>
   <script>
-    // Load and display products
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
       const grid = document.getElementById('productsGrid');
       const storageKey = `listingState:${window.location.pathname}`;
       let pendingScrollY = null;
@@ -383,9 +383,7 @@
           sessionStorage.setItem(storageKey, JSON.stringify({
             scrollY: window.scrollY || 0
           }));
-        } catch (err) {
-          // Ignore storage errors
-        }
+        } catch (err) {}
       }
 
       function loadListingState() {
@@ -400,57 +398,62 @@
       const savedState = loadListingState();
       if (savedState && typeof savedState.scrollY === 'number') {
         pendingScrollY = savedState.scrollY;
-        try {
-          sessionStorage.removeItem(storageKey);
-        } catch (err) {
-          // Ignore storage errors
-        }
+        try { sessionStorage.removeItem(storageKey); } catch (err) {}
       }
-      
-      if (products.length === 0) {
-        grid.innerHTML = '<p class="no-products">No products available yet. Add products in script.js</p>';
-        if (pendingScrollY !== null) {
-          const targetScroll = pendingScrollY;
-          pendingScrollY = null;
-          requestAnimationFrame(() => {
-            window.scrollTo(0, targetScroll);
-          });
-        }
+
+      if (typeof window.loadGlobalSearchIndex !== 'function' || typeof window.getProductsForListing !== 'function') {
+        grid.innerHTML = '<p class="no-products">Loading products...</p>';
+        if (pendingScrollY !== null) requestAnimationFrame(() => { window.scrollTo(0, pendingScrollY); });
         return;
       }
 
-      products.forEach(product => {
+      await window.loadGlobalSearchIndex();
+      let products = window.getProductsForListing();
+      const params = new URLSearchParams(window.location.search);
+      const searchQ = params.get('search');
+      if (searchQ && searchQ.trim()) {
+        const q = searchQ.trim().toLowerCase();
+        products = products.filter(p => (p.title || '').toLowerCase().includes(q));
+      }
+
+      if (!products.length) {
+        grid.innerHTML = '<p class="no-products">No products found. Try browsing categories or use a different search.</p>';
+        if (pendingScrollY !== null) requestAnimationFrame(() => { window.scrollTo(0, pendingScrollY); });
+        return;
+      }
+
+      const getImagePath = typeof window.getImagePath === 'function' ? window.getImagePath : (src, cat) => src;
+      const fallbackImg = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%231a1a1a\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\'%3ENo Image%3C/text%3E%3C/svg%3E';
+
+      products.forEach(function(product) {
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.onclick = () => {
+        const href = product.detailUrl || (product.searchUrl && product.searchUrl.replace(/#.*$/, '')) || '#';
+        const isExternal = /^https?:\/\//i.test(href);
+        card.onclick = function() {
           saveListingState();
-          window.open(`product-detail.html?id=${product.id}`, '_blank', 'noopener,noreferrer');
+          if (!href || href === '#') return;
+          let url = href;
+          if (!isExternal && href.indexOf('?') < 0 && product.id != null) {
+            url = href + '?id=' + product.id;
+          }
+          window.location.href = url;
         };
-        
-        card.innerHTML = `
-          <div class="product-image-group">
-            <div class="product-image-wrapper">
-              <img src="${product.image}" alt="${product.title}" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='placeholder.webp'">
-            </div>
-          </div>
-          <div class="product-content-group">
-            <div class="product-info">
-              <h3>${product.title}</h3>
-              <p class="product-category">${product.category || 'Product'}</p>
-            </div>
-          </div>
-          <div class="product-meta-group"></div>
-        `;
-        
+        let imgSrc = getImagePath(product.image || '', product.category || '') || product.image || '';
+        if (typeof validateImageSource === 'function' && imgSrc) imgSrc = validateImageSource(imgSrc) || imgSrc;
+        if (!imgSrc) imgSrc = fallbackImg;
+        const safeTitle = (product.title || 'Product').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        card.innerHTML = '<div class="product-image-group"><div class="product-image-wrapper">' +
+          '<img src="' + imgSrc + '" alt="' + safeTitle + '" width="400" height="300" loading="lazy" decoding="async" onerror="this.src=\'' + fallbackImg + '\'">' +
+          '</div></div><div class="product-content-group"><div class="product-info">' +
+          '<h3>' + safeTitle + '</h3><p class="product-category">' + (product.category || 'Product') + '</p>' +
+          '</div></div><div class="product-meta-group"></div>';
         grid.appendChild(card);
       });
 
       if (pendingScrollY !== null) {
         const targetScroll = pendingScrollY;
-        pendingScrollY = null;
-        requestAnimationFrame(() => {
-          window.scrollTo(0, targetScroll);
-        });
+        requestAnimationFrame(function() { window.scrollTo(0, targetScroll); });
       }
     });
   </script>

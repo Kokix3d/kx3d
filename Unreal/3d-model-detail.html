@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -209,13 +210,20 @@
        Zone 3: Right - Search Bar
        ============================================ -->
   <header class="main-header">
-    <!-- Zone 1: Left - Hamburger Menu -->
-    <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-      <span class="main-header__hamburger-line"></span>
-    </button>
-    
+    <!-- Zone 1: Left - Hamburger + Unreal sub-nav -->
+    <div class="main-header__left">
+      <button class="main-header__hamburger" id="hamburgerBtn" aria-label="Open navigation menu">
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+        <span class="main-header__hamburger-line"></span>
+      </button>
+      <nav class="unreal-subnav" aria-label="Unreal section navigation">
+        <a href="3d-models.html" class="unreal-subnav__link unreal-subnav__link--active">3D Models</a>
+        <a href="plugins.html" class="unreal-subnav__link">Plugins</a>
+        <a href="assets.html" class="unreal-subnav__link">Assets</a>
+        <a href="courses.html" class="unreal-subnav__link">Courses</a>
+      </nav>
+    </div>
     <!-- Zone 2: Center - Logo -->
     <div class="main-header__logo">
       <a href="../index.html" class="main-header__logo-link">
@@ -397,19 +405,18 @@
             If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a>
           </p>
 
-          <button type="button" class="download-btn-primary" id="downloadBtn">
+          <a href="#" class="download-btn-primary" id="downloadBtn" target="_blank" rel="noopener noreferrer">
             <span>Download Now</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 2V12M10 12L6 8M10 12L14 8M2 14V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </main>
 
   <script src="../script.js"></script>
-  <script src="../auto-reload.js"></script>
   <script>
     // Download Links Mapping - yahan model name aur link add karein
     const unreal3dModelDownloadLinksMap = {
@@ -623,15 +630,12 @@
       const downloadBtn = document.getElementById('downloadBtn');
       const downloadLink = unreal3dModelDownloadLinksMap[model.title];
       if (downloadBtn) {
-        downloadBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (downloadLink && downloadLink.trim() !== '') {
-            window.open(downloadLink, '_blank', 'noopener,noreferrer');
-          } else {
-            alert('Download link not available. Please contact support.');
-          }
-        }, false);
+        if (downloadLink && downloadLink.trim() !== '') {
+          downloadBtn.href = downloadLink;
+        } else {
+          downloadBtn.style.display = 'none';
+          console.warn('Download link not available for 3D model');
+        }
       }
     });
   </script>

@@ -8,8 +8,8 @@
   <meta name="author" content="Kx3D">
   <meta name="theme-color" content="#000000">
   
-  <!-- Security: Prevent Google Drive iframes/embeds and crawling -->
-  <meta http-equiv="Content-Security-Policy" content="frame-src 'self'; frame-ancestors 'self';">
+  <!-- CSP: default-src 'self' -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://img.youtube.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self';">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   
   <title>Kx3D - Premium 3D Resources & Courses</title>
@@ -148,27 +148,6 @@
     }
     
     
-    /* Dropdown menus - prevent unstyled flash */
-    .dropdown {
-      position: relative !important;
-    }
-    .dropdown-menu {
-      background: rgba(0, 0, 0, 0.7) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      border-radius: 8px !important;
-      list-style: none !important;
-      padding: 8px 0 !important;
-      margin: 0 !important;
-    }
-    .dropdown-menu a {
-      color: rgba(255, 255, 255, 0.85) !important;
-      text-decoration: none !important;
-    }
-    .dropdown-menu a:hover {
-      background: rgba(255, 255, 255, 0.05) !important;
-      color: #ffffff !important;
-    }
-    
     /* Buttons - prevent unstyled flash */
     button {
       background: transparent !important;
@@ -296,6 +275,7 @@
   
   <!-- Prefetch non-critical resources (after critical assets) -->
   <link rel="prefetch" href="script.js">
+
 </head>
 
 <body class="homepage">
@@ -530,7 +510,5 @@
 
   <!-- JavaScript - Deferred and optimized for non-blocking load -->
   <script src="script.js" defer></script>
-  <!-- Auto-reload for development - Remove in production -->
-  <!-- <script src="auto-reload.js"></script> -->
 </body>
 </html>

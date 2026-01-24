@@ -199,6 +199,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <!-- ============================================
@@ -459,7 +460,7 @@
             card.className = 'product-card';
             card.onclick = () => {
               saveListingState();
-              window.open('course-detail.html?id=' + p.id, '_blank', 'noopener,noreferrer');
+              window.location.href = 'course-detail.html?id=' + p.id;
             };
             const esc = p.title.replace(/"/g, '&quot;');
             card.innerHTML = `<div class="product-image-group"><div class="product-image-wrapper"><img src="${p.image}" alt="${esc}" class="product-image" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div></div><div class="product-content-group"><div class="product-info"><h3 class="product-title">${p.title}</h3></div></div><div class="product-meta-group"></div>`;
