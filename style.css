@@ -1538,13 +1538,17 @@ p {
   max-width: min(420px, 45vw);
 }
 .blender-subnav__link {
-  font-size: 0.8rem;
+  font-size: 14px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  padding: 0.25rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 4px;
   white-space: nowrap;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
   transition: color 0.2s ease, background 0.2s ease;
 }
 .blender-subnav__link:hover {
@@ -1570,13 +1574,17 @@ p {
   max-width: min(380px, 42vw);
 }
 .unreal-subnav__link {
-  font-size: 0.8rem;
+  font-size: 14px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  padding: 0.25rem 0.4rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 4px;
   white-space: nowrap;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
   transition: color 0.2s ease, background 0.2s ease;
 }
 .unreal-subnav__link:hover {

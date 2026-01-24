@@ -485,7 +485,10 @@
           heroImage.loading = 'eager';
           heroImage.decoding = 'async';
           heroImage.fetchPriority = 'high';
-          heroImage.src = validatedImage;
+          // Encode local paths (spaces, +, etc.) so images like "150 WOOD BRUSHES + 4K..." load correctly
+          const encodedHero = (validatedImage.startsWith('../') || validatedImage.startsWith('./')) 
+            ? encodeURI(validatedImage) : validatedImage;
+          heroImage.src = encodedHero;
         }
       }
       document.getElementById('productTitle').textContent = brush.title;
@@ -534,12 +537,15 @@
           console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
           return; // Skip this image
         }
+        // Encode local paths (spaces, +, etc.) so images like "150 WOOD BRUSHES + 4K..." load correctly
+        const encodedImg = (validatedImg.startsWith('../') || validatedImg.startsWith('./')) 
+          ? encodeURI(validatedImg) : validatedImg;
         
         const thumb = document.createElement('div');
         thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
         
         const thumbImage = document.createElement('img');
-        thumbImage.src = validatedImg;
+        thumbImage.src = encodedImg;
         thumbImage.alt = `Preview ${idx + 1}`;
         thumbImage.loading = 'lazy';
         thumbImage.decoding = 'async';
@@ -549,7 +555,7 @@
         thumb.onclick = () => {
           if (heroImage) {
             heroImage.decoding = 'async';
-            heroImage.src = validatedImg; // Use validated image source
+            heroImage.src = encodedImg;
           }
           document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
           thumb.classList.add('active');

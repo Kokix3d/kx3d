@@ -490,12 +490,16 @@
                 ? validateImageSource(product.image) 
                 : product.image;
               const imageSrc = validatedImage || imageFallback;
+              // Encode local paths (spaces, +, etc.) so images like "150 WOOD BRUSHES + 4K..." load correctly
+              const encodedSrc = (imageSrc && (imageSrc.startsWith('../') || imageSrc.startsWith('./'))) 
+                ? encodeURI(imageSrc) 
+                : imageSrc;
               
               // Load images directly for immediate display
               card.innerHTML =
                 '<div class="product-image-group">' +
                   '<div class="product-image-wrapper">' +
-                    '<img src="' + imageSrc + '" alt="' + escapedTitle + '" class="product-image" loading="lazy" decoding="async" onerror="this.onerror=null; this.src=\'' + imageFallback + '\';">' +
+                    '<img src="' + encodedSrc + '" alt="' + escapedTitle + '" class="product-image" loading="lazy" decoding="async" onerror="this.onerror=null; this.src=\'' + imageFallback + '\';">' +
                   '</div>' +
                 '</div>' +
                 '<div class="product-content-group">' +
