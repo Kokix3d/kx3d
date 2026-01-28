@@ -1496,18 +1496,21 @@
       const uploadDate = new Date();
       uploadDate.setDate(uploadDate.getDate() - daysAgo);
       
-      // Update upload date
+      // Update upload date - Real-time (every 30 seconds)
       const uploadDateElement = document.getElementById('uploadDate');
       if (uploadDateElement) {
         uploadDateElement.textContent = getTimeAgo(uploadDate);
-        // Update every minute
+        // Update every 30 seconds for more real-time feel
         setInterval(() => {
           uploadDateElement.textContent = getTimeAgo(uploadDate);
-        }, 60000);
+        }, 30000);
       }
       
-      // Real-time views count (increment on page load)
+      // Real-time views count with periodic updates
       function formatViews(count) {
+        if (count >= 1000000) {
+          return (count / 1000000).toFixed(1) + 'M views';
+        }
         if (count >= 1000) {
           return (count / 1000).toFixed(1) + 'K views';
         }
@@ -1516,9 +1519,18 @@
       
       // Get or initialize view count from localStorage
       const viewCountKey = `addon_views_${addon.id}`;
+      const visitKey = `addon_visited_${addon.id}`;
+      
+      // Check if user has already visited this product in current session
+      const hasVisited = sessionStorage.getItem(visitKey);
       let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
-      viewCount++; // Increment on each view
-      localStorage.setItem(viewCountKey, viewCount.toString());
+      
+      // Only increment if this is a new visit (not in current session)
+      if (!hasVisited) {
+        viewCount++; // Increment on each unique visit
+        localStorage.setItem(viewCountKey, viewCount.toString());
+        sessionStorage.setItem(visitKey, 'true'); // Mark as visited in this session
+      }
       
       // Update view count
       const viewCountElement = document.getElementById('viewCount');

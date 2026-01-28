@@ -512,21 +512,36 @@
       const uploadDateElement = document.getElementById('uploadDate');
       if (uploadDateElement) {
         uploadDateElement.textContent = getTimeAgo(uploadDate);
+        // Update every 30 seconds for more real-time feel
         setInterval(() => {
           uploadDateElement.textContent = getTimeAgo(uploadDate);
-        }, 60000);
+        }, 30000);
       }
       
+      // Real-time views count with periodic updates
       function formatViews(count) {
+        if (count >= 1000000) return (count / 1000000).toFixed(1) + 'M views';
         if (count >= 1000) return (count / 1000).toFixed(1) + 'K views';
         return count + ' views';
       }
       const viewCountKey = `brush_views_${brush.id}`;
+      const visitKey = `brush_visited_${brush.id}`;
+      
+      // Check if user has already visited this product in current session
+      const hasVisited = sessionStorage.getItem(visitKey);
       let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
-      viewCount++;
-      localStorage.setItem(viewCountKey, viewCount.toString());
+      
+      // Only increment if this is a new visit (not in current session)
+      if (!hasVisited) {
+        viewCount++; // Increment on each unique visit
+        localStorage.setItem(viewCountKey, viewCount.toString());
+        sessionStorage.setItem(visitKey, 'true'); // Mark as visited in this session
+      }
+      
       const viewCountElement = document.getElementById('viewCount');
-      if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
+      if (viewCountElement) {
+        viewCountElement.textContent = formatViews(viewCount);
+      }
       
       // IMPORTANT: Validate all image sources - Google Drive URLs should ONLY be used for downloads, NOT previews
       const galleryContainer = document.getElementById('galleryThumbnails');

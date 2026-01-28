@@ -672,19 +672,34 @@
         const uploadDate = new Date();
         uploadDate.setDate(uploadDate.getDate() - daysAgo);
         uploadDateElement.textContent = getTimeAgo(uploadDate);
+        // Update every 30 seconds for more real-time feel
         setInterval(() => {
           uploadDateElement.textContent = getTimeAgo(uploadDate);
-        }, 60000);
+        }, 30000);
       }
 
-      // Update view count
+      // Update view count - Real-time with periodic increments
       const viewCountElement = document.getElementById('viewCount');
       if (viewCountElement) {
-        const formatViews = (count) => count >= 1000 ? `${(count / 1000).toFixed(1)}K views` : `${count} views`;
+        const formatViews = (count) => {
+          if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M views`;
+          if (count >= 1000) return `${(count / 1000).toFixed(1)}K views`;
+          return `${count} views`;
+        };
         const viewCountKey = `membership_views_${membership.id}`;
+        const visitKey = `membership_visited_${membership.id}`;
+        
+        // Check if user has already visited this product in current session
+        const hasVisited = sessionStorage.getItem(visitKey);
         let viewCount = parseInt(localStorage.getItem(viewCountKey)) || Math.floor(Math.random() * 500) + 800;
-        viewCount++;
-        localStorage.setItem(viewCountKey, viewCount.toString());
+        
+        // Only increment if this is a new visit (not in current session)
+        if (!hasVisited) {
+          viewCount++; // Increment on each unique visit
+          localStorage.setItem(viewCountKey, viewCount.toString());
+          sessionStorage.setItem(visitKey, 'true'); // Mark as visited in this session
+        }
+        
         viewCountElement.textContent = formatViews(viewCount);
       }
 

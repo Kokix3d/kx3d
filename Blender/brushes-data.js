@@ -99,11 +99,11 @@ window.blenderBrushes = blenderBrushes;
 
 // Download links for brushes (add when available)
 const brushDownloadLinksMap = {
-  "20 PBR Leather Armor Texture Seamless (Vol 03)": "CUSTOM_FILE_URL",
-  "40 Fabric Stitches Pattern": "CUSTOM_FILE_URL",
-  "Blender Grease Pencil Brush Pack": "CUSTOM_FILE_URL",
-  "Dynamic SeamStitch Brushe": "CUSTOM_FILE_URL",
-  "Zenshaders  Library": "CUSTOM_FILE_URL",
+  "20 PBR Leather Armor Texture Seamless (Vol 03)": "https://shrinkme.click/TKF2o37",
+  "40 Fabric Stitches Pattern": "https://shrinkme.click/DvqTsc",
+  "Blender Grease Pencil Brush Pack": "https://shrinkme.click/3ziZ",
+  "Dynamic SeamStitch Brushe": "https://shrinkme.click/XFvDRH",
+  "Zenshaders  Library": "https://shrinkme.click/3uLvZt",
   "Brushes of the Damned - Blender Version": "", // Add download link when available
   "150 WOOD BRUSHES + 4K SEAMLESS ALPHAS - VOL 01": "https://shrinkme.click/ugOBhFW"
 };
@@ -112,12 +112,12 @@ const brushDownloadLinksMap = {
 // Format: "Brush Name": { part1: "Link 1", part2: "Link 2" }
 const multipleBrushDownloadLinksMap = {
   "Brushes of the Damned - Blender Version": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL",
-    part3: "CUSTOM_FILE_URL",
-    part4: "CUSTOM_FILE_URL",
-    part5: "CUSTOM_FILE_URL",
-    part6: "CUSTOM_FILE_URL",
-    part7: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/ePNjs",
+    part2: "https://shrinkme.click/4ZdT5o1W",
+    part3: "https://shrinkme.click/cOo3Atw7",
+    part4: "https://shrinkme.click/pm567",
+    part5: "https://shrinkme.click/T3FvjV",
+    part6: "https://shrinkme.click/uL7RgL",
+    part7: "https://shrinkme.click/3yDM3AJO"
   }
 };

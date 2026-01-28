@@ -605,7 +605,7 @@ const assetDownloadLinksMap = {
   "TreeDesigner + 400 trees": "CUSTOM_FILE_URL",
   "Universal Human Collection": "CUSTOM_FILE_URL",
   "Ultimate Lightning Pack": "CUSTOM_FILE_URL",
-  "Interniq v2 Full": "CUSTOM_FILE_URL",
+  "Interniq v2 Full": "https://shrinkme.click/gXehLxdL",
   "Ancient Chinese Architecture Asset Pack": ""
 };
 
