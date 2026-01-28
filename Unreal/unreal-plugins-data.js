@@ -156,15 +156,15 @@ const unrealPlugins = window.unrealPlugins = [
 
 // Same download links mapping used in plugin-detail.html
 const unrealPluginDownloadLinksMap = window.unrealPluginDownloadLinksMap = {
-  "Dynamic Real Water": "CUSTOM_FILE_URL",
-  "Electronic Nodes": "CUSTOM_FILE_URL",
-  "Foliage Plugin": "CUSTOM_FILE_URL",
-  "MeshBlend": "CUSTOM_FILE_URL",
-  "VICODynamics RopeClothSoft-Body Simulation Plugin": "CUSTOM_FILE_URL",
-  "Voxel Plugin Pro Legacy": "CUSTOM_FILE_URL",
-  "Cinemotion 3 Real Handheld Camera Motion Kit": "",
-  "Easy Multi Save": "",
-  "Narrative Tales - Node Based Quests and Dialogue": "",
-  "Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)": "",
-  "Skinned Decal Component": ""
+  "Dynamic Real Water": "https://shrinkme.click/ATu6k",
+  "Electronic Nodes": "https://shrinkme.click/XcAdO",
+  "Foliage Plugin": "https://shrinkme.click/aNcEn",
+  "MeshBlend": "https://shrinkme.click/qMGZj",
+  "VICODynamics RopeClothSoft-Body Simulation Plugin": "https://shrinkme.click/Bp18udnH",
+  "Voxel Plugin Pro Legacy": "https://shrinkme.click/0PuNmje4",
+  "Cinemotion 3 Real Handheld Camera Motion Kit": "https://shrinkme.click/M9Xwv0Sq",
+  "Easy Multi Save": "https://shrinkme.click/c7kod1",
+  "Narrative Tales - Node Based Quests and Dialogue": "https://shrinkme.click/vypMvKJO",
+  "Runtime MetaHuman Lip Sync (AI for NPCs) (+ CC4, Genesis, ARKit, and more)": "https://shrinkme.click/9Ycv",
+  "Skinned Decal Component": "https://shrinkme.click/VjlPa"
 };

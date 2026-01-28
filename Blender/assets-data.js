@@ -561,10 +561,10 @@ window.blenderAssets = blenderAssets;
 
 // Download links for assets (add when available)
 const assetDownloadLinksMap = {
-  "20 SCI-FI BUILDING FUTURISTIC CITY VOL 01": "CUSTOM_FILE_URL",
-  "Alpha Trees - Render Massive Forests, Fast": "CUSTOM_FILE_URL",
-  "Arborea": "CUSTOM_FILE_URL",
-  "Blender Dynamic VFX - Elemental Asset Pack": "CUSTOM_FILE_URL",
+  "20 SCI-FI BUILDING FUTURISTIC CITY VOL 01": "https://shrinkme.click/y0NVy",
+  "Alpha Trees - Render Massive Forests, Fast": "https://shrinkme.click/9c6E9",
+  "Arborea": "https://shrinkme.click/uyA4",
+  "Blender Dynamic VFX - Elemental Asset Pack": "https://shrinkme.click/pwJw",
   "Car Library - Traffiq Car Models": "https://shrinkme.click/4dKxbbaE",
   "Car Paint • Shader Presets Collection • Blender": "https://shrinkme.click/sttiKaBN",
   "City Scapes": "https://shrinkme.click/4VeRVld",

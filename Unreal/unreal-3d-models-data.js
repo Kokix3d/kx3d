@@ -103,12 +103,12 @@ const unreal3dModels = window.unreal3dModels = [
 
 // Same download links mapping used in 3d-model-detail.html
 const unreal3dModelDownloadLinksMap = window.unreal3dModelDownloadLinksMap = {
-  "Fantasy Characters (Pack)": "CUSTOM_FILE_URL",
-  "GR Customizable Female 01": "CUSTOM_FILE_URL",
-  "Monsters - Mummy": "CUSTOM_FILE_URL",
+  "Fantasy Characters (Pack)": "https://shrinkme.click/VmvCp8cN",
+  "GR Customizable Female 01": "https://shrinkme.click/uYsRFqEC",
+  "Monsters - Mummy": "https://shrinkme.click/1ALzjf",
   "Sci-Fi Kits Spaceships Armada": "CUSTOM_FILE_URL",
-  "Sekhmet": "CUSTOM_FILE_URL",
-  "Skeleton Knight Modular": "CUSTOM_FILE_URL",
-  "Stylized Fantasy Girls NPC Pack": "CUSTOM_FILE_URL",
-  "Camel Fantasy": "CUSTOM_FILE_URL"
+  "Sekhmet": "https://shrinkme.click/hQoxjAn",
+  "Skeleton Knight Modular": "https://shrinkme.click/WtZytY",
+  "Stylized Fantasy Girls NPC Pack": "https://shrinkme.click/VOZ8hney",
+  "Camel Fantasy": "https://shrinkme.click/15h0KBIq"
 };
