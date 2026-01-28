@@ -196,20 +196,6 @@ const blenderAssets = [
     ]
   },
   {
-    id: 15,
-    title: "Horde Add-On Crowd System Tools",
-    folder: "Horde Add-On Crowd System Tools",
-    image: "../Blender/Assets/Horde Add-On Crowd System Tools/1.webp",
-    images: [
-      "../Blender/Assets/Horde Add-On Crowd System Tools/1.webp",
-      "../Blender/Assets/Horde Add-On Crowd System Tools/crowd stadium.webp",
-      "../Blender/Assets/Horde Add-On Crowd System Tools/drawing zombie runners.webp",
-      "../Blender/Assets/Horde Add-On Crowd System Tools/Screen Shot 2022-10-14 at 10.52.28 AM.webp",
-      "../Blender/Assets/Horde Add-On Crowd System Tools/zombies streets.webp",
-      "../Blender/Assets/Horde Add-On Crowd System Tools/zombiestreetbd2.webp"
-    ]
-  },
-  {
     id: 16,
     title: "Kanistra People Asset Library",
     folder: "Kanistra People Asset Library",
@@ -579,32 +565,32 @@ const assetDownloadLinksMap = {
   "Alpha Trees - Render Massive Forests, Fast": "CUSTOM_FILE_URL",
   "Arborea": "CUSTOM_FILE_URL",
   "Blender Dynamic VFX - Elemental Asset Pack": "CUSTOM_FILE_URL",
-  "Car Library - Traffiq Car Models": "CUSTOM_FILE_URL",
-  "Car Paint • Shader Presets Collection • Blender": "CUSTOM_FILE_URL",
-  "City Scapes": "CUSTOM_FILE_URL",
-  "Community Material Pack": "CUSTOM_FILE_URL",
-  "Dynamic Terrain": "CUSTOM_FILE_URL",
-  "Dystopian Blocks - Brutalist Structures Kitbash Buildings": "CUSTOM_FILE_URL",
-  "Fractal Machine": "CUSTOM_FILE_URL",
-  "Gobos Light Textures": "CUSTOM_FILE_URL",
-  "Horde Add-On Crowd System Tools": "CUSTOM_FILE_URL",
-  "Kanistra People Asset Library": "CUSTOM_FILE_URL",
-  "Leafify - 40 Leaf-Leaves Texture Alphas": "CUSTOM_FILE_URL",
-  "MP_Comp": "CUSTOM_FILE_URL",
-  "Noise Nodes": "CUSTOM_FILE_URL",
-  "Omega Particle": "CUSTOM_FILE_URL",
-  "Painterly Grass Fields & Meadows Pack For Blender": "CUSTOM_FILE_URL",
-  "Pro Particles - Advanced Particle System": "CUSTOM_FILE_URL",
-  "Realmotion Pro": "CUSTOM_FILE_URL",
-  "Realtime Aura": "CUSTOM_FILE_URL",
-  "Simply Trails - Trail Anything!": "CUSTOM_FILE_URL",
-  "Sprite Particles For Realtime Vfx": "CUSTOM_FILE_URL",
-  "Star Wars Outlaws Characters Collection": "CUSTOM_FILE_URL",
-  "Stylized Environment Asset Pack - Blender Eevee": "CUSTOM_FILE_URL",
-  "Stylized Tree Asset Generator": "CUSTOM_FILE_URL",
-  "TreeDesigner + 400 trees": "CUSTOM_FILE_URL",
-  "Universal Human Collection": "CUSTOM_FILE_URL",
-  "Ultimate Lightning Pack": "CUSTOM_FILE_URL",
+  "Car Library - Traffiq Car Models": "https://shrinkme.click/4dKxbbaE",
+  "Car Paint • Shader Presets Collection • Blender": "https://shrinkme.click/sttiKaBN",
+  "City Scapes": "https://shrinkme.click/4VeRVld",
+  "Community Material Pack": "https://shrinkme.click/SGMxF",
+  "Dynamic Terrain": "https://shrinkme.click/smqQw2c1",
+  "Dystopian Blocks - Brutalist Structures Kitbash Buildings": "https://shrinkme.click/1UhZdBx9",
+  "Fractal Machine": "https://shrinkme.click/bSb9TK",
+  "Gobos Light Textures": "https://shrinkme.click/p0lhL",
+  "Kanistra People Asset Library": "https://shrinkme.click/wobBYvNj",
+  "Leafify - 40 Leaf-Leaves Texture Alphas": "https://shrinkme.click/rbbFC",
+  "MP_Comp": "https://shrinkme.click/67xKvRQI",
+  "Noise Nodes": "https://shrinkme.click/CMOn7RTC",
+  "Omega Particle": "https://shrinkme.click/nDdBBbb",
+  "Painterly Grass Fields & Meadows Pack For Blender": "https://shrinkme.click/1YVB",
+  "Pro Particles - Advanced Particle System": "https://shrinkme.click/EVQhwBC5",
+  "Realmotion Pro": "https://shrinkme.click/Cq62",
+  "Realtime Aura": "https://shrinkme.click/oAIh",
+  "Simply Stitch": "https://shrinkme.click/Pny0Diz",
+  "Simply Trails - Trail Anything!": "https://shrinkme.click/y2D5",
+  "Sprite Particles For Realtime Vfx": "https://shrinkme.click/M5hL",
+  "Star Wars Outlaws Characters Collection": "https://shrinkme.click/8w9u",
+  "Stylized Environment Asset Pack - Blender Eevee": "https://shrinkme.click/QdXxcJ",
+  "Stylized Tree Asset Generator": "https://shrinkme.click/jM7RDC",
+  "TreeDesigner + 400 trees": "https://shrinkme.click/oPP7L",
+  "Universal Human Collection": "https://shrinkme.click/6V9YjZ",
+  "Ultimate Lightning Pack": "https://shrinkme.click/31cSaL",
   "Interniq v2 Full": "https://shrinkme.click/gXehLxdL",
   "Ancient Chinese Architecture Asset Pack": ""
 };
@@ -613,43 +599,39 @@ const assetDownloadLinksMap = {
 // Format: "Asset Name": { part1: "Link 1", part2: "Link 2" }
 const multipleAssetDownloadLinksMap = {
   "Forest Generator Photorealistic Close-Up Ready Forests": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/3RQ9UEuw",
+    part2: "https://shrinkme.click/yx16fMmh"
   },
   "Fortnite Asset Libraries": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/4dRk4",
+    part2: "https://shrinkme.click/UeGAmPy"
   },
   "KKVIZ – Pack 09 – Mediterranean Plants": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL",
-    part3: "CUSTOM_FILE_URL",
-    part4: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/qnoCyySh",
+    part2: "https://shrinkme.click/2cYGf9H",
+    part3: "https://shrinkme.click/JL3w5",
+    part4: "https://shrinkme.click/2B9T"
   },
   "Moss Biome Ground Scatter - 3D Assetkit Pbr": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL",
-    part3: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/V1heaF",
+    part2: "https://shrinkme.click/r93E",
+    part3: "https://shrinkme.click/UyBgo9"
   },
   "Mountain Scapes": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/kwe9",
+    part2: "https://shrinkme.click/2EP7"
   },
   "Realistic Touch - Surface Imperfection": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
-  },
-  "Simply Stitch": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/bL77u",
+    part2: "https://shrinkme.click/rsg1VS"
   },
   "Skyline Ukiyo Modern Metropolis": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL",
-    part3: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/Srxc",
+    part2: "https://shrinkme.click/vHYD1D",
+    part3: "https://shrinkme.click/G3UvX"
   },
   "Tree And Grass Library Botaniq - Trees": {
-    part1: "CUSTOM_FILE_URL",
-    part2: "CUSTOM_FILE_URL"
+    part1: "https://shrinkme.click/Whtpi8wm",
+    part2: "https://shrinkme.click/9bPIzCt"
   }
 };
