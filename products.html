@@ -430,7 +430,50 @@
         card.className = 'product-card';
         const href = product.detailUrl || (product.searchUrl && product.searchUrl.replace(/#.*$/, '')) || '#';
         const isExternal = /^https?:\/\//i.test(href);
-        card.onclick = function() {
+        let mouseDownX = 0;
+        let mouseDownY = 0;
+        let isSelecting = false;
+        let mouseMoved = false;
+        
+        card.onmousedown = function(e) {
+          mouseDownX = e.clientX;
+          mouseDownY = e.clientY;
+          isSelecting = false;
+          mouseMoved = false;
+        };
+        
+        card.onmousemove = function(e) {
+          if (mouseDownX !== 0 || mouseDownY !== 0) {
+            // Check if mouse moved significantly (more than 5px)
+            const deltaX = Math.abs(e.clientX - mouseDownX);
+            const deltaY = Math.abs(e.clientY - mouseDownY);
+            if (deltaX > 5 || deltaY > 5) {
+              mouseMoved = true;
+              isSelecting = true;
+            }
+          }
+        };
+        
+        card.onmouseup = function() {
+          // Reset after a short delay to allow selection check
+          setTimeout(function() {
+            mouseDownX = 0;
+            mouseDownY = 0;
+          }, 100);
+        };
+        
+        card.onclick = function(e) {
+          // Check if text is selected or user is selecting text
+          const selection = window.getSelection();
+          const hasSelection = selection && selection.toString().length > 0;
+          
+          // Check if mouse moved significantly (indicating text selection/copy)
+          if (hasSelection || isSelecting || mouseMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+          
           saveListingState();
           if (!href || href === '#') return;
           let url = href;

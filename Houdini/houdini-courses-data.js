@@ -70,11 +70,11 @@ const courseDownloadLinksMap = {
 // Format: "Course Name": { part1: "Link 1", part2: "Link 2" }
 const multipleCourseDownloadLinksMap = {
   "Master Rigging APEX in Houdini": {
-    part1: "https://direct-link.net/1422046/9N4jZFqRO5iB",
-    part2: "https://link-center.net/1422046/qcfmHPI0NajI",
-    part3: "https://link-target.net/1422046/p4UGdxfvR7bs",
-    part4: "https://direct-link.net/1422046/bJXq2daXjCPx",
-    part5: "https://link-target.net/1422046/pmfzFylwT4fI"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   }
   // Add courses with multiple parts here
   // Format: "Course Name": { part1: "Link 1", part2: "Link 2", ... }

@@ -440,7 +440,6 @@
     </div>
   </main>
 
-  <script src="../script.js"></script>
   <script>
     // validateImageSource is now globally available from script.js
   </script>
@@ -456,7 +455,9 @@
       const heroImage = document.getElementById('heroMainImage');
       if (heroImage) {
         // Validate image source - Google Drive URLs should ONLY be used for downloads, NOT previews
-        const validatedImage = validateImageSource ? validateImageSource(course.image) : course.image;
+        const validatedImage = typeof validateImageSource === 'function'
+          ? validateImageSource(course.image)
+          : course.image;
         if (!validatedImage) {
           console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', course.image);
           heroImage.style.display = 'none';
@@ -508,7 +509,9 @@
       const galleryImages = course.images && course.images.length > 0 ? course.images : [course.image];
       galleryImages.forEach((img, idx) => {
         // Validate image source to prevent Google Drive URLs
-        const validatedImg = validateImageSource ? validateImageSource(img) : img;
+        const validatedImg = typeof validateImageSource === 'function'
+          ? validateImageSource(img)
+          : img;
         if (!validatedImg) {
           console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
           return; // Skip this image
@@ -614,8 +617,16 @@
         } else if (downloadBtnPart8) {
           downloadBtnPart8.style.display = 'none';
         }
-      } else if (downloadBtn && downloadLink) {
-        downloadBtn.href = downloadLink;
+      } else if (downloadBtn) {
+        if (downloadLink && downloadLink.trim() !== '') {
+          downloadBtn.href = downloadLink;
+          downloadBtn.title = '';
+        } else {
+          downloadBtn.href = '#';
+          downloadBtn.title = 'Download link will be added soon';
+        }
+        const lbl = downloadBtn.querySelector('span');
+        if (lbl) lbl.textContent = 'Download Now';
       }
     }
   </script>

@@ -156,12 +156,12 @@ const unrealPlugins = window.unrealPlugins = [
 
 // Same download links mapping used in plugin-detail.html
 const unrealPluginDownloadLinksMap = window.unrealPluginDownloadLinksMap = {
-  "Dynamic Real Water": "https://link-hub.net/1422046/zecyM7LUoiUP",
-  "Electronic Nodes": "https://link-hub.net/1422046/QMFuHvzCNGwI",
-  "Foliage Plugin": "https://direct-link.net/1422046/V2wRoJy5Los3",
-  "MeshBlend": "https://link-center.net/1422046/lL2Wt0oW6i7D",
-  "VICODynamics RopeClothSoft-Body Simulation Plugin": "https://link-center.net/1422046/nc76KugaLe4s",
-  "Voxel Plugin Pro Legacy": "https://link-target.net/1422046/dRWdROoBjpji",
+  "Dynamic Real Water": "CUSTOM_FILE_URL",
+  "Electronic Nodes": "CUSTOM_FILE_URL",
+  "Foliage Plugin": "CUSTOM_FILE_URL",
+  "MeshBlend": "CUSTOM_FILE_URL",
+  "VICODynamics RopeClothSoft-Body Simulation Plugin": "CUSTOM_FILE_URL",
+  "Voxel Plugin Pro Legacy": "CUSTOM_FILE_URL",
   "Cinemotion 3 Real Handheld Camera Motion Kit": "",
   "Easy Multi Save": "",
   "Narrative Tales - Node Based Quests and Dialogue": "",

@@ -553,85 +553,103 @@ const blenderAssets = [
       "../Blender/Assets/Interniq v2 Full/image_processing20241011-2-1e9a36b.webp",
       "../Blender/Assets/Interniq v2 Full/image_processing20241011-2-1mx7wrk.webp"
     ]
+  },
+  {
+    id: 42,
+    title: "Ancient Chinese Architecture Asset Pack",
+    folder: "Ancient Chinese Architecture Asset Pack",
+    image: "../Blender/Assets/Ancient Chinese Architecture Asset Pack/1.webp",
+    images: [
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/1.webp",
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/5m3dbwft7iu3t57lf86i6bxs2y8w.webp",
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/ltuas97y32cbwb4cywwmrd07480n.webp",
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/photo_2026-01-24_05-33-37 (2).webp",
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/photo_2026-01-24_05-33-37 (3).webp",
+      "../Blender/Assets/Ancient Chinese Architecture Asset Pack/photo_2026-01-24_05-33-37.webp"
+    ]
   }
 ];
 
+// Expose to window for global access
+window.blenderAssets = blenderAssets;
+
 // Download links for assets (add when available)
 const assetDownloadLinksMap = {
-  "20 SCI-FI BUILDING FUTURISTIC CITY VOL 01": "https://direct-link.net/1422046/vgacPSrnqJJW",
-  "Alpha Trees - Render Massive Forests, Fast": "https://link-hub.net/1422046/1HcP1JsO2Trl",
-  "Arborea": "https://link-hub.net/1422046/y8Z04XKeoOQO",
-  "Blender Dynamic VFX - Elemental Asset Pack": "https://direct-link.net/1422046/eoro6Nq3s9NB",
-  "Car Library - Traffiq Car Models": "https://link-hub.net/1422046/PPRqLMfbIwjW",
-  "Car Paint • Shader Presets Collection • Blender": "https://link-hub.net/1422046/4j7gQrSxCjOD",
-  "City Scapes": "https://direct-link.net/1422046/b1NinkxAuzl5",
-  "Community Material Pack": "https://link-target.net/1422046/d57Um9Y4T31X",
-  "Dynamic Terrain": "https://link-hub.net/1422046/d3CsquXpikgd",
-  "Dystopian Blocks - Brutalist Structures Kitbash Buildings": "https://link-target.net/1422046/wSFrpH3mAUOz",
-  "Fractal Machine": "https://link-target.net/1422046/DyVwfdOrL7es",
-  "Gobos Light Textures": "https://link-target.net/1422046/enkNEaDZBWBe",
-  "Horde Add-On Crowd System Tools": "https://link-hub.net/1422046/dsNCOIdw4pIF",
-  "Kanistra People Asset Library": "https://link-center.net/1422046/6sncTA9rjDh7",
-  "Leafify - 40 Leaf-Leaves Texture Alphas": "https://link-center.net/1422046/LTpVl52bmyA6",
-  "MP_Comp": "https://direct-link.net/1422046/gizuq1iOOIow",
-  "Noise Nodes": "https://link-center.net/1422046/OVlwS3ymySye",
-  "Omega Particle": "https://direct-link.net/1422046/avUFgqKR8e4Y",
-  "Painterly Grass Fields & Meadows Pack For Blender": "https://link-center.net/1422046/A0xehGQfAxOA",
-  "Pro Particles - Advanced Particle System": "https://link-hub.net/1422046/qxsEVwxaqu01",
-  "Realmotion Pro": "https://link-target.net/1422046/bkjUEH48D1sN",
-  "Realtime Aura": "https://direct-link.net/1422046/L0MDpINGbtF7",
-  "Simply Trails - Trail Anything!": "https://link-hub.net/1422046/AooNlbXiDxqP",
-  "Sprite Particles For Realtime Vfx": "https://link-center.net/1422046/ekW4bI41kJxN",
-  "Star Wars Outlaws Characters Collection": "https://link-target.net/1422046/wc4ifjYv5FzM",
-  "Stylized Environment Asset Pack - Blender Eevee": "https://direct-link.net/1422046/VllvpbjEp3J6",
-  "Stylized Tree Asset Generator": "https://direct-link.net/1422046/wtwbG1Kk4LFI",
-  "TreeDesigner + 400 trees": "https://link-hub.net/1422046/3iXFka3QKKgq",
-  "Universal Human Collection": "https://link-target.net/1422046/8Yq7HFSAfN1l",
-  "Ultimate Lightning Pack": "https://linkvertise.com/1422046/Dv8rwKiB2xzW?o=sharing",
-  "Interniq v2 Full": "https://link-hub.net/1422046/p4DdFs1mqo0C"
+  "20 SCI-FI BUILDING FUTURISTIC CITY VOL 01": "CUSTOM_FILE_URL",
+  "Alpha Trees - Render Massive Forests, Fast": "CUSTOM_FILE_URL",
+  "Arborea": "CUSTOM_FILE_URL",
+  "Blender Dynamic VFX - Elemental Asset Pack": "CUSTOM_FILE_URL",
+  "Car Library - Traffiq Car Models": "CUSTOM_FILE_URL",
+  "Car Paint • Shader Presets Collection • Blender": "CUSTOM_FILE_URL",
+  "City Scapes": "CUSTOM_FILE_URL",
+  "Community Material Pack": "CUSTOM_FILE_URL",
+  "Dynamic Terrain": "CUSTOM_FILE_URL",
+  "Dystopian Blocks - Brutalist Structures Kitbash Buildings": "CUSTOM_FILE_URL",
+  "Fractal Machine": "CUSTOM_FILE_URL",
+  "Gobos Light Textures": "CUSTOM_FILE_URL",
+  "Horde Add-On Crowd System Tools": "CUSTOM_FILE_URL",
+  "Kanistra People Asset Library": "CUSTOM_FILE_URL",
+  "Leafify - 40 Leaf-Leaves Texture Alphas": "CUSTOM_FILE_URL",
+  "MP_Comp": "CUSTOM_FILE_URL",
+  "Noise Nodes": "CUSTOM_FILE_URL",
+  "Omega Particle": "CUSTOM_FILE_URL",
+  "Painterly Grass Fields & Meadows Pack For Blender": "CUSTOM_FILE_URL",
+  "Pro Particles - Advanced Particle System": "CUSTOM_FILE_URL",
+  "Realmotion Pro": "CUSTOM_FILE_URL",
+  "Realtime Aura": "CUSTOM_FILE_URL",
+  "Simply Trails - Trail Anything!": "CUSTOM_FILE_URL",
+  "Sprite Particles For Realtime Vfx": "CUSTOM_FILE_URL",
+  "Star Wars Outlaws Characters Collection": "CUSTOM_FILE_URL",
+  "Stylized Environment Asset Pack - Blender Eevee": "CUSTOM_FILE_URL",
+  "Stylized Tree Asset Generator": "CUSTOM_FILE_URL",
+  "TreeDesigner + 400 trees": "CUSTOM_FILE_URL",
+  "Universal Human Collection": "CUSTOM_FILE_URL",
+  "Ultimate Lightning Pack": "CUSTOM_FILE_URL",
+  "Interniq v2 Full": "CUSTOM_FILE_URL",
+  "Ancient Chinese Architecture Asset Pack": ""
 };
 
 // Multiple Download Links Mapping (For assets with multiple parts)
 // Format: "Asset Name": { part1: "Link 1", part2: "Link 2" }
 const multipleAssetDownloadLinksMap = {
   "Forest Generator Photorealistic Close-Up Ready Forests": {
-    part1: "https://link-target.net/1422046/avGqfjQClX0X",
-    part2: "https://link-center.net/1422046/OCGfVJk5JojY"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Fortnite Asset Libraries": {
-    part1: "https://link-hub.net/1422046/I6ZaI7fhHZp9",
-    part2: "https://direct-link.net/1422046/qh8mC78SCEyN"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "KKVIZ – Pack 09 – Mediterranean Plants": {
-    part1: "https://link-center.net/1422046/mySPpq0ADN2o",
-    part2: "https://link-target.net/1422046/3J1P6gubDJy9",
-    part3: "https://link-center.net/1422046/xYlFdC0chPPY",
-    part4: "https://link-hub.net/1422046/oOuJuHHNxNKX"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL"
   },
   "Moss Biome Ground Scatter - 3D Assetkit Pbr": {
-    part1: "https://link-hub.net/1422046/FARWxIGcOjsC",
-    part2: "https://link-target.net/1422046/dtA3w5hEjRQx",
-    part3: "https://link-target.net/1422046/CeafJrGRsTsZ"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL"
   },
   "Mountain Scapes": {
-    part1: "https://link-target.net/1422046/b6apOWLrarat",
-    part2: "https://link-center.net/1422046/vWbpy9DnLygK"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Realistic Touch - Surface Imperfection": {
-    part1: "https://link-hub.net/1422046/17oW34NGjhxY",
-    part2: "https://link-center.net/1422046/nQjm9RGqroBo"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Simply Stitch": {
-    part1: "https://link-center.net/1422046/ux3HRK3LZ0fN",
-    part2: "https://link-target.net/1422046/rT5YJYPhD3sE"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Skyline Ukiyo Modern Metropolis": {
-    part1: "https://direct-link.net/1422046/1XLS0vlBjFJ0",
-    part2: "https://link-center.net/1422046/9ZLclfX6BQp9",
-    part3: "https://link-target.net/1422046/VjZ9j9Tv1bbz"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL"
   },
   "Tree And Grass Library Botaniq - Trees": {
-    part1: "https://link-hub.net/1422046/KTHVyByFvRuF",
-    part2: "https://link-target.net/1422046/a4pWchTdd3JN"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   }
 };

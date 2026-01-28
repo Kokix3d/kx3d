@@ -479,7 +479,50 @@
             pageProducts.forEach(product => {
               const card = document.createElement('div');
               card.className = 'product-card';
-              card.onclick = () => {
+              let mouseDownX = 0;
+              let mouseDownY = 0;
+              let isSelecting = false;
+              let mouseMoved = false;
+              
+              card.onmousedown = (e) => {
+                mouseDownX = e.clientX;
+                mouseDownY = e.clientY;
+                isSelecting = false;
+                mouseMoved = false;
+              };
+              
+              card.onmousemove = (e) => {
+                if (mouseDownX !== 0 || mouseDownY !== 0) {
+                  // Check if mouse moved significantly (more than 5px)
+                  const deltaX = Math.abs(e.clientX - mouseDownX);
+                  const deltaY = Math.abs(e.clientY - mouseDownY);
+                  if (deltaX > 5 || deltaY > 5) {
+                    mouseMoved = true;
+                    isSelecting = true;
+                  }
+                }
+              };
+              
+              card.onmouseup = () => {
+                // Reset after a short delay to allow selection check
+                setTimeout(() => {
+                  mouseDownX = 0;
+                  mouseDownY = 0;
+                }, 100);
+              };
+              
+              card.onclick = (e) => {
+                // Check if text is selected or user is selecting text
+                const selection = window.getSelection();
+                const hasSelection = selection && selection.toString().length > 0;
+                
+                // Check if mouse moved significantly (indicating text selection/copy)
+                if (hasSelection || isSelecting || mouseMoved) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return false;
+                }
+                
                 saveListingState();
                 window.location.href = 'brush-detail.html?id=' + product.id;
               };

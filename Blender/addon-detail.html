@@ -441,7 +441,6 @@
     </div>
   </main>
 
-  <script src="../script.js"></script>
   <script>
     // validateImageSource is now globally available from script.js
   </script>
@@ -453,69 +452,70 @@
     // Download Links Mapping - Yahan addon name aur link add karein
     // Format: "Addon Name": "Download Link"
     const downloadLinksMap = {
-      "Alt Tab Easy Fog 2": "https://link-target.net/1422046/2hZBNjBRsUU6",
-      "Animoxtend Ai Animotion & Generation Toolbox": "https://link-target.net/1422046/yXOLMrXFzFWr",
-      "Aqua Under Water": "https://link-target.net/1422046/J6jZ5g6xS0wA",
-      "Auto building": "https://link-target.net/1422046/S3XLHGII6xqW",
-      "Auto-Rig Pro Rig Library": "https://direct-link.net/1422046/I4jbHttjRy9F",
-      "AutoCam": "https://link-hub.net/1422046/6b5Z0e8CcXMJ",
-      "Baga Rain Generator": "https://link-center.net/1422046/NnCDrmOqz8Tb",
-      "Baga River Generator": "https://link-center.net/1422046/Ny9ZUH25I1js",
-      "blendbricks": "https://direct-link.net/1422046/PNinqKRIkjON",
-      "Blender Addon 3D Hair Brush - Support New Hair System": "https://link-target.net/1422046/PixcuDXWEAxj",
-      "Breakdown Maker": "https://link-center.net/1422046/7CO2cB8d6clb",
-      "Camera tracker": "https://link-center.net/1422046/SR15vmkZWuLP",
-      "Compositor Pro": "https://link-target.net/1422046/kkVOisfHIxhc",
-      "Cyberscape Pro  Procedural City Generator": "https://link-target.net/1422046/2zw4fSYlKAfa",
-      "Divine Cut Smart Cloth Generator V3": "https://link-hub.net/1422046/e4eraVBvopLo",
-      "Easy Envelope": "https://direct-link.net/1422046/Ap4geZbgXwgu",
-      "Engon": "https://link-hub.net/1422046/sgVudfYbroxK",
-      "Faceit": "https://link-target.net/1422046/lciV4hIIxcBy",
-      "Flared2 - Cinematic Lens Flares In Real-Time": "https://link-hub.net/1422046/H57Zyyb0faTg",
-      "Fluent 4 - Hard Surface Modeling Tool Suite": "https://link-center.net/1422046/g30ilEi8u8oW",
-      "Fluent Materializer": "https://link-target.net/1422046/s2wNcO4eKtS3",
-      "G Trash": "https://link-target.net/1422046/IE9zTh96xhtm",
-      "GeoTracker for Blender": "https://link-center.net/1422046/TtI9FTTC09MY",
-      "Hair Brick Pro": "https://link-target.net/1422046/A80eAFWYk75V",
-      "Hardops 26 Lead": "https://link-center.net/1422046/kf3tFvq6qC4h",
-      "Human Generator Ultimate": "https://direct-link.net/1422046/VsvgvU6KgF0R",
-      "HumanPro": "https://link-target.net/1422046/OITdHRUHyQHE",
-      "Inkwood 2.0 - Ink Drawing Shader Pack": "https://link-hub.net/1422046/3AUmJVksj94z",
-      "keentools facebuilder": "https://link-center.net/1422046/izK89h60Pf1R",
-      "Laces Generator": "https://direct-link.net/1422046/GaFmw0ok1JOJ",
-      "MetaBlRiger": "https://link-hub.net/1422046/KA9U4hwPaR7S",
-      "Mio3 UV": "https://link-hub.net/1422046/fsWY588jekKx",
-      "Modern Primitive": "https://link-target.net/1422046/5ZskkCNoIpSn",
-      "Node-it": "https://link-hub.net/1422046/QFB7kbO2uDhW",
-      "One click slow motion": "https://direct-link.net/1422046/6afPcNlPWjtx",
-      "Organic Addon - Procedural Organic Tools": "https://link-center.net/1422046/TdU4LLUJD87c",
-      "PBR Bridge": "https://link-center.net/1422046/E8EmG2oJocVc",
-      "Physical Open Waters - Ocean": "https://link-hub.net/1422046/0wWxW4vBmbev",
-      "Physical Weather Fx  One-Click Weather System": "https://link-target.net/1422046/7NpP5En4KSQl",
-      "Physics Placer": "https://direct-link.net/1422046/PY1VIU6u9iXE",
-      "Point Animate By Kiri Engine": "https://direct-link.net/1422046/IS1pp6essLa0",
-      "Procedural Crowds PRO": "https://link-center.net/1422046/LxB64pCMgi96",
-      "Pure-Comic Shader": "https://link-center.net/1422046/7C3pgV3nwhah",
-      "Pure-Sky Pro": "https://link-center.net/1422046/Ps2mqQFJzjrk",
-      "Quad Remesher": "https://link-target.net/1422046/86DA2UlmEsiz",
-      "Random Flow": "https://link-center.net/1422046/OZgWJfEPmgCt",
-      "Rbc A Physics-Based Vehicle Rigging Addon": "https://link-target.net/1422046/O3ZnB0ADHAve",
-      "Retopoflow 4": "https://link-center.net/1422046/OaXjm0Vk2UOC",
-      "Sanctus Library": "https://link-center.net/1422046/Wshdy2eOJ7gD",
-      "Simplify+": "https://direct-link.net/1422046/UEPEKiEzlZEG",
-      "Simply Material Fashion Design": "https://link-hub.net/1422046/VWsSR9FcugFC",
-      "Stylized Asset Suite for Blender": "https://link-hub.net/1422046/HgmSIedRvh7u",
-      "Surface Diagnostics": "https://link-hub.net/1422046/sNUuhi04wVN1",
-      "The City Generator": "https://link-hub.net/1422046/0p4UdXnkbRRg",
-      "True Fire": "https://link-target.net/1422046/0FEUjqbVD5EM",
-      "True-Space 2.0": "https://link-target.net/1422046/no2UEPAtX8c8",
-      "uvpackmaster 3": "https://link-center.net/1422046/I1wIB4PuQSMP",
-      "Vera Light Studio": "https://direct-link.net/1422046/fMH50EoHaYbf",
-      "Wrap Gen - Generate Fully Customisable": "https://link-center.net/1422046/Fxx2dlv1ec6Q",
-      "Xdecal™ Manager": "https://link-target.net/1422046/oPWtshAkVfcj",
-      "Zform - Transform Depth Maps And Images To 3D Mesh": "https://link-target.net/1422046/agLONOI0sUCJ",
-      "Аnimаtion Lаyers": "https://direct-link.net/1422046/Qqi2mLPdP58d",
-      "One Click Age": "https://direct-link.net/1422046/szWErusvp7rL",
+      "Alt Tab Easy Fog 2": "https://shrinkme.click/kx3d",
+      "Animoxtend Ai Animotion & Generation Toolbox": "https://shrinkme.click/o9vnN",
+      "Aqua Under Water": "https://shrinkme.click/OjvCXkf",
+      "Auto building": "https://shrinkme.click/ceZGxe",
+      "Auto-Rig Pro Rig Library": "https://shrinkme.click/lvHl9Bi",
+      "AutoCam": "https://shrinkme.click/yehr",
+      "Baga Rain Generator": "https://shrinkme.click/VlTLTdB",
+      "Baga River Generator": "https://shrinkme.click/EwRnDJ",
+      "blendbricks": "https://shrinkme.click/iiepio",
+      "3D Hair Brush - Support New Hair System": "https://shrinkme.click/CsiRYL3",
+      "Breakdown Maker": "https://shrinkme.click/yiak2Hm",
+      "Camera tracker": "https://shrinkme.click/OO6cKil",
+      "Cell Fluids": "https://shrinkme.click/GdDZuv",
+      "Compositor Pro": "https://shrinkme.click/NDyqtf",
+      "Cyberscape Pro  Procedural City Generator": "https://shrinkme.click/1Prm5ClD",
+      "Divine Cut Smart Cloth Generator V3": "https://shrinkme.click/oaXnfbJQ",
+      "Easy Envelope": "https://shrinkme.click/z7tUUauB",
+      "Engon": "https://shrinkme.click/FWHU",
+      "Faceit": "https://shrinkme.click/4PJuNB",
+      "Flared2 - Cinematic Lens Flares In Real-Time": "https://shrinkme.click/0tqSh",
+      "Fluent 4 - Hard Surface Modeling Tool Suite": "https://shrinkme.click/lpFq0",
+      "Fluent Materializer": "https://shrinkme.click/Q9naAmdX",
+      "G Trash": "https://shrinkme.click/TQt76Ny",
+      "Hair Brick Pro": "https://shrinkme.click/OA1q6",
+      "Hardops 26 Lead": "https://shrinkme.click/zbhC2iM",
+      "Human Generator Ultimate": "https://shrinkme.click/mTSW",
+      "HumanPro": "https://shrinkme.click/fJ4x",
+      "Inkwood 2.0 - Ink Drawing Shader Pack": "https://shrinkme.click/5Z26GSY",
+      "keentools facebuilder": "https://shrinkme.click/XzBG8",
+      "Laces Generator": "https://shrinkme.click/tCjzHG",
+      "MetaBlRiger": "https://shrinkme.click/kzjY",
+      "Mio3 UV": "https://shrinkme.click/ywDKf",
+      "Modern Primitive": "https://shrinkme.click/Vvcq8WO",
+      "Node-it": "https://shrinkme.click/SOIx4",
+      "One click slow motion": "https://shrinkme.click/KycYMh",
+      "Organic Addon - Procedural Organic Tools": "https://shrinkme.click/DNAVNbGA",
+      "PBR Bridge": "https://shrinkme.click/ZdKJ6",
+      "Physical Open Waters - Ocean": "https://shrinkme.click/KxXKv",
+      "Physical Weather Fx  One-Click Weather System": "https://shrinkme.click/vDaGPnC",
+      "Physics Placer": "https://shrinkme.click/VsSS",
+      "Photographer 5 - Blender Add-on": "https://shrinkme.click/h99emH",
+      "Point Animate By Kiri Engine": "https://shrinkme.click/TfuSrjO",
+      "Procedural Crowds PRO": "https://shrinkme.click/Wt7lmjOA",
+      "Pure-Comic Shader": "CUSTOM_FILE_URL",
+      "Pure-Sky Pro": "https://shrinkme.click/4FraMYQ",
+      "Quad Remesher": "https://shrinkme.click/w7GWB982",
+      "Random Flow": "https://shrinkme.click/kpuVD9t",
+      "Rbc A Physics-Based Vehicle Rigging Addon": "https://shrinkme.click/cedWxAf",
+      "Retopoflow 4": "https://shrinkme.click/TmWjMD9",
+      "Sanctus Library": "https://shrinkme.click/p7MjDh3Q",
+      "Simplify+": "https://shrinkme.click/ekyQ4y8",
+      "Simply Material Fashion Design": "https://shrinkme.click/V7Ur",
+      "Stylized Asset Suite for Blender": "https://shrinkme.click/bgxD3BCc",
+      "Surface Diagnostics": "https://shrinkme.click/41TDib",
+      "The City Generator": "https://shrinkme.click/uL6YO",
+      "True Fire": "https://shrinkme.click/nuM5vGZ",
+      "True-Space 2.0": "https://shrinkme.click/CkuLDUsx",
+      "uvpackmaster 3": "https://shrinkme.click/haIIhYr",
+      "Vera Light Studio": "https://shrinkme.click/kro3Y",
+      "Wrap Gen - Generate Fully Customisable": "https://shrinkme.click/rDrS3Ilq",
+      "Xdecal™ Manager": "https://shrinkme.click/bVQO",
+      "Zform - Transform Depth Maps And Images To 3D Mesh": "https://shrinkme.click/Mbff",
+      "Аnimаtion Lаyers": "https://shrinkme.click/2kllX",
+      "One Click Age": "https://shrinkme.click/Kf1QA2y",
       // Naye addons ke liye yahan add karein:
       // "Addon Name": "Download Link",
     };
@@ -524,12 +524,12 @@
     // Format: "Addon Name": { part1: "Link 1", part2: "Link 2" }
     const multipleDownloadLinksMap = {
       "Globalskin - Ultimate Skin Shader": {
-        part1: "https://link-center.net/1422046/2Bamxt5mER57",
-        part2: "https://link-center.net/1422046/A6CmDUIdTUfv"
+        part1: "https://shrinkme.click/PyNfx",
+        part2: "https://shrinkme.click/WM9jc3n"
       },
       "Icity City Generator": {
-        part1: "https://direct-link.net/1422046/79XGkoNpJbGu",
-        part2: "https://link-target.net/1422046/oIrNpVcnsiQq"
+        part1: "CUSTOM_FILE_URL",
+        part2: "CUSTOM_FILE_URL"
       }
       // "Addon Name": "Download Link",
     };
@@ -663,7 +663,7 @@
       },
       {
         id: 10,
-        title: "Blender Addon 3D Hair Brush - Support New Hair System",
+        title: "3D Hair Brush - Support New Hair System",
         image: "../Blender/Addon/Blender Addon 3D Hair Brush - Support New Hair System/1.webp",
         folder: "Blender Addon 3D Hair Brush - Support New Hair System",
         images: [
@@ -842,20 +842,6 @@
         ]
       },
       {
-        id: 23,
-        title: "GeoTracker for Blender",
-        image: "../Blender/Addon/GeoTracker for Blender/1.webp",
-        folder: "GeoTracker for Blender",
-        images: [
-          "../Blender/Addon/GeoTracker for Blender/1.webp",
-          "../Blender/Addon/GeoTracker for Blender/2.mp4",
-          "../Blender/Addon/GeoTracker for Blender/3.mp4",
-          "../Blender/Addon/GeoTracker for Blender/4.mp4",
-          "../Blender/Addon/GeoTracker for Blender/5.mp4",
-          "../Blender/Addon/GeoTracker for Blender/6.mp4"
-        ]
-      },
-      {
         id: 24,
         title: "Globalskin - Ultimate Skin Shader",
         image: "../Blender/Addon/Globalskin - Ultimate Skin Shader/1.webp",
@@ -886,10 +872,10 @@
       {
         id: 26,
         title: "Hardops 26 Lead",
-        image: "../Blender/Addon/Hardops 26 Lead/1.webp",
+        image: "../Blender/Addon/Hardops 26 Lead/1.jpg",
         folder: "Hardops 26 Lead",
         images: [
-          "../Blender/Addon/Hardops 26 Lead/1.webp",
+          "../Blender/Addon/Hardops 26 Lead/1.jpg",
           "../Blender/Addon/Hardops 26 Lead/b5.webp",
           "../Blender/Addon/Hardops 26 Lead/c3.webp",
           "../Blender/Addon/Hardops 26 Lead/v2.webp",
@@ -1427,6 +1413,32 @@
           "../Blender/Addon/One Click Age/Log Variations.webp",
           "../Blender/Addon/One Click Age/M4A1 Variations.webp"
         ]
+      },
+      {
+        id: 66,
+        title: "Photographer 5 - Blender Add-on",
+        image: "../Blender/Addon/Photographer 5 - Blender Add-on/1.webp",
+        folder: "Photographer 5 - Blender Add-on",
+        images: [
+          "../Blender/Addon/Photographer 5 - Blender Add-on/1.webp",
+          "../Blender/Addon/Photographer 5 - Blender Add-on/dolly_zoom.webp",
+          "../Blender/Addon/Photographer 5 - Blender Add-on/lens_tilt_opt.webp",
+          "../Blender/Addon/Photographer 5 - Blender Add-on/light_modal.webp"
+        ]
+      },
+      {
+        id: 67,
+        title: "Cell Fluids",
+        image: "../Blender/Addon/Cell Fluids/1.webp",
+        folder: "Cell Fluids",
+        images: [
+          "../Blender/Addon/Cell Fluids/1.webp",
+          "../Blender/Addon/Cell Fluids/image_processing20241215-2-bd4xnl.webp",
+          "../Blender/Addon/Cell Fluids/image_processing20241215-2-h9o0zq.webp",
+          "../Blender/Addon/Cell Fluids/image_processing20241215-2-qdo952.webp",
+          "../Blender/Addon/Cell Fluids/image_processing20241215-2-v2kt5v.webp",
+          "../Blender/Addon/Cell Fluids/image_processing20241215-2-wkdmcr.webp"
+        ]
       }
     ];
 
@@ -1444,7 +1456,9 @@
       const heroImage = document.getElementById('heroMainImage');
       if (heroImage) {
         // Validate image source to prevent Google Drive URLs
-        const validatedImage = validateImageSource ? validateImageSource(addon.image) : addon.image;
+        const validatedImage = typeof validateImageSource === 'function'
+          ? validateImageSource(addon.image)
+          : addon.image;
         if (!validatedImage) {
           console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', addon.image);
           heroImage.style.display = 'none';
@@ -1530,7 +1544,9 @@
       // IMPORTANT: Validate all image sources - Google Drive URLs should ONLY be used for downloads, NOT previews
       galleryImages.forEach((img, idx) => {
         // Validate image source to prevent Google Drive URLs
-        const validatedImg = validateImageSource ? validateImageSource(img) : img;
+        const validatedImg = typeof validateImageSource === 'function'
+          ? validateImageSource(img)
+          : img;
         if (!validatedImg) {
           console.warn('Skipping invalid preview image (Google Drive URLs are not allowed for previews):', img);
           return; // Skip this image
@@ -1624,10 +1640,13 @@
           
           if (downloadLink && downloadLink.trim() !== '') {
             downloadBtn.href = downloadLink;
+            downloadBtn.title = '';
           } else {
-            downloadBtn.style.display = 'none';
-            console.warn('Download link not available for addon:', addon.title);
+            downloadBtn.href = '#';
+            downloadBtn.title = 'Download link will be added soon';
           }
+          const lbl = downloadBtn.querySelector('span');
+          if (lbl) lbl.textContent = 'Download Now';
         }
       }
     });

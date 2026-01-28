@@ -494,136 +494,139 @@ const blenderCourses = [
   }
 ];
 
+// Expose to window for global access
+window.blenderCourses = blenderCourses;
+
 // Download links for courses (add when available)
 const courseDownloadLinksMap = {
-  "Authentic live-action compositing VFX with Blender": "https://link-hub.net/1422046/zSexRuz3qAEK",
-  "BASEMESH Create Stylized Characters Quickly with Blender": "https://link-hub.net/1422046/sHldHYxuQkqP",
-  "Blender Character Modeling for Natural Light and Shadow": "https://direct-link.net/1422046/A3O4hAmSrKUl",
-  "Creative Shrimp - Eevee Realistic Lighting and Rendering": "https://direct-link.net/1422046/Dc0BZhNZthGK",
-  "Low-Poly Anime Character Creation in Blender": "https://link-center.net/1422046/L4B3JMF0eQmH",
-  "BlenderBros - The Ultimate Guide to Hard Ops and Boxcutter Version 2.0": "https://link-target.net/1422046/kNeGnCsy5l1O",
-  "Cinematic Blender Tutorial - Home At Last by Leo Avero": "https://direct-link.net/1422046/Y0LhLX1Ny03p",
-  "Creating Cel-Shaded Character Animations with Blender": "https://link-target.net/1422046/wZcuOHCuFP8i",
-  "FlyCat - Bunny Girl": "https://link-center.net/1422046/sC0IEvNkOpbE",
-  "FlyCat - Game Ready Character Modeling - Full process": "https://link-center.net/1422046/GIPNUPI7016o",
-  "Realistic Live-Action VFX Compositing Using Blender": "https://link-hub.net/1422046/zSexRuz3qAEK",
-  "Sci-Fi Construction Robot (Blender Tutorial Series)": "https://link-center.net/1422046/H6xwfvh1NO1k",
-  "Stylized Action in Blender Crafting a Bold Cel-Shaded Look": "https://link-target.net/1422046/GVbrRXJEB8pi",
-  "Stylized characters mastered with Blender": "https://direct-link.net/1422046/IWYCW49drqsq",
-  "The Art of Effective Rigging 2": "https://direct-link.net/1422046/ZkgqhVPuSkGj",
-  "Udemy Blender Career Starter From Zero to StudioReady": "https://link-target.net/1422046/YWf87f3fitGo",
-  "Steampunk Gun Tutorial - Tutorial Full Process": "https://direct-link.net/1422046/GZ7xQsaZSS5C",
-  "Blender Grease Pencil Draw & Animate 2D Art in a 3D World": "https://direct-link.net/1422046/JSDAI5njGmNQ"
+  "Authentic live-action compositing VFX with Blender": "CUSTOM_FILE_URL",
+  "BASEMESH Create Stylized Characters Quickly with Blender": "CUSTOM_FILE_URL",
+  "Blender Character Modeling for Natural Light and Shadow": "CUSTOM_FILE_URL",
+  "Creative Shrimp - Eevee Realistic Lighting and Rendering": "CUSTOM_FILE_URL",
+  "Low-Poly Anime Character Creation in Blender": "CUSTOM_FILE_URL",
+  "BlenderBros - The Ultimate Guide to Hard Ops and Boxcutter Version 2.0": "CUSTOM_FILE_URL",
+  "Cinematic Blender Tutorial - Home At Last by Leo Avero": "CUSTOM_FILE_URL",
+  "Creating Cel-Shaded Character Animations with Blender": "CUSTOM_FILE_URL",
+  "FlyCat - Bunny Girl": "CUSTOM_FILE_URL",
+  "FlyCat - Game Ready Character Modeling - Full process": "CUSTOM_FILE_URL",
+  "Realistic Live-Action VFX Compositing Using Blender": "CUSTOM_FILE_URL",
+  "Sci-Fi Construction Robot (Blender Tutorial Series)": "CUSTOM_FILE_URL",
+  "Stylized Action in Blender Crafting a Bold Cel-Shaded Look": "CUSTOM_FILE_URL",
+  "Stylized characters mastered with Blender": "CUSTOM_FILE_URL",
+  "The Art of Effective Rigging 2": "CUSTOM_FILE_URL",
+  "Udemy Blender Career Starter From Zero to StudioReady": "CUSTOM_FILE_URL",
+  "Steampunk Gun Tutorial - Tutorial Full Process": "CUSTOM_FILE_URL",
+  "Blender Grease Pencil Draw & Animate 2D Art in a 3D World": "CUSTOM_FILE_URL"
 };
 
 // Multiple Download Links Mapping (For courses with multiple parts)
 // Format: "Course Name": { part1: "Link 1", part2: "Link 2" }
 const multipleCourseDownloadLinksMap = {
   "A to Z of NPR Animation in Blender": {
-    part1: "https://direct-link.net/1422046/vwsbUG97upEV",
-    part2: "https://direct-link.net/1422046/WlDK2XpP4vmc",
-    part3: "https://link-center.net/1422046/UzrA6WyB7Vas",
-    part4: "https://link-target.net/1422046/iZLhdTtB1wh9",
-    part5: "https://link-hub.net/1422046/D2HcdauOlbPD"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   },
   "Coloso - 30 Days from 0 Skill to Pro 3D Artist with Daz & Blender": {
-    part1: "https://link-hub.net/1422046/YsO9giJBUZpU",
-    part2: "https://link-center.net/1422046/9UdfmhnB1Y3B",
-    part3: "https://direct-link.net/1422046/VjSLzRs4Ci9q",
-    part4: "https://direct-link.net/1422046/FQyMFjQaGgj5"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL"
   },
   "Coloso - Unleash the Action Crafting Stylized Fight Sequences": {
-    part1: "https://link-hub.net/1422046/uVuqRfijBNao",
-    part2: "https://link-target.net/1422046/5Vj4KfXqBe3w"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Concept Art for Films": {
-    part1: "https://direct-link.net/1422046/D6dvOQxxPGql",
-    part2: "https://link-center.net/1422046/2b4C7lC2h00t",
-    part3: "https://link-target.net/1422046/ZRv1L9HpEmGI",
-    part4: "https://link-target.net/1422046/LbauqIqhqvzT"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL"
   },
   "Environment Concept Art Cursed Village": {
-    part1: "https://link-hub.net/1422046/XcuJ1slDfJn4",
-    part2: "https://direct-link.net/1422046/bBpef9fmCAhs",
-    part3: "https://link-target.net/1422046/BJ78XKgtewtb",
-    part4: "https://link-center.net/1422046/UuiemIl70J7e",
-    part5: "https://link-hub.net/1422046/fwXcUogAUG5Y"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   },
   "How to Sculpt a Stylized Head in Blender": {
-    part1: "https://link-center.net/1422046/YV3PRWPDENAe",
-    part2: "https://link-target.net/1422046/kfuyidMMv1ny",
-    part3: "https://link-hub.net/1422046/J56xLeWc1R69",
-    part4: "https://link-hub.net/1422046/fFRyQ4dleysY",
-    part5: "https://direct-link.net/1422046/m80b741spote",
-    part6: "https://link-hub.net/1422046/A8030kPyBiZF",
-    part7: "https://link-target.net/1422046/Lj7xIZj324Uw"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL",
+    part6: "CUSTOM_FILE_URL",
+    part7: "CUSTOM_FILE_URL"
   },
   "HUMAN Realistic Portrait Creation with Blender": {
-    part1: "https://link-target.net/1422046/8z80fHMbnMOg",
-    part2: "https://direct-link.net/1422046/CnStBChE86Xh",
-    part3: "https://link-target.net/1422046/IC2Wc1GmSHLz",
-    part4: "https://link-hub.net/1422046/GszHRaer8XJQ",
-    part5: "https://direct-link.net/1422046/X03TI4ljcmZ5"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   },
   "Ian Hubert Full Patreon Collection": {
-    part1: "https://link-center.net/1422046/OBcw4npoChRx",
-    part2: "https://direct-link.net/1422046/Ya7HYr6gD25M",
-    part3: "https://link-hub.net/1422046/YbGIxzwIZEBR",
-    part4: "https://link-center.net/1422046/9sDixLVgB2zv",
-    part5: "https://link-center.net/1422046/OUhCPp0MMrFJ"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   },
   "Master Cinematic Storytelling in Blender": {
-    part1: "https://link-target.net/1422046/rDnBo9oLS2Ek",
-    part2: "https://link-target.net/1422046/agcLr1CbnygI",
-    part3: "https://link-center.net/1422046/fO3U45gvwEDl",
-    part4: "https://link-center.net/1422046/NkqEypirWpxj"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL"
   },
   "Procedural Stylized Worlds  Geometry Nodes & Shading Masterclass": {
-    part1: "https://link-center.net/1422046/RbbrnxQzZUUl",
-    part2: "https://direct-link.net/1422046/A5F0QF2h9XUn"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Realistic Animation 10H + 100 Assets - The Oldest View": {
-    part1: "https://link-center.net/1422046/2wfGHfb9X1cC",
-    part2: "https://direct-link.net/1422046/p1aaMWVreLAW"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "The 100-Chapter Guide for Utilizing Blender": {
-    part1: "https://link-hub.net/1422046/9ISgHwCD6XcO",
-    part2: "https://link-center.net/1422046/7EFzB798UXNk",
-    part3: "https://link-center.net/1422046/7eeO6HkRqHxu",
-    part4: "https://link-target.net/1422046/u1gdAYTpb1rN",
-    part5: "https://link-target.net/1422046/dXwt7uEoMqD4",
-    part6: "https://link-target.net/1422046/BuNWlDo1ulSY",
-    part7: "https://link-hub.net/1422046/MqaCwHcw7amc",
-    part8: "https://link-center.net/1422046/3YE4nmV1oOnK"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL",
+    part6: "CUSTOM_FILE_URL",
+    part7: "CUSTOM_FILE_URL",
+    part8: "CUSTOM_FILE_URL"
   },
   "Creating Hero Assets for Games & Cinematics": {
-    part1: "https://link-center.net/1422046/7QRBWwZmpanJ",
-    part2: "https://direct-link.net/1422046/x6XwnSua2XJ2",
-    part3: "https://link-hub.net/1422046/RYDqAhXzgiFp",
-    part4: "https://link-center.net/1422046/oDtXFxqcoZaa",
-    part5: "https://link-target.net/1422046/aObcobVxbahc"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL"
   },
   "Little Flying Boat - Tutorial full process": {
-    part1: "https://link-hub.net/1422046/3GIGbk7W8bg2",
-    part2: "https://direct-link.net/1422046/UcHGWODJLl89",
-    part3: "https://direct-link.net/1422046/8fp9yDUqP3gy"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL"
   },
   "VFX Compositing in Blender Game-Inspired Green Screen FX": {
-    part1: "https://link-hub.net/1422046/eodGHHmZtDK7",
-    part2: "https://link-hub.net/1422046/MljfeISjET4L"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "Creating Art Tools using Blender Geometry Nodes": {
-    part1: "https://link-center.net/1422046/o233rR1mjsb5",
-    part2: "https://link-center.net/1422046/EqBrAPLyvW4n",
-    part3: "https://direct-link.net/1422046/SzrnKcMJSeUB"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL"
   },
   "War Robot-Tutorial Full Process": {
-    part1: "https://direct-link.net/1422046/WfciP0JMvgY8",
-    part2: "https://link-hub.net/1422046/c4tsghgzfLZU"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL"
   },
   "10 Helmets + Full Tutorial  3D Models": {
-    part1: "https://link-center.net/1422046/dHJAuDLF31eY",
-    part2: "https://direct-link.net/1422046/L8VhD2rSlwKX",
-    part3: "https://link-target.net/1422046/3djvbfHPi6p8"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL"
   }
 };

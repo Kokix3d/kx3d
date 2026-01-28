@@ -94,27 +94,30 @@ const blenderBrushes = [
   }
 ];
 
+// Expose to window for global access
+window.blenderBrushes = blenderBrushes;
+
 // Download links for brushes (add when available)
 const brushDownloadLinksMap = {
-  "20 PBR Leather Armor Texture Seamless (Vol 03)": "https://link-hub.net/1422046/Lb5WDs3BPAsD",
-  "40 Fabric Stitches Pattern": "https://link-center.net/1422046/EtUOPRhPwNeK",
-  "Blender Grease Pencil Brush Pack": "https://direct-link.net/1422046/JoxTw6jQVUL6",
-  "Dynamic SeamStitch Brushe": "https://link-hub.net/1422046/siNyzkrX5RXu",
-  "Zenshaders  Library": "https://link-hub.net/1422046/POS3SgFkMw0F",
+  "20 PBR Leather Armor Texture Seamless (Vol 03)": "CUSTOM_FILE_URL",
+  "40 Fabric Stitches Pattern": "CUSTOM_FILE_URL",
+  "Blender Grease Pencil Brush Pack": "CUSTOM_FILE_URL",
+  "Dynamic SeamStitch Brushe": "CUSTOM_FILE_URL",
+  "Zenshaders  Library": "CUSTOM_FILE_URL",
   "Brushes of the Damned - Blender Version": "", // Add download link when available
-  "150 WOOD BRUSHES + 4K SEAMLESS ALPHAS - VOL 01": "https://link-center.net/1422046/kvdDtIPCLlMK"
+  "150 WOOD BRUSHES + 4K SEAMLESS ALPHAS - VOL 01": "https://shrinkme.click/ugOBhFW"
 };
 
 // Multiple Download Links Mapping (For brushes with multiple parts)
 // Format: "Brush Name": { part1: "Link 1", part2: "Link 2" }
 const multipleBrushDownloadLinksMap = {
   "Brushes of the Damned - Blender Version": {
-    part1: "https://direct-link.net/1422046/Nio9REMkrYIJ",
-    part2: "https://link-target.net/1422046/yW6tIBP4gsfo",
-    part3: "https://direct-link.net/1422046/4MKJBXQLbC6q",
-    part4: "https://direct-link.net/1422046/3e6l2RnB8zOP",
-    part5: "https://direct-link.net/1422046/VJ5i5lV1AJfe",
-    part6: "https://link-hub.net/1422046/jjdSt44u81nk",
-    part7: "https://direct-link.net/1422046/sST3bh4N21d2"
+    part1: "CUSTOM_FILE_URL",
+    part2: "CUSTOM_FILE_URL",
+    part3: "CUSTOM_FILE_URL",
+    part4: "CUSTOM_FILE_URL",
+    part5: "CUSTOM_FILE_URL",
+    part6: "CUSTOM_FILE_URL",
+    part7: "CUSTOM_FILE_URL"
   }
 };

@@ -443,17 +443,16 @@
     </div>
   </main>
 
-  <script src="../script.js"></script>
   <script>
     // Download Links Mapping - Yahan plugin name aur link add karein
     // Format: "Plugin Name": "Download Link"
     const unrealPluginDownloadLinksMap = {
-      "Dynamic Real Water": "https://link-hub.net/1422046/zecyM7LUoiUP",
-      "Electronic Nodes": "https://link-hub.net/1422046/QMFuHvzCNGwI",
-      "Foliage Plugin": "https://direct-link.net/1422046/V2wRoJy5Los3",
-      "MeshBlend": "https://link-center.net/1422046/lL2Wt0oW6i7D",
-      "VICODynamics RopeClothSoft-Body Simulation Plugin": "https://link-center.net/1422046/nc76KugaLe4s",
-      "Voxel Plugin Pro Legacy": "https://link-target.net/1422046/dRWdROoBjpji",
+      "Dynamic Real Water": "CUSTOM_FILE_URL",
+      "Electronic Nodes": "CUSTOM_FILE_URL",
+      "Foliage Plugin": "CUSTOM_FILE_URL",
+      "MeshBlend": "CUSTOM_FILE_URL",
+      "VICODynamics RopeClothSoft-Body Simulation Plugin": "CUSTOM_FILE_URL",
+      "Voxel Plugin Pro Legacy": "CUSTOM_FILE_URL",
       "Cinemotion 3 Real Handheld Camera Motion Kit": "",
       "Easy Multi Save": "",
       "Narrative Tales - Node Based Quests and Dialogue": "",
@@ -628,10 +627,22 @@
     } else {
       const heroImage = document.getElementById('heroMainImage');
       if (heroImage) {
-        heroImage.loading = 'eager';
-        heroImage.decoding = 'async';
-        heroImage.fetchPriority = 'high';
-        heroImage.src = plugin.image;
+        // Validate image source - Google Drive URLs should ONLY be used for downloads, NOT previews
+        const getImagePath = typeof window.getImagePath === 'function' ? window.getImagePath : (src) => src;
+        const validateImageSource = typeof window.validateImageSource === 'function' ? window.validateImageSource : (src) => src;
+        
+        let imagePath = getImagePath(plugin.image || '', 'Unreal');
+        const validatedImage = validateImageSource(imagePath);
+        
+        if (!validatedImage) {
+          console.error('Invalid preview image source (Google Drive URLs are not allowed for previews):', plugin.image);
+          heroImage.style.display = 'none';
+        } else {
+          heroImage.loading = 'eager';
+          heroImage.decoding = 'async';
+          heroImage.fetchPriority = 'high';
+          heroImage.src = validatedImage;
+        }
       }
       document.getElementById('productTitle').textContent = plugin.title;
 
@@ -670,14 +681,25 @@
       const viewCountElement = document.getElementById('viewCount');
       if (viewCountElement) viewCountElement.textContent = formatViews(viewCount);
 
+      // IMPORTANT: Validate all image sources - Google Drive URLs should ONLY be used for downloads, NOT previews
       const galleryContainer = document.getElementById('galleryThumbnails');
-      const galleryImages = (plugin.images && plugin.images.length > 0 ? plugin.images : [plugin.image]).slice(0, 6);
-      galleryImages.forEach((img, idx) => {
+      const getImagePath = typeof window.getImagePath === 'function' ? window.getImagePath : (src) => src;
+      const validateImageSource = typeof window.validateImageSource === 'function' ? window.validateImageSource : (src) => src;
+      
+      const rawGalleryImages = (plugin.images && plugin.images.length > 0 ? plugin.images : [plugin.image]).slice(0, 6);
+      const galleryImages = rawGalleryImages
+        .map(img => {
+          const normalized = getImagePath(img, 'Unreal');
+          return validateImageSource(normalized);
+        })
+        .filter(img => img !== null && img !== '');
+      
+      galleryImages.forEach((validatedImg, idx) => {
         const thumb = document.createElement('div');
         thumb.className = 'gallery-thumb' + (idx === 0 ? ' active' : '');
 
         const thumbImage = document.createElement('img');
-        thumbImage.src = img;
+        thumbImage.src = validatedImg;
         thumbImage.alt = `Preview ${idx + 1}`;
         thumbImage.loading = 'lazy';
         thumbImage.decoding = 'async';
@@ -687,7 +709,7 @@
         thumb.onclick = () => {
           if (heroImage) {
             heroImage.decoding = 'async';
-            heroImage.src = img;
+            heroImage.src = validatedImg; // Use validated image source
           }
           document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
           thumb.classList.add('active');
@@ -761,10 +783,13 @@
       } else if (downloadBtn) {
         if (downloadLink && downloadLink.trim() !== '') {
           downloadBtn.href = downloadLink;
+          downloadBtn.title = '';
         } else {
-          downloadBtn.style.display = 'none';
-          console.warn('Download link not available for plugin');
+          downloadBtn.href = '#';
+          downloadBtn.title = 'Download link will be added soon';
         }
+        const lbl = downloadBtn.querySelector('span');
+        if (lbl) lbl.textContent = 'Download Now';
       }
     }
   </script>

@@ -301,17 +301,11 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       }
 
       for (const item of dataMap) {
-        const [globalVar, windowVar] = item.vars;
-        // Check window first (most common)
+        const [globalVar] = item.vars;
+        // Check window (single check, no fallback needed)
         const windowData = window[globalVar];
         if (windowData && Array.isArray(windowData) && windowData.length > 0) {
           cachedPageData = { data: windowData, type: item.type, detailPage: item.detailPage };
-          return cachedPageData;
-        }
-        // Fallback: Check window object (safer than eval)
-        const globalData = window[globalVar];
-        if (globalData && Array.isArray(globalData) && globalData.length > 0) {
-          cachedPageData = { data: globalData, type: item.type, detailPage: item.detailPage };
           return cachedPageData;
         }
       }
@@ -357,9 +351,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
               showSearchUnavailable();
             }
           };
-          script.onerror = () => {
-            showSearchUnavailable();
-          };
+          script.onerror = showSearchUnavailable;
           document.head.appendChild(script);
           return;
         }
@@ -378,7 +370,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
 
       const searchTerm = cacheKey;
       
-      // Optimized filtering - pre-compute lowercase strings once
+      // Optimized filtering - single pass with pre-computed lowercase
       const results = [];
       const data = pageData.data;
       const dataLength = data.length;
@@ -394,13 +386,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
         }
         
         // Check other fields only if title doesn't match
-        const description = (item.description || '').toLowerCase();
-        const category = (item.category || '').toLowerCase();
-        const folder = (item.folder || '').toLowerCase();
-        
-        if (description.includes(searchTerm) || 
-            category.includes(searchTerm) ||
-            folder.includes(searchTerm)) {
+        const searchableText = `${(item.description || '').toLowerCase()} ${(item.category || '').toLowerCase()} ${(item.folder || '').toLowerCase()}`;
+        if (searchableText.includes(searchTerm)) {
           results.push(item);
         }
       }
@@ -506,14 +493,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
         const fragment = document.createDocumentFragment();
         const detailPage = pageData.detailPage;
 
-        // Pre-compile HTML template parts for better performance
-        const cardStart = '<div class="product-card" data-product-id="';
-        const cardMiddle = '" data-detail-page="';
-        const cardMiddle2 = '"><div class="product-image-group"><div class="product-image-wrapper"><img src="';
-        const cardMiddle3 = '" alt="';
-        const cardMiddle4 = '" class="product-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.src=\'' + imageFallback + '\'"></div></div><div class="product-content-group"><div class="product-info"><h3 class="product-title">';
-        const cardEnd = '</h3></div></div><div class="product-meta-group"></div></div>';
-
+        // Optimized: Use template strings for better performance
         for (let i = 0; i < resultsLength; i++) {
           const product = results[i];
           const title = product.title || 'Untitled';
@@ -526,7 +506,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
           card.className = 'product-card';
           card.dataset.productId = product.id;
           card.dataset.detailPage = detailPage;
-          card.innerHTML = cardStart + product.id + cardMiddle + detailPage + cardMiddle2 + normalizedImageSrc + cardMiddle3 + escapedTitle + cardMiddle4 + title + cardEnd;
+          card.innerHTML = `<div class="product-image-group"><div class="product-image-wrapper"><img src="${normalizedImageSrc}" alt="${escapedTitle}" class="product-image" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='${imageFallback}'"></div></div><div class="product-content-group"><div class="product-info"><h3 class="product-title">${title}</h3></div></div><div class="product-meta-group"></div>`;
           fragment.appendChild(card);
         }
 
@@ -875,56 +855,39 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       return;
     }
     
-    featuredGrid.innerHTML = products.map(product => {
-      // Determine software and detail page based on image path
-      let software = 'Blender';
-      let detailPage = 'Blender/asset-detail.html';
-      
-      if (product.image && product.image.includes('Unreal')) {
-        software = 'Unreal';
-        detailPage = 'Unreal/asset-detail.html';
-      } else if (product.image && product.image.includes('../Unreal')) {
-        software = 'Unreal';
-        detailPage = 'Unreal/asset-detail.html';
-      }
-      
-      // Fix image path if it starts with ../
-      let imagePath = product.image;
-      if (imagePath.startsWith('../')) {
-        imagePath = imagePath.substring(3);
-      }
-      
-      // Normalize path for Vercel (handles spaces, case sensitivity)
-      // Use getImagePath if available, otherwise normalize manually
-      if (typeof getImagePath === 'function') {
-        imagePath = getImagePath(imagePath, '');
-      } else {
-        // Fallback: URL encode spaces
-        imagePath = imagePath.split('/').map(part => {
+    // Optimized: Use for loop instead of map for better performance
+    const productsLength = products.length;
+    const htmlParts = new Array(productsLength);
+    
+    // Cache path normalization function
+    const normalizePath = typeof getImagePath === 'function' 
+      ? (path) => getImagePath(path, '')
+      : (path) => path.split('/').map(part => {
           if (part === '..' || part === '.' || part === '') return part;
           return encodeURIComponent(part);
         }).join('/');
+    
+    for (let i = 0; i < productsLength; i++) {
+      const product = products[i];
+      // Determine software and detail page based on image path
+      const isUnreal = product.image && (product.image.includes('Unreal') || product.image.includes('../Unreal'));
+      const software = isUnreal ? 'Unreal' : 'Blender';
+      const detailPage = isUnreal ? 'Unreal/asset-detail.html' : 'Blender/asset-detail.html';
+      
+      // Fix image path if it starts with ../
+      let imagePath = product.image;
+      if (imagePath && imagePath.startsWith('../')) {
+        imagePath = imagePath.substring(3);
       }
+      imagePath = normalizePath(imagePath);
       
       // First 4 featured products are above-fold: use eager loading with high priority
-      const isAboveFold = products.indexOf(product) < 4;
-      const loadingAttr = isAboveFold ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+      const loadingAttr = i < 4 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
       
-      return `
-        <a href="${detailPage}?id=${product.id}" class="featured-card" style="text-decoration: none; color: inherit; display: block;">
-          <img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3';">
-          <div class="featured-card-info">
-            <h3 class="featured-card-title">${product.title}</h3>
-            <div class="featured-card-meta">
-              <span class="featured-card-tag">${software}</span>
-              <div class="featured-card-rating">
-                <span>⭐ 4.8</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      `;
-    }).join('');
+      htmlParts[i] = `<a href="${detailPage}?id=${product.id}" class="featured-card" style="text-decoration: none; color: inherit; display: block;"><img src="${imagePath}" alt="${product.title}" class="featured-card-image" width="400" height="300" ${loadingAttr} decoding="async" onerror="this.style.opacity='0.3';"><div class="featured-card-info"><h3 class="featured-card-title">${product.title}</h3><div class="featured-card-meta"><span class="featured-card-tag">${software}</span><div class="featured-card-rating"><span>⭐ 4.8</span></div></div></div></a>`;
+    }
+    
+    featuredGrid.innerHTML = htmlParts.join('');
   }
   
   // initVideoFullscreen removed - video links are now simple <a> tags
@@ -1024,42 +987,27 @@ window.validateImageSource = function validateImageSource(imageSrc) {
     const productCount = products.length;
     const totalCards = productCount * 4;
     
-    // Pre-build HTML string for better performance
-    let htmlString = '';
+    // Pre-build HTML string for better performance - Use array join for speed
+    const htmlParts = new Array(totalCards);
     
-    for (let i = 0; i < totalCards; i++) {
-      const product = products[i % productCount];
-      let imagePath = fixImagePath(product.image);
-      
-      // Normalize path for Vercel (handles spaces, case sensitivity)
-      if (typeof getImagePath === 'function') {
-        imagePath = getImagePath(imagePath, '');
-      } else {
-        // Fallback: URL encode spaces
-        imagePath = imagePath.split('/').map(part => {
+    // Cache image path normalization function
+    const normalizePath = typeof getImagePath === 'function' 
+      ? (path) => getImagePath(path, '')
+      : (path) => path.split('/').map(part => {
           if (part === '..' || part === '.' || part === '') return part;
           return encodeURIComponent(part);
         }).join('/');
-      }
-      
+    
+    for (let i = 0; i < totalCards; i++) {
+      const product = products[i % productCount];
+      let imagePath = normalizePath(fixImagePath(product.image));
       const escapedTitle = product.title.replace(/"/g, '&quot;');
       
-      htmlString += `
-        <a href="${detailPage}?id=${product.id}" class="slider-product-card" style="text-decoration: none; color: inherit; display: block;">
-          <div class="slider-product-card-image-wrapper">
-            <img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3';">
-            <span class="slider-product-card-new-badge">New</span>
-          </div>
-          <div class="slider-product-card-info">
-            <h3 class="slider-product-card-title">${escapedTitle}</h3>
-            <span class="slider-product-card-tag">${source}</span>
-          </div>
-        </a>
-      `;
+      htmlParts[i] = `<a href="${detailPage}?id=${product.id}" class="slider-product-card" style="text-decoration: none; color: inherit; display: block;"><div class="slider-product-card-image-wrapper"><img src="${imagePath}" alt="${escapedTitle}" class="slider-product-card-image" width="300" height="200" loading="lazy" decoding="async" onerror="this.style.opacity='0.3';"><span class="slider-product-card-new-badge">New</span></div><div class="slider-product-card-info"><h3 class="slider-product-card-title">${escapedTitle}</h3><span class="slider-product-card-tag">${source}</span></div></a>`;
     }
     
     // Single DOM update for better performance
-    sliderTrack.innerHTML = htmlString;
+    sliderTrack.innerHTML = htmlParts.join('');
     
     // Hide duplicate track element if exists
     if (sliderDuplicate) {
@@ -1390,9 +1338,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       }
     }
     
-    // Blender Assets - Check both global and window variables
-    const blenderAssetsData = typeof blenderAssets !== 'undefined' ? blenderAssets : 
-                             (typeof window.blenderAssets !== 'undefined' ? window.blenderAssets : null);
+    // Blender Assets - Check window variable (simplified)
+    const blenderAssetsData = window.blenderAssets;
     if (blenderAssetsData && Array.isArray(blenderAssetsData)) {
       const dlMap = window.blenderDownloadLinksMap || window.assetDownloadLinksMap || {};
       blenderAssetsData.forEach(item => {
@@ -1408,9 +1355,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    // Blender Addons - Check both global and inline data
-    const blenderAddonsData = typeof blenderAddons !== 'undefined' ? blenderAddons : 
-                              (typeof window.blenderAddons !== 'undefined' ? window.blenderAddons : null);
+    // Blender Addons - Check window variable (simplified)
+    const blenderAddonsData = window.blenderAddons;
     if (blenderAddonsData && Array.isArray(blenderAddonsData)) {
       const dlMap = window.blenderDownloadLinksMap || window.downloadLinksMap || {};
       blenderAddonsData.forEach(item => {
@@ -1426,9 +1372,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    // Blender Brushes - Check both global and window variables
-    const blenderBrushesData = typeof blenderBrushes !== 'undefined' ? blenderBrushes : 
-                               (typeof window.blenderBrushes !== 'undefined' ? window.blenderBrushes : null);
+    // Blender Brushes - Check window variable (simplified)
+    const blenderBrushesData = window.blenderBrushes;
     if (blenderBrushesData && Array.isArray(blenderBrushesData)) {
       const dlMap = window.brushDownloadLinksMap || window.blenderDownloadLinksMap || {};
       blenderBrushesData.forEach(item => {
@@ -1444,9 +1389,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    // Blender Courses - Check both global and window variables
-    const blenderCoursesData = typeof blenderCourses !== 'undefined' ? blenderCourses : 
-                               (typeof window.blenderCourses !== 'undefined' ? window.blenderCourses : null);
+    // Blender Courses - Check window variable (simplified)
+    const blenderCoursesData = window.blenderCourses;
     if (blenderCoursesData && Array.isArray(blenderCoursesData)) {
       const dlMap = window.courseDownloadLinksMap || window.blenderDownloadLinksMap || {};
       blenderCoursesData.forEach(item => {
@@ -1462,11 +1406,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    // Blender 3D Models - check multiple variable names for compatibility (including inline data)
-    const blender3DModelsData = typeof blender3DModels !== 'undefined' ? blender3DModels : 
-                                (typeof window.blender3DModels !== 'undefined' ? window.blender3DModels : 
-                                (typeof blenderProducts !== 'undefined' ? blenderProducts : null));
-    
+    // Blender 3D Models - Check window variable (simplified)
+    const blender3DModelsData = window.blender3DModels || window.blenderProducts;
     if (blender3DModelsData && Array.isArray(blender3DModelsData)) {
       const dlMap = window.blenderDownloadLinksMap || window.downloadLinksMap || {};
       blender3DModelsData.forEach(item => {
@@ -1483,9 +1424,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    // Unreal Products - Check both global and window variables
-    const unrealAssetsData = typeof unrealAssets !== 'undefined' ? unrealAssets : 
-                            (typeof window.unrealAssets !== 'undefined' ? window.unrealAssets : null);
+    // Unreal Products - Check window variable (simplified)
+    const unrealAssetsData = window.unrealAssets;
     if (unrealAssetsData && Array.isArray(unrealAssetsData)) {
       unrealAssetsData.forEach(item => {
         products.push({
@@ -1499,8 +1439,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    const unrealPluginsData = typeof unrealPlugins !== 'undefined' ? unrealPlugins : 
-                              (typeof window.unrealPlugins !== 'undefined' ? window.unrealPlugins : null);
+    const unrealPluginsData = window.unrealPlugins;
     if (unrealPluginsData && Array.isArray(unrealPluginsData)) {
       unrealPluginsData.forEach(item => {
         products.push({
@@ -1514,8 +1453,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    const unrealCoursesData = typeof unrealCourses !== 'undefined' ? unrealCourses : 
-                              (typeof window.unrealCourses !== 'undefined' ? window.unrealCourses : null);
+    const unrealCoursesData = window.unrealCourses;
     if (unrealCoursesData && Array.isArray(unrealCoursesData)) {
       unrealCoursesData.forEach(item => {
         products.push({
@@ -1529,8 +1467,7 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
     
-    const unreal3DModelsData = typeof unreal3DModels !== 'undefined' ? unreal3DModels : 
-                               (typeof window.unreal3DModels !== 'undefined' ? window.unreal3DModels : null);
+    const unreal3DModelsData = window.unreal3DModels;
     if (unreal3DModelsData && Array.isArray(unreal3DModelsData)) {
       unreal3DModelsData.forEach(item => {
         products.push({
@@ -1548,9 +1485,8 @@ window.validateImageSource = function validateImageSource(imageSrc) {
     // AE plugins, assets, courses would need their data loaded
     // For now, we'll handle dynamically loaded data
     
-    // Membership Products - Check both global and window variables
-    const membershipProductsData = typeof membershipProducts !== 'undefined' ? membershipProducts : 
-                                  (typeof window.membershipProducts !== 'undefined' ? window.membershipProducts : null);
+    // Membership Products - Check window variable (simplified)
+    const membershipProductsData = window.membershipProducts;
     if (membershipProductsData && Array.isArray(membershipProductsData) && membershipProductsData.length > 0) {
       membershipProductsData.forEach(item => {
         // Fix image path: if it doesn't start with http/https and doesn't include Membership/, prepend it
@@ -1572,173 +1508,83 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       });
     }
 
-    // After Effects
-    const aePlugins = window.aePlugins;
-    if (Array.isArray(aePlugins)) {
-      for (let i = 0; i < aePlugins.length; i++) {
-        const item = aePlugins[i];
+    // After Effects - Optimized with helper function
+    const processAEProducts = (data, type) => {
+      if (!Array.isArray(data)) return;
+      const typeLower = type.toLowerCase();
+      for (const item of data) {
         products.push({
           ...item,
           category: 'After Effects',
-          type: 'Plugin',
-          searchUrl: `ae/plugins.html#product-${item.id}`,
-          detailUrl: `ae/plugins.html`,
+          type,
+          searchUrl: `ae/${typeLower}.html#product-${item.id}`,
+          detailUrl: `ae/${typeLower}.html`,
           image: item.image
         });
       }
-    }
-    const aeAssets = window.aeAssets;
-    if (Array.isArray(aeAssets)) {
-      for (let i = 0; i < aeAssets.length; i++) {
-        const item = aeAssets[i];
-        products.push({
-          ...item,
-          category: 'After Effects',
-          type: 'Asset',
-          searchUrl: `ae/assets.html#product-${item.id}`,
-          detailUrl: `ae/assets.html`,
-          image: item.image
-        });
-      }
-    }
-    const aeCourses = window.aeCourses;
-    if (Array.isArray(aeCourses)) {
-      for (let i = 0; i < aeCourses.length; i++) {
-        const item = aeCourses[i];
-        products.push({
-          ...item,
-          category: 'After Effects',
-          type: 'Course',
-          searchUrl: `ae/courses.html#product-${item.id}`,
-          detailUrl: `ae/courses.html`,
-          image: item.image
-        });
-      }
-    }
+    };
+    processAEProducts(window.aePlugins, 'Plugin');
+    processAEProducts(window.aeAssets, 'Asset');
+    processAEProducts(window.aeCourses, 'Course');
 
-    // Premiere Pro
-    const ppPlugins = window.ppPlugins;
-    if (Array.isArray(ppPlugins)) {
-      for (let i = 0; i < ppPlugins.length; i++) {
-        const item = ppPlugins[i];
+    // Premiere Pro - Optimized with helper function
+    const processPPProducts = (data, type) => {
+      if (!Array.isArray(data)) return;
+      const typeLower = type.toLowerCase();
+      for (const item of data) {
         products.push({
           ...item,
           category: 'Premiere Pro',
-          type: 'Plugin',
-          searchUrl: `pp/plugins.html#product-${item.id}`,
-          detailUrl: `pp/plugins.html`,
+          type,
+          searchUrl: `pp/${typeLower}.html#product-${item.id}`,
+          detailUrl: `pp/${typeLower}.html`,
           image: item.image
         });
       }
-    }
-    const ppAssets = window.ppAssets;
-    if (Array.isArray(ppAssets)) {
-      for (let i = 0; i < ppAssets.length; i++) {
-        const item = ppAssets[i];
-        products.push({
-          ...item,
-          category: 'Premiere Pro',
-          type: 'Asset',
-          searchUrl: `pp/assets.html#product-${item.id}`,
-          detailUrl: `pp/assets.html`,
-          image: item.image
-        });
-      }
-    }
-    const ppCourses = window.ppCourses;
-    if (Array.isArray(ppCourses)) {
-      for (let i = 0; i < ppCourses.length; i++) {
-        const item = ppCourses[i];
-        products.push({
-          ...item,
-          category: 'Premiere Pro',
-          type: 'Course',
-          searchUrl: `pp/courses.html#product-${item.id}`,
-          detailUrl: `pp/courses.html`,
-          image: item.image
-        });
-      }
-    }
+    };
+    processPPProducts(window.ppPlugins, 'Plugin');
+    processPPProducts(window.ppAssets, 'Asset');
+    processPPProducts(window.ppCourses, 'Course');
 
-    // Houdini
-    const houdiniAssets = window.houdiniAssets;
-    if (Array.isArray(houdiniAssets)) {
-      for (let i = 0; i < houdiniAssets.length; i++) {
-        const item = houdiniAssets[i];
+    // Houdini - Optimized with helper function
+    const processHoudiniProducts = (data, type) => {
+      if (!Array.isArray(data)) return;
+      const typeLower = type.toLowerCase();
+      for (const item of data) {
         products.push({
           ...item,
           category: 'Houdini',
-          type: 'Asset',
-          searchUrl: `Houdini/assets.html#product-${item.id}`,
-          detailUrl: `Houdini/assets.html`,
+          type,
+          searchUrl: `Houdini/${typeLower}.html#product-${item.id}`,
+          detailUrl: `Houdini/${typeLower}.html`,
           image: item.image
         });
       }
-    }
-    const houdiniCourses = window.houdiniCourses;
-    if (Array.isArray(houdiniCourses)) {
-      for (let i = 0; i < houdiniCourses.length; i++) {
-        const item = houdiniCourses[i];
-        products.push({
-          ...item,
-          category: 'Houdini',
-          type: 'Course',
-          searchUrl: `Houdini/courses.html#product-${item.id}`,
-          detailUrl: `Houdini/courses.html`,
-          image: item.image
-        });
-      }
-    }
+    };
+    processHoudiniProducts(window.houdiniAssets, 'Asset');
+    processHoudiniProducts(window.houdiniCourses, 'Course');
 
-    // Photoshop
-    const psAssets = window.photoshopAssets;
-    if (Array.isArray(psAssets)) {
-      for (let i = 0; i < psAssets.length; i++) {
-        const item = psAssets[i];
+    // Photoshop - Optimized with helper function
+    const processPSProducts = (data, type) => {
+      if (!Array.isArray(data)) return;
+      for (const item of data) {
         products.push({
           ...item,
           category: 'Photoshop',
-          type: 'Asset',
+          type,
           searchUrl: `photoshop.html#product-${item.id}`,
           detailUrl: `photoshop.html`,
           image: item.image
         });
       }
-    }
-    const psPresets = window.photoshopPresets;
-    if (Array.isArray(psPresets)) {
-      for (let i = 0; i < psPresets.length; i++) {
-        const item = psPresets[i];
-        products.push({
-          ...item,
-          category: 'Photoshop',
-          type: 'Preset',
-          searchUrl: `photoshop.html#product-${item.id}`,
-          detailUrl: `photoshop.html`,
-          image: item.image
-        });
-      }
-    }
-    const psTemplates = window.photoshopTemplates;
-    if (Array.isArray(psTemplates)) {
-      for (let i = 0; i < psTemplates.length; i++) {
-        const item = psTemplates[i];
-        products.push({
-          ...item,
-          category: 'Photoshop',
-          type: 'Template',
-          searchUrl: `photoshop.html#product-${item.id}`,
-          detailUrl: `photoshop.html`,
-          image: item.image
-        });
-      }
-    }
+    };
+    processPSProducts(window.photoshopAssets, 'Asset');
+    processPSProducts(window.photoshopPresets, 'Preset');
+    processPSProducts(window.photoshopTemplates, 'Template');
 
-    // Software
-    const softwareProducts = window.softwareProducts;
-    if (Array.isArray(softwareProducts)) {
-      for (let i = 0; i < softwareProducts.length; i++) {
-        const item = softwareProducts[i];
+    // Software - Optimized
+    if (Array.isArray(window.softwareProducts)) {
+      for (const item of window.softwareProducts) {
         products.push({
           ...item,
           category: 'Software',
@@ -1750,11 +1596,9 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       }
     }
 
-    // Website Templates
-    const websiteTemplates = window.websiteTemplates;
-    if (Array.isArray(websiteTemplates)) {
-      for (let i = 0; i < websiteTemplates.length; i++) {
-        const item = websiteTemplates[i];
+    // Website Templates - Optimized
+    if (Array.isArray(window.websiteTemplates)) {
+      for (const item of window.websiteTemplates) {
         products.push({
           ...item,
           category: 'Website Templates',
@@ -1766,8 +1610,11 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       }
     }
     
-    // Precompute searchable fields once (big speedup on each keystroke)
-    globalSearchIndex = products.map((p) => {
+    // Precompute searchable fields once (big speedup on each keystroke) - Optimized
+    const productsLength = products.length;
+    globalSearchIndex = new Array(productsLength);
+    for (let i = 0; i < productsLength; i++) {
+      const p = products[i];
       const title = (p.title || '').trim();
       const category = (p.category || '').trim();
       const type = (p.type || '').trim();
@@ -1781,12 +1628,12 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       // Single searchable blob (fast includes)
       const searchText = `${titleLower} ${folderLower} ${categoryLower} ${typeLower}`.trim();
 
-      return {
+      globalSearchIndex[i] = {
         ...p,
         _titleLower: titleLower,
         _searchText: searchText
       };
-    });
+    }
 
     return globalSearchIndex;
   }
@@ -1832,11 +1679,12 @@ window.validateImageSource = function validateImageSource(imageSrc) {
       return (a[1]._titleLower || '').localeCompare(b[1]._titleLower || '');
     });
 
-    // Strip internal fields before returning (keep main product shape)
-    const finalResults = new Array(matches.length);
-    for (let i = 0; i < matches.length; i++) {
+    // Strip internal fields before returning (keep main product shape) - Optimized
+    const matchesLength = matches.length;
+    const finalResults = new Array(matchesLength);
+    for (let i = 0; i < matchesLength; i++) {
       const p = matches[i][1];
-      // eslint-disable-next-line no-unused-vars
+      // Create new object without internal fields (faster than destructuring)
       const { _titleLower, _searchText, ...rest } = p;
       finalResults[i] = rest;
     }
@@ -1907,12 +1755,14 @@ window.validateImageSource = function validateImageSource(imageSrc) {
         item.setAttribute('rel', 'noopener noreferrer');
       }
       
-      // Escape HTML
-      const escapeHtml = (text) => {
+      // Escape HTML - Optimized (cache function)
+      const escapeHtml = (() => {
         const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-      };
+        return (text) => {
+          div.textContent = text;
+          return div.innerHTML;
+        };
+      })();
       
       const escapedTitle = escapeHtml(product.title || 'Untitled Product');
       const fallbackImage = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'%3E%3Crect fill=\'%23181818\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23666\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'Arial\' font-size=\'14\'%3ENo Image%3C/text%3E%3C/svg%3E';
@@ -2121,14 +1971,15 @@ window.validateImageSource = function validateImageSource(imageSrc) {
     loadSearchIndexWithRetry();
   }
   
-  // Expose for products.html "All Products" page
+  // Expose for products.html "All Products" page - Optimized
   window.loadGlobalSearchIndex = loadGlobalSearchIndex;
   window.getProductsForListing = function() {
-    const list = [];
-    for (let i = 0; i < globalSearchIndex.length; i++) {
+    const indexLength = globalSearchIndex.length;
+    const list = new Array(indexLength);
+    for (let i = 0; i < indexLength; i++) {
       const p = globalSearchIndex[i];
       const { _titleLower, _searchText, ...rest } = p;
-      list.push(rest);
+      list[i] = rest;
     }
     return list;
   };

@@ -371,50 +371,118 @@
     </div>
   </main>
 
-  <script src="script.js"></script>
   <script>
-    // Load product detail
-    document.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = parseInt(urlParams.get('id'));
-      
-      const product = products.find(p => p.id === productId);
+    // Load product detail with global search index fallback
+    document.addEventListener('DOMContentLoaded', async function() {
       const detailDiv = document.getElementById('productDetail');
-      
+      if (!detailDiv) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = parseInt(urlParams.get('id'), 10);
+      if (Number.isNaN(productId)) {
+        detailDiv.innerHTML = '<p>Invalid product id</p>';
+        return;
+      }
+
+      if (typeof window.loadGlobalSearchIndex !== 'function' || typeof window.getProductsForListing !== 'function') {
+        detailDiv.innerHTML = '<p>Product data is unavailable</p>';
+        return;
+      }
+
+      await window.loadGlobalSearchIndex();
+      const products = window.getProductsForListing();
+      const candidates = products.filter(p => p.id === productId);
+      const product = candidates[0];
+
       if (!product) {
         detailDiv.innerHTML = '<p>Product not found</p>';
         return;
       }
 
-      // Get all images for gallery (assuming images are in same folder)
-      const imageBase = product.image.substring(0, product.image.lastIndexOf('/'));
-      const images = [product.image]; // Main image
-      // You can add more images here if available
+      // If the product has a canonical detail page, redirect there
+      if (product.detailUrl) {
+        const currentFile = (window.location.pathname.split('/').pop() || '').toLowerCase();
+        const detailFile = product.detailUrl.split('?')[0].split('/').pop().toLowerCase();
+        if (detailFile && detailFile !== currentFile) {
+          window.location.replace(product.detailUrl);
+          return;
+        }
+      }
+
+      // Helper function to escape HTML
+      const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+
+      // Helper function to escape JavaScript string
+      const escapeJs = (str) => {
+        return str.replace(/\\/g, '\\\\')
+                  .replace(/'/g, "\\'")
+                  .replace(/"/g, '\\"')
+                  .replace(/\n/g, '\\n')
+                  .replace(/\r/g, '\\r');
+      };
+
+      const getImagePath = typeof window.getImagePath === 'function' ? window.getImagePath : (src) => src;
+      const validateImageSource = typeof window.validateImageSource === 'function' ? window.validateImageSource : (src) => src;
+      
+      // Get and validate main image
+      let imageSrc = getImagePath(product.image || '', product.category || '') || product.image || '';
+      imageSrc = validateImageSource(imageSrc) || '';
+      
+      // Get and validate all images
+      const rawImages = Array.isArray(product.images) && product.images.length ? product.images : (imageSrc ? [imageSrc] : []);
+      const images = rawImages
+        .map(img => {
+          const normalized = getImagePath(img, product.category || '');
+          return validateImageSource(normalized);
+        })
+        .filter(img => img !== null && img !== '');
+      
+      // If no valid images, use fallback
+      if (images.length === 0 && imageSrc) {
+        images.push(imageSrc);
+      }
+      
+      // Use first valid image as main image
+      if (images.length > 0 && !imageSrc) {
+        imageSrc = images[0];
+      }
+      
+      const downloadUrl = product.downloadUrl || product.download || product.downloadLink || '#';
+      const escapedTitle = escapeHtml(product.title || 'Untitled Product');
+      const escapedCategory = escapeHtml(product.category || 'Product');
+      const escapedDownloadUrl = escapeHtml(downloadUrl);
 
       detailDiv.innerHTML = `
         <div class="product-detail-wrapper">
           <div class="product-images">
             <div class="main-image">
-              <img src="${product.image}" alt="${product.title}" id="mainImage">
+              <img src="${escapeHtml(imageSrc)}" alt="${escapedTitle}" id="mainImage" loading="eager" decoding="async">
             </div>
             ${images.length > 1 ? `
             <div class="image-gallery">
-              ${images.map((img, idx) => `
-                <img src="${img}" alt="Image ${idx + 1}" class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="changeMainImage('${img}')">
-              `).join('')}
+              ${images.map((img, idx) => {
+                const escapedImg = escapeJs(img);
+                return `
+                <img src="${escapeHtml(img)}" alt="Image ${idx + 1}" class="gallery-thumb ${idx === 0 ? 'active' : ''}" data-image-src="${escapeHtml(img)}" onclick="changeMainImage('${escapedImg}')">
+              `;
+              }).join('')}
             </div>
             ` : ''}
           </div>
-          
+
           <div class="product-content">
-            <h1>${product.title}</h1>
-            <p class="product-category">${product.category || 'Product'}</p>
+            <h1>${escapedTitle}</h1>
+            <p class="product-category">${escapedCategory}</p>
             <div class="product-description">
               <p>If you face any issues or if the download link is not working properly, please join my Discord server for help, updates, and support: <a href="https://discord.com/invite/PCZU4fM27s" target="_blank" rel="noopener noreferrer" style="color: #4a9eff; text-decoration: underline; font-weight: bold;">Join Now</a></p>
             </div>
-            
+
             <div class="download-section">
-              <a href="${product.download}" target="_blank" rel="noopener noreferrer" class="download-btn">
+              <a href="${escapedDownloadUrl}" target="_blank" rel="noopener noreferrer" class="download-btn">
                 <span>Download Now</span>
               </a>
             </div>
@@ -424,10 +492,17 @@
     });
 
     function changeMainImage(imgSrc) {
-      document.getElementById('mainImage').src = imgSrc;
+      const mainImage = document.getElementById('mainImage');
+      if (mainImage && imgSrc) {
+        mainImage.src = imgSrc;
+      }
+      
+      // Update active state using data attribute for reliable matching
       document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+        const thumbSrc = thumb.getAttribute('data-image-src') || thumb.src;
         thumb.classList.remove('active');
-        if (thumb.src.includes(imgSrc)) {
+        // Compare using data attribute or normalized paths
+        if (thumbSrc === imgSrc || thumb.getAttribute('data-image-src') === imgSrc) {
           thumb.classList.add('active');
         }
       });
